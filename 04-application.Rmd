@@ -1,5 +1,10 @@
 # Applications
 
+
+## Detailed analysis of Tooele
+
+## Entire network results
+
 This section might be called "Results" instead of "Applications," depending
 on what it is that you are working on. But you'll probably say something like 
 "The initial model estimation results are given in Table \@ref(tab:estimation-results)."

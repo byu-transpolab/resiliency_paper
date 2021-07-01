@@ -1,14 +1,14 @@
 ---
-title: "Article Long Title"
+title: "Examining the Utility-based Resiliency of Utah's Highway Network"
 author:
   - name: Gregory Macfarlane
     email: gregmacfarlane@byu.edu
     affiliation: Brigham Young University
     footnote: 1
-  - name: Cosmo Cougar
+  - name: Max Barnes
     email: bob@example.com
     affiliation: Brigham Young University
-  - name: Masters Student
+  - name: Natalie Gray
     email: cat@example.com
     affiliation: Brigham Young University
     footnote: 2
@@ -65,3 +65,4 @@ A three or four-paragraph structure can work well here.
   attempts were limited (this might be two paragraphs).
   2. Describe the approach (very briefly), and provide an overview of what is 
   to come. "In this paper we present ..."
+  
