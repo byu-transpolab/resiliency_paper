@@ -6,22 +6,15 @@ author:
     affiliation: Brigham Young University
     footnote: 1
   - name: Max Barnes
-    email: bob@example.com
+    email: barnesmaxmax@gmail.com
     affiliation: Brigham Young University
   - name: Natalie Gray
-    email: cat@example.com
+    email: nat.gray2000@gmail.com
     affiliation: Brigham Young University
     footnote: 2
 address:
   - code: Brigham Young University
     address: Civil and Environmental Engineering Department, 430 Engineering Building, Provo, Utah 84602
-  - code: Another University
-    address: Some Other Place
-footnote:
-  - code: 1
-    text: "Corresponding Author"
-  - code: 2
-    text: "Present affiliation: some nice job"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: article
@@ -41,28 +34,69 @@ keywords:
 
 # Introduction {#intro}
 
+## Problem Statement
+The Utah Department of Transportation (UDOT) is responsible for maintaining a
+transportation system to promote public welfare and economic activity throughout
+the state. UDOT is also responsible to maintain key components of the national
+highway transportation system. Given the importance of this system, UDOT has
+sought in the last several years to identify which facilities are most critical
+to the smooth operations of this system. 
 
-This repository serves as a template both in how to write a report, and how
-to do so in RStudio and Bookdown. The parent repository is available as a free
-template at [https://github.com/byu-transpolab/template_bookdown](https://github.com/byu-transpolab/template_bookdown).
+In 2017, AEM (2017) completed a risk and resilience analysis for the I-15
+corridor on behalf of UDOT. This analysis quantified risk as the probability of
+threats (earthquakes, floods, fires, etc.) multiplied by the criticality of the
+asset to the overall system were such threats to materialize. The AEM analysis
+has two primary limitations. First, the methods are proprietary to AEM and UDOT
+cannot now apply the methods to study the criticality of other transportation
+corridors with regional and national significance (e.g. U.S. Route 6, Interstate
+70). But more importantly, the current index treats each UDOT asset – each
+bridge, highway segment, etc. – as an independent unit when in fact UDOT
+operates a system of transportation facilities. The criticality of a single
+bridge to the overall system is not determined by the volume of traffic it
+supports directly, but by how inconvenient it would be for that traffic to find
+another path or destination were the bridge to fail. Resiliency must therefore
+be considered a function of network alternatives, or redundancy.
 
-The advice in this document comes from numerous sources. Some of it is my own, some
-has been shared by others. Particular note belongs to:
+## Objective
+The primary objective of this research is to develop a methodology and tool to
+evaluate the network redundancy of critical UDOT assets across the state. We
+base this tool on data collected for the Utah Statewide Travel Model (USTM),
+with certain improvements and additional model features to more accurately
+capture the economic costs associated with an impaired state highway network. In
+particular, we develop a method that explicitly considers the availability of
+alternative destinations, modes, and routes to individuals traveling on the
+impaired network. A secondary objective of this research is to apply the model
+to evaluate the criticality of specific highway links in Utah by comparison.
+This report presents the results of this evaluation applied on 41 individual
+highway links.
 
-  - Laurie Garrow
-  - Lisa Rosenstein
-  - Kara Kockelman
-  
-The introduction of your report is not simply an "introduction", but rather a 
-**motivation** of why your project matters. What is the cost of not solving 
-this problem? What have been previous attempts to solve this problem? The *why*
-is more important than the *what*. Why is this article worthy of archiving?
+## Scope
 
-A three or four-paragraph structure can work well here.
+The purpose of the resiliency model is to provide a working model that can be
+used to evaluate the potential economic costs were a highway link – or a set of
+highway links – to be damaged or destroyed temporarily in Utah. This model is
+based in the theory of logit choice modeling and shortest path finding in a
+network. The specific choice utility equations in the model represent a
+plausible utility outcome, but the focus of this research has not been on
+developing robust utility equations or calibrated volume-delay functions. This
+model is therefore not designed to forecast traffic volumes or designed for any
+purpose other than providing a comparative estimate of the effects of link loss
+by man-made or natural causes.
 
-  1. Identify the problem and why it matters.
-  2. A high-level overview of some previous attempts to solve it, and why those 
-  attempts were limited (this might be two paragraphs).
-  2. Describe the approach (very briefly), and provide an overview of what is 
-  to come. "In this paper we present ..."
+## Outline
+This report is organized as follows: 
+-Chapter 1.	This introductory chapter.
+-Chapter 2.	A Literature Review, summarizing previous attempts to model network
+resiliency using the choices and accessibility of individuals on the impacted
+network. 
+-Chapter 3.	This chapter presents a proposed model design and
+implementation of the model within the CUBE transportation planning software
+application. This chapter also describes model calibration efforts.
+-Chapter 4.	This chapter presents a method for identifying vulnerable and
+potentially critical highway links by considering the location-based elevated
+risk issues. This chapter summarizes a previous study conducted by BIO-WEST.
+-Chapter 5.	A Model Application, describing and comparing the results of the
+model developed in Chapter 3 to the highway links identified in Chapter 4.
+-Chapter 6.	A Conclusions chapter summarizing the findings and providing
+additional recommendations to UDOT.
   
