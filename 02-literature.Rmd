@@ -135,6 +135,7 @@ merge point between two expressway facilities (GA-400 and I-85) bringing
 commuter traffic in from the suburbs of northern Fulton and Gwinnett Counties.
 
 ```{r i85map, fig.cap="Location of I-85 / Piedmont Roadd Fire in Atlanta.", out.width='100%', echo = FALSE}
+#\@ref(fig:i85map)
 knitr::include_graphics("images/i85map.png")
 ```
 
@@ -237,7 +238,21 @@ be carried out. Agarwal’s framework best fits the definition of resilience
 through resistance due to the way it can identify critical facilities and allow
 for mitigation moving forward.
 
-[@ip2011], attempt to combine graph theory with friability in order to determine criticality of links or hub cities. Friability is defined as the reduction of network capacity caused by removing a link or node. The methodology presented relies on the ability to determine the weighted sum of the resilience of all nodes based on the weighted average of connectedness with other city nodes in the network. The authors determine that the recovery of transportability between two cities largely depends on redundant links between nodes. Ip and Wang also comment that most traffic managers are more concerned with the friability of single links rather than the friability of multiple links or an entire system. The author's hypothesis closely matches resilience through operability because the methodology seeks to determine resilience of a network that already has damaged links and nodes. Their main contribution to the field of transportation research is the idea of friability, that a network can break down for any number of reasons, of which transportation networks generally appear most susceptible to attack or disaster.
+[@ip2011], attempt to combine graph theory with friability in order to determine
+criticality of links or hub cities. Friability is defined as the reduction of
+network capacity caused by removing a link or node. The methodology presented
+relies on the ability to determine the weighted sum of the resilience of all
+nodes based on the weighted average of connectedness with other city nodes in
+the network. The authors determine that the recovery of transportability between
+two cities largely depends on redundant links between nodes. Ip and Wang also
+comment that most traffic managers are more concerned with the friability of
+single links rather than the friability of multiple links or an entire system.
+The author's hypothesis closely matches resilience through operability because
+the methodology seeks to determine resilience of a network that already has
+damaged links and nodes. Their main contribution to the field of transportation
+research is the idea of friability, that a network can break down for any number
+of reasons, of which transportation networks generally appear most susceptible
+to attack or disaster.
 
 [@vodak2019] introduces a method to quickly identify critical links in a network by searching for the shortest cycles, or independent loops in the network. The algorithm progressively damages one or more links between iterations to determine if nodes become isolated, or cut off from the network. The authors use isolation as a measure of network vulnerability and connectedness. If a node becomes easily isolated or has a higher likelihood of becoming isolated, then there is a higher degree of vulnerability present in the network. Vodak’s work is significant because the novel algorithm is capable of processing upwards of 1000 links and nodes while effectively identifying vulnerabilities in the network. This ability makes the algorithm a valuable tool for resilience research at the regional and statewide levels.
 
@@ -255,7 +270,7 @@ Graph theory based approaches to resiliency largely consider whether the network
 ### Changes in Accessibility
 Accessibility refers to the ease with which individuals can reach the destinations that matter to them; this is an abstract idea but one that has been quantified in numerous ways. [@dong2006] provides a helpful framework for understanding various quantitative definitions of accessibility that we will simplify here. The most elementary definition of accessibility is whether a destination is within an isochrone, or certain distance. This measure is often represented as a count, e.g., the number of jobs reachable from a particular location within thirty minutes travel time by a particular mode. Mathematically,
 
-$$A_i = \sum_{j} X_jI_{ij}$$ where $I_{ij} = 1$ if $d_{ij} < D$ and $ I_{ij} = 0$ if $d_{ij} > D$
+$$A_i = \sum_{j} X_jI_{ij}$$ where $I_{ij} = 1$ if $d_{ij} < D$ and $I_{ij} = 0$ if $d_{ij} > D$
 
 where the accessibility A at point i is the sum of the all the jobs or other
 destinations $X$ at other points $j$. $I_{ij}$ is an indicator function equal to zero if

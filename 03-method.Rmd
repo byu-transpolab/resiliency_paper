@@ -16,7 +16,7 @@ options(dplyr.summarise.inform = FALSE)
 
 # Other packages ------
 # These sometimes get used, and sometimes don't.
-library(mlogit)
+#library(mlogit)
 
 # Instructions and options =========
 # prints missing data in tables as blank space
@@ -182,7 +182,7 @@ applied.
 
 Discuss where you got your data, how you cleaned it, any assumptions you made.
 
-```{r load_data}
+```{r load_data, include = FALSE}
 data("Car", package = "mlogit")
 car_mlogit <- Car %>%
   mutate(choice = gsub("choice", "", choice)) %>%
@@ -193,7 +193,7 @@ Often there will be a table describing summary statistics of your dataset.
 Table \@ref(tab:datasummary) shows a nice table using the [`datasummary`](https://vincentarelbundock.github.io/modelsummary/articles/datasummary.html) 
 functions in the `modelsummary` package.
 
-```{r datasummary}
+```{r datasummary, include = FALSE}
 datasummary_balance(
   ~type, 
   data = car_mlogit %>% 

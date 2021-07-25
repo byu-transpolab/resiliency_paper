@@ -1,38 +1,206 @@
 # Applications
+## Overview 
+In this chapter, we summarize the methodology used to identify
+vulnerable links on Utah’s highway network. We also apply the model to scenarios
+where critical highway links are removed from the model network. This includes
+first a detailed analysis of a single scenario, where I-80 between Salt Lake and
+Tooele Counties is severed. We compare the model output to an alternative method
+that measures only the change in travel time and does not allow for mode or
+destination choice. The model was then applied to 41 individual link closure
+scenarios throughout the state.
 
+## Vulnerable Link Identification
+Two methodologies were developed to identify vulnerable network links in Utah.
+The first method resembles the process used by AEM to determine threat
+categories, and threat proximity thresholds to highway links. This methodology
+was ultimately not used in the resiliency model. The second method uses an
+online Risk Priority Analysis map created by UDOT combined with familiar
+knowledge of Utah’s road system. Using this second method, links were identified
+due to their location in relation populations or geography, are suspected choke
+points, or because they were of interest by the BYU team or UDOT officials.
 
-## Detailed analysis of Tooele
+## Single Scenario Analysis
+This section outlines an in-depth analysis that was conducted to ensure the
+resiliency model was accurately capturing trips with OD pairs in the targeted
+area around a closed link. This analysis was done on a link between Tooele and
+Salt Lake City, Utah.
 
-## Entire network results
+Scenario 50, located along I-80 between Tooele and Salt Lake Counties, was
+examined to ensure the resiliency model was capturing trips in the vicinity of a
+broken link. Analyzing the model outputs at a localized level was necessary to
+ensure that the model was appropriately estimating trips and capturing them in
+the areas that were expected. In scenario 50, if many effected trips had not
+been captured in Tooele and Salt Lake counties, that would have signaled that a
+problem was present with the model. This analysis shows that a broken link
+mainly effects the area surrounding that link, and the key takeaway here is that
+the model functions as intended. Another method to estimate trip costs is the
+travel time method, which serves to capture trips that have more fixed OD pairs,
+such as freight trips. This analysis also looks at this method in addition to
+the logsum estimates.
 
-This section might be called "Results" instead of "Applications," depending
-on what it is that you are working on. But you'll probably say something like 
-"The initial model estimation results are given in Table \@ref(tab:estimation-results)."
-That table is created with the `modelsummary()` package and function.
+Table \@ref(tab:tooeletable) compares the overall costs between the logsum and
+travel time methods, the specific cost for trips originating in Tooele and
+ending in Salt Lake and includes a trip comparison as well. From the
+\@ref(tab:tooeletable), we can see that the logsum method captures about
+\$173,996 in experienced expense due to the closure of the link. Specifically,
+between Tooele and SLC, the logsum based resiliency model captures \$167,424 of
+expense, which is approximately 99% of the total expense as seen in
+\@ref(tab:tooeletable2). This shows that the resiliency model is effectively
+capturing trips in the correct areas based on the percent comparison capture
+rate in \@ref(tab:tooeletable2). When we look at the travel time method of
+analysis, we can see that the costs at both the local and statewide levels are
+much greater with \$437,401 and \$406,899 respectively estimated as the costs
+due to just the increase in travel time, not using the logit-based model.
 
-```{r estimation}
-model1 <- mlogit(choice ~ type + price | -1, data = car_mlogit)
-model2 <- update(model1, .~. + range)
-
-models <- list("Model 1" = model1, "Model 2" = model2)
+```{r tooeletable, echo = FALSE}
+library(knitr)
+library(readxl)
+tooele_table <- read_xlsx("images/tooele_table.xlsx")
+kable(tooele_table)
+```
+```{r tooeletable2, echo = FALSE}
+library(knitr)
+library(readxl)
+tooele_table2 <- read_xlsx("images/tooele_table2.xlsx")
+kable(tooele_table2)
 ```
 
+The logsum and travel time methods for determining the overall cost associated
+with can be broken down into overall costs, and comparable costs. The comparable
+costs are made up of those purposes which are included in the resiliency model.
+HBW, HBO, and NHB trips are included in both models, thus the results from both
+the logsum model and the travel time method can be compared to each other.
 
-```{r estimation-results}
-modelsummary(models, estimate = "{estimate} ({statistic})",
-             title = "Model Estimation Results")
+The travel time method measures the difference in travel time between the base
+scenario and any other scenario, and then multiplies that difference by the VOT
+for each trip purpose and the number of trips estimated for each trip purpose.
+For external trips, freight trips, and REC trips, these were all extracted
+directly from USTM. The HBW, HBO, and NHB purposes are estimated using the
+logsum model. Calculating the costs associated with the difference in travel
+time allows a better estimation of the true cost experienced by road users who
+are not included in the logsum based resiliency model. So, while the logit-based
+model is more sensitive to changes in the network, it is not able to truly
+estimate the costs associated with closure for those purposes that are not
+included in the analysis.
+
+## Comparative Scenario Results
+We now apply the model to compare 40 additional scenarios where individual
+highway facilities are removed from the model highway network. These scenario
+locations are shown in Figure \@ref(fig:links), and were identified in a report
+by AEM (2017). AEM approached the idea of systemic resiliency by attempting to
+classify various types of threats toward specific infrastructure types. This
+method, while valid, was difficult to implement statewide. Some facilities have
+obvious natural threats such as earthquake, flood, or landslide.
+
+```{r links, fig.cap="Critical Highway Links Identified using Risk Priority Analysis", out.width='100%', echo = FALSE}
+#\@ref(fig:i85map)
+knitr::include_graphics("images/links.png")
 ```
 
-With those results presented, you can go into a discussion of what they mean.
-first, discuss the actual results that are shown in the table, and then any 
-interesting or unintuitive observations.
+This section will present the results of the 41 scenarios analyzed. First, Table
+\@ref(tab:linktable) shows each of the scenarios, labeled “road10” for scenario
+10, and “road11” for scenario 11 along with route numbers or street names, as
+well as a physical location where the link was cut.
 
-## Additional Analysis
+```{r linktable, echo = FALSE}
+library(knitr)
+library(readxl)
+linktable <- read_xlsx("images/linktable.xlsx")
+kable(linktable)
+```
 
-Usually, it is good to use your model for something.
+The logsum method results are as follows in Table 14. The results are ranked
+from the road with the largest cost to the road with the smallest cost. We can
+see that road 50, which corresponds to I-80 between SLC and Tooele, experiences
+the largest cost per day according to the resiliency model. Following road 50,
+roads 38, 27, 37, and 14 make up the five most important road according to the
+cost estimation provided by the resiliency model. Each of these roads is an
+Interstate facility in Northern Utah, which is heavily populated. Some roads,
+such as road 10, which is along SR-95 near Hite, experiences no measurable
+change to HBW, HBO, or NHB traffic. This is likely due to the remote location of
+the highway link that was cut. A ranking is provided for all of the roads in
+Table \@ref(fig:logsumrank).
 
-  - Hypothetical policy analysis
-  - Statistical validation effort
-  - Equity or impact analysis
-  
-If the analysis is substantial, it might become its own top-level section.
+```{r logsumrank, echo = FALSE}
+library(knitr)
+library(readxl)
+linktable <- read_xlsx("images/logsumrank.xlsx")
+kable(logsumrank)
+```
+
+Table \@ref(fig:traveltimerank) contains the ranking results from the travel
+time method. Here, we see that the first five roads differ from the results of
+the logsum model. Instead, road 48 becomes the most important road due to costs
+experienced. Road 48 is a part of I-70 near Green River, Utah. The other four
+roads that make up the top five most important roads in the travel time method
+analysis are road 13, road 20, road 50, and road 49. Some of these roads appear
+in both the logsum and travel time methods. Here again, several of the roads
+that are most important are located in Northern Utah. It is important to note
+that the main driving factor as to why a road was important or not in the travel
+time analysis was how much freight and external traffic it experienced.
+Including the freight, even with the logsum results, changes the rankings
+drastically.
+
+```{r traveltimerank, echo = FALSE}
+library(knitr)
+library(readxl)
+linktable <- read_xlsx("images/traveltimerank.xlsx")
+kable(traveltimerank)
+```
+
+Some other interesting findings are that in the top 10 of each analysis methods,
+three scenarios appear in both rankings. Road 50, which corresponds to I-80
+between Tooele and SLC, road 27 which corresponds to I-84 in Weber Canyon, and
+road 37 which corresponds to I-80 in Parley’s Canyon are included in the top 10
+scenarios for both methods of analysis. This is likely due to the number of
+passenger trips along these routes and the number of freight trips that occur
+along these routes.
+
+## Positive Benefit Scenarios
+Five of the scenarios indicated a benefit resulting from highway link closure.
+These scenarios were examined more closely to determine what causes these
+atypical results. The affected links are all located in Salt Lake Valley at the
+following locations: Bangerter Highway near Bluffdale, I-80 near 1300 E, I-15
+between 2100 S and 1300 S, I-215 near Cottonwood Heights, and Mountain View
+Corridor near West Jordan.
+
+It was determined that a likely cause which explains these atypical results is
+that the shortest path by time is not the shortest path by distance. The
+automobile accessibility is determined by the AM congested travel time in the
+Utah Statewide Travel Model (USTM). The travel distance – used to determine the
+accessibility of destinations by walking – is the distance of that path, and not
+the actual shortest distance path as might be more preferable.
+
+When a highway link is broken, the new shortest path by time is longer than in
+the base scenario with this link available. But the new path may actually be
+shorter by distance. This causes an increase in the utility of accessing
+destinations by non-motorized modes, potentially overwhelming the decrease in
+automobile utility.
+
+This is only observed in heavily urbanized regions for two reasons:  
+
+-	The presence of high-speed expressways and parallel local roads means that
+alternate paths with shorter distances but longer vehicle times are more likely.
+
+-	The increased availability of destinations within the non-motorized distance
+threshold (50 miles) means that alternative destinations exist.
+
+Overall, the results of the analysis indicate that the likely cause of a
+positive cost being estimated for these five scenarios is that there are easily
+accessible alternate routes in the area, along with competing TAZ of similar
+size in the DC size term equation.
+
+## Summary
+The overall results show that the resiliency model is more sensitive to network
+changes than the travel time comparison. The ability for a user to choose both a
+mode and destination (or alternate destination) cause the logsum results to
+often estimate a smaller cost than the travel time results would. However, when
+the travel time results are factored in, the overall rankings of the 41
+scenarios considered change dramatically. This is due to the large expenses
+experienced by freight traffic, which has a much higher VOT than other passenger
+trips do. In summary, Table \@ref(fig:logsumrank) and Table
+\@ref(fig:traveltimerank) show the rankings for both the logsum and travel time
+analysis respectively. The logsum suggests that I-80 between Tooele and SLC is
+the most important road, while the travel time method, or total priority,
+indicates that I-70 near Green River is the most important road due to cost
+associated with closure.
