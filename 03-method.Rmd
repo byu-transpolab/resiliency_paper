@@ -30,6 +30,7 @@ productions will be attracted to a location based on the size of a location (a
 locations attractiveness) and the friction factor between the OD pair. A
 mathematical representation of the gravity model is given by:
 
+
 $$T_ij= P_i*(A_j F_{ij}/\sum A_j F_{ij})$$
 Where:
 	$T_{ij}$ represents that trips made between an origin i and a destination $j$
@@ -91,10 +92,6 @@ home-based work trips in the WFRC/MAG model. As a result, USTM or other travel
 models within Utah are not sufficient to use for the accessibility analysis
 proposed for this research, and a new model must be developed.
 
-## Model Design
-This section outlines the design and implementation of a model to evaluate
-critical link resiliency in Utah.
-
 ### Model Framework
 An initial model framework developed in \@ref(fig:framework) was created to show how a
 resiliency model would appear in order to create a logit-based model. The main
@@ -134,6 +131,15 @@ knitr::include_graphics("images/framework.png")
  
 
 
+## Vulnerable Link Identification
+Two methodologies were developed to identify vulnerable network links in Utah.
+The first method resembles the process used by AEM to determine threat
+categories, and threat proximity thresholds to highway links. This methodology
+was ultimately not used in the resiliency model. The second method uses an
+online Risk Priority Analysis map created by UDOT combined with familiar
+knowledge of Utah’s road system. Using this second method, links were identified
+due to their location in relation populations or geography, are suspected choke
+points, or because they were of interest by the BYU team or UDOT officials.
 
 In this chapter, you describe the approach you have taken on the problem. This 
 usually involves a discussion about both the data you used and the models you
