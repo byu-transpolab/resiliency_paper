@@ -52,13 +52,15 @@ much greater with \$437,401 and \$406,899 respectively estimated as the costs
 due to just the increase in travel time, not using the logit-based model.
 
 ```{r tooeletable, echo = FALSE}
-tooele_table <- read_xlsx("images/tooele_table.xlsx")
-kable(tooele_table)
+read_xlsx("images/tooele_table.xlsx") %>%
+  kbl(caption = "Tooele Table", booktabs = TRUE) %>%
+  kable_styling() 
 ```
 
 ```{r tooeletable2, echo = FALSE}
-tooele_table2 <- read_xlsx("images/tooele_table2.xlsx")
-kable(tooele_table2)
+read_xlsx("images/tooele_table2.xlsx") %>%
+  kbl(caption = "Tooele Table Again", booktabs = TRUE) %>%
+  kable_styling( )
 ```
 
 The logsum and travel time methods for determining the overall cost associated
@@ -98,8 +100,9 @@ This section will present the results of the 41 scenarios analyzed. First, Table
 well as a physical location where the link was cut.
 
 ```{r linktable, echo = FALSE}
-linktable <- read_xlsx("images/linktable.xlsx")
-kable(linktable)
+read_xlsx("images/linktable.xlsx") %>%
+  kbl(caption = "Link Table", booktabs = TRUE) %>%
+  kable_styling()
 ```
 
 The logsum method results are as follows in Table 14. The results are ranked
