@@ -33,7 +33,7 @@
 % use microtype if available
 \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
 \usepackage{natbib}
-\bibliographystyle{plainnat}
+\bibliographystyle{apalike}
 \usepackage{longtable}
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
@@ -45,7 +45,7 @@
 \hypersetup{breaklinks=true,
             bookmarks=true,
             pdfauthor={},
-            pdftitle={Article Long Title},
+            pdftitle={Examining the Utility-based Resiliency of Utah's Highway Network},
             colorlinks=false,
             urlcolor=blue,
             linkcolor=magenta,
@@ -55,21 +55,36 @@
 \setcounter{secnumdepth}{5}
 % Pandoc toggle for numbering sections (defaults to be off)
 
+% Pandoc citation processing
 
 % Pandoc header
 \usepackage{booktabs}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 
 
 
 \begin{document}
 \begin{frontmatter}
 
-  \title{Article Long Title}
+  \title{Examining the Utility-based Resiliency of Utah's Highway Network}
     \author[Brigham Young University]{Gregory Macfarlane\corref{1}}
    \ead{gregmacfarlane@byu.edu} 
-    \author[Brigham Young University]{Cosmo Cougar}
+    \author[Brigham Young University]{Max Barnes}
    \ead{bob@example.com} 
-    \author[Brigham Young University]{Masters Student\corref{2}}
+    \author[Brigham Young University]{Natalie Gray\corref{2}}
    \ead{cat@example.com} 
       \address[Brigham Young University]{Civil and Environmental Engineering Department, 430 Engineering Building, Provo, Utah 84602}
     \address[Another University]{Some Other Place}
@@ -212,6 +227,12 @@ like saying that \(i, j \in J\). Details on using equations in bookdown are avai
 \hypertarget{applications}{%
 \section{Applications}\label{applications}}
 
+\hypertarget{detailed-analysis-of-tooele}{%
+\subsection{Detailed analysis of Tooele}\label{detailed-analysis-of-tooele}}
+
+\hypertarget{entire-network-results}{%
+\subsection{Entire network results}\label{entire-network-results}}
+
 This section might be called ``Results'' instead of ``Applications,'' depending
 on what it is that you are working on. But you'll probably say something like
 ``The initial model estimation results are given in Table \ref{tab:estimation-results}.''
@@ -285,5 +306,3 @@ relevance.
 
 
 \end{document}
-
-
