@@ -1,8 +1,30 @@
 # Conclusions
+The USTM model is a gravity-based travel demand model, while the resiliency
+model is logit-based. The logit-based nature of the resiliency model allows for
+greater sensitivity in user mode and destination choice, which causes the
+estimated costs associated with link closure to be lower than for previous
+estimations. The resiliency models incorporation of both the logsum for HBW,
+HBW, and NHB purposes, as well as the travel time calculation for the other
+purposes included in USTM. The recommendations resulting from the adaptation of
+a logit-based model on the USTM network are that logit-based modeling returns
+more sensitive estimations of the value of a link in the network.  This is a
+highly important outcome because more accurate estimation allows UDOT to better
+understand the monetary importance of highway links throughout Utah.
+Additionally, the model’s design allows for further analysis of additional link
+closures, or even multi-link closure.
 
-This section need not be overly long. You should address any limitations of your
-results, such as dependence on underlying assumptions or geographic scope. 
-You should also provide a map for future research.
 
-Finally, you should underline the contributions of this work and any practical 
-relevance.
+## Summary
+The development of a logit-based travel demand model can improve the ability of
+UDOT to accurately estimate the costs per day of link loss that Utahn’s would
+experience. The resiliency model provides sensitive estimates that more
+accurately represent the costs associated with link closure than a travel time
+increase methodology by itself would be able to capture.  Using the logsum,
+estimations sensitive to user choice were found, which can help professionals to
+better evaluate risk to Utah’s infrastructure. User choice is highly important
+in modern modeling practices because user choice allows a model to estimate
+information more precisely and accurately. The information provided by the
+resiliency model should be used to prioritize link importance to the
+functionality of Utah’s highway network. The resiliency model more accurately
+estimates costs experienced by Utahn’s due to link loss than do traditional
+methods for determining costs.
