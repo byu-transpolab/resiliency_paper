@@ -1,5 +1,4 @@
-# Applications
-## Overview 
+# Results {#results}
 In this chapter, we summarize the methodology used to identify
 vulnerable links on Utah’s highway network. We also apply the model to scenarios
 where critical highway links are removed from the model network. This includes
