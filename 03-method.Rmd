@@ -1,48 +1,8 @@
-# Methods
-
-```{r setup, include = FALSE}
-# load R libraries here; the `include` flag in the chunk options above tells
-# whether to print the results or not. Usually you don't want to print the
-# library statements, or any code on the pdf.
-
-# Main Packages ========
-# I use these in every doc
-library(tidyverse)
-library(knitr)
-library(kableExtra)
-library(modelsummary)
-
-options(dplyr.summarise.inform = FALSE)
-
-# Other packages ------
-# These sometimes get used, and sometimes don't.
-#library(mlogit)
-
-# Instructions and options =========
-# prints missing data in tables as blank space
-options(knitr.kable.NA = '') 
-# tells kableExtra to not load latex table packages in the chunk output
-options(kableExtra.latex.load_packages = FALSE) 
-
-# round and format numbers that get printed in the text of the article.
-inline_hook <- function(x) {
-  if (is.numeric(x)) {
-    format(x, digits = 3, big.mark = ",")
-  } else x
-}
-knitr::knit_hooks$set(inline = inline_hook)
-
-knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
-
-# options for latex-only output
-if(knitr::is_latex_output()) {
-  knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-} 
-
-```
+# Methodology {#methodology}
 
 
-## Overview
+
+
 This chapter presents the design and implementation of a model system designed
 to measure accessibility changes on a transportation network after the
 elimination or loss of highway links. The chapter begins with a discussion of
@@ -167,6 +127,7 @@ The model framework consists of the following steps (also visually represented i
 
 6.	Trip Assignment 
 -	A static user equilibrium assignment loads all estimated trips onto the network based on origin, destination, and mode choice. Congestion, if present, will be shown on the network using this step. Highway volume-capacity functions from the USTM model will be applied. 
+
 ```{r framework, echo = FALSE}
 knitr::include_graphics("images/framework.png")
 ```
@@ -182,26 +143,11 @@ applied.
 
 Discuss where you got your data, how you cleaned it, any assumptions you made.
 
-```{r load_data, include = FALSE}
-data("Car", package = "mlogit")
-car_mlogit <- Car %>%
-  mutate(choice = gsub("choice", "", choice)) %>%
-  dfidx( varying = 5:70, shape = "wide", choice = "choice", sep = "")
-```
 
 Often there will be a table describing summary statistics of your dataset.
 Table \@ref(tab:datasummary) shows a nice table using the [`datasummary`](https://vincentarelbundock.github.io/modelsummary/articles/datasummary.html) 
 functions in the `modelsummary` package.
 
-```{r datasummary, include = FALSE}
-datasummary_balance(
-  ~type, 
-  data = car_mlogit %>% 
-    select(type, fuel, price, range, size), 
-  dinm = FALSE,
-  title = "Descriptive Statistics of Dataset"
-  )
-```
 
 ## Models
 
