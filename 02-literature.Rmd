@@ -25,25 +25,20 @@ little-traveled and systemically unimportant side street. The motivation of this
 research is to identify *systemically* critical facilities, and therefore we
 primarily consider literature using the third definition.
 
-A number of researchers have conducted studies where they construct real or
-fabricated transportation networks, eliminate or degrade links in the network,
-and evaluate the changes the loss of these links introduced into some measure of
-network performance. [@berdica2002] attempts to identify, define and
-conceptualize vulnerability by envisioning analyses conducted with several
-vulnerability performance measures including travel time, delay, congestion,
-serviceability and accessibility. Here, Berdica defines accessibility as the
-ability for users to travel between origins and destinations for any number of
-reasons. She then uses the performance measures to define vulnerability as the
-level of reduced accessibility due to unfavorable operating conditions on the
-network. In particular, Berdica identifies a need for further research toward
-developing a framework capable of investigating reliability of transportation
-networks.
+In a groundbreaking theoretical article, @berdica2002 attempted to identify,
+define and conceptualize vulnerability by envisioning analyses conducted with
+several vulnerability performance measures including travel time, delay,
+congestion, serviceability, and accessibility. She then defined reliability as
+the level of reduced accessibility due to unfavorable operating conditions on
+the network. In particular, Berdica identifieed a need for further research
+toward developing a framework capable of investigating reliability of
+transportation networks.
 
 In this section we will examine several attempts by numerous researchers to do
 precisely this using different measures of network performance. A consolidation
-of this discussion is summarized in Table 2, namely the methods that different
-researchers have used in examining network performance under duress. The
-measures can be consolidated in to three basic families: 
+of this discussion is summarized in Table \@ref(tab:authortable), namely the
+methods that different researchers have used in examining network performance
+under duress. The measures can be consolidated in to three basic families:
 
 -	*Network Connectivity* considers how isolated nodes of a network become when
 links are damaged. 
@@ -57,10 +52,9 @@ their daily patterns affected by the damaged network.
 We discuss studies within each family in turn.
 
 ```{r authortable, echo = FALSE}
-library(knitr)
-library(readxl)
-authortable <- read_xlsx("images/author_summary.xlsx")
-kable(authortable)
+read_xlsx("images/author_summary.xlsx") %>%
+  kbl(caption = "Attempts to Evaluate Systemic Resiliency", booktabs = TRUE) %>%
+  kable_styling()
 ```
 
 ### Network Connectivity
@@ -129,7 +123,12 @@ Graph theory based approaches to resiliency largely consider whether the network
 ### Changes in Accessibility
 Accessibility refers to the ease with which individuals can reach the destinations that matter to them; this is an abstract idea but one that has been quantified in numerous ways. [@dong2006] provides a helpful framework for understanding various quantitative definitions of accessibility that we will simplify here. The most elementary definition of accessibility is whether a destination is within an isochrone, or certain distance. This measure is often represented as a count, e.g., the number of jobs reachable from a particular location within thirty minutes travel time by a particular mode. Mathematically,
 
-$$A_i = \sum_{j} X_jI_{ij}$$ where $I_{ij} = 1$ if $d_{ij} < D$ and $I_{ij} = 0$ if $d_{ij} > D$
+\begin{equation}
+A_i = \sum_{j} X_j I_{ij};  I_{ij} = \begin{cases}  1 \text{ if } d_{ij} \leq D\\ 
+0 \text{ if } d_{ij} > D \end{cases}
+  (\#eq:isochrone)
+\end{equation}
+
 
 where the accessibility A at point i is the sum of the all the jobs or other
 destinations $X$ at other points $j$. $I_{ij}$ is an indicator function equal to zero if
@@ -138,13 +137,21 @@ thirty minutes of travel time). By relaxing the assumption of a binary isochrone
 and instead using the distance directly, we can derive the so-called gravity
 model,
 
-$$ A_i = \sum_{j} X_jf(d_{ij})$$
+\begin{equation}
+A_i = \sum_{j} X_j f(d_{ij})
+  (\#eq:gravity)
+\end{equation}
+
 where the function $f(d_{ij})$ is often a negative exponential with a calibrated
 impedance coefficient. An extension of the gravity model is to use the logsum
 term of a multinomial logit destination choice model,
 
-$$ A_i = ln\sum_{j} \beta_d(d_{ij}) + X_j\beta$$
-Where the parameters β are estimated from choice surveys or calibrated to
+\begin{equation}
+A_i = ln\sum_{j} \beta_d(d_{ij}) + X_j\beta
+  (\#eq:logsum)
+\end{equation}
+
+Where the parameters $\beta$ are estimated from choice surveys or calibrated to
 observed data. The logsum term has numerous benefits outlined by [@handy1997]
 and [@xiangdong2007]; namely, the measure is based in actual choice theory, and can
 include multiple destination types and travel times by multiple different modes.
@@ -152,7 +159,7 @@ Accessibility measures of any kind are important in resiliency analysis because
 a damaged transport network will limit the ability of people to access the full
 variety of destinations they otherwise would.
 
-[@guers2004] provide a review of accessibility measures such as
+@guers2004 provide a review of accessibility measures such as
 those above up to 2004. Of the papers they reviewed, Vickerman (1974), Ben-Akiva
 and Lerman (1979), Geurs and Ritsema van Eck (2001) used isochrone type methods,
 Stewart (1947), Hansen (1959), Ingram (1971), and Vickerman (1971), and Anas
