@@ -1,190 +1,44 @@
-# Literature
-## Overview
+# Literature {#litreview}
 The resilience and connectivity of transport networks are a long-studied topic
 within transportation engineering in both theoretical and practical contexts.
 Within this long history however, there is variability in how scholars define
 resiliency. There are three basic definitions that researchers have used:
 
-•	*Resilience through Resistance*: Resilient transportation networks have few
+  - *Resilience through Resistance*: Resilient transportation networks have few
 and manageable vulnerabilities. This is typically addressed through robust
 facility-level engineering and risk management e.g., [@bradley2007].
-•	*Resilience through Recovery*: Resilient transportation networks are able to
+  - *Resilience through Recovery*: Resilient transportation networks are able to
 be repaired and returned to normal service without inordinate delay. This is
 accomplished through effective resource allocation and incident management
 e.g., [@zhang2016]. 
-•	*Resilience through Operability in Crisis*:
-Resilient transport networks are able to operate effectively with damaged or
-unusable links. It is this definition that is most relevant in the context of
-this study. 
+   - *Resilience through Operability in Crisis*: Resilient transport networks are
+able to operate effectively with damaged or unusable links.
 
 These definitions are not entirely mutually exclusive, and many
 researchers apply more than one definition in their work. For example, knowing
-where systemically critical or vulnerable links are will help in allocating
+where systemically critical or vulnerable links are located will help in allocating
 maintenance resources. At the same time, the approach to identifying critical
 facilities implied by one of these definitions is not always compatible with the
-other definitions, and making distinctions between them is important [@rogers2012]. A bridge highly vulnerable to failure may be located on a
+other definitions, and making distinctions between them is important
+[@rogers2012]. A bridge highly vulnerable to failure may be located on a
 little-traveled and systemically unimportant side street. The motivation of this
 research is to identify *systemically* critical facilities, and therefore we
 primarily consider literature using the third definition.
 
-Professionals have adopted use of the Four R’s as a means to predict some form
-of resilience on a highway network. The Four R’s include: rapidity, redundancy,
-robustness, and resourcefulness. Here, rapidity is inversely related to the
-closure time and is used to measure how quickly a road can recover from a
-setback. Redundancy can be measured by the additional time or distance a user
-has to travel when a route is broken. Greater amounts of time or distance lower
-the overall redundancy. Robustness is the inverse of risk and represents the
-overall strength of the system as a whole. Resourcefulness, the last of the Four
-R’s, is the ability to find quick solutions in a network. An attempt will be
-made to identify the first time that these terms surface in the reviewed
-literature.
-
-We begin this review first by examining the study conducted by AEM on behalf of
-UDOT to identify vulnerable sections on the I-15 corridor. We then consider
-observations learned from systemic changes to networks and populations under
-real-life crisis events. We then consider previous attempts in the academic
-literature to evaluate real and fabricated transportation networks.
-
-## Identifying Critical Links in Utah
-AEM worked with UDOT to develop an I-15 Corridor Risk and Resilience (R&R) Pilot
-in 2017. This project had a seven-step plan to understand the impact of physical
-threats to the Utah transportation network, specifically looking at two sections
-along I-15. These steps include asset characterization, threat characterization,
-consequence analysis, vulnerability assessment, threat assessment,
-risk/resilience assessment, and risk/resilience management. From these steps AEM
-was able to provide recommendations to UDOT that would improve resiliency along
-the corridor based on the criticality of each segment at risk.
-
-AEM considered nine physical threats which include: earthquake, flood (scour),
-flood (overtopping/debris), fire (wildland), railway-proximity, oil/gas/water
-pipeline-proximity, and water canal/ditch-proximity. Once threat types were
-determined, the location of threat-asset pairs along I-15 were found by
-intersecting GIS data layers. This process allowed AEM to estimate critical
-informaiton about each threat-asset pair that could be used to determine an
-assests risk level.
-
-The AEM R&R report provides a template going forward for identifying links at
-risk, following the first definition of a resilient transportation network from
-the Four R's. AEM also attempts to identify which links are most critical,
-assigning a “criticality” score to the network based on analysis outcomes. A key
-observation of these criticality scores is that no accommodation is made for
-available alternate routes or network redundancy should a link become
-unavailable. The third definition of reiliency from the Four R's implies that
-alternate routes must be considered, something which AEM fails to do [@aem2017].
-
-## Review of Other Crisis Events
-Two major crisis events in the last fifteen years have given researchers an
-important opportunity to study what happens to transportation behavior when
-critical links are suddenly disabled for an extended period. These events are
-the collapse of the I-35W bridge collapse in Minneapolis, Minnesota and the I-85
-/ Piedmont Road fire and bridge collapse in Atlanta, Georgia.
-
-### I-35 Bridge Collapse
-On August 1, 2007, the I-35 bridge over the Mississippi River in downtown
-Minneapolis collapsed during rush hour. The bridge, which was undergoing
-maintenance, had been rated as structurally deficient and fracture critical,
-meaning that failure of one member would cause structure failure. The collapse
-occurred during rush hour traffic, and the bridge was additionally loaded with
-approximately 300 tons of maintenance equipment [@schaper2017]. There were 13
-fatalities, approximately 140 injuries, and abrupt disruption to roughly 140,000
-average daily trips (ADT) over the bridge [@zhu2010]. The complicated nature of
-the demolition and repair meant this systemically critical link would be missing
-for approximately 14 months. The approximate location of the bridge, one of two
-major routes over the Mississippi River, can be seen in Figure \@ref(fig:i35map).
-
-```{r i35map, fig.cap="Location of I-35 W Bridge Collapse.", out.width='100%', echo = FALSE}
-knitr::include_graphics("images/i35map.png")
-```
-[@zhu2010] conducts a travel survey to provide a more in-depth analysis of
-important data and traffic changes surrounding the I-35W bridge collapse in
-2007. The article uses a methodology that attempts to identify mode-choice and
-other behavioral changes of survey respondents. The authors analyze data looking
-for variations in ADT, as well as Origin-Destination matrices. Importantly, they
-analyze some pre-disaster data in their work. The authors provide evidence which
-indicates that drivers are reluctant to make mode choice changes, rarely doing
-so. This is likely due to reasons such as finances, time, or perceived
-difficulty of navigating a new mode of transport. At the same time, some drivers
-change destinations when faced with increased travel times.
-
-[@levinson2010] explores traffic behavior and changes in the wake of major
-network disruptions such as those that occurred in Minnesota. The authors
-identify unique behavior post disaster using GPS tracking data, survey data from
-the post disaster phase, and other aggregate data from surrounding freeways and
-traffic devices. The gathered data was analyzed to track changes in ADT over
-bridges and alternative routes in the area after the disaster as well as after
-mitigation was complete. Levinson and Zhu provide increased understanding about
-how a network's operability changes during a post-crisis environment.
-
-[@xie2011] attempt to determine economic costs in the form of increased travel
-time of the 2007 I-35W bridge collapse using a scaled down travel demand model.
-The authors used a simplified version of the SONG 2.0 travel demand model that
-had been developed for the Twin Cities area to determine vehicle hours traveled
-(VHT) and vehicle kilometers traveled (VKT). They also calculate the
-accessibility for each zone from jobs to workers, and from workers to jobs of
-the network using employment, residency, and transportation cost data. Using
-this simplified travel model, the authors estimate that the bridge collapse cost
-the Twin Cities approximately $75,000/day in increased travel times.
-
-### I-85 / Piedmont Bridge Road Fire
-In Atlanta, Georgia, a section of an I-85 bridge collapsed due to a massive fire
-under the bridge on March 30, 2017. The fire, which was started by a homeless
-man, grew quickly because of improperly stored construction materials under the
-bridge. The approximate location of the bridge collapse caused by the fire can
-be seen in Figure \@ref(fig:i85map); the damaged link is at a critical point downstream of a
-merge point between two expressway facilities (GA-400 and I-85) bringing
-commuter traffic in from the suburbs of northern Fulton and Gwinnett Counties.
-
-```{r i85map, fig.cap="Location of I-85 / Piedmont Roadd Fire in Atlanta.", out.width='100%', echo = FALSE}
-#\@ref(fig:i85map)
-knitr::include_graphics("images/i85map.png")
-```
-
-As a result of the fire, the highway, which had an average daily traffic count
-(ADT) of 243,000, was closed in both directions for a period of about two
-months. This closure led to a 30% increase in traffic volumes across the entire
-downtown network, with increased congestion on side streets [@hamedi2018].
-Additionally, the Metropolitan Atlanta Rapid Transit Authority (MARTA),
-experienced a 20% increase in ridership, likely because many commuters made mode
-choice and route changes. To mitigate this, headways between busses and trains
-were decreased to allow greater passenger volume. MARTA was able to add 142,000
-rail miles, 1,100 train hours, 8,202 bus miles, 512 bus hours, and 2,463 parking
-spaces in park and ride lots to help further mitigate the situation [@marta2017],
-[@marta2018]. It is likely that MARTA’s efforts to mitigate passenger volumes
-greatly influenced the onset of negative effects of the bridge fire.
-
-The section of I-85 that was closed impacted a large, upper income demographic
-in the greater Atlanta area who commuted across the bridge. This area was
-drastically impacted by the disaster. As a result, the Georgia Department of
-Transportation (GDOT) along with the Governor created a $3.1 million incentive
-program to help motivate project completion ahead of schedule. The bridge was
-originally set to be closed for a period of 10 weeks, however, it re-opened
-after just 6 weeks, with construction being completed a month ahead of schedule.
-The accelerated finishing date was estimated to have saved approximately $27
-million in user and travel time costs [@GDOT2017]. GDOT’s efforts to open the
-bridge quickly after its collapse aided in abating negative user costs due to
-significant travel time delays that surfaced due to changes in route choice and
-assignment.
-
-## Attempts to Evaluate Systemic Resiliency
-A number of researchers have conducted studies where they construct real or
-fabricated transportation networks, eliminate or degrade links in the network,
-and evaluate the changes the loss of these links introduced into some measure of
-network performance. [@berdica2002] attempts to identify, define and
-conceptualize vulnerability by envisioning analyses conducted with several
-vulnerability performance measures including travel time, delay, congestion,
-serviceability and accessibility. Here, Berdica defines accessibility as the
-ability for users to travel between origins and destinations for any number of
-reasons. She then uses the performance measures to define vulnerability as the
-level of reduced accessibility due to unfavorable operating conditions on the
-network. In particular, Berdica identifies a need for further research toward
-developing a framework capable of investigating reliability of transportation
-networks.
+In a groundbreaking theoretical article, @berdica2002 attempted to identify,
+define and conceptualize vulnerability by envisioning analyses conducted with
+several vulnerability performance measures including travel time, delay,
+congestion, serviceability, and accessibility. She then defined reliability as
+the level of reduced accessibility due to unfavorable operating conditions on
+the network. In particular, Berdica identifieed a need for further research
+toward developing a framework capable of investigating reliability of
+transportation networks.
 
 In this section we will examine several attempts by numerous researchers to do
 precisely this using different measures of network performance. A consolidation
-of this discussion is summarized in Table 2, namely the methods that different
-researchers have used in examining network performance under duress. The
-measures can be consolidated in to three basic families: 
+of this discussion is summarized in Table \@ref(tab:authortable), namely the
+methods that different researchers have used in examining network performance
+under duress. The measures can be consolidated in to three basic families:
 
 -	*Network Connectivity* considers how isolated nodes of a network become when
 links are damaged. 
@@ -198,10 +52,9 @@ their daily patterns affected by the damaged network.
 We discuss studies within each family in turn.
 
 ```{r authortable, echo = FALSE}
-library(knitr)
-library(readxl)
-authortable <- read_xlsx("images/author_summary.xlsx")
-kable(authortable)
+read_xlsx("images/author_summary.xlsx") %>%
+  kbl(caption = "Attempts to Evaluate Systemic Resiliency", booktabs = TRUE) %>%
+  kable_styling()
 ```
 
 ### Network Connectivity
@@ -270,7 +123,12 @@ Graph theory based approaches to resiliency largely consider whether the network
 ### Changes in Accessibility
 Accessibility refers to the ease with which individuals can reach the destinations that matter to them; this is an abstract idea but one that has been quantified in numerous ways. [@dong2006] provides a helpful framework for understanding various quantitative definitions of accessibility that we will simplify here. The most elementary definition of accessibility is whether a destination is within an isochrone, or certain distance. This measure is often represented as a count, e.g., the number of jobs reachable from a particular location within thirty minutes travel time by a particular mode. Mathematically,
 
-$$A_i = \sum_{j} X_jI_{ij}$$ where $I_{ij} = 1$ if $d_{ij} < D$ and $I_{ij} = 0$ if $d_{ij} > D$
+\begin{equation}
+A_i = \sum_{j} X_j I_{ij};  I_{ij} = \begin{cases}  1 \text{ if } d_{ij} \leq D\\ 
+0 \text{ if } d_{ij} > D \end{cases}
+  (\#eq:isochrone)
+\end{equation}
+
 
 where the accessibility A at point i is the sum of the all the jobs or other
 destinations $X$ at other points $j$. $I_{ij}$ is an indicator function equal to zero if
@@ -279,13 +137,21 @@ thirty minutes of travel time). By relaxing the assumption of a binary isochrone
 and instead using the distance directly, we can derive the so-called gravity
 model,
 
-$$ A_i = \sum_{j} X_jf(d_{ij})$$
+\begin{equation}
+A_i = \sum_{j} X_j f(d_{ij})
+  (\#eq:gravity)
+\end{equation}
+
 where the function $f(d_{ij})$ is often a negative exponential with a calibrated
 impedance coefficient. An extension of the gravity model is to use the logsum
 term of a multinomial logit destination choice model,
 
-$$ A_i = ln\sum_{j} \beta_d(d_{ij}) + X_j\beta$$
-Where the parameters β are estimated from choice surveys or calibrated to
+\begin{equation}
+A_i = ln\sum_{j} \beta_d(d_{ij}) + X_j\beta
+  (\#eq:logsum)
+\end{equation}
+
+Where the parameters $\beta$ are estimated from choice surveys or calibrated to
 observed data. The logsum term has numerous benefits outlined by [@handy1997]
 and [@xiangdong2007]; namely, the measure is based in actual choice theory, and can
 include multiple destination types and travel times by multiple different modes.
@@ -293,7 +159,7 @@ Accessibility measures of any kind are important in resiliency analysis because
 a damaged transport network will limit the ability of people to access the full
 variety of destinations they otherwise would.
 
-[@guers2004] provide a review of accessibility measures such as
+@guers2004 provide a review of accessibility measures such as
 those above up to 2004. Of the papers they reviewed, Vickerman (1974), Ben-Akiva
 and Lerman (1979), Geurs and Ritsema van Eck (2001) used isochrone type methods,
 Stewart (1947), Hansen (1959), Ingram (1971), and Vickerman (1971), and Anas
