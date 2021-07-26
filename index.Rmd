@@ -34,69 +34,24 @@ keywords:
 
 # Introduction {#intro}
 
-## Problem Statement
-The Utah Department of Transportation (UDOT) is responsible for maintaining a
-transportation system to promote public welfare and economic activity throughout
-the state. UDOT is also responsible to maintain key components of the national
-highway transportation system. Given the importance of this system, UDOT has
-sought in the last several years to identify which facilities are most critical
-to the smooth operations of this system. 
+Systemic resiliency is an important consideration for transportation agencies.
+(Intro Paragraph, probably a couple of references needed.)
 
-In 2017, AEM (2017) completed a risk and resilience analysis for the I-15
-corridor on behalf of UDOT. This analysis quantified risk as the probability of
-threats (earthquakes, floods, fires, etc.) multiplied by the criticality of the
-asset to the overall system were such threats to materialize. The AEM analysis
-has two primary limitations. First, the methods are proprietary to AEM and UDOT
-cannot now apply the methods to study the criticality of other transportation
-corridors with regional and national significance (e.g. U.S. Route 6, Interstate
-70). But more importantly, the current index treats each UDOT asset – each
-bridge, highway segment, etc. – as an independent unit when in fact UDOT
-operates a system of transportation facilities. The criticality of a single
-bridge to the overall system is not determined by the volume of traffic it
-supports directly, but by how inconvenient it would be for that traffic to find
-another path or destination were the bridge to fail. Resiliency must therefore
-be considered a function of network alternatives, or redundancy.
+Identifying critical links is difficult, because the most critical links may not
+be trivial to identify. (Elaborate why not: alternate routes, modes, destinations)
 
-## Objective
-The primary objective of this research is to develop a methodology and tool to
-evaluate the network redundancy of critical UDOT assets across the state. We
-base this tool on data collected for the Utah Statewide Travel Model (USTM),
-with certain improvements and additional model features to more accurately
-capture the economic costs associated with an impaired state highway network. In
-particular, we develop a method that explicitly considers the availability of
-alternative destinations, modes, and routes to individuals traveling on the
-impaired network. A secondary objective of this research is to apply the model
-to evaluate the criticality of specific highway links in Utah by comparison.
-This report presents the results of this evaluation applied on 41 individual
-highway links.
+In this research, we present a model to identify critical highway links. We then
+apply the model to a highway network representing the state of Utah. (briefly
+describe how the model operates and its basis in literature)
 
-## Scope
+The paper proceeds as follows. First, a [literature review](#litreview) discusses
+previous attempts to analyze the resiliency of transportation networks. A
+[methodology](#methodology) section presents the model developed for this
+research and describes the implementation in Utah. A [results](#results) section
+describes the model output in detail for one scenario and then compares and ranks
+the model outputs for an array of several dozen independent scenarios. The paper
+[concludes](#conclusion) with a discussion of limitations and associated avenues 
+for future research.
 
-The purpose of the resiliency model is to provide a working model that can be
-used to evaluate the potential economic costs were a highway link – or a set of
-highway links – to be damaged or destroyed temporarily in Utah. This model is
-based in the theory of logit choice modeling and shortest path finding in a
-network. The specific choice utility equations in the model represent a
-plausible utility outcome, but the focus of this research has not been on
-developing robust utility equations or calibrated volume-delay functions. This
-model is therefore not designed to forecast traffic volumes or designed for any
-purpose other than providing a comparative estimate of the effects of link loss
-by man-made or natural causes.
 
-## Outline
-This report is organized as follows: 
--Chapter 1.	This introductory chapter.
--Chapter 2.	A Literature Review, summarizing previous attempts to model network
-resiliency using the choices and accessibility of individuals on the impacted
-network. 
--Chapter 3.	This chapter presents a proposed model design and
-implementation of the model within the CUBE transportation planning software
-application. This chapter also describes model calibration efforts.
--Chapter 4.	This chapter presents a method for identifying vulnerable and
-potentially critical highway links by considering the location-based elevated
-risk issues. This chapter summarizes a previous study conducted by BIO-WEST.
--Chapter 5.	A Model Application, describing and comparing the results of the
-model developed in Chapter 3 to the highway links identified in Chapter 4.
--Chapter 6.	A Conclusions chapter summarizing the findings and providing
-additional recommendations to UDOT.
   

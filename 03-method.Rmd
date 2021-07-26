@@ -1,4 +1,4 @@
-# Methods
+# Methodology {#methodology}
 
 ```{r setup, include = FALSE}
 # load R libraries here; the `include` flag in the chunk options above tells
