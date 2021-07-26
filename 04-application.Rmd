@@ -1,5 +1,4 @@
 # Applications
-## Overview 
 In this chapter, we summarize the methodology used to identify
 vulnerable links on Utah’s highway network. We also apply the model to scenarios
 where critical highway links are removed from the model network. This includes
@@ -40,14 +39,14 @@ the logsum estimates.
 
 Table \@ref(tab:tooeletable) compares the overall costs between the logsum and
 travel time methods, the specific cost for trips originating in Tooele and
-ending in Salt Lake and includes a trip comparison as well. From the
+ending in Salt Lake and includes a trip comparison as well. From Table
 \@ref(tab:tooeletable), we can see that the logsum method captures about
 \$173,996 in experienced expense due to the closure of the link. Specifically,
 between Tooele and SLC, the logsum based resiliency model captures \$167,424 of
-expense, which is approximately 99% of the total expense as seen in
+expense, which is approximately 99% of the total expense as seen in Table
 \@ref(tab:tooeletable2). This shows that the resiliency model is effectively
 capturing trips in the correct areas based on the percent comparison capture
-rate in \@ref(tab:tooeletable2). When we look at the travel time method of
+rate in Table \@ref(tab:tooeletable2). When we look at the travel time method of
 analysis, we can see that the costs at both the local and statewide levels are
 much greater with \$437,401 and \$406,899 respectively estimated as the costs
 due to just the increase in travel time, not using the logit-based model.
@@ -55,14 +54,14 @@ due to just the increase in travel time, not using the logit-based model.
 ```{r tooeletable, echo = FALSE}
 library(knitr)
 library(readxl)
-tooele_table <- read_xlsx("images/tooele_table.xlsx")
-kable(tooele_table)
+tooeletable <- read_xlsx("images/tooeletable.xlsx")
+kable(tooeletable)
 ```
 ```{r tooeletable2, echo = FALSE}
 library(knitr)
 library(readxl)
-tooele_table2 <- read_xlsx("images/tooele_table2.xlsx")
-kable(tooele_table2)
+tooeletable2 <- read_xlsx("images/tooele_table2.xlsx")
+kable(tooeletable2)
 ```
 
 The logsum and travel time methods for determining the overall cost associated
@@ -124,7 +123,7 @@ Table \@ref(fig:logsumrank).
 ```{r logsumrank, echo = FALSE}
 library(knitr)
 library(readxl)
-linktable <- read_xlsx("images/logsumrank.xlsx")
+logsumrank <- read_xlsx("images/logsumrank.xlsx")
 kable(logsumrank)
 ```
 
@@ -144,7 +143,7 @@ drastically.
 ```{r traveltimerank, echo = FALSE}
 library(knitr)
 library(readxl)
-linktable <- read_xlsx("images/traveltimerank.xlsx")
+traveltimerank <- read_xlsx("images/traveltimerank.xlsx")
 kable(traveltimerank)
 ```
 
