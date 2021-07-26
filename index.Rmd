@@ -39,6 +39,9 @@ Systemic resiliency is an important consideration for transportation agencies.
 
 Identifying critical links is difficult, because the most critical links may not
 be trivial to identify. (Elaborate why not: alternate routes, modes, destinations)
+These responses have been obsvered in real-work crisis events like the I-35 W bridge 
+collapse in Minneapolis and the I-85 bridge fire and collapse in Atlanta 
+[@zhu2010; @levinson2010; @xie2011; @hamedi2018].
 
 In this research, we present a model to identify critical highway links. We then
 apply the model to a highway network representing the state of Utah. (briefly
