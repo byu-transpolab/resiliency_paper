@@ -53,14 +53,11 @@ much greater with \$437,401 and \$406,899 respectively estimated as the costs
 due to just the increase in travel time, not using the logit-based model.
 
 ```{r tooeletable, echo = FALSE}
-library(knitr)
-library(readxl)
 tooele_table <- read_xlsx("images/tooele_table.xlsx")
 kable(tooele_table)
 ```
+
 ```{r tooeletable2, echo = FALSE}
-library(knitr)
-library(readxl)
 tooele_table2 <- read_xlsx("images/tooele_table2.xlsx")
 kable(tooele_table2)
 ```
@@ -93,7 +90,6 @@ method, while valid, was difficult to implement statewide. Some facilities have
 obvious natural threats such as earthquake, flood, or landslide.
 
 ```{r links, fig.cap="Critical Highway Links Identified using Risk Priority Analysis", out.width='100%', echo = FALSE}
-#\@ref(fig:i85map)
 knitr::include_graphics("images/links.png")
 ```
 
@@ -103,8 +99,6 @@ This section will present the results of the 41 scenarios analyzed. First, Table
 well as a physical location where the link was cut.
 
 ```{r linktable, echo = FALSE}
-library(knitr)
-library(readxl)
 linktable <- read_xlsx("images/linktable.xlsx")
 kable(linktable)
 ```
@@ -122,10 +116,9 @@ the highway link that was cut. A ranking is provided for all of the roads in
 Table \@ref(fig:logsumrank).
 
 ```{r logsumrank, echo = FALSE}
-library(knitr)
-library(readxl)
-linktable <- read_xlsx("images/logsumrank.xlsx")
-kable(logsumrank)
+read_xlsx("images/logsumrank.xlsx") %>%
+  kbl(booktabs = TRUE, caption = "Total cost in dollars") %>%
+  kable_styling()
 ```
 
 Table \@ref(fig:traveltimerank) contains the ranking results from the travel
@@ -142,10 +135,9 @@ Including the freight, even with the logsum results, changes the rankings
 drastically.
 
 ```{r traveltimerank, echo = FALSE}
-library(knitr)
-library(readxl)
-linktable <- read_xlsx("images/traveltimerank.xlsx")
-kable(traveltimerank)
+read_xlsx("images/traveltimerank.xlsx") %>% 
+  kbl(booktabs = TRUE, caption = "Total cost in dollars") %>%
+  kable_styling()
 ```
 
 Some other interesting findings are that in the top 10 of each analysis methods,
