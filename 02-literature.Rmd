@@ -1,36 +1,10 @@
 # Literature {#litreview}
-The resilience and connectivity of transport networks are a long-studied topic
-within transportation engineering in both theoretical and practical contexts.
-Within this long history however, there is variability in how scholars define
-resiliency. There are three basic definitions that researchers have used:
-
-  - *Resilience through Resistance*: Resilient transportation networks have few
-and manageable vulnerabilities. This is typically addressed through robust
-facility-level engineering and risk management e.g., [@bradley2007].
-  - *Resilience through Recovery*: Resilient transportation networks are able to
-be repaired and returned to normal service without inordinate delay. This is
-accomplished through effective resource allocation and incident management
-e.g., [@zhang2016]. 
-   - *Resilience through Operability in Crisis*: Resilient transport networks are
-able to operate effectively with damaged or unusable links.
-
-These definitions are not entirely mutually exclusive, and many
-researchers apply more than one definition in their work. For example, knowing
-where systemically critical or vulnerable links are located will help in allocating
-maintenance resources. At the same time, the approach to identifying critical
-facilities implied by one of these definitions is not always compatible with the
-other definitions, and making distinctions between them is important
-[@rogers2012]. A bridge highly vulnerable to failure may be located on a
-little-traveled and systemically unimportant side street. The motivation of this
-research is to identify *systemically* critical facilities, and therefore we
-primarily consider literature using the third definition.
-
 In a groundbreaking theoretical article, @berdica2002 attempted to identify,
 define and conceptualize vulnerability by envisioning analyses conducted with
 several vulnerability performance measures including travel time, delay,
 congestion, serviceability, and accessibility. She then defined reliability as
 the level of reduced accessibility due to unfavorable operating conditions on
-the network. In particular, Berdica identifieed a need for further research
+the network. In particular, Berdica identified a need for further research
 toward developing a framework capable of investigating reliability of
 transportation networks.
 

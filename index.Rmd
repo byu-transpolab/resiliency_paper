@@ -75,31 +75,35 @@ if(knitr::is_latex_output()) {
 
 # Introduction {#intro}
 
-Systemic resiliency is an important consideration for transportation agencies.
-Researchers such as [@berdica2002;
-@geurs2004; @rogers2012; @omer2013] have all extensively researched and
-discussed the importance of network resiliency over the last 20 years. However,
-none have been able to implement a methodology capable of examining a systems
-resiliency on a large scale. This research seeks to develop a model capable of
-determining the effects experienced by a transportation network after damage to
-the network occurs.
+Systemic resiliency is an important consideration for transportation agencies, 
+though specific definitions of "resiliency" might vary under different contexts.
+Some agencies and researchers see resiliency as facility-level design and
+engineering that hardens the system against failure [citation]; others as an
+ability for maintenance staff to rapidly restore service following catastrophe
+[citation]; and others as an ability for a system to continue operating in
+degraded state [citation]. Regardless of the definition used, assessing the
+resiliency of a transportation network --- and addressing any potential
+shortfalls --- requires a method to identify which links or facilities are most
+critical to the smooth operation of the network.
 
-Identifying critical links is difficult, because the most critical links may not
-be trivial to identify. Many networks have alternate routes readily available,
+Identifying which links in a transportation network are most critical, however, 
+is not trivial. State of the practice techniques typically rely on traffic volumes
+represented in terms of vehicles, trips, or freight value [@aem2017]. But these 
+methods ignore that some networks have alternate routes readily available, or
 have multiple well developed modes of transportation, or have redundant
 destination locations. When a network link does break, routes, mode choice, and
 destination choice often change too. These responses have been observed in
-real-work crisis events like the I-35 W bridge collapse in Minneapolis and the
-I-85 bridge fire and collapse in Atlanta [@zhu2010; @levinson2010; @xie2011;
-@hamedi2018].
+real-world crisis events like the I-35 W bridge collapse in Minneapolis and the
+I-85 bridge fire and collapse in Atlanta
+[@zhu2010; @levinson2010; @xie2011; @hamedi2018].
 
-In this research, we present a model to identify critical highway links. We then
-apply the model to a highway network representing the state of Utah. The
-logit-based destination choice model allows road users to first choose a mode of
-transportation based on the utility of that mode, and then allows the user to
-choose a destination based on utility and attractiveness of that destination.
-The model structure allows greater accuracy to be achieved because the logsum
-value better represents user choice than traditional models.
+In this research, we present a model to identify critical highway links using 
+destination choice accessibility analysis. This model is designed to capture the
+utility lost to individuals operating on a degraded network who may choose 
+a longer route, a different travel mode, or a different destination. We then
+apply the model to a highway network representing the state of Utah. 
+The model structure permits a more nuanced evaluation of link criticality than 
+using traffic volume alone or in conjunction with an increased travel time measure.
 
 The paper proceeds as follows. First, a [literature review](#litreview) discusses
 previous attempts to analyze the resiliency of transportation networks. A
@@ -110,5 +114,4 @@ the model outputs for an array of several dozen independent scenarios. The paper
 [concludes](#conclusion) with a discussion of limitations and associated avenues 
 for future research.
 
-
-  
+ 
