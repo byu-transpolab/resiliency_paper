@@ -107,21 +107,81 @@ research is the idea of friability, that a network can break down for any number
 of reasons, of which transportation networks generally appear most susceptible
 to attack or disaster.
 
-[@vodak2019] introduces a method to quickly identify critical links in a network by searching for the shortest cycles, or independent loops in the network. The algorithm progressively damages one or more links between iterations to determine if nodes become isolated, or cut off from the network. The authors use isolation as a measure of network vulnerability and connectedness. If a node becomes easily isolated or has a higher likelihood of becoming isolated, then there is a higher degree of vulnerability present in the network. Vodak’s work is significant because the novel algorithm is capable of processing upwards of 1000 links and nodes while effectively identifying vulnerabilities in the network. This ability makes the algorithm a valuable tool for resilience research at the regional and statewide levels.
+[@vodak2019] introduces a method to quickly identify critical links in a network
+by searching for the shortest cycles, or independent loops in the network. The
+algorithm progressively damages one or more links between iterations to
+determine if nodes become isolated, or cut off from the network. The authors use
+isolation as a measure of network vulnerability and connectedness. If a node
+becomes easily isolated or has a higher likelihood of becoming isolated, then
+there is a higher degree of vulnerability present in the network. Vodak’s work
+is significant because the novel algorithm is capable of processing upwards of
+1000 links and nodes while effectively identifying vulnerabilities in the
+network. This ability makes the algorithm a valuable tool for resilience
+research at the regional and statewide levels.
 
 ### Changes in Travel Time
-Graph theory based approaches to resiliency largely consider whether the network nodes become isolated after links are degraded or removed. Though isolation is an important problem, transportation networks often have multiple redundant paths between nodes; however, some of these paths may be considerably longer. It is therefore useful to determine how the path cost changes even if the nodes involved are still reachable on the network.
+Graph theory based approaches to resiliency largely consider whether the network
+nodes become isolated after links are degraded or removed. Though isolation is
+an important problem, transportation networks often have multiple redundant
+paths between nodes; however, some of these paths may be considerably longer. It
+is therefore useful to determine how the path cost changes even if the nodes
+involved are still reachable on the network.
 
-[@peeta2010] constructs a model to evaluate the most efficient allocation of highway maintenance resources prior to an earthquake with the potential to disrupt transport network connectivity. The authors create a simplified graph of Istanbul, Turkey with 30 attributed links and 25 nodes, with each link having a specified failure probability that could be mitigated with investment. Using this graph, the researchers evaluate what happened to travel times between the origin-destination pairs as links from this network were disabled using a Monte Carlo simulation. The authors showed that this problem is tractable with a locally optimal solution existing. 
+[@peeta2010] constructs a model to evaluate the most efficient allocation of
+highway maintenance resources prior to an earthquake with the potential to
+disrupt transport network connectivity. The authors create a simplified graph of
+Istanbul, Turkey with 30 attributed links and 25 nodes, with each link having a
+specified failure probability that could be mitigated with investment. Using
+this graph, the researchers evaluate what happened to travel times between the
+origin-destination pairs as links from this network were disabled using a Monte
+Carlo simulation. The authors showed that this problem is tractable with a
+locally optimal solution existing.
 
-[@ibrahim2011] provides an alternative heuristic approach for determining vulnerability of infrastructure by estimating the cost of single link failure based on the increase in shortest path travel time due to increased congestion levels. Ibrahim proposes a hybrid heuristic approach that calculates the traditional user-equilibrium assignment for finding the first set of costs, and then fixes those costs for all following iterations to determine the effects of failure on overall travel time of the system. Ibrahim’s novel heuristic approach is important because of its ability to drastically reduce computation time for larger networks while providing accurate results that closely match results found from traditional modeling methods.
+[@ibrahim2011] provides an alternative heuristic approach for determining
+vulnerability of infrastructure by estimating the cost of single link failure
+based on the increase in shortest path travel time due to increased congestion
+levels. Ibrahim proposes a hybrid heuristic approach that calculates the
+traditional user-equilibrium assignment for finding the first set of costs, and
+then fixes those costs for all following iterations to determine the effects of
+failure on overall travel time of the system. Ibrahim’s novel heuristic approach
+is important because of its ability to drastically reduce computation time for
+larger networks while providing accurate results that closely match results
+found from traditional modeling methods.
 
-[@omer2013] proposes a methodology for assessing the resiliency of physical infrastructure during disruptions. To do this, the authors use a network model to build an origin-destination matrix that allows initial network loading and analysis. Omer’s model uses several metrics, but the main metric used to determine resiliency is the difference in travel time between a disturbed and undisturbed network. Omer’s framework is applied to an actual network between New York City and Boston for analysis. Changes in demand, travel time, mode choice and route choice are tracked for analysis. Omer’s framework supports operability of transportation networks due to the way it analyzes networks experiencing suboptimal circumstances. The authors work identifies key parameters that should be measured to assess resiliency during disruptive events.
+[@omer2013] proposes a methodology for assessing the resiliency of physical
+infrastructure during disruptions. To do this, the authors use a network model
+to build an origin-destination matrix that allows initial network loading and
+analysis. Omer’s model uses several metrics, but the main metric used to
+determine resiliency is the difference in travel time between a disturbed and
+undisturbed network. Omer’s framework is applied to an actual network between
+New York City and Boston for analysis. Changes in demand, travel time, mode
+choice and route choice are tracked for analysis. Omer’s framework supports
+operability of transportation networks due to the way it analyzes networks
+experiencing suboptimal circumstances. The authors work identifies key
+parameters that should be measured to assess resiliency during disruptive
+events.
 
-[@jaller2015] seeks to identify critical infrastructure based on increased travel time, or reduced capacity due to disaster. The proposed methodology utilizes user-equilibrium to determine proper initial network loading. Then, the shortest path between one origin and one destination can be identified. To implement damage to the network, a link is cut, and then the next shortest path is found. This process is followed for all links in the system in order to determine a sense of the criticality of each link to network resiliency. The analysis is carried out for each O-D pair, and the nodes with greatest change in travel time are determined to be the most critical. Jaller’s methodology allows traffic managers to identify critical paths for mitigation purposes before the occurrence of disaster through careful analysis.
+[@jaller2015] seeks to identify critical infrastructure based on increased
+travel time, or reduced capacity due to disaster. The proposed methodology
+utilizes user-equilibrium to determine proper initial network loading. Then, the
+shortest path between one origin and one destination can be identified. To
+implement damage to the network, a link is cut, and then the next shortest path
+is found. This process is followed for all links in the system in order to
+determine a sense of the criticality of each link to network resiliency. The
+analysis is carried out for each O-D pair, and the nodes with greatest change in
+travel time are determined to be the most critical. Jaller’s methodology allows
+traffic managers to identify critical paths for mitigation purposes before the
+occurrence of disaster through careful analysis.
 
 ### Changes in Accessibility
-Accessibility refers to the ease with which individuals can reach the destinations that matter to them; this is an abstract idea but one that has been quantified in numerous ways. [@dong2006] provides a helpful framework for understanding various quantitative definitions of accessibility that we will simplify here. The most elementary definition of accessibility is whether a destination is within an isochrone, or certain distance. This measure is often represented as a count, e.g., the number of jobs reachable from a particular location within thirty minutes travel time by a particular mode. Mathematically,
+Accessibility refers to the ease with which individuals can reach the
+destinations that matter to them; this is an abstract idea but one that has been
+quantified in numerous ways. [@dong2006] provides a helpful framework for
+understanding various quantitative definitions of accessibility that we will
+simplify here. The most elementary definition of accessibility is whether a
+destination is within an isochrone, or certain distance. This measure is often
+represented as a count, e.g., the number of jobs reachable from a particular
+location within thirty minutes travel time by a particular mode. Mathematically,
 
 \begin{equation}
 A_i = \sum_{j} X_j I_{ij};  I_{ij} = \begin{cases}  1 \text{ if } d_{ij} \leq D\\ 
@@ -131,11 +191,11 @@ A_i = \sum_{j} X_j I_{ij};  I_{ij} = \begin{cases}  1 \text{ if } d_{ij} \leq D\
 
 
 where the accessibility A at point i is the sum of the all the jobs or other
-destinations $X$ at other points $j$. $I_{ij}$ is an indicator function equal to zero if
-the distance between the points $d{_ij}$ is less than some asserted threshold (e.g.,
-thirty minutes of travel time). By relaxing the assumption of a binary isochrone
-and instead using the distance directly, we can derive the so-called gravity
-model,
+destinations $X$ at other points $j$. $I_{ij}$ is an indicator function equal to
+zero if the distance between the points $d{_ij}$ is less than some asserted
+threshold (e.g., thirty minutes of travel time). By relaxing the assumption of a
+binary isochrone and instead using the distance directly, we can derive the
+so-called gravity model,
 
 \begin{equation}
 A_i = \sum_{j} X_j f(d_{ij})
@@ -153,11 +213,11 @@ A_i = ln\sum_{j} \beta_d(d_{ij}) + X_j\beta
 
 Where the parameters $\beta$ are estimated from choice surveys or calibrated to
 observed data. The logsum term has numerous benefits outlined by [@handy1997]
-and [@xiangdong2007]; namely, the measure is based in actual choice theory, and can
-include multiple destination types and travel times by multiple different modes.
-Accessibility measures of any kind are important in resiliency analysis because
-a damaged transport network will limit the ability of people to access the full
-variety of destinations they otherwise would.
+and [@xiangdong2007]; namely, the measure is based in actual choice theory, and
+can include multiple destination types and travel times by multiple different
+modes. Accessibility measures of any kind are important in resiliency analysis
+because a damaged transport network will limit the ability of people to access
+the full variety of destinations they otherwise would.
 
 @guers2004 provide a review of accessibility measures such as
 those above up to 2004. Of the papers they reviewed, Vickerman (1974), Ben-Akiva

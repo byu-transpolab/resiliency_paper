@@ -76,22 +76,35 @@ if(knitr::is_latex_output()) {
 # Introduction {#intro}
 
 Systemic resiliency is an important consideration for transportation agencies.
-(Intro Paragraph, probably a couple of references needed.)
+Researchers such as [@berdica2002;
+@geurs2004; @rogers2012; @omer2013] have all extensively researched and
+discussed the importance of network resiliency over the last 20 years. However,
+none have been able to implement a methodology capable of examining a systems
+resiliency on a large scale. This research seeks to develop a model capable of
+determining the effects experienced by a transportation network after damage to
+the network occurs.
 
 Identifying critical links is difficult, because the most critical links may not
-be trivial to identify. (Elaborate why not: alternate routes, modes, destinations)
-These responses have been obsvered in real-work crisis events like the I-35 W bridge 
-collapse in Minneapolis and the I-85 bridge fire and collapse in Atlanta 
-[@zhu2010; @levinson2010; @xie2011; @hamedi2018].
+be trivial to identify. Many networks have alternate routes readily available,
+have multiple well developed modes of transportation, or have redundant
+destination locations. When a network link does break, routes, mode choice, and
+destination choice often change too. These responses have been observed in
+real-work crisis events like the I-35 W bridge collapse in Minneapolis and the
+I-85 bridge fire and collapse in Atlanta [@zhu2010; @levinson2010; @xie2011;
+@hamedi2018].
 
 In this research, we present a model to identify critical highway links. We then
-apply the model to a highway network representing the state of Utah. (briefly
-describe how the model operates and its basis in literature)
+apply the model to a highway network representing the state of Utah. The
+logit-based destination choice model allows road users to first choose a mode of
+transportation based on the utility of that mode, and then allows the user to
+choose a destination based on utility and attractiveness of that destination.
+The model structure allows greater accuracy to be achieved because the logsum
+value better represents user choice than traditional models.
 
 The paper proceeds as follows. First, a [literature review](#litreview) discusses
 previous attempts to analyze the resiliency of transportation networks. A
 [methodology](#methodology) section presents the model developed for this
-research and describes the implementation in Utah. A [results](#results) section
+research and describes the implementation process in Utah. A [results](#results) section
 describes the model output in detail for one scenario and then compares and ranks
 the model outputs for an array of several dozen independent scenarios. The paper
 [concludes](#conclusion) with a discussion of limitations and associated avenues 

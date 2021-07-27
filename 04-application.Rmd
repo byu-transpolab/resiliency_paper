@@ -8,6 +8,16 @@ that measures only the change in travel time and does not allow for mode or
 destination choice. The model was then applied to 41 individual link closure
 scenarios throughout the state.
 
+## Vulnerable Link Identification
+Two methodologies were developed to identify vulnerable network links in Utah.
+The first method resembles the process used by AEM to determine threat
+categories, and threat proximity thresholds to highway links. This methodology
+was ultimately not used in the resiliency model. The second method uses an
+online Risk Priority Analysis map created by UDOT combined with familiar
+knowledge of Utah’s road system. Using this second method, links were identified
+due to their location in relation populations or geography, are suspected choke
+points, or because they were of interest.
+
 
 ## Single Scenario Analysis
 This section outlines an in-depth analysis that was conducted to ensure the
@@ -43,7 +53,7 @@ much greater with \$437,401 and \$406,899 respectively estimated as the costs
 due to just the increase in travel time, not using the logit-based model.
 
 ```{r tooeletable, echo = FALSE}
-read_xlsx("images/tooele_table.xlsx") %>%
+read_xlsx("images/tooeletable.xlsx") %>%
   kbl(caption = "Tooele Table", booktabs = TRUE) %>%
   kable_styling() 
 ```
@@ -189,3 +199,8 @@ analysis respectively. The logsum suggests that I-80 between Tooele and SLC is
 the most important road, while the travel time method, or total priority,
 indicates that I-70 near Green River is the most important road due to cost
 associated with closure.
+
+
+
+
+
