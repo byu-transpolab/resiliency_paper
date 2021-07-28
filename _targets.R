@@ -22,10 +22,10 @@ list(
   
   tar_target(mc_constants_file, "data/MC_Constants.csv", format = "file"),
   tar_target(mc_coefficients_file, "data/MC_Coefficients.csv", format = "file"),
-  tar_target(dc_coefficients_file, "data/DC_Parameters.xlsx", format = "file"),
-  tar_target(mc_constants, read_csv(mc_constants_file)),
-  tar_target(mc_coefficients, read_csv(mc_coefficients_file)),
-  tar_target(dc_coefficients, read_xlsx(dc_coefficients_file)),
+  tar_target(dc_coefficients_file, "data/DC_Parameters.csv", format = "file"),
+  tar_target(mc_constants, read_csv(mc_constants_file, col_types = "cnnn")),
+  tar_target(mc_coefficients, read_csv(mc_coefficients_file, col_types = "cnnn")),
+  tar_target(dc_coefficients, read_csv(dc_coefficients_file, col_types = "cnnn")),
   tar_target(coefficient_table, make_coefficient_table(mc_constants, mc_coefficients, 
                                                        dc_coefficients))
   
