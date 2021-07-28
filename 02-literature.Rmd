@@ -8,24 +8,25 @@ congestion, serviceability, and accessibility. She then defined reliability as
 the level of reduced accessibility due to unfavorable operating conditions on
 the network. In particular, Berdica identified a need for further research
 toward developing a framework capable of investigating reliability of
-transportation networks.
+transportation networks. 
 
-In this section we will examine several attempts by numerous researchers to do
-precisely this using different measures of network performance. A consolidation
-of this discussion is summarized in Table \@ref(tab:authortable), namely the
-methods that different researchers have used in examining network performance
-under duress. The measures can be consolidated in to three basic families:
+In this section we examine several attempts by numerous researchers to do
+precisely this using various measures of network performance. It is helpful to
+categorize this review into three groups based on the overall technique applied 
+in the study:
 
--	*Network Connectivity* considers how isolated nodes of a network become when
-links are damaged. 
+-	*Network connectivity*: How does damage to a network diminish the connectivity 
+between network nodes?
 
--	*Travel Time analysis* considers how removing or degrading a link affects the
-shortest cost paths between network points.
+-	*Travel time analysis*: How much do shortest path travel times between origins 
+and destinations increase on a damaged network?
 
--	*Accessibility analysis* considers how the population using the network has
-their daily patterns affected by the damaged network.
+-	*Accessibility analysis* How easily can the population using the damaged
+network complete their daily activities?
 
-We discuss studies within each family in turn.
+The following sections discuss relevant studies in each group; Table
+\@ref(tab:authortable) consolidates these studies by year and labeled with
+applicable group.
 
 ```{r authortable, echo = FALSE}
 read_xlsx("images/author_summary.xlsx") %>%
@@ -34,66 +35,51 @@ read_xlsx("images/author_summary.xlsx") %>%
 ```
 
 ### Network Connectivity
-Graph theory is the mathematical study of networks of nodes connected by edges
-(links). Within this discipline are the related concepts of network
-vulnerability and connectivity that have been accessed by researchers. In these
-studies, researchers tend to define critical links as those that connect to many
-other nodes (directly or indirectly), or as links whose loss isolates a number
-of nodes from the rest of the network.
+The purpose of transportation networks is to connect locations to each other; 
+presumably damage to a network would diminish the network's *connectivity*, or 
+the number of paths between node pairs. It may even leave nodes or groups of nodes
+completely isolated. In studies based on connectivity, researchers typically apply
+methods and concepts from graph theory.
 
-[@abdel2007] explores multi-layered graph theory to attempt to
-asses transportation network criticality. The researchers develop a weighting
-scheme based on interconnectedness between three layers of the transportation
-system: the power, communication, and physical road networks. This scheme is
-applied to and combined with data gathered using an Origin-destination matrix to
-determine criticality of road network facilities based on several proximity and
-link and node volume criteria. [@abdel2007] attempts to determine
-resilience through resistance by identifying a metric for examining the
-interrelatedness of the three systems, all of which are vital to proper function
-of the transportation network. Their methodology highlights some of the
-advantages to using a multi-layered graph approach for determining levels of
-resiliency of transportation networks.
+@abdel2007 developed a multi-layered graph to examine the resiliency of the traffic
+signal control system in Boise, Idaho. The researchers determined which 
+traffic signals would be isolated by a failure to a particular power substation,
+and consequentially the percent of travel paths that would experience diminished 
+levels of service. The research highlights the degree to which interrelated
+infrastructure systems --- power, telecommunications, and transportation ---
+depend on each other, though the researchers did not attempt to look at the
+connective resiliency of the transportation network directly.
 
-[@agarwal2011] utilizes a systems approach to identify vulnerabilities
-based on connectivity. Their methodology uses a graph model to determine a
-hierarchical representation of a transportation network that could be analyzed
-for vulnerabilities. To do this, several concepts surrounding vulnerability are
-defined, including robustness and risk. Agarwal also outlines three criteria to
-help determine how facility failure affects a system. These were: form of the
-system, level of demand of the system, and level of systemic preparedness. These
-criteria provide a framework for network analysis that allows for identification
-of vulnerable scenarios and modification or adaption of involved facilities to
-be carried out. Agarwal’s framework best fits the definition of resilience
-through resistance due to the way it can identify critical facilities and allow
-for mitigation moving forward.
+@agarwal2011 present a method to represent a transportation network as a 
+hierarchical graph that can be analyzed more directly for vulnerabilities. The
+authors acknowledge, however, that a maximal failure consideration where a node
+is entirely isolated from the network is unlikely in a real-world network with 
+multiple paths of connectivity.
 
-[@ip2011], attempt to combine graph theory with friability in order to determine
-criticality of links or hub cities. Friability is defined as the reduction of
-network capacity caused by removing a link or node. The methodology presented
-relies on the ability to determine the weighted sum of the resilience of all
-nodes based on the weighted average of connectedness with other city nodes in
-the network. The authors determine that the recovery of transportability between
-two cities largely depends on redundant links between nodes. Ip and Wang also
-comment that most traffic managers are more concerned with the friability of
-single links rather than the friability of multiple links or an entire system.
-The author's hypothesis closely matches resilience through operability because
-the methodology seeks to determine resilience of a network that already has
-damaged links and nodes. Their main contribution to the field of transportation
-research is the idea of friability, that a network can break down for any number
-of reasons, of which transportation networks generally appear most susceptible
-to attack or disaster.
+@ip2011 address this shortcoming through the concept of *friability*, or
+the reduction of capacity cased by removing a link or node, in order to
+determine criticality of individual links. The methodology relies on the ability
+to determine the weighted sum of the resilience of all nodes based on the
+weighted average of connectedness with other city nodes in the network. The
+authors determine that the recovery of transportability between two cities
+largely depends on redundant links between nodes. The authors also comment that
+most traffic managers are more concerned with the friability of single links
+rather than the friability of multiple links or an entire system.
 
-[@vodak2019] introduces a method to quickly identify critical links in a network
-by searching for the shortest cycles, or independent loops in the network. The
-algorithm progressively damages one or more links between iterations to
-determine if nodes become isolated, or cut off from the network. The authors use
-isolation as a measure of network vulnerability and connectedness. If a node
-becomes easily isolated or has a higher likelihood of becoming isolated, then
-there is a higher degree of vulnerability present in the network. Vodak’s work
-is significant because the novel algorithm is capable of processing upwards of
-1000 links and nodes while effectively identifying vulnerabilities in the
-network. This ability makes the algorithm a valuable tool for resilience
-research at the regional and statewide levels.
+[@vodak2019] develop an approach to identify
+critical links in a network by searching for the shortest independent
+loops in the network. The algorithm progressively damages one or more links
+between iterations to determine if nodes become isolated, or cut off from the
+network. If a node becomes easily isolated or has a higher likelihood of
+becoming isolated, then there is a higher degree of vulnerability present in the
+network. This method can both identify critical links in individual networks, as
+well as provide a means to quantitatively compare networks.
+
+All of these graph theoretical approaches tend to break down to some degree on
+large, real-world networks where the number of nodes and links numbers in the tens
+of thousands, and the degree of connectivity between any node pair is high. 
+Highway system network failures --- in most imaginable cases --- degrade the
+shortest or least cost path but typically do not eliminate it entirely.
 
 ### Changes in Travel Time
 Graph theory based approaches to resiliency largely consider whether the network
