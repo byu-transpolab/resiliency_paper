@@ -1,6 +1,7 @@
 # Literature {#litreview}
 In a groundbreaking theoretical article, @berdica2002 attempted to identify,
-define and conceptualize vulnerability by envisioning analyses conducted with
+define and conceptualize network "vulnerability" --- the complement of 
+resiliency --- by envisioning analyses conducted with
 several vulnerability performance measures including travel time, delay,
 congestion, serviceability, and accessibility. She then defined reliability as
 the level of reduced accessibility due to unfavorable operating conditions on
