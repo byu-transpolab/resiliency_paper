@@ -10,6 +10,22 @@ make_map <- function(links, projects){
   
 }
 
+#' Get links file
+#' 
+#' @details NOT RUN IN STREAM. The outputs are committed to git, this 
+#' is just for records
+#' 
+get_links <- function(){
+  
+  big_links <- st_read("~/Box/Macfarlane/research/resiliency/Risks Links Shapefile/risk_links_network.shp")
+  
+  
+  big_links  %>%
+    select(A, B, STREET, FTCLASS, LINKID, CO_NAME, risk_id) %>%
+    st_write("data/links.geojson")
+}
+
+
 
 make_coefficient_table <- function(mc_constants, mc_coefficients, dc_coefficients){
   
