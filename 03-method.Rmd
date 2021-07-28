@@ -209,6 +209,17 @@ of a zone. The size term equation was adapted from the Oregon Statewide
 Integration Model (SWIM), which is one of the most comprehensive destination
 choice models today.
 
+
+```{r coeffs}
+tar_load(coefficient_table)
+
+kbl(coefficient_table, caption = "Choice Model Coefficients", booktabs = TRUE,
+    format = "latex", col.names = c("Variable", "Variable", "HBW", "HBO", "NHB")) %>%
+  kable_styling() %>%
+  collapse_rows(1:2, row_group_label_position = 'stack', latex_hline = "major")
+```
+
+
 ## Mode Choice Model
 The mode choice (MC) module calculates the mode choice logsum (MCLS) between
 each OD pair in the network for each trip purpose. The trip purposes considered

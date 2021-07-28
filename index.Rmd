@@ -45,6 +45,7 @@ library(knitr)
 library(kableExtra)
 library(modelsummary)
 library(dplyr)
+library(targets)
 
 options(dplyr.summarise.inform = FALSE)
 
