@@ -1,4 +1,5 @@
 # Literature {#litreview}
+
 In a groundbreaking theoretical article, @berdica2002 attempted to identify,
 define and conceptualize vulnerability by envisioning analyses conducted with
 several vulnerability performance measures including travel time, delay,
