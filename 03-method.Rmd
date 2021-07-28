@@ -214,7 +214,7 @@ choice models today.
 tar_load(coefficient_table)
 
 kbl(coefficient_table, caption = "Choice Model Coefficients", booktabs = TRUE,
-    format = "latex", col.names = c("Variable", "Variable", "HBW", "HBO", "NHB")) %>%
+    col.names = c("Model", "Variable", "HBW", "HBO", "NHB"), digits = 4) %>%
   kable_styling() %>%
   collapse_rows(1:2, row_group_label_position = 'stack', latex_hline = "major")
 ```
