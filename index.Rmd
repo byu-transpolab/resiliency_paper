@@ -92,7 +92,7 @@ links or facilities are most critical to the smooth operation of the network.
 Identifying which links in a transportation network are most critical, however, 
 is not trivial. State of the practice techniques typically rely on traffic volumes
 represented in terms of vehicles, trips, or freight value [@aem2017]. But these 
-methods ignore the fact that some networks have alternate routes readily available
+methods ignore the fact that some networks have alternate routes readily available,
 have multiple well developed modes of transportation, or have redundant
 destination locations. When a network link does break, routes, mode choice, and
 destination choice often change too. These responses have been observed in
