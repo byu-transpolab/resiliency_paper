@@ -18,5 +18,15 @@ tar_option_set(packages = c("tidyverse", "sf", "readxl"))
 list(
   tar_target(links, st_read("data/Risks Links Shapefile/risk_links_network.shp")),
   tar_target(projects, read_xlsx("images/logsumrank.xlsx")),
-  tar_target(map, make_map(links, projects))
+  tar_target(map, make_map(links, projects)),
+  
+  tar_target(mc_constants_file, "data/MC_Constants.csv", format = "file"),
+  tar_target(mc_coefficients_file, "data/MC_Coefficients.csv", format = "file"),
+  tar_target(dc_coefficients_file, "data/DC_Parameters.xlsx", format = "file"),
+  tar_target(mc_constants, read_csv(mc_constants_file)),
+  tar_target(mc_coefficients, read_csv(mc_coefficients_file)),
+  tar_target(dc_coefficients, read_xlsx(dc_coefficients_file)),
+  tar_target(coefficient_table, make_coefficient_table(mc_constants, mc_coefficients, 
+                                                       dc_coefficients))
+  
 )
