@@ -52,6 +52,7 @@ options(dplyr.summarise.inform = FALSE)
 # Other packages ------
 # These sometimes get used, and sometimes don't.
 library(readxl)
+library(leaflet)
 library(ggmap)
 library(sf)
 library(viridis)
