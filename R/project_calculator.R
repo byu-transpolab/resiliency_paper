@@ -1,4 +1,46 @@
-#' Create project difference database
+#' Calculate production-weighted logsum difference
+#' 
+#' @param prod
+#' @param logsums
+#' 
+calculate_deltas <- function(prod, logsums){
+  
+  logsums %>%
+    left_join(prod, by = c("purpose", "TAZ")) %>%
+    mutate( total = productions * logsum ) %>%
+    group_by(purpose, scenario) %>%
+    summarise(total = sum(total)) %>%
+    spread(scenario, total, fill = 0) %>%
+    gather(scenario, total, -purpose, -BASE) %>%
+    mutate(
+      delta = total - BASE,
+      pct_delta = delta / BASE * 100
+    ) 
+  
+}
+
+
+summary_table <- function(deltas){
+  
+}
+
+
+#' Calculate financial costs of closing links
+#' 
+#'  @param deltas Tibble with change in logsum by purpose and TAZ
+#'  @param mc_cost_coefficient cost coefficient from mode choice model
+#' 
+calculate_costs <- function(deltas, mc_cost_coef){
+  deltas %>%
+    group_by(scenario) %>%
+    summarise(total_delta = sum(delta)) %>%
+    mutate(
+      value = total_delta / mc_cost_coef
+    )
+}
+
+
+#' Create project logsums database
 #' 
 #' @details NOT IN TARGETS STREAM. output file committed to git
 #' 
