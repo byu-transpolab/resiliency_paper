@@ -64,6 +64,8 @@ read_xlsx("images/tooele_table2.xlsx") %>%
   kable_styling( )
 ```
 
+
+
 The logsum and travel time methods for determining the overall cost associated
 with can be broken down into overall costs, and comparable costs. The comparable
 costs are made up of those purposes which are included in the resiliency model.
