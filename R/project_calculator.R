@@ -19,6 +19,25 @@ calculate_deltas <- function(prod, logsums){
   
 }
 
+#' Calculate production-weighted logsum difference for one scenario by TAZ
+#' 
+#' @param prod
+#' @param logsums
+#' @param this_scenario Which scenario to build for
+#' 
+calculate_taz_deltas <- function(prod, logsums, this_scenario = "ROAD50"){
+  
+  logsums %>%
+    filter(scenario %in% c("BASE", this_scenario)) %>%
+    spread(scenario, logsum) %>%
+    rename(alt = !!this_scenario) %>%
+    mutate(delta = alt - BASE) %>%
+    left_join(prod, by = c("purpose", "TAZ")) %>%
+    mutate( delta_total = productions * delta ) 
+  
+}
+
+
 
 summary_table <- function(deltas){
   
