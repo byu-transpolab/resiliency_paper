@@ -25,8 +25,8 @@ and destinations increase on a damaged network?
 network complete their daily activities?
 
 The following sections discuss relevant studies in each group; Table
-\@ref(tab:authortable) consolidates these studies by year and labeled with
-applicable group.
+\@ref(tab:authortable) consolidates these studies by year and labels them with
+an applicable group.
 
 ```{r authortable, echo = FALSE}
 read_xlsx("images/author_summary.xlsx") %>%
@@ -57,7 +57,7 @@ is entirely isolated from the network is unlikely in a real-world network with
 multiple paths of connectivity.
 
 @ip2011 address this shortcoming through the concept of *friability*, or
-the reduction of capacity cased by removing a link or node, in order to
+the reduction of capacity caused by removing a link or node, in order to
 determine criticality of individual links. The methodology relies on the ability
 to determine the weighted sum of the resilience of all nodes based on the
 weighted average of connectedness with other city nodes in the network. The
@@ -89,17 +89,17 @@ paths between nodes; however, some of these paths may be considerably longer. It
 is therefore useful to determine how the path cost changes even if the nodes
 involved are still reachable on the network.
 
-[@peeta2010] constructs a model to evaluate the most efficient allocation of
-highway maintenance resources prior to an earthquake with the potential to
-disrupt transport network connectivity. The authors create a simplified graph of
-Istanbul, Turkey with 30 attributed links and 25 nodes, with each link having a
-specified failure probability that could be mitigated with investment. Using
-this graph, the researchers evaluate what happened to travel times between the
+@peeta2010 constructs a model to evaluate the most efficient allocation of
+highway maintenance resources prior to disaster with the potential to
+disrupt transport network connectivity. Each link in the sample network is
+assigned a specific failure probability which decreases as funding as allocated.
+The researchers evaluated changes to traversal costs between between 
 origin-destination pairs as links from this network were disabled using a Monte
 Carlo simulation. The authors showed that this problem is tractable with a
-locally optimal solution existing.
+locally optimal solution existing for invesetment allocation leading to a 
+strengthened network.
 
-[@ibrahim2011] provides an alternative heuristic approach for determining
+@ibrahim2011 provides an alternative heuristic approach for determining
 vulnerability of infrastructure by estimating the cost of single link failure
 based on the increase in shortest path travel time due to increased congestion
 levels. Ibrahim proposes a hybrid heuristic approach that calculates the
@@ -110,7 +110,7 @@ is important because of its ability to drastically reduce computation time for
 larger networks while providing accurate results that closely match results
 found from traditional modeling methods.
 
-[@omer2013] proposes a methodology for assessing the resiliency of physical
+@omer2013 proposes a methodology for assessing the resiliency of physical
 infrastructure during disruptions. To do this, the authors use a network model
 to build an origin-destination matrix that allows initial network loading and
 analysis. Omer’s model uses several metrics, but the main metric used to
@@ -123,7 +123,7 @@ experiencing suboptimal circumstances. The authors work identifies key
 parameters that should be measured to assess resiliency during disruptive
 events.
 
-[@jaller2015] seeks to identify critical infrastructure based on increased
+@jaller2015 seeks to identify critical infrastructure based on increased
 travel time, or reduced capacity due to disaster. The proposed methodology
 utilizes user-equilibrium to determine proper initial network loading. Then, the
 shortest path between one origin and one destination can be identified. To
@@ -151,8 +151,7 @@ A_i = \sum_{j} X_j I_{ij};  I_{ij} = \begin{cases}  1 \text{ if } d_{ij} \leq D\
   (\#eq:isochrone)
 \end{equation}
 
-
-where the accessibility A at point i is the sum of the all the jobs or other
+where the accessibility A at point $i$ is the sum of the all the jobs or other
 destinations $X$ at other points $j$. $I_{ij}$ is an indicator function equal to
 zero if the distance between the points $d{_ij}$ is less than some asserted
 threshold (e.g., thirty minutes of travel time). By relaxing the assumption of a
@@ -191,7 +190,7 @@ Niemier (1997), Handy and Niemier (1997), Levine (1998), and Miller (1999) used
 or suggested logsums. They highlight the importance of using person-based
 measures such as these in evaluating network vulnerability and resiliency.
 
-[@taylor2008] also examines accessibility as a way to analyze network
+@taylor2008 also examines accessibility as a way to analyze network
 vulnerabilities, mainly through logsum analysis. Taylor begins by explaining the
 concepts of vulnerability and accessibility, which further help to explain their
 interrelatedness and key distinctions. He then applies logsum analysis to
