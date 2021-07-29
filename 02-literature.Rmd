@@ -34,7 +34,7 @@ read_xlsx("images/author_summary.xlsx") %>%
   kable_styling()
 ```
 
-### Network Connectivity
+## Network Connectivity
 The purpose of transportation networks is to connect locations to each other; 
 presumably damage to a network would diminish the network's *connectivity*, or 
 the number of paths between node pairs. It may even leave nodes or groups of nodes
@@ -66,7 +66,7 @@ largely depends on redundant links between nodes. The authors also comment that
 most traffic managers are more concerned with the friability of single links
 rather than the friability of multiple links or an entire system.
 
-[@vodak2019] develop an approach to identify
+@vodak2019 develop an approach to identify
 critical links in a network by searching for the shortest independent
 loops in the network. The algorithm progressively damages one or more links
 between iterations to determine if nodes become isolated, or cut off from the
@@ -81,7 +81,7 @@ of thousands, and the degree of connectivity between any node pair is high.
 Highway system network failures --- in most imaginable cases --- degrade the
 shortest or least cost path but typically do not eliminate it entirely.
 
-### Changes in Travel Time
+## Changes in Travel Time
 Graph theory based approaches to resiliency largely consider whether the network
 nodes become isolated after links are degraded or removed. Though isolation is
 an important problem, transportation networks often have multiple redundant
@@ -135,13 +135,13 @@ travel time are determined to be the most critical. Jaller’s methodology allow
 traffic managers to identify critical paths for mitigation purposes before the
 occurrence of disaster through careful analysis.
 
-### Changes in Accessibility
+## Changes in Accessibility
 Accessibility refers to the ease with which individuals can reach the
 destinations that matter to them; this is an abstract idea but one that has been
-quantified in numerous ways. [@dong2006] provides a helpful framework for
+quantified in numerous ways. @dong2006 provide a helpful framework for
 understanding various quantitative definitions of accessibility that we will
 simplify here. The most elementary definition of accessibility is whether a
-destination is within an isochrone, or certain distance. This measure is often
+destination is within an *isochrone*, or certain distance. This measure is often
 represented as a count, e.g., the number of jobs reachable from a particular
 location within thirty minutes travel time by a particular mode. Mathematically,
 

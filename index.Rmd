@@ -4,19 +4,20 @@ author:
 - name: Gregory Macfarlane
   email: gregmacfarlane@byu.edu
   affiliation: Brigham Young University
-  footnote: 1
 - name: Max Barnes
   email: barnesmaxmax@gmail.com
   affiliation: Brigham Young University
 - name: Natalie Gray
   email: nat.gray2000@gmail.com
   affiliation: Brigham Young University
-  footnote: 2
 date: "`r Sys.Date()`"
 address:
 - code: Brigham Young University
-  address: Civil and Environmental Engineering Department, 430 Engineering Building,
+  address: Brigham Young University, Civil and Environmental Engineering Department, 430 Engineering Building,
     Provo, Utah 84602
+footnote:
+- code: 1
+  text: "Corresponding Author"
 site: bookdown::bookdown_site
 documentclass: article
 journal: Submitted to Journal

@@ -233,12 +233,6 @@ WALK2 coefficients for the HBW, HBO, and NHB purposes were extracted directly
 from the USTM mode choice model. The values for each of the coefficients are in
 Table \@ref(tab:mccoefs):
 
-```{r mccoeffs, echo = FALSE}
-read_xlsx("data/MC_Coefficients.xlsx") %>%
-  kbl(caption = "Mode Choice Coefficients", booktabs = TRUE) %>%
-  kable_styling()
-```
-
 Utility equations, which were initially adapted from the RVTPO model, account
 for multiple variables which typically have different units. Each of the
 variables included in the utility equation must have the same unit, so the
@@ -340,12 +334,6 @@ trips. Oregon uses a separate travel demand model to estimate work trips, which
 was problematic because the DC parameters for work purposes could not be
 located. Thus, the work trip parameters were taken from the RVTPO model instead.
 The DC parameters can be seen in Table \@ref(tab:dcparams)
-
-```{r dcparams, echo = FALSE}
-read_xlsx("data/DC_Parameters.xlsx") %>%
-  kbl(caption = "Destination Choice Parameters", booktabs = TRUE) %>%
-  kable_styling()
-```
 
 The DC utility equation was initially adapted from the RVTPO model, and then
 pared down to match the available data inputs from USTM and purposes of the
