@@ -1,12 +1,15 @@
 #' Make a plot of the links
 #' 
 #' @param links An sf object with highway links and project IDs
-#' @param projects A tibble with project data
+#' @param costs A tibble with total scenario costs
 #' 
 #' @return A map
 #' 
-make_map <- function(links, projects){
+make_mapdata <- function(links, costs){
   
+  links %>%
+    mutate(risk_id = str_c("ROAD", risk_id)) %>%
+    left_join(costs, by = c("risk_id" = "scenario")) 
   
 }
 
@@ -26,7 +29,8 @@ get_links <- function(){
 }
 
 
-
+#' Model utility coefficient table
+#' 
 make_coefficient_table <- function(mc_constants, mc_coefficients, dc_coefficients){
   
   # mode choice coefficients
