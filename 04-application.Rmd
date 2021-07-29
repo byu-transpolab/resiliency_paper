@@ -91,7 +91,7 @@ classify various types of threats toward specific infrastructure types. This
 method, while valid, was difficult to implement statewide. Some facilities have
 obvious natural threats such as earthquake, flood, or landslide.
 
-```{r links-map, fig.cap="Total cost of link closure.", fig.show='hold'}
+```{r links-map, fig.cap="Total cost of link closure.", fig.show='hold', dev = "tikz"}
 tar_load(mapdata)
 
 
@@ -115,7 +115,7 @@ if(!knitr::is_latex_output()){
     geom_sf(data = mapdata, inherit.aes = FALSE, size = 5, stroke = 1, shape = 21,
             aes(fill = value), alpha = 0.5)  + 
     theme(axis.line = element_line(color = NA))  + 
-    scale_fill_viridis("Cost of closure ($)", option = "magma", direction = -1) + 
+    scale_fill_viridis("Cost of closure (\\$)", option = "magma", direction = -1) + 
     xlab("") + ylab("") 
   
   
@@ -125,10 +125,6 @@ if(!knitr::is_latex_output()){
 }
 ```
 
-
-```{r links, fig.cap="Critical Highway Links Identified using Risk Priority Analysis", out.width='100%', echo = FALSE}
-knitr::include_graphics("images/links.png")
-```
 
 This section will present the results of the 41 scenarios analyzed. First, Table
 \@ref(tab:linktable) shows each of the scenarios, labeled “road10” for scenario
