@@ -111,17 +111,15 @@ network. Some people may choose other modes or destinations, and it is possible
 that some previously occurring trips might be canceled entirely.
 
 ## Changes in Accessibility
-A 
-
-
-Accessibility refers to the ease with which individuals can reach the
-destinations that matter to them; this is an abstract idea but one that has been
-quantified in numerous ways. @dong2006 provide a helpful framework for
-understanding various quantitative definitions of accessibility that we will
-simplify here. The most elementary definition of accessibility is whether a
-destination is within an *isochrone*, or certain distance. This measure is often
-represented as a count, e.g., the number of jobs reachable from a particular
-location within thirty minutes travel time by a particular mode. Mathematically,
+In a travel modeling context, *accessibility* refers to the ease with which
+individuals can reach the destinations that matter to them; this is an abstract
+idea but one that has been quantified in numerous ways. @dong2006 provide a
+helpful framework for understanding various quantitative definitions of
+accessibility that we will simplify here. The most elementary definition of
+accessibility is whether a destination is within an *isochrone*, or certain
+distance. This measure is often represented as a count, e.g., the number of jobs
+reachable from a particular location within thirty minutes travel time by a
+particular mode. Mathematically,
 
 \begin{equation}
 A_i = \sum_{j} X_j I_{ij};  I_{ij} = \begin{cases}  1 \text{ if } d_{ij} \leq D\\ 
@@ -129,7 +127,7 @@ A_i = \sum_{j} X_j I_{ij};  I_{ij} = \begin{cases}  1 \text{ if } d_{ij} \leq D\
   (\#eq:isochrone)
 \end{equation}
 
-where the accessibility A at point $i$ is the sum of the all the jobs or other
+where the accessibility $A$ at point $i$ is the sum of the all the 
 destinations $X$ at other points $j$. $I_{ij}$ is an indicator function equal to
 zero if the distance between the points $d{_ij}$ is less than some asserted
 threshold (e.g., thirty minutes of travel time). By relaxing the assumption of a
@@ -150,38 +148,19 @@ A_i = ln\sum_{j} \beta_d(d_{ij}) + X_j\beta
   (\#eq:logsum)
 \end{equation}
 
-Where the parameters $\beta$ are estimated from choice surveys or calibrated to
-observed data. The logsum term has numerous benefits outlined by [@handy1997]
-and [@xiangdong2007]; namely, the measure is based in actual choice theory, and
+where the parameters $\beta$ are estimated from choice surveys or calibrated to
+observed data. The logsum term has numerous benefits outlined by @handy1997
+and @geurs2004; namely, the measure is based in actual choice theory, and
 can include multiple destination types and travel times by multiple different
-modes. 
+modes.  
 
-@guers2004 provide a review of accessibility measures such as
-those above up to 2004. Of the papers they reviewed, three used isochrone type methods,
-one used gravity, and ten used or suggested logsums in some method, though 
-the purpose of this paper was. They
-highlight the importance of using person-based measures such as these in
-evaluating network vulnerability and resiliency.
+@taylor2008 applied logsum-derived accessibility analysis to evaluate the
+  consequences of a tunnel failure in Adelaide, Australia.
+  
+ 1. LOOK LITERATURE THAT TAYLOR CITES
+ 2. LOOK AT LITERATURE THAT HAS CITED TAYLOR
+ 3. TELL THE STORY OF WHY WHAT WE DID IS WORTHWHILE
+ 
+BECAUSE THERE IS A GAP! STATEWIDE
 
-@taylor2008 also examines accessibility as a way to analyze network
-vulnerabilities, mainly through logsum analysis. Taylor begins by explaining the
-concepts of vulnerability and accessibility, which further help to explain their
-interrelatedness and key distinctions. He then applies logsum analysis to
-provide a framework for solving problems of accessibility. Taylor’s method for
-identifying vulnerabilities involves modeling travel demand, network topology,
-capacity, and road geometry in a manner that closely resembles a graph network.
-He does make one key distinction between links and nodes, however. A Node is
-vulnerable if link loss to that node diminishes its accessibility, while a Link
-is critical if its loss significantly diminishes accessibility within the
-network. One drawback to Taylor’s methodology at this point, is that it is
-intended to be used after critical locations have been identified.
-
-## Summary
-The lessons learned from the events in Minneapolis and Atlanta demonstrate that
-when transportation networks are damaged or degraded by link failure, multiple
-changes result. Traffic diverts to other facilities and other modes, and some
-people make fundamental changes to their daily activity patterns, choosing new
-destinations or eliminating trips entirely. Numerous other researchers have
-identified methodologies to capture the effects, or at least the costs, of these
-potential changes in modeled crisis events. We are able to learn from past and
-current methodologies to create a functional methodology on a state-wide level.
+  
