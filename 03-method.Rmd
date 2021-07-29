@@ -1,5 +1,17 @@
 # Methodology {#methodology}
 
+## Model Design
+
+why the model is designed in the way it is
+
+## Model Implementation in Utah
+
+how we matched the model to real data
+
+### Link Identification
+which links to run the model on
+
+
 This chapter presents the design and implementation of a model system designed
 to measure accessibility changes on a transportation network after the
 elimination or loss of highway links. The chapter begins with a discussion of
