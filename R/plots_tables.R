@@ -14,6 +14,29 @@ make_mapdata <- function(links, costs){
   
 }
 
+
+
+#' Make map of zonal changes
+#' 
+#' @param deltas 
+#' @param taz Taz sf object
+#' @param counties Character vector of counties to keep
+#' @param scenario Scenario name to map
+#' 
+make_zonal_mapdata <- function(taz_deltas, taz){
+  
+  left_join(
+    taz %>% select(TAZID),
+    taz_deltas %>%
+      select(TAZ, purpose, delta_total) %>%
+      pivot_wider(names_from = purpose, values_from = delta_total),
+    by = c("TAZID" = "TAZ")
+  )
+  
+  
+}
+
+
 #' Get links file
 #' 
 #' @details NOT RUN IN STREAM. The outputs are committed to git, this 

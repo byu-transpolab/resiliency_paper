@@ -64,6 +64,41 @@ read_xlsx("images/tooele_table2.xlsx") %>%
   kable_styling( )
 ```
 
+```{r tooelemap, fig.cap="Total loss from ", dev = "tikz"}
+tar_load(zonal_mapdata)
+
+naf0 <- function(x){ifelse(x == 0, NA, x)}
+
+zonal_mapdata <- zonal_mapdata %>%
+  st_transform(4326) %>% 
+  mutate(across(c(HBW, HBO, NHB), naf0)) %>%
+  filter(!is.na(HBW)) 
+
+if (!knitr::is_latex_output()){
+  tazpal <- colorNumeric("Reds", c(zonal_mapdata$HBO, zonal_mapdata$HBW, zonal_mapdata$NHB))
+  
+  leaflet( zonal_mapdata ) %>%
+    addProviderTiles(providers$Esri.WorldGrayCanvas) %>%
+    addPolygons(color = ~tazpal(HBW), stroke = 0)
+} else {
+  pbox <- st_bbox(zonal_mapdata)
+  
+  # overall map
+  map_back <- get_map(#c(lon = mean(pbox[c(1, 3)]), lat = mean(pbox[c(2, 4)]) ),  
+                      c(-112.22547310384623, 40.71921168912544),
+                      zoom = 10, source = "google", maptype = "roadmap", color = "bw")
+  
+  ggmap(map_back, extent = "device") + 
+    coord_sf(crs = st_crs(4326),  expand = FALSE) + 
+    geom_sf(data = zonal_mapdata , inherit.aes = FALSE, aes(fill = HBW), 
+            alpha = 0.5, lwd = 0)  + 
+    theme(axis.line = element_line(color = NA))  + 
+    scale_fill_viridis("Total HBW Utility Loss", option = "magma", direction = 1) + 
+    xlab("") + ylab("") 
+  
+}
+
+```
 
 
 The logsum and travel time methods for determining the overall cost associated

@@ -24,14 +24,21 @@ list(
   tar_target(links_file, "data/links.geojson", format = "file"),
   tar_target(links, st_read(links_file)),
   
-  # project costs
+  # taz polygons
+  tar_target(taz_file, "data/ustm_taz.geojson", format = "file"),
+  tar_target(taz, st_read(taz_file)),
+  
+  # costs for all scenarios
   tar_target(prod_rds, "data/productions.rds", format = "file"),
   tar_target(prod, read_rds(prod_rds)),
   tar_target(lsum_rds, "data/logsums.rds", format = "file"),
   tar_target(logsums, read_rds(lsum_rds)),
-  
   tar_target(deltas, calculate_deltas(prod, logsums)),
   tar_target(costs, calculate_costs(deltas, mc_cost_coef)),
+  
+  # costs for one scenario 
+  tar_target(taz_deltas, calculate_taz_deltas(prod, logsums, "ROAD50")),
+  tar_target(zonal_mapdata, make_zonal_mapdata(taz_deltas, taz)),
   
   
   # project map
