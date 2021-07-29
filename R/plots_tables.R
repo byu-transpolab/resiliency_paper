@@ -8,8 +8,9 @@
 make_mapdata <- function(links, costs){
   
   links %>%
-    mutate(risk_id = str_c("ROAD", risk_id)) %>%
-    left_join(costs, by = c("risk_id" = "scenario")) 
+    left_join(costs, by = c("risk_id" = "scenario"))  %>%
+    st_centroid() %>%
+    st_transform(4326)
   
 }
 
@@ -22,10 +23,14 @@ get_links <- function(){
   
   big_links <- st_read("~/Box/Macfarlane/research/resiliency/Risks Links Shapefile/risk_links_network.shp")
   
+  project_info <- readxl::read_xlsx("images/linktable.xlsx") %>%
+    mutate(LINK_ID = toupper(LINK_ID))
   
   big_links  %>%
     select(A, B, STREET, FTCLASS, LINKID, CO_NAME, risk_id) %>%
-    st_write("data/links.geojson")
+    mutate(risk_id = str_c("ROAD", risk_id)) %>%
+    left_join(project_info, by = c("risk_id" = "LINK_ID")) %>%
+    st_write("data/links.geojson", append = FALSE, delete_dsn = TRUE)
 }
 
 
