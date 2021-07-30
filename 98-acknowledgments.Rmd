@@ -1,0 +1,16 @@
+# Acknowledgments {-}
+
+This study was funded by the Utah Department of Transportation. The authors
+alone are responsible for the preparation and accuracy of the information, data,
+analysis, discussions, recommendations, and conclusions presented herein. The
+contents do not necessarily reflect the views, opinions, endorsements, or
+policies of the Utah Department of Transportation or the US Department of
+Transportation. The Utah Department of Transportation makes no representation or
+warranty of any kind, and assumes no liability therefore.
+
+# Author Contribution Statement {-}
+The authors confirm contribution to the paper as follows: study conception and
+design: G.S. Macfarlane; data collection: M. Barnes and N. Gray; analysis and
+interpretation of results: G.S. Macfarlane, M. Barnes, and N. Gray; draft
+manuscript preparation: G.S. Macfarlane, and M. Barnes. All authors reviewed the
+results and approved the final version of the manuscript.
