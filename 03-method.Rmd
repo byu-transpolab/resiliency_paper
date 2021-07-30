@@ -1,27 +1,83 @@
 # Methodology {#methodology}
 
-This section presents the design and implementation of a model system designed
-to measure accessibility changes on a network after the elimination of a link.
-We then present a proposed model design and implementation within the CUBE
-travel demand modeling software.
+The objective of this study is to evaluate the relative systemic criticality of 
+highway links using a model sensitive to changes in route path, destination choice,
+and mode choice. 
 
 ## Model Design
-Logit based destination choice models are better able to reflect statistical
-assumptions, incorporate multiple data sets, estimate results with greater
-accuracy, and are able to measure the changes in accessibility due to disruption
-compared to traditional models [@tfr2021]. The ability to incorporate improved
-methods for determining trip distribution, mode choice, and destination choice
-into a model structure increases the accuracy with which estimated trips can be
-analyzed and is why a logit-based model was used when designing the resiliency
-model.
+The overall model framework is presented in Figure \@ref(fig:framework), and is
+designed to capture the utility-based accessibility for a particular origin 
+zones $i$ and trip purpose $m$. The model begins with a travel time skim
+procedure, to determine the congested travel time from zone $i$ to zone $j$ by
+auto as well as the shortest network distance for non motorized modes. The
+transit travel time skim is fixed, assuming that transit infrastructure would
+not be affected by changes to the highway network. Throughout this section,
+lower-cased index variables $k$ belong to a set of all indices described by the
+corresponding capital letter $K$
 
-In addition to the logit-based model, a destination choice model was also
-incorporated into the resiliency model, which explicitly considers multi-modal
-accessibility. This ability allows a user to choose the location of their
-destination based on a variety of factors including mode availability and other
-socioeconomic data.
+```{r framework, out.width="75%", fig.align="center", fig.cap = "Model framework.", echo = FALSE}
+knitr::include_graphics("images/framework.png")
+```
 
-The model design includes three main inputs:
+With the travel time $t_{ijk}$ for all modes $k \in K$, the model computes
+mode choice utility values. The multinomial logit mode choice model describes
+the probability of a person at origin $i$ choosing mode $k$ for a trip to
+destination $j$:
+\begin{equation}
+\mathcal{P}_{ijm}(k) = \frac{\exp(f(\beta_{m}, t_{ijk}))}{\sum_{K}\exp(f(\beta_{m}, t_{ijk}))}
+  (\#eq:mcp)
+\end{equation}
+The log of the denominator of the this equation is called the 
+mode choice logsum, $MCLS_{ijm}$ and is a measure of the travel cost by all 
+modes, weighted by utility parameters $\beta_m$ that may vary by trip purpose.
+
+The $MCLS$ is then used as a travel impedance term in the multinomial logit 
+destination choice model, where the probability of a person at origin $i$
+choosing destination $j \in J$ is
+\begin{equation}
+\mathcal{P}_{im}(j) = \frac{\exp(f(\gamma_{m}, MCLS_{ijm}, A_j))}{\sum_{J}\exp(f(\gamma_{m}, MCLS_{ijm}, A_j))}
+  (\#eq:dcp)
+\end{equation}
+where $A_j$ is the attractiveness --- represented in terms of socioeconomic activity
+--- of zone $j$. As with mode choice, the log of the denominator of this model is the destination
+choice logsum, $DCLS_{im}$. This quantity represents the value access to all destinations
+by all modes of travel, and varies by trip purpose. 
+
+The $DCLS_{im}$ measure is relative, but can be compared across scenarios. The 
+difference between the measures of two scenarios 
+\begin{equation}
+\Delta_{im} = DCLS_{im}^{\mathrm{Base}} - DCLS_{im}^{\mathrm{Scenario}}
+  (\#eq:deltas)
+\end{equation}
+however, provides an estimate of the accessibility lost when $t_{ij\mathrm{drive}}$
+changes due to a damaged highway link. This accessibility change is *per trip*, 
+meaning that the total lost accessibility is $P_{im} * \Delta_{im}$ where $P$ is
+the number of trip productions at zone $i$ for purpose $m$. This measure is
+given in units of dimensionless utility, but the mode choice cost coefficient 
+$\beta$ provides a conversion factor between utility and cost. The total financial
+cost of a damaged link for the entire region for all trip purposes is
+\begin{equation}
+\mathrm{Cost} = \sum_{I}\sum_{M} -1 / \beta_{\mathrm{cost},m} * P_{im} \Delta_{im}
+  (\#eq:totalcost)
+\end{equation}
+
+For comparison to a simpler resiliency method that only includes the increased
+travel time between origins and destinations, we compute the change in travel
+time between $\delta t_{ij}$ and multiply the number of trips by this change 
+and a value of time coefficient derived from the cost and vehicle time coefficients
+of the mode choice model,
+\begin{equation}
+\mathrm{Cost}' =  \sum_I \sum_J \sum_M \frac{\beta_{\mathrm{time}, m} }{\beta_{\mathrm{cost}, m}} T_{ijm} t_{ijm}
+  (\#eq:ttmethod)
+\end{equation}
+
+
+
+
+
+## Model Implementation in Utah
+
+
 
 1.	*Highway Network*: The USTM model network, which was obtained from UDOT and
 forms the basis of the model.
@@ -30,46 +86,6 @@ household productions.
 3.	*Attractions*: Zonal trip attractions from the USTM model, classified as
 socioeconomic data.
 
-The model framework consists of the following steps (also visually represented
-in \@ref(fig:framework)):
-
-1.  Skim Network - In this step, the model determines the shortest path by
-travel time on the USTM network between each origin and destination. The model
-also determines the corresponding distance.
-
-2.	Mode Choice Logsum 
--	The mode choice logsum is a function of the travel impedances estimated in the
-highway and peak transit skims and serves as an accessibility term in the
-destination choice model.
--	The mode choice logsum uses utility functions to determine the probability and
-logsum associated with travel between each original and destination.
--	The mode choice model uses constants and coefficients to calibrate and adjust
-the utility equations and determine the mode choice probabilities.
-
-3.	Destination Choice (DC) Logsum 
--	The destination choice logsum is a function of the travel impedances
-(represented by the mode choice logsum) and the attraction size term of each
-destination zone. This is the key evaluation metric of the model.
--	The attraction size term is determined using socioeconomic data for each
-destination zone.
-
-4.	Destination Choice 
--	Allocates trip productions to destination zones based on information from the
-destination choice logsum.
-
-5.	Mode Choice 
--	Allocates trip productions attracted to each zone to specific modes based on
-the mode choice logsum.
-
-6.	Travel Time by Flow 
--	A new measure of travel time on the network after disruption used similarly to
-traditional network loading to measure effects of network disruption.
-
-```{r framework, out.width="75%", fig.cap = "Model framework.", echo = FALSE}
-knitr::include_graphics("images/OGframework.png")
-```
-
-## Model Implementation in Utah
 The USTM highway network was extracted and applied to the resiliency model. The
 highway network is made up of both the urban and rural highway networks for the
 whole state of Utah. The highway network contains many link- and node-attribute
