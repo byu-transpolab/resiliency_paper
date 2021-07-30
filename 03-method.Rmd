@@ -1,0 +1,197 @@
+# Methodology {#methodology}
+
+This section presents the design and implementation of a model system designed
+to measure accessibility changes on a network after the elimination of a link.
+We then present a proposed model design and implementation within the CUBE
+travel demand modeling software.
+
+## Model Design
+Logit based destination choice models are better able to reflect statistical
+assumptions, incorporate multiple data sets, estimate results with greater
+accuracy, and are able to measure the changes in accessibility due to disruption
+compared to traditional models [@tfr2021]. The ability to incorporate improved
+methods for determining trip distribution, mode choice, and destination choice
+into a model structure increases the accuracy with which estimated trips can be
+analyzed and is why a logit-based model was used when designing the resiliency
+model.
+
+In addition to the logit-based model, a destination choice model was also
+incorporated into the resiliency model, which explicitly considers multi-modal
+accessibility. This ability allows a user to choose the location of their
+destination based on a variety of factors including mode availability and other
+socioeconomic data.
+
+The model design includes three main inputs:
+
+1.	*Highway Network*: The USTM model network, which was obtained from UDOT and
+forms the basis of the model.
+2.	*Productions*: Zonal trip productions from the USTM model, classified as
+household productions.
+3.	*Attractions*: Zonal trip attractions from the USTM model, classified as
+socioeconomic data.
+
+The model framework consists of the following steps (also visually represented
+in \@ref(fig:framework)):
+
+1.  Skim Network - In this step, the model determines the shortest path by
+travel time on the USTM network between each origin and destination. The model
+also determines the corresponding distance.
+
+2.	Mode Choice Logsum 
+-	The mode choice logsum is a function of the travel impedances estimated in the
+highway and peak transit skims and serves as an accessibility term in the
+destination choice model.
+-	The mode choice logsum uses utility functions to determine the probability and
+logsum associated with travel between each original and destination.
+-	The mode choice model uses constants and coefficients to calibrate and adjust
+the utility equations and determine the mode choice probabilities.
+
+3.	Destination Choice (DC) Logsum 
+-	The destination choice logsum is a function of the travel impedances
+(represented by the mode choice logsum) and the attraction size term of each
+destination zone. This is the key evaluation metric of the model.
+-	The attraction size term is determined using socioeconomic data for each
+destination zone.
+
+4.	Destination Choice 
+-	Allocates trip productions to destination zones based on information from the
+destination choice logsum.
+
+5.	Mode Choice 
+-	Allocates trip productions attracted to each zone to specific modes based on
+the mode choice logsum.
+
+6.	Travel Time by Flow 
+-	A new measure of travel time on the network after disruption used similarly to
+traditional network loading to measure effects of network disruption.
+
+```{r framework, out.width="75%", fig.cap = "Model framework.", echo = FALSE}
+knitr::include_graphics("images/OGframework.png")
+```
+
+## Model Implementation in Utah
+The USTM highway network was extracted and applied to the resiliency model. The
+highway network is made up of both the urban and rural highway networks for the
+whole state of Utah. The highway network contains many link- and node-attribute
+data including street name, link distance, number of lanes, functional
+classification, transportation analysis zone ID (TAZ ID), county name, as well
+as speed limits and travel time data. Of particular interest from the available
+information was the $AM_TIME$ which contains the travel time in minutes for the
+AM time period along a link and the $DISTANCE$, which contained the distance
+between nodes along a link. The output matrix from the highway skim module forms
+the basis for further analysis by providing needed automobile and non-motorized
+(NMOT) information for the other modules in the model.
+
+USTM incorporates traffic models maintained by other MPOs in Utah into the model
+structure. Only the WFRC / MAG model contains a substantive transit forecasting
+component. The transit skim from the WFRC / MAG model was migrated into the
+resiliency model. The resiliency model assumes that transit services are present
+but held constant because transit network resiliency is outside the scope of
+this project.
+
+The resiliency model uses socioeconomic data extracted from USTM to estimate the
+productions at each zone. The socioeconomic data from the Utah Household Travel
+Survey (UHTS) conducted in 2015 contains TAZ related information such as county
+name, total households, household population, total employment, and a breakdown
+of employment by job category [@uhts2015]. This information is useful when
+determining the DC size term.
+
+Trip attractions are calculated using the size term, which denotes the
+significance of a TAZ in attracting trips. The size term is built using various
+DC parameters and the socioeconomic data to determine the size or attractiveness
+of a zone. The size term equation was adapted from the Oregon Statewide
+Integration Model (SWIM), which is one of the most comprehensive destination
+choice models today.
+
+```{r coeffs}
+tar_load(coefficient_table)
+
+kbl(coefficient_table, caption = "Choice Model Coefficients", booktabs = TRUE,
+    col.names = c("Model", "Variable", "HBW", "HBO", "NHB"), digits = 4) %>%
+  kable_styling() %>%
+  collapse_rows(1:2, row_group_label_position = 'stack', latex_hline = "major")
+```
+
+## Vulnerable Link Identification
+Two methodologies were developed to identify vulnerable network links in Utah.
+The first method resembles the process used by AEM to determine threat
+categories, and threat proximity thresholds to highway links. This methodology
+was ultimately not used in the resiliency model. The second method uses an
+online Risk Priority Analysis map created by UDOT combined with familiar
+knowledge of Utah’s road system. Using this second method, links were identified
+due to their location in relation populations or geography, are suspected choke
+points, or because they were of interest.
+
+## Mode Choice Model
+The mode choice (MC) module calculates the mode choice logsum (MCLS) between
+each OD pair in the network for each trip purpose. The trip purposes considered
+in the model are home-based work (HBW), home-based other (HBO) and
+non-home-based (NHB). The MC module includes the highway skim, the transit skim,
+and the MC coefficients and MC constants as inputs.
+
+The MC constants and coefficients used in the resiliency model were extracted
+from USTM where applicable or adapted from SWIM. The IVTT, COST, WALK1, and
+WALK2 coefficients for the HBW, HBO, and NHB purposes were extracted directly
+from the USTM mode choice model.
+
+Initially, the MC constants were extracted from USTM where possible, or they
+were retrieved from the Roanoke Valley Transportation Organization (RVTPO) model. These
+values were adjusted during the calibration process. Constants are typically
+values that represent the effects of all factors on the choice, but are not
+limited to those values included in the utility equations [@koppelman2006].
+
+These data were applied to the MC module to calculated the M utilities. After
+the MC utilities were calculated, it was necessary to calculate the probability
+associated with each mode of travel for an OD pair. 
+
+## Destination Choice Model
+The destination choice (DC) module calculates the destination choice logsum
+(DCLS) between each OD pair in the network for each trip purpose. The
+DC module includes the highway skim, MCLS output from the previous module, the
+socioeconomic data extracted from USTM, and DC parameters as inputs.
+
+The DC parameters were adapted where applicable from SWIM, the Oregon Statewide
+Integrated Model. SWIM has many more purposes and modes incorporated into its
+model structure than does the resiliency model. One limitation to using SWIM as
+a basis for the DC parameters, however, is that SWIM does not account for work
+trips. Oregon uses a separate travel demand model to estimate work trips, which
+was problematic because the DC parameters for work purposes could not be
+located. Thus, the work trip parameters were taken from the RVTPO model instead.
+
+The DC utility equation differs from the MC utility because it is made up of the
+MCLS calculated in the previous module, the DC size term, and several distance
+and cubic polynomial coefficients and their corresponding values. The MCLS value
+is applied to the DC model utility equation as the impedance term, or a measure
+of a user’s resistance to using the specified path or mode. This is like the
+friction factor in a traditional gravity model. Feeding the MCLS value into the
+DC module allows users to choose a destination rather than having fixed
+destination choices. The size term helps to determine the attractiveness of a
+destination zone compared to another. The cubic polynomial terms serve as a
+method to calibrate the DC module outputs. These are the main terms that make up
+the DC utility equation.
+
+The socioeconomic data from the UHTS is specifically used in the DC model to
+compute the size term, or the attractiveness of a destination choice in the
+model. The size term is made up of statistical data about a zone. 
+
+The DC logsums are calculated by summing each row in the DC utility matrix, and
+then exponentiating that value. The purpose of taking the log of the entire row
+is to measure the logsum between a zone and all the other zones at the same
+time. By doing this, we can determine the overall change in logsum between
+scenarios by TAZ, which is the measurement of interest. The logsum tells us the
+value of a zone based on a user’s ability to choose a mode and destination.
+
+The destination choice parameters and mode choice coefficients were calibrated
+after achieving initial results according to standard procedure such that the
+trip length frequency distribution (TLFD) between USTM and the resiliency models
+were similar.
+
+## MAYBE INCLUDE TABLE WITH BEGINNING AND ENDING CALIBRATION VALUES?
+
+## Summary
+We now have a logit-based model that is sensitive to user mode and destination
+choice. The model also accounts for modes that are not as flexible in the case
+of link closure as well. Using the model, we can input scenarios with broken
+links to evaluate the effects that link loss may have on user mode and
+destination choice, as well as estimate the overall disbenefit experienced by
+road users per day.
