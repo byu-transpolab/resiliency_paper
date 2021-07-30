@@ -1,3 +1,21 @@
+# Limitations and Discussion
+
+Fixed transit travel time?
+
+Shortest path: should be fixed?
+
+Vary by purpose but not market segment
+
+
+Travel time feedback
+diminished capacity
+
+freight, external travel
+
+how to do this with ABM?
+
+sensitivity to utility parameters?
+
 # Conclusions
 The USTM model is a gravity-based travel demand model, while the resiliency
 model is logit-based. The logit-based nature of the resiliency model allows for
@@ -28,3 +46,5 @@ resiliency model should be used to prioritize link importance to the
 functionality of Utah’s highway network. The resiliency model more accurately
 estimates costs experienced by Utahn’s due to link loss than do traditional
 methods for determining costs.
+
+

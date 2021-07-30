@@ -123,13 +123,13 @@ real-world crisis events like the I-35 W bridge collapse in Minneapolis and the
 I-85 bridge fire and collapse in Atlanta
 [@zhu2010; @levinson2010; @xie2011; @hamedi2018].
 
-In this research, we present a model to identify critical highway links using 
-destination choice accessibility analysis. This model is designed to capture the
-utility lost to individuals operating on a degraded network who may choose 
-a longer route, a different travel mode, or a different destination. We then
-apply the model to a highway network representing the state of Utah. 
-The model structure permits a more nuanced evaluation of link criticality than 
-using traffic volume alone or in conjunction with an increased travel time measure.
+In this research, we apply destination choice accessibility model to identify
+critical highway links in a statewide highway context. This model is designed to
+capture the utility lost to individuals operating on a degraded network who may
+choose a longer route, a different travel mode, or a different destination. We
+then apply the model to a highway network representing the state of Utah. The
+model structure permits a more nuanced evaluation of link criticality than using
+traffic volume alone or in conjunction with an increased travel time measure.
 
 The paper proceeds as follows. First, a [literature review](#litreview) discusses
 previous attempts to analyze the resiliency of transportation networks. A
