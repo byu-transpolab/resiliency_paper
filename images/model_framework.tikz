@@ -1,0 +1,26 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=block] (1) at (0, 11) {$t_{ij\mathrm{drive}}, d_{ij\mathrm{nonmot}}$};
+		\node [style=block] (3) at (0, 0) {$DCLS_{im} = \ln{\sum_{j \in J} \exp(f(\gamma_m, MCLS_{ijm}, A_{jm}))}$};
+		\node [style=block] (4) at (0, 5) {$MCLS_{ij} = \ln{\sum_k \exp(f(\beta_{m}, t_{ijk}))}$};
+		\node [style=cloud] (5) at (-11, 11) {Highway Network};
+		\node [style=cloud] (6) at (-11, 7) {$t_{ij\mathrm{transit}}$};
+		\node [style=cloud] (7) at (-11, 2) {$A_{jm}$};
+		\node [style=none] (8) at (9, 5) {Mode Choice Logsum};
+		\node [style=none] (9) at (8, 11) {Travel Time and Distance Skim};
+		\node [style=none] (10) at (12, 0) {Destination Choice Logsum};
+		\node [style=block] (11) at (0, -5) {$P_{im} * DCLS_{im}$};
+		\node [style=cloud] (12) at (-11, -3) {$P_{im}$};
+		\node [style=none] (13) at (9, -5) {Total Accessibility};
+		\node [style=none] (14) at (6.25, 3.5) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=flow] (1) to (4);
+		\draw [style=flow] (4) to (3);
+		\draw [style=flow] (7) to (3);
+		\draw [style=flow] (6) to (4);
+		\draw [style=flow] (5) to (1);
+		\draw [style=flow] (3) to (11);
+		\draw [style=flow] (12) to (11);
+	\end{pgfonlayer}
+\end{tikzpicture}
