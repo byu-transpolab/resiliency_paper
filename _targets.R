@@ -38,6 +38,8 @@ list(
   
   # costs for one scenario 
   tar_target(taz_deltas, calculate_taz_deltas(prod, logsums, "ROAD50")),
+  tar_target(taz_costs_file, "data/tooele_traveltime.csv"),
+  tar_target(taz_costs, read_csv(taz_costs_file)),
   tar_target(zonal_mapdata, make_zonal_mapdata(taz_deltas, taz)),
   
   
