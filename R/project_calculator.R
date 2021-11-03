@@ -25,7 +25,7 @@ calculate_deltas <- function(prod, logsums){
 #' @param logsums
 #' @param this_scenario Which scenario to build for
 #' 
-calculate_taz_deltas <- function(prod, logsums, this_scenario = "ROAD50"){
+calculate_taz_deltas <- function(prod, logsums, this_scenario = "ROAD50", taz_ids){
   
   logsums %>%
     filter(scenario %in% c("BASE", this_scenario)) %>%
@@ -38,9 +38,12 @@ calculate_taz_deltas <- function(prod, logsums, this_scenario = "ROAD50"){
 }
 
 
-
-summary_table <- function(deltas){
-  
+calculate_scenario_ls <- function(taz_deltas, taz_ids, mc_cost_coef){
+  taz_deltas %>%
+    mutate(inregion = TAZ %in% taz_ids) %>%
+    group_by(purpose, inregion) %>% 
+    summarise(delta_total = sum(delta_total)) %>% 
+    mutate(cost = -1 * delta_total / mc_cost_coef * .01)
 }
 
 
@@ -57,6 +60,7 @@ calculate_costs <- function(deltas, mc_cost_coef){
       value = total_delta / mc_cost_coef
     )
 }
+
 
 
 #' Create project logsums database
