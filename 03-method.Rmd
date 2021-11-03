@@ -81,7 +81,7 @@ the state. The rugged mountain and canyon topography throughout the state places
 severe constraints on possible redundant paths in the highway network. A
 landslide or rock fall in any single canyon may isolate a community or force a
 redirection of traffic that could be several hours longer than the preferred
-route; understanding which of these many choke points is most critical is a key
+route; understanding which of these many possible choke points is most critical is a key
 and ongoing objective of the agency.
 
 Several data elements for the model described above were obtained from the Utah
@@ -126,7 +126,7 @@ kbl(coefficient_table, caption = "Choice Model Coefficients", booktabs = TRUE,
 
 The utility coefficients for the destination and mode choice models are
 presented in Table \@ref(tab:coeffs). The mode choice coefficients were adapted
-from USTM and supplemented with coefficients from the  Roanoke (Virginia)
+from USTM and supplemented with coefficients from the Roanoke (Virginia)
 Valley Transportation Planning Organization (RVTPO) travel model. This model was
 selected for its simplicity and analogous data elements to the proposed model.
 The alternative-specific constants were calibrated to regional mode choice
@@ -135,7 +135,8 @@ methods described by @koppelman2006.
 The destination choice utility equation consists of three parts: a size term, 
 a travel impedance term, and a calibration polynomial. Coefficients for the
 size term and travel impedance terms were adapted from the Oregon
-Statewide Integrated Model (SWIM). The distance polynomial coefficients were 
+Statewide Integrated Model (SWIM) for all purposes except HBW. Instead, these coefficients were 
+adapted from the RVTPO model. The distance polynomial coefficients were 
 calibrated to targets developed from UHTS.
 
 ### Vulnerable Link Identification
