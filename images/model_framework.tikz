@@ -1,6 +1,6 @@
 \begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
-		\node [style=block] (1) at (0, 11) {$t_{ij\mathrm{drive}}, d_{ij\mathrm{nonmot}}$};
+		\node [style=block] (1) at (0, 11) {$t_{ij\mathrm{auto}}, d_{ij\mathrm{nmot}}$};
 		\node [style=block] (3) at (0, 0) {$DCLS_{im} = \ln{\sum_{j \in J} \exp(f(\gamma_m, MCLS_{ijm}, A_{jm}))}$};
 		\node [style=block] (4) at (0, 5) {$MCLS_{ij} = \ln{\sum_k \exp(f(\beta_{m}, t_{ijk}))}$};
 		\node [style=cloud] (5) at (-11, 11) {Highway Network};
@@ -19,7 +19,7 @@
 		\draw [style=flow] (4) to (3);
 		\draw [style=flow] (7) to (3);
 		\draw [style=flow] (6) to (4);
-		\draw [style=flow] (5) to (1);
+		\draw [style=flow, in=180, out=0] (5) to (1);
 		\draw [style=flow] (3) to (11);
 		\draw [style=flow] (12) to (11);
 	\end{pgfonlayer}
