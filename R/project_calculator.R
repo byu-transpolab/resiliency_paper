@@ -102,3 +102,4 @@ makeproject_data <- function(){
   write_rds(logsums, "data/logsums.rds")
   
 }
+
