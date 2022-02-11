@@ -37,7 +37,7 @@ list(
   tar_target(costs, calculate_costs(deltas, mc_cost_coef)),
   
   # costs for one scenario 
-  tar_target(taz_deltas, calculate_taz_deltas(prod, logsums, "road50")),
+  tar_target(taz_deltas, calculate_taz_deltas(prod, logsums, "ROAD50")),
   tar_target(ls_scenarios, calculate_scenario_ls(
     taz_deltas,  taz %>% filter(CO_NAME == "TOOELE") %>% pull(TAZID), mc_cost_coef)),
   tar_target(taz_costs_file, "data/tooele_traveltime.csv"),

@@ -11,10 +11,10 @@ calculate_deltas <- function(prod, logsums){
     group_by(purpose, scenario) %>%
     summarise(total = sum(total)) %>%
     spread(scenario, total, fill = 0) %>%
-    gather(scenario, total, -purpose, -base) %>%
+    gather(scenario, total, -purpose, -BASE) %>%
     mutate(
-      delta = total - base,
-      pct_delta = delta / base * 100
+      delta = total - BASE,
+      pct_delta = delta / BASE * 100
     ) 
   
 }
@@ -28,10 +28,10 @@ calculate_deltas <- function(prod, logsums){
 calculate_taz_deltas <- function(prod, logsums, this_scenario = "ROAD50", taz_ids){
   
   logsums %>%
-    filter(scenario %in% c("base", this_scenario)) %>%
+    filter(scenario %in% c("BASE", this_scenario)) %>%
     spread(scenario, logsum) %>%
     rename(alt = !!this_scenario) %>%
-    mutate(delta = alt - base) %>%
+    mutate(delta = alt - BASE) %>%
     left_join(prod, by = c("purpose", "TAZ")) %>%
     mutate( delta_total = productions * delta ) 
   
@@ -70,21 +70,18 @@ calculate_costs <- function(deltas, mc_cost_coef){
 #' 
 #' 
 
-folder<-"C:/projects/ustm_resiliency/Base"
-new.folder <- "C:/projects/outputs_resiliency"
-files <- list.files(folder, full.names = TRUE, recursive = TRUE, pattern = "01_ROWSUMS")
-files_dn <- list.files(folder, full.names = FALSE, recursive = TRUE, pattern = "01_ROWSUMS")
-foldernamesinitial <- substr(files_dn, 1, 6) 
-foldernames <- replace(foldernamesinitial, 1, "base")
-file_names_new <- paste0(foldernames, "_ROWSUMS.DBF")
-
-files_new <- paste0(new.folder, "/", file_names_new) 
-file.copy(files, files_new)
-
-
-
-
 makeproject_data <- function(){
+  
+  folder<-"C:/projects/ustm_resiliency/Base"
+  new.folder <- "C:/projects/outputs_resiliency"
+  files <- list.files(folder, full.names = TRUE, recursive = TRUE, pattern = "01_ROWSUMS")
+  files_dn <- list.files(folder, full.names = FALSE, recursive = TRUE, pattern = "01_ROWSUMS")
+  foldernamesinitial <- toupper(substr(files_dn, 1, 6))
+  foldernames <- replace(foldernamesinitial, 1, "BASE")
+  file_names_new <- paste0(foldernames, "_ROWSUMS.DBF")
+  
+  files_new <- paste0(new.folder, "/", file_names_new) 
+  file.copy(files, files_new, overwrite = TRUE)
   
   scenarios_folder <- "C:/projects/outputs_resiliency"
   hh_folder <- "C:/projects/ustm_resiliency/Inputs"
