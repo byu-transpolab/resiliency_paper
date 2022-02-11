@@ -134,7 +134,7 @@ tar_load(mapdata)
 
 if(!knitr::is_latex_output()){
   
-  pal <- colorNumeric("Reds", mapdata$value)
+  pal <- colorNumeric("Reds", mapdata$value[!is.na(mapdata$value)]) 
   
   leaflet(mapdata %>% st_transform(4326)) %>%
     addProviderTiles(providers$Esri.WorldGrayCanvas) %>%
