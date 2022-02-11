@@ -11,10 +11,10 @@ calculate_deltas <- function(prod, logsums){
     group_by(purpose, scenario) %>%
     summarise(total = sum(total)) %>%
     spread(scenario, total, fill = 0) %>%
-    gather(scenario, total, -purpose, -BASE) %>%
+    gather(scenario, total, -purpose, -base) %>%
     mutate(
-      delta = total - BASE,
-      pct_delta = delta / BASE * 100
+      delta = total - base,
+      pct_delta = delta / base * 100
     ) 
   
 }
@@ -28,10 +28,10 @@ calculate_deltas <- function(prod, logsums){
 calculate_taz_deltas <- function(prod, logsums, this_scenario = "ROAD50", taz_ids){
   
   logsums %>%
-    filter(scenario %in% c("BASE", this_scenario)) %>%
+    filter(scenario %in% c("base", this_scenario)) %>%
     spread(scenario, logsum) %>%
     rename(alt = !!this_scenario) %>%
-    mutate(delta = alt - BASE) %>%
+    mutate(delta = alt - base) %>%
     left_join(prod, by = c("purpose", "TAZ")) %>%
     mutate( delta_total = productions * delta ) 
   
@@ -68,25 +68,41 @@ calculate_costs <- function(deltas, mc_cost_coef){
 #' @details NOT IN TARGETS STREAM. output file committed to git
 #' 
 #' 
+#' 
+
+folder<-"C:/projects/ustm_resiliency/Base"
+new.folder <- "C:/projects/outputs_resiliency"
+files <- list.files(folder, full.names = TRUE, recursive = TRUE, pattern = "01_ROWSUMS")
+files_dn <- list.files(folder, full.names = FALSE, recursive = TRUE, pattern = "01_ROWSUMS")
+foldernamesinitial <- substr(files_dn, 1, 6) 
+foldernames <- replace(foldernamesinitial, 1, "base")
+file_names_new <- paste0(foldernames, "_ROWSUMS.DBF")
+
+files_new <- paste0(new.folder, "/", file_names_new) 
+file.copy(files, files_new)
+
+
+
+
 makeproject_data <- function(){
   
-  scenarios_folder <- "~/Box/Macfarlane/research/resiliency/OUTPUTS/OUTPUTS/"
+  scenarios_folder <- "C:/projects/outputs_resiliency"
+  hh_folder <- "C:/projects/ustm_resiliency/Inputs"
   
   # read hh productions by purpose 
-  prod <- foreign::read.dbf(file.path(scenarios_folder, "HH_PROD.DBF")) %>%
+  prod <- foreign::read.dbf(file.path(hh_folder, "HH_PROD.DBF")) %>%
     as_tibble() %>%
     gather(purpose, productions, -TAZ) %>%
     mutate(purpose = gsub("P", "", purpose))
   
   write_rds(prod, "data/productions.rds")
   
-  
   # read scenario_outputs
-  outputs <- dir(scenarios_folder, pattern = ".DBF")
+  outputs <- dir(scenarios_folder)
   
-  logsums <- lapply(outputs[outputs != "HH_PROD.DBF"], function(scenario){
+  logsums <- lapply(outputs, function(scenario){
     # get scenario name
-    scenario_name <- gsub("ROWSUM.DBF", "", scenario)
+    scenario_name <- gsub("_ROWSUMS.DBF", "", scenario)
     print(scenario_name)
     logsums <- foreign::read.dbf(file.path(scenarios_folder, scenario))  %>%
       as_tibble() %>%
