@@ -69,9 +69,10 @@ calculate_costs <- function(deltas, mc_cost_coef){
 #' 
 #' 
 #' 
+#' 
+#' 
 
-makeproject_data <- function(){
-  
+copyoutputfiles <- function(){
   folder<-"C:/projects/ustm_resiliency/Base"
   new.folder <- "C:/projects/outputs_resiliency"
   files <- list.files(folder, full.names = TRUE, recursive = TRUE, pattern = "01_ROWSUMS")
@@ -82,6 +83,21 @@ makeproject_data <- function(){
   
   files_new <- paste0(new.folder, "/", file_names_new) 
   file.copy(files, files_new, overwrite = TRUE)
+  
+
+  files2 <- list.files(folder, full.names = TRUE, recursive = TRUE, pattern = "01_TRAVELTIME_COSTS.DBF")
+  files_dn2 <- list.files(folder, full.names = FALSE, recursive = TRUE, pattern = "01_TRAVELTIME_COSTS.DBF")
+  foldernamesinitial2 <- toupper(substr(files_dn2, 1, 6))
+  foldernames2 <- replace(foldernamesinitial2, 1, "BASE")
+  file_names_new2 <- paste0(foldernames2, "_TRAVELTIME_COSTS.DBF")
+  
+  files_new2 <- paste0(new.folder, "/", file_names_new2) 
+  file.copy(files2, files_new2, overwrite = TRUE)
+  
+}
+
+
+makeproject_data <- function(){
   
   scenarios_folder <- "C:/projects/outputs_resiliency"
   hh_folder <- "C:/projects/ustm_resiliency/Inputs"
@@ -95,7 +111,7 @@ makeproject_data <- function(){
   write_rds(prod, "data/productions.rds")
   
   # read scenario_outputs
-  outputs <- dir(scenarios_folder)
+  outputs <- dir(scenarios_folder, pattern = "ROWSUMS.DBF")
   
   logsums <- lapply(outputs, function(scenario){
     # get scenario name
@@ -116,3 +132,37 @@ makeproject_data <- function(){
   
 }
 
+
+makeproject_costs <- function(){
+  
+  scenarios_folder <- "C:/projects/outputs_resiliency"
+  
+  # read scenario_outputs
+  outputs <- dir(scenarios_folder, pattern = "COSTS.DBF")
+  
+  #empty DBF
+  #empty <- foreign::read.dbf("data/blank.DBF")
+  
+  costs <- lapply(outputs, function(scenario){
+    # get scenario name
+    scenario_name <- gsub("_TRAVELTIME_COSTS.DBF", "", scenario)
+    print(scenario_name)
+    costs <- foreign::read.dbf(file.path(scenarios_folder, scenario))  %>%
+      group_by(M) %>%
+      summarise(Cost = sum(V1)/100) %>%
+      filter(M != 9) %>%
+      mutate(M = case_when(M == 1 ~ "IIF",
+                           M == 2 ~ "XXF",
+                           M == 3 ~ "IXF",
+                           M == 4 ~ "HBW",
+                           M == 5 ~ "HBO",
+                           M == 6 ~ "NHB",
+                           M == 7 ~ "REC",
+                           M == 8 ~ "XXP")) %>%
+      mutate(scenario = scenario_name)
+}) %>%
+    bind_rows()
+  
+  write_rds(costs, "data/traveltimecosts.rds")
+  
+}
