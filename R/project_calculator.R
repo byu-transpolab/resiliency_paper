@@ -143,14 +143,14 @@ makeproject_costs <- function(){
   #empty DBF
   #empty <- foreign::read.dbf("data/blank.DBF")
   
-  costs <- lapply(outputs, function(scenario){
+  costs <- lapply(outputs[1:10], function(scenario){
     # get scenario name
     scenario_name <- gsub("_TRAVELTIME_COSTS.DBF", "", scenario)
     print(scenario_name)
     costs <- foreign::read.dbf(file.path(scenarios_folder, scenario))  %>%
-      group_by(M) %>%
-      summarise(Cost = sum(V1)/100) %>%
-      filter(M != 9) %>%
+#      group_by(M) %>%
+#      summarise(Cost = sum(V1)/100) %>%
+#      filter(M != 9) %>%
       mutate(M = case_when(M == 1 ~ "IIF",
                            M == 2 ~ "XXF",
                            M == 3 ~ "IXF",
@@ -158,7 +158,8 @@ makeproject_costs <- function(){
                            M == 5 ~ "HBO",
                            M == 6 ~ "NHB",
                            M == 7 ~ "REC",
-                           M == 8 ~ "XXP")) %>%
+                           M == 8 ~ "XXP",
+                           M == 9 ~ "TimeDiff")) %>%
       mutate(scenario = scenario_name)
 }) %>%
     bind_rows()
