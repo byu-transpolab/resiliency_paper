@@ -63,15 +63,11 @@ calculate_costs <- function(deltas, mc_cost_coef){
 
 
 
-#' Create project logsums database
+#' Copy output files from scenario folders into a common folder
 #' 
-#' @details NOT IN TARGETS STREAM. output file committed to git
-#' 
-#' 
+#' @details NOT IN TARGETS STREAM. Creates files needed by makeproject_data
 #' 
 #' 
-#' 
-
 copyoutputfiles <- function(){
   folder<-"C:/projects/ustm_resiliency/Base"
   new.folder <- "C:/projects/outputs_resiliency"
@@ -96,7 +92,9 @@ copyoutputfiles <- function(){
   
 }
 
-
+#' Read project logsum output files into a database
+#' 
+#' @details Not included in Targets stream. Output files committed to Git
 makeproject_data <- function(){
   
   scenarios_folder <- "C:/projects/outputs_resiliency"
@@ -133,6 +131,9 @@ makeproject_data <- function(){
 }
 
 
+#' Read project travel time costs output files into a database
+#' 
+#' @details Not included in Targets stream. Output files committed to Git
 makeproject_costs <- function(){
   
   scenarios_folder <- "C:/projects/outputs_resiliency"
