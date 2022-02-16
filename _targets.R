@@ -12,6 +12,13 @@ library(targets)
 source("R/plots_tables.R")
 source("R/project_calculator.R")
 
+# this project requires cube output files that are too large to export and store.
+# the following functions will create the files and store them the proper location
+# copyoutoutfiles()
+# makeproject_data()
+# makeproject_costs()
+
+
 # mode choice cost coefficient in c/mile
 mc_cost_coef <- -0.0016
 
