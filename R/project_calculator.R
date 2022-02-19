@@ -62,6 +62,58 @@ calculate_costs <- function(deltas, mc_cost_coef){
 }
 
 
+#' Get example travel time skim
+#' 
+#' @details 
+get_road_costs <- function(scenario_costs_file){
+  if(!file.exists(scenario_costs_file)){
+    download.file( 
+      "https://byu.box.com/shared/static/oiww82a2lphz4m7e3v73sagj49samnuf.dbf",
+      scenario_costs_file,
+      mode = 'wb'
+    )
+  } else {
+    message("File already available")
+  }
+}
+
+
+#' Calculate detailed travel time costs for one scenario
+#' 
+#' @param timecosts
+caclulate_taz_timecosts <- function(taz_timecosts, taz_ids){
+  
+  taz_timecosts %>%
+    mutate(M = case_when(M == 1 ~ "IIF",
+                         M == 2 ~ "XXF",
+                         M == 3 ~ "IXF",
+                         M == 4 ~ "HBW",
+                         M == 5 ~ "HBO",
+                         M == 6 ~ "NHB",
+                         M == 7 ~ "REC",
+                         M == 8 ~ "XXP",
+                         M == 9 ~ "TimeDiff")) %>%
+    filter(M != "TimeDiff") %>%
+    mutate(inregion = I %in% taz_ids)  %>%
+    group_by(inregion, M)  %>%
+    summarise(total = sum(V1))
+}
+
+compare_scenarios <- function(ls_scenarios, tm_scenarios){
+  full_join(
+    ls_scenarios %>%
+      transmute(purpose, inregion, lscost = -1 * cost)  %>%
+      pivot_wider(names_from = inregion, values_from = lscost, names_prefix = "ls",
+                  values_fill = 0) %>%
+      mutate(lsTOTAL = lsFALSE + lsTRUE),
+    tm_scenarios  %>%
+      transmute(purpose = M, inregion, total = total / 100) %>%
+      pivot_wider(names_from = inregion, values_from = total, names_prefix = "tm", 
+                  values_fill = 0) %>%
+      mutate(tmTOTAL =  tmFALSE + tmTRUE),
+   by = "purpose"
+  )
+}
 
 #' Copy output files from scenario folders into a common folder
 #' 

@@ -47,9 +47,14 @@ list(
   tar_target(taz_deltas, calculate_taz_deltas(prod, logsums, "ROAD50")),
   tar_target(ls_scenarios, calculate_scenario_ls(
     taz_deltas,  taz %>% filter(CO_NAME == "TOOELE") %>% pull(TAZID), mc_cost_coef)),
-  tar_target(taz_costs_file, "data/tooele_traveltime.csv"),
-  tar_target(taz_costs, read_csv(taz_costs_file)),
+  tar_target(taz_timecosts_file, "data/road_50_costs.dbf", format = "file"),
+  tar_target(taz_timecosts, foreign::read.dbf(taz_timecosts_file)),
+  tar_target(tm_scenarios, caclulate_taz_timecosts(
+    taz_timecosts, taz %>% filter(CO_NAME == "TOOELE") %>% pull(TAZID))),
   tar_target(zonal_mapdata, make_zonal_mapdata(taz_deltas, taz)),
+  
+  tar_target(scenario_comparison, compare_scenarios(ls_scenarios, tm_scenarios)),
+  
   
   
   # project map
