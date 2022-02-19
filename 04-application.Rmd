@@ -53,15 +53,37 @@ much greater with \$437,401 and \$406,899 respectively estimated as the costs
 due to just the increase in travel time, not using the logit-based model.
 
 ```{r tooeletable, echo = FALSE}
-read_xlsx("images/tooeletable.xlsx") %>%
-  kbl(caption = "Tooele Table", booktabs = TRUE) %>%
-  kable_styling() 
-```
+tar_load(scenario_comparison)
+options(knitr.kable.NA = '')
+subtotal <- scenario_comparison %>% 
+  filter(purpose %in% c("HBO", "HBW", "NHB")) %>%
+  adorn_totals(name = "Comparable Total") %>% .[nrow(.),]
 
-```{r tooeletable2, echo = FALSE}
-read_xlsx("images/tooele_table2.xlsx") %>%
-  kbl(caption = "Tooele Table Again", booktabs = TRUE) %>%
-  kable_styling( )
+total <- scenario_comparison %>%
+  adorn_totals() %>% .[nrow(.),]
+  
+
+bind_rows(scenario_comparison, subtotal, total) %>%
+    mutate(
+      purpose = gsub("F", " Freight", purpose),
+      purpose = gsub("P", " Passenger", purpose),
+      purpose = gsub("II", "Internal", purpose),
+      purpose = gsub("IX", "Inbound / Outbound", purpose),
+      purpose = gsub("XX", "Through", purpose),
+    ) %>%
+  mutate(
+    across(where(is.numeric),  ~ ifelse(. == 0, NA, .)),
+    across(where(is.numeric), 
+                ~ ifelse(is.na(.), NA, 
+                         as.character(formattable::currency(., digits = 0)))),
+         ) %>%
+kbl(
+  col.names = c("Purpose", 
+                rep(c("Other Counties", "Inside Tooele", "Total"), 2)),
+  align = "lrrrrrr", booktabs = TRUE, 
+) %>%
+  kable_styling() %>%
+  add_header_above(c(" " = 1, "Utility Logsum" = 3, "Travel Time" = 3))
 ```
 
 ```{r tooelemap, fig.cap="Total loss from ", dev = "tikz"}
@@ -84,10 +106,12 @@ if (!knitr::is_latex_output()){
   
   # overall map
   ggplot(zonal_mapdata, aes(fill = HBW)) + 
-    annotation_map_tile("carto.light") + 
+    annotation_map_tile("cartolight", zoom = 10) + 
     coord_sf(crs = st_crs(4326),  expand = FALSE) + 
     geom_sf(data = zonal_mapdata , inherit.aes = FALSE, aes(fill = HBW), 
-            alpha = 0.5, lwd = 0)  + 
+            alpha = 0.7, lwd = 0)  + 
+    scale_x_continuous(limits = c(-112.7, -111.5)) +
+    scale_y_continuous(limits = c(40.2, 41)) +
     theme(axis.line = element_line(color = NA))  + 
     scale_fill_viridis("Total HBW Utility Loss", option = "magma", direction = 1) + 
     xlab("") + ylab("") 
