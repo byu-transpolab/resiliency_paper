@@ -7,9 +7,9 @@ calculate_deltas <- function(prod, logsums){
   
   logsums %>%
     left_join(prod, by = c("purpose", "TAZ")) %>%
-    mutate( total = productions * logsum ) %>%
+    mutate(total = productions * logsum) %>%
     group_by(purpose, scenario) %>%
-    summarise(total = sum(total)) %>%
+    summarise(total = sum(total, na.rm = TRUE)) %>%
     spread(scenario, total, fill = 0) %>%
     gather(scenario, total, -purpose, -BASE) %>%
     mutate(
@@ -62,18 +62,23 @@ calculate_costs <- function(deltas, mc_cost_coef){
 }
 
 
-#' Get example travel time skim
+#' Get travel time cost RDS files
 #' 
-#' @details 
-get_road_costs <- function(scenario_costs_file){
-  if(!file.exists(scenario_costs_file)){
-    download.file( 
-      "https://byu.box.com/shared/static/oiww82a2lphz4m7e3v73sagj49samnuf.dbf",
-      scenario_costs_file,
-      mode = 'wb'
-    )
-  } else {
-    message("File already available")
+#' @details
+get_all_time_costs <- function(){
+  downloadlist <- list(
+    "data/traveltimecosts.rds"  = "https://byu.box.com/shared/static/hn03gac5tmo04uo7u3d0fx5fq76i961f.rds",
+    "data/traveltimecosts2.rds" = "https://byu.box.com/shared/static/zstp3x1jtkyhgph25tk06qn26do633zw.rds",
+    "data/traveltimecosts3.rds" = "https://byu.box.com/shared/static/xzv63hynpm7woi8juc0gj6s7t7qpls38.rds",
+    "data/traveltimecosts4.rds" = "https://byu.box.com/shared/static/zcntx0pytduax0ytbkek9clgkd7f2k4x.rds"
+  )
+  
+  for(i in 1:length(downloadlist)){
+    if(!file.exists(names(downloadlist)[i])){
+      download.file(downloadlist[[1]], destfile = names(downloadlist)[i])
+    } else {
+      message("file already exists")
+    }
   }
 }
 
@@ -84,15 +89,6 @@ get_road_costs <- function(scenario_costs_file){
 caclulate_taz_timecosts <- function(taz_timecosts, taz_ids){
   
   taz_timecosts %>%
-    mutate(M = case_when(M == 1 ~ "IIF",
-                         M == 2 ~ "XXF",
-                         M == 3 ~ "IXF",
-                         M == 4 ~ "HBW",
-                         M == 5 ~ "HBO",
-                         M == 6 ~ "NHB",
-                         M == 7 ~ "REC",
-                         M == 8 ~ "XXP",
-                         M == 9 ~ "TimeDiff")) %>%
     filter(M != "TimeDiff") %>%
     mutate(inregion = I %in% taz_ids)  %>%
     group_by(inregion, M)  %>%
@@ -121,7 +117,7 @@ compare_scenarios <- function(ls_scenarios, tm_scenarios){
 #' 
 #' 
 copyoutputfiles <- function(){
-  folder<-"C:/projects/ustm_resiliency/Base"
+  folder<-"E:/Base"
   new.folder <- "C:/projects/outputs_resiliency"
   files <- list.files(folder, full.names = TRUE, recursive = TRUE, pattern = "01_ROWSUMS")
   files_dn <- list.files(folder, full.names = FALSE, recursive = TRUE, pattern = "01_ROWSUMS")
@@ -150,7 +146,7 @@ copyoutputfiles <- function(){
 makeproject_data <- function(){
   
   scenarios_folder <- "C:/projects/outputs_resiliency"
-  hh_folder <- "C:/projects/ustm_resiliency/Inputs"
+  hh_folder <- "C:/projects/resiliency_paper/data"
   
   # read hh productions by purpose 
   prod <- foreign::read.dbf(file.path(hh_folder, "HH_PROD.DBF")) %>%
@@ -186,6 +182,7 @@ makeproject_data <- function(){
 #' Read project travel time costs output files into a database
 #' 
 #' @details Not included in Targets stream. Output files committed to Git
+
 makeproject_costs <- function(){
   
   scenarios_folder <- "C:/projects/outputs_resiliency"
@@ -196,7 +193,7 @@ makeproject_costs <- function(){
   #empty DBF
   #empty <- foreign::read.dbf("data/blank.DBF")
   
-  costs <- lapply(outputs[1:10], function(scenario){
+  costs <- lapply(outputs[36:42], function(scenario){
     # get scenario name
     scenario_name <- gsub("_TRAVELTIME_COSTS.DBF", "", scenario)
     print(scenario_name)
@@ -217,6 +214,6 @@ makeproject_costs <- function(){
 }) %>%
     bind_rows()
   
-  write_rds(costs, "data/traveltimecosts.rds")
+  write_rds(costs, "data/traveltimecosts4.rds")
   
 }
