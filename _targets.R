@@ -43,14 +43,24 @@ list(
   tar_target(deltas, calculate_deltas(prod, logsums)),
   tar_target(costs, calculate_costs(deltas, mc_cost_coef)),
   
+  # all time costs
+  tar_target(all_time_costs_rds, get_all_time_costs()),
+  
+  tar_target(timecosts_file, "data/traveltimecosts.rds", format = "file"),
+  tar_target(timecosts, read_rds(timecosts_file)),
+  tar_target(timecosts_file2, "data/traveltimecosts2.rds", format = "file"),
+  tar_target(timecosts2, read_rds(timecosts_file2)),
+  tar_target(timecosts_file3, "data/traveltimecosts3.rds", format = "file"),
+  tar_target(timecosts3, read_rds(timecosts_file3)),
+  tar_target(timecosts_file4, "data/traveltimecosts4.rds", format = "file"),
+  tar_target(timecosts4, read_rds(timecosts_file4)),
+  
   # costs for one scenario 
   tar_target(taz_deltas, calculate_taz_deltas(prod, logsums, "ROAD50")),
   tar_target(ls_scenarios, calculate_scenario_ls(
     taz_deltas,  taz %>% filter(CO_NAME == "TOOELE") %>% pull(TAZID), mc_cost_coef)),
-  tar_target(taz_timecosts_file, "data/road_50_costs.dbf", format = "file"),
-  tar_target(taz_timecosts, foreign::read.dbf(taz_timecosts_file)),
   tar_target(tm_scenarios, caclulate_taz_timecosts(
-    taz_timecosts, taz %>% filter(CO_NAME == "TOOELE") %>% pull(TAZID))),
+    timecosts4, taz %>% filter(CO_NAME == "TOOELE") %>% pull(TAZID))),
   tar_target(zonal_mapdata, make_zonal_mapdata(taz_deltas, taz)),
   
   tar_target(scenario_comparison, compare_scenarios(ls_scenarios, tm_scenarios)),

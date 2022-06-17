@@ -1,0 +1,177 @@
+---
+title: "report_tables"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Localized Analysis Results
+
+```{r tooeletable, echo = FALSE}
+tar_load(scenario_comparison)
+options(knitr.kable.NA = '')
+subtotal <- scenario_comparison %>% 
+  filter(purpose %in% c("HBO", "HBW", "NHB")) %>%
+  adorn_totals(name = "Comparable Total") %>% .[nrow(.),]
+
+total <- scenario_comparison %>%
+  adorn_totals() %>% .[nrow(.),]
+  
+
+bind_rows(scenario_comparison, subtotal, total) %>%
+    mutate(
+      purpose = gsub("F", " Freight", purpose),
+      purpose = gsub("P", " Passenger", purpose),
+      purpose = gsub("II", "Internal", purpose),
+      purpose = gsub("IX", "Inbound / Outbound", purpose),
+      purpose = gsub("XX", "Through", purpose),
+    ) %>%
+  mutate(
+    across(where(is.numeric),  ~ ifelse(. == 0, NA, .)),
+    across(where(is.numeric), 
+                ~ ifelse(is.na(.), NA, 
+                         as.character(formattable::currency(., digits = 0)))),
+         ) %>%
+kbl(
+  col.names = c("Purpose", 
+                rep(c("Other Counties", "Inside Tooele", "Total"), 2)),
+  align = "lrrrrrr", booktabs = TRUE, 
+) %>%
+  kable_styling() %>%
+  add_header_above(c(" " = 1, "Utility Logsum" = 3, "Travel Time" = 3))
+```
+
+## Logsum Analysis Results
+
+```{r}
+linktable <- read_excel("images/linktable.xlsx") %>%
+  mutate(scenario = substr(LINK_ID, 5,6)) %>%
+  select(-c(LINK_ID))
+
+tar_load(costs)
+
+logsumcosts <- costs %>%
+  arrange(-value) %>%
+  mutate(value = scales::dollar(value/100, largest_with_cents = 10000000)) %>%
+  mutate(scenario = substr(scenario, 5,6))
+
+left_join(logsumcosts, linktable) %>%
+  kbl(
+  col.names = c("Scenario", "Delta Logsum", "Cost (per Day)", "Route", "Location"),
+  align = "crrll", booktabs = TRUE, 
+) %>%
+  kable_styling()
+  
+```
+
+
+## Travel Time
+
+```{r}
+tar_load(timecosts)
+tar_load(timecosts2)
+tar_load(timecosts3)
+tar_load(timecosts4)
+
+timecosts_1 <- rbind(timecosts, timecosts3)
+timecosts_2 <- rbind(timecosts2, timecosts4)
+
+
+timecost_table1 <- timecosts_1 %>%
+  group_by(M, scenario) %>%
+  summarise(Cost = sum(V1)) %>%
+  pivot_wider(names_from = M, values_from = Cost) %>%
+  mutate(HBWHBONHB = scales::dollar((HBO + HBW + NHB)/100, largest_with_cents = 10000000), 
+         FXPREC = scales::dollar((IIF + IXF + REC + XXF + XXP)/100, largest_with_cents = 10000000)) %>%
+  select(scenario, HBWHBONHB, FXPREC) %>%
+  mutate(scenario = substr(scenario, 5,6))
+
+timecost_table2 <- timecosts_2 %>%
+  group_by(M, scenario) %>%
+  summarise(Cost = sum(V1)) %>%
+  pivot_wider(names_from = M, values_from = Cost) %>%
+  mutate(HBWHBONHB = scales::dollar((HBO + HBW + NHB)/100, largest_with_cents = 10000000), 
+         FXPREC = scales::dollar((IIF + IXF + REC + XXF + XXP)/100, largest_with_cents = 10000000)) %>%
+  select(scenario, HBWHBONHB, FXPREC) %>%
+  mutate(scenario = substr(scenario, 5,6))
+
+timecost_table <- rbind(timecost_table1, timecost_table2)
+
+timecost_table %>%
+  kbl(
+  col.names = c("Scenario", "HBW, HBO, NHB, Travel Time Method", "Freight, External Passenger, REC, Travel Time Method"),
+  align = "crr", booktabs = TRUE, 
+) %>%
+  kable_styling()
+```
+
+
+## Result Comparison: Logsum vs Travel Time
+```{r}
+left_join(logsumcosts, timecost_table) %>%
+  arrange(scenario) %>%
+  select(-c("total_delta")) %>%
+  kbl(
+  col.names = c("Scenario", "HBW, HBO, NHB, Logsum Method", "HBW, HBO, NHB, Travel Time Method", "Freight, External Passenger, REC, Travel Time Method"),
+  align = "crrr", booktabs = TRUE, 
+) %>%
+  kable_styling()
+```
+
+```{r}
+tar_load(logsums)
+tar_load(prod)
+tar_load(taz)
+
+ls_delta <- logsums %>%
+    left_join(prod, by = c("purpose", "TAZ")) %>%
+    mutate(total = productions * logsum) %>%
+  filter(scenario %in% c("BASE", "ROAD39")) %>%
+  pivot_wider(names_from = scenario, values_from = total) %>%
+  mutate(diff = ROAD39-BASE)
+
+ls_diff38 <- logsums %>%
+  filter(scenario %in% c("BASE", "ROAD38")) %>%  
+  pivot_wider(names_from = scenario, values_from = logsum) %>% 
+  mutate(diff = ROAD38-BASE) %>%
+  left_join(prod, by = c("purpose", "TAZ")) %>%
+    mutate(total = productions * diff / -0.16)
+
+
+naf0 <- function(x){ifelse(x == 0, NA, x)}
+
+mapdata <- left_join(
+    taz %>% select(TAZID),
+    ls_diff38 %>%
+      select(TAZ, purpose, total) %>%
+      pivot_wider(names_from = purpose, values_from = total),
+    by = c("TAZID" = "TAZ")
+  )%>%
+  st_transform(4326) %>% 
+  mutate(across(c(HBW, HBO, NHB), naf0)) %>%
+  filter(!is.na(HBW))
+
+
+
+
+bins <- c(-7000, -6000, -4000, -2000, -1000, 0, 1000, 2000, 4000, 6000, 7000)
+pal <- colorBin("RdGy", domain = mapdata$HBW, bins = bins)
+labels <- sprintf(
+  "<strong>%s</strong><br/>%g ",
+  mapdata$TAZID, mapdata$HBW
+) %>% lapply(htmltools::HTML)
+
+leaflet(mapdata) %>%
+    addProviderTiles(providers$Esri.WorldGrayCanvas) %>%
+    addPolygons(color = ~pal(HBW), weight = 2,
+                highlightOptions = highlightOptions(
+                  weight = 1,
+                  color = "#666",
+                  bringToFront = TRUE),
+                label = labels)
+  
+
+```
+

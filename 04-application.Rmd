@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # Results {#results}
 In this chapter, we summarize the methodology used to identify
 vulnerable links on Utah’s highway network. We also apply the model to scenarios
@@ -99,7 +104,7 @@ zonal_mapdata <- zonal_mapdata %>%
 if (!knitr::is_latex_output()){
   tazpal <- colorNumeric("Reds", c(zonal_mapdata$HBO, zonal_mapdata$HBW, zonal_mapdata$NHB))
   
-  leaflet( zonal_mapdata ) %>%
+  leaflet( zonal_mapdata %>% st_transform(4326)) %>%
     addProviderTiles(providers$Esri.WorldGrayCanvas) %>%
     addPolygons(color = ~tazpal(HBW), stroke = 0)
 } else {
