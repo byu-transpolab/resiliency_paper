@@ -1,3 +1,7 @@
+
+
+# Multiple-Scenario Analysis Tables =====================================================
+
 #' Calculate production-weighted logsum difference
 #' 
 #' @param prod
@@ -19,9 +23,32 @@ calculate_deltas <- function(prod, logsums){
   
 }
 
-# Multiple-Scenario Analysis Tables =====================================================
+#' Aggregate the time-based cost values
+#' @param timecosts The four big travel time cost matrices
+#' @return Aggregates by scenario and purpose
+#' 
+calculate_timecosts <- function(timecosts, timecosts2, timecosts3, timecosts4){
+  bind_rows(list(
+    timecosts,
+    timecosts2,
+    timecosts3,
+    timecosts4,
+  ))
+}
 
-
+reduce_timecosts <- function(timecosts_file){
+  read_rds(timecosts_file) %>%
+    group_by(M, scenario) %>%
+    summarise(Cost = sum(V1)) %>%
+    mutate(scenario = substr(scenario, 5,6)) %>%
+    rename(Purpose = M) %>%
+    pivot_wider(names_from = Purpose, values_from = Cost) %>%
+    mutate(
+      # Costs are given in cents; need to convert to dollars
+      HBWHBONHB = scales::dollar((HBO + HBW + NHB)/100, largest_with_cents = 1e6), 
+      FXPREC = scales::dollar((IIF + IXF + REC + XXF + XXP)/100, largest_with_cents = 1e6)) %>%
+    select(scenario, HBWHBONHB, FXPREC) 
+}
 
 # Single-Scenario Analysis Tables =====================================================
 
