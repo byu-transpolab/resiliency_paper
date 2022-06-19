@@ -35,7 +35,7 @@ list(
   tar_target(taz_file, "data/ustm_taz.geojson", format = "file"),
   tar_target(taz, st_read(taz_file)),
   
-  # costs for all scenarios
+  # costs for all scenarios ==================
   tar_target(prod_rds, "data/productions.rds", format = "file"),
   tar_target(prod, read_rds(prod_rds)),
   tar_target(lsum_rds, "data/logsums.rds", format = "file"),
@@ -43,9 +43,9 @@ list(
   tar_target(deltas, calculate_deltas(prod, logsums)),
   tar_target(costs, calculate_costs(deltas, mc_cost_coef)),
   
-  # all time costs
-  tar_target(all_time_costs_rds, get_all_time_costs()),
-  
+  # all time costs ===
+  # too big to store in a single file and load into memory
+  # See get_all_time_costs() in R/data_getter.R for URLS to source files
   tar_target(timecosts_file, "data/traveltimecosts.rds", format = "file"),
   tar_target(timecosts, read_rds(timecosts_file)),
   tar_target(timecosts_file2, "data/traveltimecosts2.rds", format = "file"),
@@ -55,7 +55,7 @@ list(
   tar_target(timecosts_file4, "data/traveltimecosts4.rds", format = "file"),
   tar_target(timecosts4, read_rds(timecosts_file4)),
   
-  # costs for one scenario 
+  # costs for one scenario  ===================
   tar_target(taz_deltas, calculate_taz_deltas(prod, logsums, "ROAD50")),
   tar_target(ls_scenarios, calculate_scenario_ls(
     taz_deltas,  taz %>% filter(CO_NAME == "TOOELE") %>% pull(TAZID), mc_cost_coef)),

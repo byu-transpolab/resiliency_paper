@@ -10,3 +10,5 @@ _targets/
 rosm.cache
 *.DBF
 *.dbf
+
+data/traveltimecosts*
