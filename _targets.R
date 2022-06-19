@@ -35,7 +35,7 @@ list(
   tar_target(taz_file, "data/ustm_taz.geojson", format = "file"),
   tar_target(taz, st_read(taz_file)),
   
-  # costs for all scenarios ==================
+  # logsum costs for all scenarios ==================
   tar_target(prod_rds, "data/productions.rds", format = "file"),
   tar_target(prod, read_rds(prod_rds)),
   tar_target(lsum_rds, "data/logsums.rds", format = "file"),
@@ -47,25 +47,28 @@ list(
   # too big to store in a single file and load into memory
   # See get_all_time_costs() in R/data_getter.R for URLS to source files
   tar_target(timecosts_file, "data/traveltimecosts.rds", format = "file"),
-  tar_target(timecosts, read_rds(timecosts_file)),
   tar_target(timecosts_file2, "data/traveltimecosts2.rds", format = "file"),
-  tar_target(timecosts2, read_rds(timecosts_file2)),
   tar_target(timecosts_file3, "data/traveltimecosts3.rds", format = "file"),
-  tar_target(timecosts3, read_rds(timecosts_file3)),
   tar_target(timecosts_file4, "data/traveltimecosts4.rds", format = "file"),
-  tar_target(timecosts4, read_rds(timecosts_file4)),
+  tar_target(timecosts,  reduce_timecosts(timecosts_file)),
+  tar_target(timecosts2, reduce_timecosts(timecosts_file2)),
+  tar_target(timecosts3, reduce_timecosts(timecosts_file3)),
+  tar_target(timecosts4, reduce_timecosts(timecosts_file4)),
+  
+  tar_target(timecost_table, bind_rows(timecosts, timecosts2, timecosts3, timecosts4)),
   
   # costs for one scenario  ===================
+  
+  tar_target(raw_costs, read_rds(timecosts_file4)), 
   tar_target(taz_deltas, calculate_taz_deltas(prod, logsums, "ROAD50")),
   tar_target(ls_scenarios, calculate_scenario_ls(
     taz_deltas,  taz %>% filter(CO_NAME == "TOOELE") %>% pull(TAZID), mc_cost_coef)),
   tar_target(tm_scenarios, caclulate_taz_timecosts(
-    timecosts4, taz %>% filter(CO_NAME == "TOOELE") %>% pull(TAZID))),
+    raw_costs, taz %>% filter(CO_NAME == "TOOELE") %>% pull(TAZID))),
   tar_target(zonal_mapdata, make_zonal_mapdata(taz_deltas, taz)),
   
   tar_target(scenario_comparison, compare_scenarios(ls_scenarios, tm_scenarios)),
-  
-  
+
   
   # project map
   tar_target(mapdata, make_mapdata(links, costs)),
