@@ -17,7 +17,44 @@ lower-cased index variables $k$ belong to a set of all indices described by the
 corresponding capital letter $K$
 
 ```{r framework, out.width="75%", fig.align="center", fig.cap = "Model framework.", echo = FALSE}
-knitr::include_graphics("images/framework.png")
+DiagrammeR::grViz("
+  digraph boxes_and_circles {
+  # a 'graph' statement
+  graph [overlap = true, fontsize = 10]
+  
+    # several 'node' statements
+  node [shape = box,
+        fontname = Helvetica]
+ 'Time and Distance Skim'; 
+  'Mode Choice Logsums'; 'Destination Choice Logsums'; 'Trips'; 'Congested Network'
+  
+  node [shape = box,
+        fontname = Helvetica, color = red]
+  'Time and Distance Costs'; 'Logsum Costs' [color=blue]
+ 
+ 
+  node [shape = oval,
+        width = 0.9,
+        color = black] // sets as circles
+  'USTM Network'; 'Trip Productions'; 'Parameters'
+
+  # several 'edge' statements
+  'USTM Network' -> 'Time and Distance Skim' [label ='Broken link?', fontname = Helvetica]
+  'Time and Distance Skim' -> 'Mode Choice Logsums'
+  'Trip Productions' -> Trips
+  'Parameters' -> 'Mode Choice Logsums'
+  'Mode Choice Logsums' -> 'Destination Choice Logsums'
+  'Parameters' -> 'Destination Choice Logsums'
+  'Mode Choice Logsums' -> 'Trips'
+  'Destination Choice Logsums' -> Trips 
+  Trips -> 'Congested Network'
+  'Congested Network' -> 'Time and Distance Skim' [color = red, label = 'Feedback',fontname = Helvetica, fontcolor=red]
+  Trips -> 'Time and Distance Costs' [color = red]
+  'Time and Distance Skim' -> 'Time and Distance Costs' [color = red]
+  'Destination Choice Logsums' -> 'Logsum Costs' [color = blue]
+  'Trip Productions' -> 'Logsum Costs' [color = blue]
+  }
+")
 ```
 
 With the travel time $t_{ijk}$ for all modes $k \in K$, the model computes
