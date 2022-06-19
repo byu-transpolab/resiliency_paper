@@ -19,6 +19,12 @@ calculate_deltas <- function(prod, logsums){
   
 }
 
+# Multiple-Scenario Analysis Tables =====================================================
+
+
+
+# Single-Scenario Analysis Tables =====================================================
+
 #' Calculate production-weighted logsum difference for one scenario by TAZ
 #' 
 #' @param prod
@@ -37,7 +43,13 @@ calculate_taz_deltas <- function(prod, logsums, this_scenario = "ROAD50", taz_id
   
 }
 
-
+#' Calculate scenario logsum totals
+#' @param taz_deltas 
+#' @param taz_ids A list of ID's to consider "in-region"
+#' @param mc_cost_coef The value of time implied by the mode choice model
+#' 
+#' @return a tibble with logsum costs by purpose and region
+#' 
 calculate_scenario_ls <- function(taz_deltas, taz_ids, mc_cost_coef){
   taz_deltas %>%
     mutate(inregion = TAZ %in% taz_ids) %>%
@@ -47,7 +59,7 @@ calculate_scenario_ls <- function(taz_deltas, taz_ids, mc_cost_coef){
 }
 
 
-#' Calculate financial costs of closing links
+#' Calculate financial costs of closing links for all scenarios
 #' 
 #'  @param deltas Tibble with change in logsum by purpose and TAZ
 #'  @param mc_cost_coefficient cost coefficient from mode choice model
@@ -63,10 +75,13 @@ calculate_costs <- function(deltas, mc_cost_coef){
 
 
 
-
 #' Calculate detailed travel time costs for one scenario
 #' 
 #' @param timecosts
+#' @param taz_ids A list of ID's to consider "in-region"
+#' @return a tibble with travel time costs by purpose and region
+#' 
+#' 
 caclulate_taz_timecosts <- function(taz_timecosts, taz_ids){
   
   taz_timecosts %>%
@@ -81,7 +96,8 @@ caclulate_taz_timecosts <- function(taz_timecosts, taz_ids){
 #' @param ls_scenarios The scenario costs from the logsum-based analysis
 #' @param tm_scenarios The scenario costs from the travel time-based analysis
 #' 
-#' @return a tibble with the 
+#' @return a tibble with the scenario data arranged in a way that it can 
+#'  be presented effectively in the manuscript
 compare_scenarios <- function(ls_scenarios, tm_scenarios){
   full_join(
     ls_scenarios %>%
