@@ -168,11 +168,9 @@ if(!knitr::is_latex_output()){
 } else {
   pbox <- st_bbox(mapdata)
   
-  # overall map
-  map_back <- get_map(c(lon = mean(pbox[c(1, 3)]), lat = mean(pbox[c(2, 4)]) ),  
-                      zoom = 7, source = "google", maptype = "roadmap", color = "bw")
   
-  ggmap(map_back, extent = "device") + 
+  ggplot(mapdata) +
+    annotation_map_tile("cartolight", zoom = 8) + 
     coord_sf(crs = st_crs(4326),  expand = FALSE) + 
     geom_sf(data = mapdata, inherit.aes = FALSE, size = 5, stroke = 1, shape = 21,
             aes(fill = value), alpha = 0.5)  + 
@@ -193,11 +191,6 @@ This section will present the results of the 41 scenarios analyzed. First, Table
 10, and “road11” for scenario 11 along with route numbers or street names, as
 well as a physical location where the link was cut.
 
-```{r linktable, echo = FALSE}
-read_xlsx("images/linktable.xlsx") %>%
-  kbl(caption = "Link Table", booktabs = TRUE) %>%
-  kable_styling()
-```
 
 The logsum method results are as follows in Table 14. The results are ranked
 from the road with the largest cost to the road with the smallest cost. We can
@@ -212,8 +205,22 @@ the highway link that was cut. A ranking is provided for all of the roads in
 Table \@ref(fig:logsumrank).
 
 ```{r logsumrank, echo = FALSE}
-read_xlsx("images/logsumrank.xlsx") %>%
-  kbl(booktabs = TRUE, caption = "Total cost in dollars") %>%
+linktable <- read_excel("images/linktable.xlsx") %>%
+  mutate(scenario = substr(LINK_ID, 5,6)) %>%
+  select(-c(LINK_ID))
+
+tar_load(costs)
+
+logsumcosts <- costs %>%
+  arrange(-value) %>%
+  mutate(value = scales::dollar(value/100, largest_with_cents = 10000000)) %>%
+  mutate(scenario = substr(scenario, 5,6))
+
+left_join(logsumcosts, linktable) %>%
+  kbl(
+  col.names = c("Scenario", "Delta Logsum", "Cost (per Day)", "Route", "Location"),
+  align = "crrll", booktabs = TRUE, 
+) %>%
   kable_styling()
 ```
 
@@ -231,8 +238,12 @@ Including the freight, even with the logsum results, changes the rankings
 drastically.
 
 ```{r traveltimerank, echo = FALSE}
-read_xlsx("images/traveltimerank.xlsx") %>% 
-  kbl(booktabs = TRUE, caption = "Total cost in dollars") %>%
+tar_load(timecost_table)
+timecost_table %>%
+  kbl(
+  col.names = c("Scenario", "HBW, HBO, NHB, Travel Time Method", "Freight, External Passenger, REC, Travel Time Method"),
+  align = "crr", booktabs = TRUE, 
+) %>%
   kable_styling()
 ```
 
@@ -243,6 +254,20 @@ road 37 which corresponds to I-80 in Parley’s Canyon are included in the top 1
 scenarios for both methods of analysis. This is likely due to the number of
 passenger trips along these routes and the number of freight trips that occur
 along these routes.
+
+
+## Result Comparison: Logsum vs Travel Time
+```{r}
+left_join(logsumcosts, timecost_table) %>%
+  arrange(scenario) %>%
+  select(-c("total_delta")) %>%
+  kbl(
+  col.names = c("Scenario", "HBW, HBO, NHB, Logsum Method", "HBW, HBO, NHB, Travel Time Method", "Freight, External Passenger, REC, Travel Time Method"),
+  align = "crrr", booktabs = TRUE, 
+) %>%
+  kable_styling()
+```
+
 
 ## Positive Benefit Scenarios
 Five of the scenarios indicated a benefit resulting from highway link closure.
