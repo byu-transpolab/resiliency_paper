@@ -85,13 +85,13 @@ bind_rows(scenario_comparison, subtotal, total) %>%
 kbl(
   col.names = c("Purpose", 
                 rep(c("Other Counties", "Inside Tooele", "Total"), 2)),
-  align = "lrrrrrr", booktabs = TRUE, 
+  align = "lrrrrrr", booktabs = TRUE, format = "markdown"
 ) %>%
   kable_styling() %>%
   add_header_above(c(" " = 1, "Utility Logsum" = 3, "Travel Time" = 3))
 ```
 
-```{r tooelemap, fig.cap="Total loss from ", dev = "tikz"}
+```{r tooelemap, fig.cap=", dev = "tikz"}
 tar_load(zonal_mapdata)
 
 naf0 <- function(x){ifelse(x == 0, NA, x)}
@@ -119,8 +119,13 @@ if (!knitr::is_latex_output()){
     scale_y_continuous(limits = c(40.2, 41)) +
     theme(axis.line = element_line(color = NA))  + 
     scale_fill_viridis("Total HBW Utility Loss", option = "magma", direction = 1) + 
-    xlab("") + ylab("") 
-  
+     theme(axis.line = element_line(color = NA),
+          axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank())
 }
 
 ```
@@ -213,13 +218,14 @@ tar_load(costs)
 
 logsumcosts <- costs %>%
   arrange(-value) %>%
+  select(-total_delta) |> 
   mutate(value = scales::dollar(value/100, largest_with_cents = 10000000)) %>%
   mutate(scenario = substr(scenario, 5,6))
 
 left_join(logsumcosts, linktable) %>%
   kbl(
-  col.names = c("Scenario", "Delta Logsum", "Cost (per Day)", "Route", "Location"),
-  align = "crrll", booktabs = TRUE, 
+  col.names = c("Scenario",  "Cost (per Day)", "Route", "Location"),
+  align = "crrll", booktabs = TRUE, format = "markdown"
 ) %>%
   kable_styling()
 ```
