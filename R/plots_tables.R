@@ -77,3 +77,26 @@ make_coefficient_table <- function(mc_constants, mc_coefficients, dc_coefficient
     select(model, var, HBW, HBO, NHB)
   
 }
+
+
+
+#' Make a plot of the trip length frequency distribution
+#' 
+#' @param tlfd_model Model-derived TLFD
+#' @param tlfd_ustm USTM calibration TLFD
+#' 
+make_tlfd_plot <- function(tlfd_model, tlfd_ustm) {
+  list(
+     USTM = read_csv(tlfd_ustm,  col_types = list(Distance = col_number())),
+     Model = read_csv(tlfd_model, col_types = list(Distance = col_number()))
+  ) |> 
+    bind_rows(.id = "Source") %>%
+    pivot_longer(c(HBW, HBO, NHB), names_to = "Purpose", values_to = "Trips") |> 
+    group_by(Source, Purpose) |> 
+    mutate(Trips = Trips / sum(Trips)) |> 
+    ggplot( aes(x = Distance, y = Trips, color = Source) ) +
+    geom_line() +
+    facet_wrap(~Purpose) +
+    xlab("Distance [Miles]") + ylab("Trips [%]")
+  
+}

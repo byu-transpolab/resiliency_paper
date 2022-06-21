@@ -82,6 +82,12 @@ list(
   tar_target(mc_coefficients, read_csv(mc_coefficients_file, col_types = "cnnn")),
   tar_target(dc_coefficients, read_csv(dc_coefficients_file, col_types = "cnnn")),
   tar_target(coefficient_table, make_coefficient_table(mc_constants, mc_coefficients, 
-                                                       dc_coefficients))
+                                                       dc_coefficients)),
+  
+  
+  # calibration
+  tar_target(tlfd_model, "data/tlfd.csv", format = "file"),
+  tar_target(tlfd_ustm,  "data/ustm_tlfd.csv", format = "file"),
+  tar_target(tlfd_plot, make_tlfd_plot(tlfd_model, tlfd_ustm))
   
 )
