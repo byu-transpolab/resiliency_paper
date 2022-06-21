@@ -1,0 +1,29 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=Input] (0) at (-19, 7.75) {USTM Network};
+		\node [style=Box] (1) at (-9.25, 7.75) {Auto Skim: $t_{ij\mathrm{auto}}, d_{ij\mathrm{auto}}$};
+		\node [style=Box] (4) at (3, 7.75) {$MCLS_{ij} = \ln{\sum_k \exp(f(\beta_{m}, t_{ijk}))}$};
+		\node [style=Box] (5) at (3, 4.25) {$DCLS_{im} = \ln{\sum_{j \in J} \exp(f(\gamma_m, MCLS_{ijm}, A_{jm}))}$};
+		\node [style=Box] (6) at (-9.25, 1) {$T_{ijkm}$};
+		\node [style=Outcome2] (9) at (-9.25, 10.75) {Time-based Costs};
+		\node [style=Input] (11) at (3, 1) {$P_{im}$};
+		\node [style=Input] (12) at (8.5, 6) {$\beta_m, \gamma_m$};
+		\node [style=Outcome1] (13) at (11, 1) {Logsum-based Costs};
+		\node [style=Input] (14) at (-1, 10.25) {$t_{ij \mathrm{transit}},d_{ij\mathrm{nmot}}$};
+		\node [style=none, rotate=90] (17) at (-9.75, 4.5) {Assignment};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=flow] (0) to (1);
+		\draw [style=flow] (1) to (4);
+		\draw [style=flow] (12) to (4);
+		\draw [style=flow] (4) to (5);
+		\draw [style=flow] (12) to (5);
+		\draw [style=Evaluation] (5) to (13);
+		\draw [style=Evaluation] (11) to (13);
+		\draw [style=flow] (14) to (4);
+		\draw [style=Feedback] (5) to (6);
+		\draw [style=Feedback] (1) to (9);
+		\draw [style=Feedback] (11) to (6);
+		\draw [style=Feedback] (6) to (1);
+	\end{pgfonlayer}
+\end{tikzpicture}
