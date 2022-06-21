@@ -15,6 +15,38 @@ transit travel time skim is fixed, assuming that transit infrastructure would
 not be affected by changes to the highway network. Throughout this section,
 lower-cased index variables $k$ belong to a set of all indices described by the
 corresponding capital letter $K$
+  
+```{r framework_ls, eval=FALSE}
+DiagrammeR::grViz("
+  digraph boxes_and_circles {
+  # a 'graph' statement
+  graph [overlap = true, fontsize = 10]
+  
+    # several 'node' statements
+  node [shape = box,
+        fontname = Helvetica]
+ 'Time and Distance Skim'; 
+  'Mode Choice Logsums'; 'Destination Choice Logsums';
+  'Logsum Costs' [color=blue]
+ 
+ 
+  node [shape = oval,
+        width = 0.9,
+        color = black] // sets as circles
+  'USTM Network'; 'Trip Productions'; 'Parameters'; 'Transit and Non-Motorized Skims';
+
+  # several 'edge' statements
+  'USTM Network' -> 'Time and Distance Skim' [label ='Broken link?', fontname = Helvetica]
+  'Time and Distance Skim' -> 'Mode Choice Logsums'
+  'Transit and Non-Motorized Skims' -> 'Mode Choice Logsums'
+  'Parameters' -> 'Mode Choice Logsums'
+  'Mode Choice Logsums' -> 'Destination Choice Logsums'
+  'Parameters' -> 'Destination Choice Logsums'
+  'Destination Choice Logsums' -> 'Logsum Costs' [color = blue]
+  'Trip Productions' -> 'Logsum Costs' [color = blue]
+  }
+")
+```
 
 ```{r framework, out.width="75%", fig.align="center", fig.cap = "Model framework.", echo = FALSE}
 DiagrammeR::grViz("
@@ -36,11 +68,12 @@ DiagrammeR::grViz("
   node [shape = oval,
         width = 0.9,
         color = black] // sets as circles
-  'USTM Network'; 'Trip Productions'; 'Parameters'
+  'USTM Network'; 'Trip Productions'; 'Parameters'; 'Transit and Non-Motorized Skims';
 
   # several 'edge' statements
   'USTM Network' -> 'Time and Distance Skim' [label ='Broken link?', fontname = Helvetica]
   'Time and Distance Skim' -> 'Mode Choice Logsums'
+  'Transit and Non-Motorized Skims' -> 'Mode Choice Logsums'
   'Trip Productions' -> Trips
   'Parameters' -> 'Mode Choice Logsums'
   'Mode Choice Logsums' -> 'Destination Choice Logsums'
