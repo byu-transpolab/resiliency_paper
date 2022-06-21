@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Examining the Utility-based Resiliency of Utah’s Highway Network</title>
   <meta name="description" content="A short description" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Examining the Utility-based Resiliency of Utah’s Highway Network" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="A short description" />
   
@@ -23,7 +22,7 @@
 
 
 
-<meta name="date" content="2021-07-29" />
+<meta name="date" content="2022-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -42,7 +41,8 @@ div.abstract{
   width: 90%;
 }
 </style>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -58,25 +58,24 @@ div.abstract{
 
 
 
-
-<<<<<<< HEAD
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
-=======
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
->>>>>>> cdd49f25a590e6f6b7dad8a35dd5d040718a6ef1
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -144,6 +143,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -161,61 +183,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<<<<<<< HEAD
 <li class="chapter" data-level="2" data-path="litreview.html"><a href="litreview.html"><i class="fa fa-check"></i><b>2</b> Literature</a>
 <ul>
-=======
-<li class="chapter" data-level="2" data-path="litreview.html"><a href="litreview.html"><i class="fa fa-check"></i><b>2</b> Literature</a><ul>
->>>>>>> cdd49f25a590e6f6b7dad8a35dd5d040718a6ef1
 <li class="chapter" data-level="2.1" data-path="litreview.html"><a href="litreview.html#network-connectivity"><i class="fa fa-check"></i><b>2.1</b> Network Connectivity</a></li>
 <li class="chapter" data-level="2.2" data-path="litreview.html"><a href="litreview.html#changes-in-travel-time"><i class="fa fa-check"></i><b>2.2</b> Changes in Travel Time</a></li>
 <li class="chapter" data-level="2.3" data-path="litreview.html"><a href="litreview.html#changes-in-accessibility"><i class="fa fa-check"></i><b>2.3</b> Changes in Accessibility</a></li>
-<li class="chapter" data-level="2.4" data-path="litreview.html"><a href="litreview.html#summary"><i class="fa fa-check"></i><b>2.4</b> Summary</a></li>
-<<<<<<< HEAD
 </ul></li>
 <li class="chapter" data-level="3" data-path="methodology.html"><a href="methodology.html"><i class="fa fa-check"></i><b>3</b> Methodology</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="methodology.html"><a href="methodology.html#utah-statewide-travel-model"><i class="fa fa-check"></i><b>3.1</b> Utah Statewide Travel Model</a>
+<li class="chapter" data-level="3.1" data-path="methodology.html"><a href="methodology.html#model-design"><i class="fa fa-check"></i><b>3.1</b> Model Design</a></li>
+<li class="chapter" data-level="3.2" data-path="methodology.html"><a href="methodology.html#model-implementation-in-utah"><i class="fa fa-check"></i><b>3.2</b> Model Implementation in Utah</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="methodology.html"><a href="methodology.html#model-framework"><i class="fa fa-check"></i><b>3.1.1</b> Model Framework</a></li>
+<li class="chapter" data-level="3.2.1" data-path="methodology.html"><a href="methodology.html#vulnerable-link-identification"><i class="fa fa-check"></i><b>3.2.1</b> Vulnerable Link Identification</a></li>
 </ul></li>
-=======
 </ul></li>
-<li class="chapter" data-level="3" data-path="methodology.html"><a href="methodology.html"><i class="fa fa-check"></i><b>3</b> Methodology</a><ul>
-<li class="chapter" data-level="3.1" data-path="methodology.html"><a href="methodology.html#utah-statewide-travel-model"><i class="fa fa-check"></i><b>3.1</b> Utah Statewide Travel Model</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="methodology.html"><a href="methodology.html#model-framework"><i class="fa fa-check"></i><b>3.1.1</b> Model Framework</a></li>
-</ul></li>
->>>>>>> cdd49f25a590e6f6b7dad8a35dd5d040718a6ef1
-<li class="chapter" data-level="3.2" data-path="methodology.html"><a href="methodology.html#highway-and-transit-skims"><i class="fa fa-check"></i><b>3.2</b> Highway and Transit Skims</a></li>
-<li class="chapter" data-level="3.3" data-path="methodology.html"><a href="methodology.html#trip-attractions-and-socioeconomic-data"><i class="fa fa-check"></i><b>3.3</b> Trip Attractions and Socioeconomic Data</a></li>
-<li class="chapter" data-level="3.4" data-path="methodology.html"><a href="methodology.html#mode-choice-model"><i class="fa fa-check"></i><b>3.4</b> Mode Choice Model</a></li>
-<li class="chapter" data-level="3.5" data-path="methodology.html"><a href="methodology.html#destination-choice-model"><i class="fa fa-check"></i><b>3.5</b> Destination Choice Model</a></li>
-<li class="chapter" data-level="3.6" data-path="methodology.html"><a href="methodology.html#maybe-include-table-with-beginning-and-ending-calibration-values"><i class="fa fa-check"></i><b>3.6</b> MAYBE INCLUDE TABLE WITH BEGINNING AND ENDING CALIBRATION VALUES?</a></li>
-<li class="chapter" data-level="3.7" data-path="methodology.html"><a href="methodology.html#summary-1"><i class="fa fa-check"></i><b>3.7</b> Summary</a></li>
-</ul></li>
-<<<<<<< HEAD
 <li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
 <ul>
-=======
-<li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a><ul>
->>>>>>> cdd49f25a590e6f6b7dad8a35dd5d040718a6ef1
-<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#vulnerable-link-identification"><i class="fa fa-check"></i><b>4.1</b> Vulnerable Link Identification</a></li>
+<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#vulnerable-link-identification-1"><i class="fa fa-check"></i><b>4.1</b> Vulnerable Link Identification</a></li>
 <li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#single-scenario-analysis"><i class="fa fa-check"></i><b>4.2</b> Single Scenario Analysis</a></li>
 <li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#comparative-scenario-results"><i class="fa fa-check"></i><b>4.3</b> Comparative Scenario Results</a></li>
-<li class="chapter" data-level="4.4" data-path="results.html"><a href="results.html#positive-benefit-scenarios"><i class="fa fa-check"></i><b>4.4</b> Positive Benefit Scenarios</a></li>
-<li class="chapter" data-level="4.5" data-path="results.html"><a href="results.html#summary-2"><i class="fa fa-check"></i><b>4.5</b> Summary</a></li>
-<<<<<<< HEAD
+<li class="chapter" data-level="4.4" data-path="results.html"><a href="results.html#result-comparison-logsum-vs-travel-time"><i class="fa fa-check"></i><b>4.4</b> Result Comparison: Logsum vs Travel Time</a></li>
+<li class="chapter" data-level="4.5" data-path="results.html"><a href="results.html#positive-benefit-scenarios"><i class="fa fa-check"></i><b>4.5</b> Positive Benefit Scenarios</a></li>
+<li class="chapter" data-level="4.6" data-path="results.html"><a href="results.html#summary"><i class="fa fa-check"></i><b>4.6</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="conclusions.html"><a href="conclusions.html"><i class="fa fa-check"></i><b>5</b> Conclusions</a>
+<li class="chapter" data-level="5" data-path="limitations-and-discussion.html"><a href="limitations-and-discussion.html"><i class="fa fa-check"></i><b>5</b> Limitations and Discussion</a></li>
+<li class="chapter" data-level="6" data-path="conclusions.html"><a href="conclusions.html"><i class="fa fa-check"></i><b>6</b> Conclusions</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="conclusions.html"><a href="conclusions.html#summary-3"><i class="fa fa-check"></i><b>5.1</b> Summary</a></li>
+<li class="chapter" data-level="6.1" data-path="conclusions.html"><a href="conclusions.html#summary-1"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
 </ul></li>
-=======
-</ul></li>
-<li class="chapter" data-level="5" data-path="conclusions.html"><a href="conclusions.html"><i class="fa fa-check"></i><b>5</b> Conclusions</a><ul>
-<li class="chapter" data-level="5.1" data-path="conclusions.html"><a href="conclusions.html#summary-3"><i class="fa fa-check"></i><b>5.1</b> Summary</a></li>
-</ul></li>
->>>>>>> cdd49f25a590e6f6b7dad8a35dd5d040718a6ef1
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="author-contribution-statement.html"><a href="author-contribution-statement.html"><i class="fa fa-check"></i>Author Contribution Statement</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -239,72 +236,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">Examining the Utility-based Resiliency of Utah’s Highway Network</h1>
-<p class="author"><em>Gregory Macfarlane</em></p>
+<p class="author multi-author"><em>Gregory Macfarlane</em></p>
 <address class="author_afil">
-Brigham Young University<br><a class="author_email" href="mailto:#"><a href="mailto:gregmacfarlane@byu.edu" class="email">gregmacfarlane@byu.edu</a></a>
+Brigham Young University<br>
+<a class="author_email" href="mailto:#"><a href="mailto:gregmacfarlane@byu.edu" class="email">gregmacfarlane@byu.edu</a></a>
 </address>
-<p class="author"><em>Max Barnes</em></p>
+<p class="author multi-author"><em>Max Barnes</em></p>
 <address class="author_afil">
-Brigham Young University<br><a class="author_email" href="mailto:#"><a href="mailto:barnesmaxmax@gmail.com" class="email">barnesmaxmax@gmail.com</a></a>
+Brigham Young University<br>
+<a class="author_email" href="mailto:#"><a href="mailto:barnesmaxmax@gmail.com" class="email">barnesmaxmax@gmail.com</a></a>
 </address>
-<p class="author"><em>Natalie Gray</em></p>
+<p class="author multi-author"><em>Natalie Gray</em></p>
 <address class="author_afil">
-Brigham Young University<br><a class="author_email" href="mailto:#"><a href="mailto:nat.gray2000@gmail.com" class="email">nat.gray2000@gmail.com</a></a>
+Brigham Young University<br>
+<a class="author_email" href="mailto:#"><a href="mailto:nat.gray2000@gmail.com" class="email">nat.gray2000@gmail.com</a></a>
 </address>
-<<<<<<< HEAD
-<p class="date" style="margin-top: 1.5em;"><em>2021-07-29</em></p>
-=======
-<p class="date"><em>2021-07-29</em></p>
->>>>>>> cdd49f25a590e6f6b7dad8a35dd5d040718a6ef1
+<p class="date"><em>2022-06-20</em></p>
 <div class="abstract">
 <p class="abstract">Abstract</p>
 <p>This is where the abstract should go.</p>
 </div>
 </div>
-<div id="intro" class="section level1">
-<h1><span class="header-section-number"> 1</span> Introduction</h1>
+<div id="intro" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number"> 1</span> Introduction<a href="index.html#intro" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Systemic resiliency is an important consideration for transportation agencies,
 though specific definitions of “resiliency” might vary under different contexts.
 Some agencies and researchers see resiliency as facility-level design and
-<<<<<<< HEAD
 engineering that hardens the system against failure <span class="citation">(<a href="#ref-bradley2007" role="doc-biblioref">Bradley 2007</a>; <a href="#ref-peeta2010" role="doc-biblioref">Peeta et al. 2010</a>)</span>;
 others as an ability for maintenance staff to rapidly restore service following
 catastrophe <span class="citation">(<a href="#ref-zhang2016" role="doc-biblioref">Zhang and Wang 2016</a>)</span>; and others as an ability for a system to continue
 operating in degraded state <span class="citation">(<a href="#ref-berdica2002" role="doc-biblioref">Berdica 2002</a>; <a href="#ref-ip2011" role="doc-biblioref">Ip and Wang 2011</a>)</span>. Regardless of the
-=======
-engineering that hardens the system against failure <span class="citation">(Bradley <a href="#ref-bradley2007" role="doc-biblioref">2007</a>; Peeta et al. <a href="#ref-peeta2010" role="doc-biblioref">2010</a>)</span>;
-others as an ability for maintenance staff to rapidly restore service following
-catastrophe <span class="citation">(Zhang and Wang <a href="#ref-zhang2016" role="doc-biblioref">2016</a>)</span>; and others as an ability for a system to continue
-operating in degraded state <span class="citation">(Berdica <a href="#ref-berdica2002" role="doc-biblioref">2002</a>; Ip and Wang <a href="#ref-ip2011" role="doc-biblioref">2011</a>)</span>. Regardless of the
->>>>>>> cdd49f25a590e6f6b7dad8a35dd5d040718a6ef1
 definition used, assessing the resiliency of a transportation network — and
 addressing any potential shortfalls — requires a method to identify which
 links or facilities are most critical to the smooth operation of the network.</p>
 <p>Identifying which links in a transportation network are most critical, however,
 is not trivial. State of the practice techniques typically rely on traffic volumes
-<<<<<<< HEAD
 represented in terms of vehicles, trips, or freight value <span class="citation">(<a href="#ref-aem2017" role="doc-biblioref">AEM 2017</a>)</span>. But these
-=======
-represented in terms of vehicles, trips, or freight value <span class="citation">(AEM <a href="#ref-aem2017" role="doc-biblioref">2017</a>)</span>. But these
->>>>>>> cdd49f25a590e6f6b7dad8a35dd5d040718a6ef1
 methods ignore the fact that some networks have alternate routes readily available,
 have multiple well developed modes of transportation, or have redundant
 destination locations. When a network link does break, routes, mode choice, and
 destination choice often change too. These responses have been observed in
 real-world crisis events like the I-35 W bridge collapse in Minneapolis and the
 I-85 bridge fire and collapse in Atlanta
-<<<<<<< HEAD
 <span class="citation">(<a href="#ref-zhu2010" role="doc-biblioref">Zhu, Levinson, Liu, and Harder 2010</a>; <a href="#ref-levinson2010" role="doc-biblioref">Zhu, Levinson, Liu, Harder, and Dancyzk 2010</a>; <a href="#ref-xie2011" role="doc-biblioref">Xie and Levinson 2011</a>; <a href="#ref-hamedi2018" role="doc-biblioref">Hamedi et al. 2018</a>)</span>.</p>
-=======
-<span class="citation">(Zhu, Levinson, Liu, et al. <a href="#ref-zhu2010" role="doc-biblioref">2010</a><a href="#ref-zhu2010" role="doc-biblioref">b</a>, <a href="#ref-levinson2010" role="doc-biblioref">2010</a><a href="#ref-levinson2010" role="doc-biblioref">a</a>; Xie and Levinson <a href="#ref-xie2011" role="doc-biblioref">2011</a>; Hamedi et al. <a href="#ref-hamedi2018" role="doc-biblioref">2018</a>)</span>.</p>
->>>>>>> cdd49f25a590e6f6b7dad8a35dd5d040718a6ef1
-<p>In this research, we present a model to identify critical highway links using
-destination choice accessibility analysis. This model is designed to capture the
-utility lost to individuals operating on a degraded network who may choose
-a longer route, a different travel mode, or a different destination. We then
-apply the model to a highway network representing the state of Utah.
-The model structure permits a more nuanced evaluation of link criticality than
-using traffic volume alone or in conjunction with an increased travel time measure.</p>
+<p>In this research, we apply destination choice accessibility model to identify
+critical highway links in a statewide highway context. This model is designed to
+capture the utility lost to individuals operating on a degraded network who may
+choose a longer route, a different travel mode, or a different destination. We
+then apply the model to a highway network representing the state of Utah. The
+model structure permits a more nuanced evaluation of link criticality than using
+traffic volume alone or in conjunction with an increased travel time measure.</p>
 <p>The paper proceeds as follows. First, a <a href="litreview.html#litreview">literature review</a> discusses
 previous attempts to analyze the resiliency of transportation networks. A
 <a href="methodology.html#methodology">methodology</a> section presents the model developed for this
@@ -315,8 +296,7 @@ the model outputs for an array of several dozen independent scenarios. The paper
 for future research.</p>
 
 </div>
-<h3>References</h3>
-<<<<<<< HEAD
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-aem2017" class="csl-entry">
 AEM. 2017. <span>“I-15 Corridor Risk and Resilience Pilot Final Report.”</span>
@@ -347,38 +327,6 @@ Zhu, Shanjiang, David Levinson, Henry X. Liu, and Kathleen Harder. 2010. <span>�
 </div>
 <div id="ref-levinson2010" class="csl-entry">
 Zhu, Shanjiang, David Levinson, Henry Liu, Kathleen Harder, and Adam Dancyzk. 2010. <span>“Traffic Flow and Road User Impacts of the Collapse of the i-35w Bridge over the Mississippi River.”</span>
-=======
-<div id="refs" class="references">
-<div id="ref-aem2017">
-<p>AEM. 2017. “I-15 Corridor Risk and Resilience Pilot Final Report.”</p>
-</div>
-<div id="ref-berdica2002">
-<p>Berdica, Katja. 2002. “An Introduction to Road Vulnerability: What Has Been Done, Is Done and Should Be Done.” <em>Transport Policy</em> 9 (2): 117–27. <a href="https://doi.org/https://doi.org/10.1016/S0967-070X(02)00011-2">https://doi.org/https://doi.org/10.1016/S0967-070X(02)00011-2</a>.</p>
-</div>
-<div id="ref-bradley2007">
-<p>Bradley, James. 2007. “Time Period and Risk Measures in the General Risk Equation.” <em>Journal of Risk Research</em> 10 (3): 355–69. <a href="https://doi.org/10.1080/13669870701252232">https://doi.org/10.1080/13669870701252232</a>.</p>
-</div>
-<div id="ref-hamedi2018">
-<p>Hamedi, Masoud, Sepideh Eshragh, Mark Franz, and Przemyslaw Michal Sekula. 2018. “Analyzing Impact of I-85 Bridge Collapse on Regional Travel in Atlanta.”</p>
-</div>
-<div id="ref-ip2011">
-<p>Ip, W. H., and Dingwei Wang. 2011. “Resilience and Friability of Transportation Networks: Evaluation, Analysis and Optimization.” <em>IEEE Systems Journal</em> 5 (2): 189–98. <a href="https://doi.org/10.1109/JSYST.2010.2096670">https://doi.org/10.1109/JSYST.2010.2096670</a>.</p>
-</div>
-<div id="ref-peeta2010">
-<p>Peeta, Srinivas, F. Sibel Salman, Dilek Gunnec, and Kannan Viswanath. 2010. “Pre-Disaster Investment Decisions for Strengthening a Highway Network.” <em>Computers &amp; Operations Research</em> 37 (10): 1708–19. <a href="https://doi.org/https://doi.org/10.1016/j.cor.2009.12.006">https://doi.org/https://doi.org/10.1016/j.cor.2009.12.006</a>.</p>
-</div>
-<div id="ref-xie2011">
-<p>Xie, Feng, and David Levinson. 2011. “Evaluating the Effects of the I-35W Bridge Collapse on Road-Users in the Twin Cities Metropolitan Region.” <em>Transportation Planning and Technology</em> 34 (7): 691–703. <a href="https://doi.org/10.1080/03081060.2011.602850">https://doi.org/10.1080/03081060.2011.602850</a>.</p>
-</div>
-<div id="ref-zhang2016">
-<p>Zhang, Weili, and Naiyu Wang. 2016. “Resilience-Based Risk Mitigation for Road Networks.” <em>Structural Safety</em> 62: 57–65. <a href="https://doi.org/https://doi.org/10.1016/j.strusafe.2016.06.003">https://doi.org/https://doi.org/10.1016/j.strusafe.2016.06.003</a>.</p>
-</div>
-<div id="ref-levinson2010">
-<p>Zhu, Shanjiang, David Levinson, Henry Liu, Kathleen Harder, and Adam Dancyzk. 2010a. “Traffic Flow and Road User Impacts of the Collapse of the I-35W Bridge over the Mississippi River.”</p>
-</div>
-<div id="ref-zhu2010">
-<p>Zhu, Shanjiang, David Levinson, Henry X. Liu, and Kathleen Harder. 2010b. “The Traffic and Behavioral Effects of the I-35W Mississippi River Bridge Collapse.” <em>Transportation Research Part A: Policy and Practice</em> 44 (10): 771–84. <a href="https://doi.org/https://doi.org/10.1016/j.tra.2010.07.001">https://doi.org/https://doi.org/10.1016/j.tra.2010.07.001</a>.</p>
->>>>>>> cdd49f25a590e6f6b7dad8a35dd5d040718a6ef1
 </div>
 </div>
             </section>
@@ -391,7 +339,6 @@ Zhu, Shanjiang, David Levinson, Henry Liu, Kathleen Harder, and Adam Dancyzk. 20
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -410,6 +357,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -430,6 +378,10 @@ gitbook.start({
 "text": null
 },
 "download": ["ustm_resiliency.pdf", "ustm_resiliency.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
@@ -437,6 +389,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title> 2 Literature | Examining the Utility-based Resiliency of Utah’s Highway Network</title>
   <meta name="description" content="A short description" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 2 Literature | Examining the Utility-based Resiliency of Utah’s Highway Network" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="A short description" />
   
@@ -23,7 +22,7 @@
 
 
 
-<meta name="date" content="2021-07-29" />
+<meta name="date" content="2022-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -42,8 +41,8 @@ div.abstract{
   width: 90%;
 }
 </style>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -59,21 +58,24 @@ div.abstract{
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -186,33 +188,31 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="litreview.html"><a href="litreview.html#network-connectivity"><i class="fa fa-check"></i><b>2.1</b> Network Connectivity</a></li>
 <li class="chapter" data-level="2.2" data-path="litreview.html"><a href="litreview.html#changes-in-travel-time"><i class="fa fa-check"></i><b>2.2</b> Changes in Travel Time</a></li>
 <li class="chapter" data-level="2.3" data-path="litreview.html"><a href="litreview.html#changes-in-accessibility"><i class="fa fa-check"></i><b>2.3</b> Changes in Accessibility</a></li>
-<li class="chapter" data-level="2.4" data-path="litreview.html"><a href="litreview.html#summary"><i class="fa fa-check"></i><b>2.4</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="methodology.html"><a href="methodology.html"><i class="fa fa-check"></i><b>3</b> Methodology</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="methodology.html"><a href="methodology.html#utah-statewide-travel-model"><i class="fa fa-check"></i><b>3.1</b> Utah Statewide Travel Model</a>
+<li class="chapter" data-level="3.1" data-path="methodology.html"><a href="methodology.html#model-design"><i class="fa fa-check"></i><b>3.1</b> Model Design</a></li>
+<li class="chapter" data-level="3.2" data-path="methodology.html"><a href="methodology.html#model-implementation-in-utah"><i class="fa fa-check"></i><b>3.2</b> Model Implementation in Utah</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="methodology.html"><a href="methodology.html#model-framework"><i class="fa fa-check"></i><b>3.1.1</b> Model Framework</a></li>
+<li class="chapter" data-level="3.2.1" data-path="methodology.html"><a href="methodology.html#vulnerable-link-identification"><i class="fa fa-check"></i><b>3.2.1</b> Vulnerable Link Identification</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="methodology.html"><a href="methodology.html#highway-and-transit-skims"><i class="fa fa-check"></i><b>3.2</b> Highway and Transit Skims</a></li>
-<li class="chapter" data-level="3.3" data-path="methodology.html"><a href="methodology.html#trip-attractions-and-socioeconomic-data"><i class="fa fa-check"></i><b>3.3</b> Trip Attractions and Socioeconomic Data</a></li>
-<li class="chapter" data-level="3.4" data-path="methodology.html"><a href="methodology.html#mode-choice-model"><i class="fa fa-check"></i><b>3.4</b> Mode Choice Model</a></li>
-<li class="chapter" data-level="3.5" data-path="methodology.html"><a href="methodology.html#destination-choice-model"><i class="fa fa-check"></i><b>3.5</b> Destination Choice Model</a></li>
-<li class="chapter" data-level="3.6" data-path="methodology.html"><a href="methodology.html#maybe-include-table-with-beginning-and-ending-calibration-values"><i class="fa fa-check"></i><b>3.6</b> MAYBE INCLUDE TABLE WITH BEGINNING AND ENDING CALIBRATION VALUES?</a></li>
-<li class="chapter" data-level="3.7" data-path="methodology.html"><a href="methodology.html#summary-1"><i class="fa fa-check"></i><b>3.7</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#vulnerable-link-identification"><i class="fa fa-check"></i><b>4.1</b> Vulnerable Link Identification</a></li>
+<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#vulnerable-link-identification-1"><i class="fa fa-check"></i><b>4.1</b> Vulnerable Link Identification</a></li>
 <li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#single-scenario-analysis"><i class="fa fa-check"></i><b>4.2</b> Single Scenario Analysis</a></li>
 <li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#comparative-scenario-results"><i class="fa fa-check"></i><b>4.3</b> Comparative Scenario Results</a></li>
-<li class="chapter" data-level="4.4" data-path="results.html"><a href="results.html#positive-benefit-scenarios"><i class="fa fa-check"></i><b>4.4</b> Positive Benefit Scenarios</a></li>
-<li class="chapter" data-level="4.5" data-path="results.html"><a href="results.html#summary-2"><i class="fa fa-check"></i><b>4.5</b> Summary</a></li>
+<li class="chapter" data-level="4.4" data-path="results.html"><a href="results.html#result-comparison-logsum-vs-travel-time"><i class="fa fa-check"></i><b>4.4</b> Result Comparison: Logsum vs Travel Time</a></li>
+<li class="chapter" data-level="4.5" data-path="results.html"><a href="results.html#positive-benefit-scenarios"><i class="fa fa-check"></i><b>4.5</b> Positive Benefit Scenarios</a></li>
+<li class="chapter" data-level="4.6" data-path="results.html"><a href="results.html#summary"><i class="fa fa-check"></i><b>4.6</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="conclusions.html"><a href="conclusions.html"><i class="fa fa-check"></i><b>5</b> Conclusions</a>
+<li class="chapter" data-level="5" data-path="limitations-and-discussion.html"><a href="limitations-and-discussion.html"><i class="fa fa-check"></i><b>5</b> Limitations and Discussion</a></li>
+<li class="chapter" data-level="6" data-path="conclusions.html"><a href="conclusions.html"><i class="fa fa-check"></i><b>6</b> Conclusions</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="conclusions.html"><a href="conclusions.html#summary-3"><i class="fa fa-check"></i><b>5.1</b> Summary</a></li>
+<li class="chapter" data-level="6.1" data-path="conclusions.html"><a href="conclusions.html#summary-1"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="author-contribution-statement.html"><a href="author-contribution-statement.html"><i class="fa fa-check"></i>Author Contribution Statement</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -234,9 +234,9 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="litreview" class="section level1" number="2">
-<h1><span class="header-section-number"> 2</span> Literature</h1>
-<p>In a groundbreaking theoretical article, <span class="citation"><a href="#ref-berdica2002" role="doc-biblioref">Berdica</a> (<a href="#ref-berdica2002" role="doc-biblioref">2002</a>)</span> attempted to identify,
+<div id="litreview" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number"> 2</span> Literature<a href="litreview.html#litreview" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In a groundbreaking theoretical article, <span class="citation">Berdica (<a href="#ref-berdica2002" role="doc-biblioref">2002</a>)</span> attempted to identify,
 define and conceptualize network “vulnerability” — the complement of
 resiliency — by envisioning analyses conducted with
 several vulnerability performance measures including travel time, delay,
@@ -258,8 +258,8 @@ and destinations increase on a damaged network?</p></li>
 network complete their daily activities?</p></li>
 </ul>
 <p>The following sections discuss relevant studies in each group; Table
-<a href="litreview.html#tab:authortable">2.1</a> consolidates these studies by year and labeled with
-applicable group.</p>
+<a href="litreview.html#tab:authortable">2.1</a> consolidates these studies by year and labels them with
+an applicable group.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:authortable">Table 2.1: </span>Attempts to Evaluate Systemic Resiliency
@@ -522,14 +522,14 @@ Network connectivity
 </tr>
 </tbody>
 </table>
-<div id="network-connectivity" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Network Connectivity</h2>
+<div id="network-connectivity" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Network Connectivity<a href="litreview.html#network-connectivity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The purpose of transportation networks is to connect locations to each other;
 presumably damage to a network would diminish the network’s <em>connectivity</em>, or
 the number of paths between node pairs. It may even leave nodes or groups of nodes
 completely isolated. In studies based on connectivity, researchers typically apply
 methods and concepts from graph theory.</p>
-<p><span class="citation"><a href="#ref-abdel2007" role="doc-biblioref">Abdel-Rahim et al.</a> (<a href="#ref-abdel2007" role="doc-biblioref">2007</a>)</span> developed a multi-layered graph to examine the resiliency of the traffic
+<p><span class="citation">Abdel-Rahim et al. (<a href="#ref-abdel2007" role="doc-biblioref">2007</a>)</span> developed a multi-layered graph to examine the resiliency of the traffic
 signal control system in Boise, Idaho. The researchers determined which
 traffic signals would be isolated by a failure to a particular power substation,
 and consequentially the percent of travel paths that would experience diminished
@@ -537,13 +537,13 @@ levels of service. The research highlights the degree to which interrelated
 infrastructure systems — power, telecommunications, and transportation —
 depend on each other, though the researchers did not attempt to look at the
 connective resiliency of the transportation network directly.</p>
-<p><span class="citation"><a href="#ref-agarwal2011" role="doc-biblioref">Agarwal, Liu, and Blockley</a> (<a href="#ref-agarwal2011" role="doc-biblioref">2011</a>)</span> present a method to represent a transportation network as a
+<p><span class="citation">Agarwal, Liu, and Blockley (<a href="#ref-agarwal2011" role="doc-biblioref">2011</a>)</span> present a method to represent a transportation network as a
 hierarchical graph that can be analyzed more directly for vulnerabilities. The
 authors acknowledge, however, that a maximal failure consideration where a node
 is entirely isolated from the network is unlikely in a real-world network with
 multiple paths of connectivity.</p>
-<p><span class="citation"><a href="#ref-ip2011" role="doc-biblioref">Ip and Wang</a> (<a href="#ref-ip2011" role="doc-biblioref">2011</a>)</span> address this shortcoming through the concept of <em>friability</em>, or
-the reduction of capacity cased by removing a link or node, in order to
+<p><span class="citation">Ip and Wang (<a href="#ref-ip2011" role="doc-biblioref">2011</a>)</span> address this shortcoming through the concept of <em>friability</em>, or
+the reduction of capacity caused by removing a link or node, in order to
 determine criticality of individual links. The methodology relies on the ability
 to determine the weighted sum of the resilience of all nodes based on the
 weighted average of connectedness with other city nodes in the network. The
@@ -551,7 +551,7 @@ authors determine that the recovery of transportability between two cities
 largely depends on redundant links between nodes. The authors also comment that
 most traffic managers are more concerned with the friability of single links
 rather than the friability of multiple links or an entire system.</p>
-<p><span class="citation"><a href="#ref-vodak2019" role="doc-biblioref">Vodák et al.</a> (<a href="#ref-vodak2019" role="doc-biblioref">2019</a>)</span> develop an approach to identify
+<p><span class="citation">Vodák et al. (<a href="#ref-vodak2019" role="doc-biblioref">2019</a>)</span> develop an approach to identify
 critical links in a network by searching for the shortest independent
 loops in the network. The algorithm progressively damages one or more links
 between iterations to determine if nodes become isolated, or cut off from the
@@ -561,77 +561,54 @@ network. This method can both identify critical links in individual networks, as
 well as provide a means to quantitatively compare networks.</p>
 <p>All of these graph theoretical approaches tend to break down to some degree on
 large, real-world networks where the number of nodes and links numbers in the tens
-of thousands, and the degree of connectivity between any node pair is high.
-Highway system network failures — in most imaginable cases — degrade the
-shortest or least cost path but typically do not eliminate it entirely.</p>
+of thousands, and the degree of connectivity between any arbitrary node pair is
+high.</p>
 </div>
-<div id="changes-in-travel-time" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Changes in Travel Time</h2>
-<p>Graph theory based approaches to resiliency largely consider whether the network
-nodes become isolated after links are degraded or removed. Though isolation is
-an important problem, transportation networks often have multiple redundant
-paths between nodes; however, some of these paths may be considerably longer. It
-is therefore useful to determine how the path cost changes even if the nodes
-involved are still reachable on the network.</p>
-<p><span class="citation">(<a href="#ref-peeta2010" role="doc-biblioref">Peeta et al. 2010</a>)</span> constructs a model to evaluate the most efficient allocation of
-highway maintenance resources prior to an earthquake with the potential to
-disrupt transport network connectivity. The authors create a simplified graph of
-Istanbul, Turkey with 30 attributed links and 25 nodes, with each link having a
-specified failure probability that could be mitigated with investment. Using
-this graph, the researchers evaluate what happened to travel times between the
-origin-destination pairs as links from this network were disabled using a Monte
-Carlo simulation. The authors showed that this problem is tractable with a
-locally optimal solution existing.</p>
-<p><span class="citation">(<a href="#ref-ibrahim2011" role="doc-biblioref">Ibrahim et al. 2011</a>)</span> provides an alternative heuristic approach for determining
+<div id="changes-in-travel-time" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Changes in Travel Time<a href="litreview.html#changes-in-travel-time" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Highway system network failures — in most imaginable cases — degrade the
+shortest or least cost path but typically do not eliminate it entirely. The degree
+to which travel time increases when a particular link is damaged could provide an
+estimate of the criticality of that link.</p>
+<p><span class="citation">Peeta et al. (<a href="#ref-peeta2010" role="doc-biblioref">2010</a>)</span> construct a model to efficiently allocate
+highway maintenance resources. Each link in the sample network was
+assigned a specific failure probability based on resource allocation;
+the model evaluated the increase in travel time resulting from a broken
+link. A Monte Carlo simulation revealed which allocation plan resulted in the least
+network degradation, and thus which links were most critical to the network’s
+operations.</p>
+<p><span class="citation">Ibrahim et al. (<a href="#ref-ibrahim2011" role="doc-biblioref">2011</a>)</span> provide an alternative heuristic approach for determining
 vulnerability of infrastructure by estimating the cost of single link failure
 based on the increase in shortest path travel time due to increased congestion
-levels. Ibrahim proposes a hybrid heuristic approach that calculates the
+levels. The authors propose a hybrid heuristic approach that calculates the
 traditional user-equilibrium assignment for finding the first set of costs, and
 then fixes those costs for all following iterations to determine the effects of
-failure on overall travel time of the system. Ibrahim’s novel heuristic approach
-is important because of its ability to drastically reduce computation time for
-larger networks while providing accurate results that closely match results
-found from traditional modeling methods.</p>
-<p><span class="citation">(<a href="#ref-omer2013" role="doc-biblioref">Omer, Mostashari, and Nilchiani 2013</a>)</span> proposes a methodology for assessing the resiliency of physical
-infrastructure during disruptions. To do this, the authors use a network model
-to build an origin-destination matrix that allows initial network loading and
-analysis. Omer’s model uses several metrics, but the main metric used to
-determine resiliency is the difference in travel time between a disturbed and
-undisturbed network. Omer’s framework is applied to an actual network between
-New York City and Boston for analysis. Changes in demand, travel time, mode
-choice and route choice are tracked for analysis. Omer’s framework supports
-operability of transportation networks due to the way it analyzes networks
-experiencing suboptimal circumstances. The authors work identifies key
-parameters that should be measured to assess resiliency during disruptive
-events.</p>
-<p><span class="citation">(<a href="#ref-jaller2015" role="doc-biblioref">Jaller et al. 2015</a>)</span> seeks to identify critical infrastructure based on increased
-travel time, or reduced capacity due to disaster. The proposed methodology
-utilizes user-equilibrium to determine proper initial network loading. Then, the
-shortest path between one origin and one destination can be identified. To
-implement damage to the network, a link is cut, and then the next shortest path
-is found. This process is followed for all links in the system in order to
-determine a sense of the criticality of each link to network resiliency. The
-analysis is carried out for each O-D pair, and the nodes with greatest change in
-travel time are determined to be the most critical. Jaller’s methodology allows
-traffic managers to identify critical paths for mitigation purposes before the
-occurrence of disaster through careful analysis.</p>
+failure on overall travel time of the system. <span class="citation">Omer, Mostashari, and Nilchiani (<a href="#ref-omer2013" role="doc-biblioref">2013</a>)</span> apply a similar methodology
+to a real-life intercity highway network. <span class="citation">Jaller et al. (<a href="#ref-jaller2015" role="doc-biblioref">2015</a>)</span> extended this methodology
+with a static user equilibrium traffic loading step to provide an estimate of
+how the next-shortest path changes when congested.</p>
+<p>A primary limitation with increased travel time methodologies is that they
+ignore the other possible ways a population might adapt its travel to a damaged
+network. Some people may choose other modes or destinations, and it is possible
+that some previously occurring trips might be canceled entirely.</p>
 </div>
-<div id="changes-in-accessibility" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Changes in Accessibility</h2>
-<p>Accessibility refers to the ease with which individuals can reach the
-destinations that matter to them; this is an abstract idea but one that has been
-quantified in numerous ways. <span class="citation"><a href="#ref-dong2006" role="doc-biblioref">Dong et al.</a> (<a href="#ref-dong2006" role="doc-biblioref">2006</a>)</span> provide a helpful framework for
-understanding various quantitative definitions of accessibility that we will
-simplify here. The most elementary definition of accessibility is whether a
-destination is within an <em>isochrone</em>, or certain distance. This measure is often
-represented as a count, e.g., the number of jobs reachable from a particular
-location within thirty minutes travel time by a particular mode. Mathematically,</p>
+<div id="changes-in-accessibility" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Changes in Accessibility<a href="litreview.html#changes-in-accessibility" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In a travel modeling context, <em>accessibility</em> refers to the ease with which
+individuals can reach the destinations that matter to them; this is an abstract
+idea but one that has been quantified in numerous ways. <span class="citation">Dong et al. (<a href="#ref-dong2006" role="doc-biblioref">2006</a>)</span> provide a
+helpful framework for understanding various quantitative definitions of
+accessibility that we will simplify here. The most elementary definition of
+accessibility is whether a destination is within an <em>isochrone</em>, or certain
+distance. This measure is often represented as a count, e.g., the number of jobs
+reachable from a particular location within thirty minutes travel time by a
+particular mode. Mathematically,</p>
 <p><span class="math display" id="eq:isochrone">\[\begin{equation}
-A_i = \sum_{j} X_j I_{ij};  I_{ij} = \begin{cases}  1 \text{ if } d_{ij} \leq D\\ 
+A_i = \sum_{j} X_j I_{ij};  I_{ij} = \begin{cases}  1 \text{ if } d_{ij} \leq D\\
 0 \text{ if } d_{ij} &gt; D \end{cases}
   \tag{2.1}
 \end{equation}\]</span></p>
-<p>where the accessibility A at point i is the sum of the all the jobs or other
+<p>where the accessibility <span class="math inline">\(A\)</span> at point <span class="math inline">\(i\)</span> is the sum of the all the
 destinations <span class="math inline">\(X\)</span> at other points <span class="math inline">\(j\)</span>. <span class="math inline">\(I_{ij}\)</span> is an indicator function equal to
 zero if the distance between the points <span class="math inline">\(d{_ij}\)</span> is less than some asserted
 threshold (e.g., thirty minutes of travel time). By relaxing the assumption of a
@@ -648,49 +625,23 @@ term of a multinomial logit destination choice model,</p>
 A_i = ln\sum_{j} \beta_d(d_{ij}) + X_j\beta
   \tag{2.3}
 \end{equation}\]</span></p>
-<p>Where the parameters <span class="math inline">\(\beta\)</span> are estimated from choice surveys or calibrated to
-observed data. The logsum term has numerous benefits outlined by <span class="citation">(<a href="#ref-handy1997" role="doc-biblioref">Handy and Niemeier 1997</a>)</span>
-and <span class="citation">(<a href="#ref-xiangdong2007" role="doc-biblioref"><strong>xiangdong2007?</strong></a>)</span>; namely, the measure is based in actual choice theory, and
+<p>where the parameters <span class="math inline">\(\beta\)</span> are estimated from choice surveys or calibrated to
+observed data. The logsum term has numerous benefits outlined by <span class="citation">Handy and Niemeier (<a href="#ref-handy1997" role="doc-biblioref">1997</a>)</span>
+and <span class="citation">Geurs and van Wee (<a href="#ref-geurs2004" role="doc-biblioref">2004</a>)</span>; namely, the measure is based in actual choice theory, and
 can include multiple destination types and travel times by multiple different
-modes. Accessibility measures of any kind are important in resiliency analysis
-because a damaged transport network will limit the ability of people to access
-the full variety of destinations they otherwise would.</p>
-<p><span class="citation">(<a href="#ref-guers2004" role="doc-biblioref"><strong>guers2004?</strong></a>)</span> provide a review of accessibility measures such as
-those above up to 2004. Of the papers they reviewed, Vickerman (1974), Ben-Akiva
-and Lerman (1979), Geurs and Ritsema van Eck (2001) used isochrone type methods,
-Stewart (1947), Hansen (1959), Ingram (1971), and Vickerman (1971), and Anas
-(1983) used gravity, and Neuburger (1971), Leonardi (1987), Williams and Senior
-(1978), Koenig( 1980), Anas (1983), Ben-Akiva and Lerman (1985), Sweet (1997),
-Niemier (1997), Handy and Niemier (1997), Levine (1998), and Miller (1999) used
-or suggested logsums. They highlight the importance of using person-based
-measures such as these in evaluating network vulnerability and resiliency.</p>
-<p><span class="citation">(<a href="#ref-taylor2008" role="doc-biblioref">Taylor 2008</a>)</span> also examines accessibility as a way to analyze network
-vulnerabilities, mainly through logsum analysis. Taylor begins by explaining the
-concepts of vulnerability and accessibility, which further help to explain their
-interrelatedness and key distinctions. He then applies logsum analysis to
-provide a framework for solving problems of accessibility. Taylor’s method for
-identifying vulnerabilities involves modeling travel demand, network topology,
-capacity, and road geometry in a manner that closely resembles a graph network.
-He does make one key distinction between links and nodes, however. A Node is
-vulnerable if link loss to that node diminishes its accessibility, while a Link
-is critical if its loss significantly diminishes accessibility within the
-network. One drawback to Taylor’s methodology at this point, is that it is
-intended to be used after critical locations have been identified.</p>
-</div>
-<div id="summary" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Summary</h2>
-<p>The lessons learned from the events in Minneapolis and Atlanta demonstrate that
-when transportation networks are damaged or degraded by link failure, multiple
-changes result. Traffic diverts to other facilities and other modes, and some
-people make fundamental changes to their daily activity patterns, choosing new
-destinations or eliminating trips entirely. Numerous other researchers have
-identified methodologies to capture the effects, or at least the costs, of these
-potential changes in modeled crisis events. We are able to learn from past and
-current methodologies to create a functional methodology on a state-wide level.</p>
+modes.</p>
+<p><span class="citation">Taylor (<a href="#ref-taylor2008" role="doc-biblioref">2008</a>)</span> applied logsum-derived accessibility analysis to evaluate the
+consequences of a tunnel failure in Adelaide, Australia.</p>
+<ol style="list-style-type: decimal">
+<li>LOOK LITERATURE THAT TAYLOR CITES</li>
+<li>LOOK AT LITERATURE THAT HAS CITED TAYLOR</li>
+<li>TELL THE STORY OF WHY WHAT WE DID IS WORTHWHILE</li>
+</ol>
+<p>BECAUSE THERE IS A GAP! STATEWIDE</p>
 
 </div>
 </div>
-<h3>References</h3>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-abdel2007" class="csl-entry">
 Abdel-Rahim, A., P. Oman, B. K. Johnson, and R. A. Sadiq. 2007. <span>“Assessing Surface Transportation Network Component Criticality: A Multi-Layer Graph-Based Approach.”</span> In <em>2007 IEEE Intelligent Transportation Systems Conference</em>, 1000–1003. <a href="https://doi.org/10.1109/ITSC.2007.4357801">https://doi.org/10.1109/ITSC.2007.4357801</a>.
@@ -703,6 +654,9 @@ Berdica, Katja. 2002. <span>“An Introduction to Road Vulnerability: What Has B
 </div>
 <div id="ref-dong2006" class="csl-entry">
 Dong, Xiaojing, Moshe E. Ben-Akiva, John L. Bowman, and Joan L. Walker. 2006. <span>“Moving from Trip-Based to Activity-Based Measures of Accessibility.”</span> <em>Transportation Research Part A: Policy and Practice</em> 40 (2): 163–80. https://doi.org/<a href="https://doi.org/10.1016/j.tra.2005.05.002">https://doi.org/10.1016/j.tra.2005.05.002</a>.
+</div>
+<div id="ref-geurs2004" class="csl-entry">
+Geurs, Karst T., and Bert van Wee. 2004. <span>“Accessibility Evaluation of Land-Use and Transport Strategies: Review and Research Directions.”</span> <em>Journal of Transport Geography</em> 12 (2): 127–40. https://doi.org/<a href="https://doi.org/10.1016/j.jtrangeo.2003.10.005">https://doi.org/10.1016/j.jtrangeo.2003.10.005</a>.
 </div>
 <div id="ref-handy1997" class="csl-entry">
 Handy, S L, and D A Niemeier. 1997. <span>“Measuring Accessibility: An Exploration of Issues and Alternatives.”</span> <em>Environment and Planning A: Economy and Space</em> 29 (7): 1175–94. <a href="https://doi.org/10.1068/a291175">https://doi.org/10.1068/a291175</a>.
@@ -739,7 +693,6 @@ Vodák, Rostislav, Michal Bíl, Tomáš Svoboda, Zuzana Křivánková, Jan Kube�
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -779,6 +732,10 @@ gitbook.start({
 "text": null
 },
 "download": ["ustm_resiliency.pdf", "ustm_resiliency.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

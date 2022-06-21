@@ -1,16 +1,13 @@
 \documentclass[3p, authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 %%% Begin My package additions %%%%%%%%%%%%%%%%%%%
+
 \usepackage[hyphens]{url}
 
   \journal{Submitted to Journal} % Sets Journal name
 
-
 \usepackage{lineno} % add
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 \usepackage{graphicx}
-\usepackage{booktabs} % book-quality tables
 %%%%%%%%%%%%%%%% end my additions to header
 
 \usepackage[T1]{fontenc}
@@ -32,9 +29,9 @@
 \fi
 % use microtype if available
 \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
-\usepackage{natbib}
+\usepackage[]{natbib}
 \bibliographystyle{apalike}
-\usepackage{longtable}
+
 \usepackage{graphicx}
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
@@ -51,14 +48,28 @@
             urlcolor=blue,
             linkcolor=magenta,
             pdfborder={0 0 0}}
-\urlstyle{same}  % don't use monospace font for urls
 
 \setcounter{secnumdepth}{5}
 % Pandoc toggle for numbering sections (defaults to be off)
 
-% Pandoc citation processing
 
-% Pandoc header
+% tightlist command for lists without linebreak
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% From pandoc table feature
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+
+
 \usepackage{booktabs}
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -78,22 +89,35 @@
 
 
 \begin{document}
+
+
 \begin{frontmatter}
 
   \title{Examining the Utility-based Resiliency of Utah's Highway Network}
-    \author[Brigham Young University]{Gregory Macfarlane}
+    \author[Brigham Young University]{Gregory Macfarlane%
+  %
+  }
    \ead{gregmacfarlane@byu.edu} 
-    \author[Brigham Young University]{Max Barnes}
+    \author[Brigham Young University]{Max Barnes%
+  %
+  }
    \ead{barnesmaxmax@gmail.com} 
-    \author[Brigham Young University]{Natalie Gray}
+    \author[Brigham Young University]{Natalie Gray%
+  %
+  }
    \ead{nat.gray2000@gmail.com} 
-      \address[Brigham Young University]{Brigham Young University, Civil and Environmental Engineering Department, 430 Engineering Building, Provo, Utah 84602}
-      \cortext[1]{Corresponding Author}
+      \affiliation[Brigham Young University]{Brigham Young University, Civil and Environmental Engineering Department, 430 Engineering Building, Provo, Utah 84602}
+    \cortext[cor1]{Corresponding author}
+    \fntext[1]{Corresponding Author}
   
   \begin{abstract}
   This is where the abstract should go.
   \end{abstract}
-   \begin{keyword} Accessibility Passive Data Location Choice\end{keyword}
+    \begin{keyword}
+    Accessibility \sep Passive Data \sep 
+    Location Choice
+  \end{keyword}
+  
  \end{frontmatter}
 
 \hypertarget{intro}{%
@@ -375,7 +399,7 @@ corresponding capital letter \(K\)
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.75\linewidth]{images/framework} 
+{\centering \includegraphics[width=0.75\linewidth]{ustm_resiliency_files/figure-latex/framework-1} 
 
 }
 
@@ -444,7 +468,7 @@ the state. The rugged mountain and canyon topography throughout the state places
 severe constraints on possible redundant paths in the highway network. A
 landslide or rock fall in any single canyon may isolate a community or force a
 redirection of traffic that could be several hours longer than the preferred
-route; understanding which of these many choke points is most critical is a key
+route; understanding which of these many possible choke points is most critical is a key
 and ongoing objective of the agency.
 
 Several data elements for the model described above were obtained from the Utah
@@ -540,7 +564,8 @@ methods described by \citet{koppelman2006}.
 The destination choice utility equation consists of three parts: a size term,
 a travel impedance term, and a calibration polynomial. Coefficients for the
 size term and travel impedance terms were adapted from the Oregon
-Statewide Integrated Model (SWIM). The distance polynomial coefficients were
+Statewide Integrated Model (SWIM) for all purposes except HBW. Instead, these coefficients were
+adapted from the RVTPO model. The distance polynomial coefficients were
 calibrated to targets developed from UHTS.
 
 \hypertarget{vulnerable-link-identification}{%
@@ -611,49 +636,46 @@ analysis, we can see that the costs at both the local and statewide levels are
 much greater with \$437,401 and \$406,899 respectively estimated as the costs
 due to just the increase in travel time, not using the logit-based model.
 
-\begin{table}
-
-\caption{\label{tab:tooeletable}Tooele Table}
-\centering
-\begin{tabular}[t]{lllllll}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.2571}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1333}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1048}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1429}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1333}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.0857}}@{}}
 \toprule
-...1 & Total Overall Costs & ...3 & Tooele - SLC Cost & ...5 & Base Trips & ...7\\
+\begin{minipage}[b]{\linewidth}\raggedright
+Purpose
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Other Counties
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Inside Tooele
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Total
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Other Counties
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Inside Tooele
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Total
+\end{minipage} \\
 \midrule
-Purpose & Logsum & Travel Time & Logsum & Travel Time & Tooele - SLC & Whole Network\\
-HBW & 106106.36 & 244275.72 & 104645.23 & 233373.56 & 12143 & 4614\\
-HBO & 27301.33 & 108412.94 & 23961.279999999999 & 98163.53 & 3578 & 12584\\
-NHB & 40587.839999999997 & 84712.36 & 38817.089999999997 & 75361.98 & 5025 & 7154\\
-REC & 398.72 & 398.72 & 40.729999999999997 & 40.729999999999997 & 3 & 7\\
-\addlinespace
-XXP & 55870.17 & 55870.17 & \$                        - & \$                        - & 0 & 61\\
-Freight & 10883835.01 & 10883835.01 & 111772.5 & 111772.5 & 515811 & 875183\\
-Total Comparable & 173995.51999999999 & 437401.02 & 167423.6 & 406899.06 & 536560 & 899603\\
+\endhead
+HBO & \$98,674 & \$1,193,347 & \$1,292,020 & \$8,595 & \$75,862 & \$84,457 \\
+HBW & \$15,140 & \$380,590 & \$395,730 & \$7,868 & \$234,009 & \$241,877 \\
+NHB & \$31,317 & \$451,263 & \$482,580 & \$5,875 & \$100,245 & \$106,120 \\
+Internal Freight & & & & \$24,617 & \$26,083 & \$50,700 \\
+Inbound / Outbound Freight & & & & \$59,758 & \$1,190 & \$60,948 \\
+REC & & & & \$176 & \$190 & \$366 \\
+Through Freight & & & & \$251,508 & & \$251,508 \\
+Through Passenger & & & & \$56,103 & & \$56,103 \\
+Comparable Total & \$145,130 & \$2,025,199 & \$2,170,330 & \$22,338 & \$410,116 & \$432,454 \\
+Total & \$145,130 & \$2,025,199 & \$2,170,330 & \$414,499 & \$437,580 & \$852,079 \\
 \bottomrule
-\end{tabular}
-\end{table}
+\end{longtable}
 
-\begin{table}
-
-\caption{\label{tab:tooeletable2}Tooele Table Again}
-\centering
-\begin{tabular}[t]{llrr}
-\toprule
-Logsum / Base & ...2 & Logsum / Tooele - SLC Logsum & Travel Time / Tooele - SLC Travel Time\\
-\midrule
- &  &  & \\
-All Trips & Tooele - SLC &  & \\
-0.43 & 0.45 & 0.99 & 0.96\\
-0.25 & 0.24 & 0.88 & 0.91\\
-0.48 & 0.52 & 0.96 & 0.89\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure}
-\centering
 \includegraphics{ustm_resiliency_files/figure-latex/tooelemap-1.pdf}
-\caption{\label{fig:tooelemap}Total loss from}
-\end{figure}
 
 The logsum and travel time methods for determining the overall cost associated
 with can be broken down into overall costs, and comparable costs. The comparable
@@ -695,67 +717,6 @@ This section will present the results of the 41 scenarios analyzed. First, Table
 10, and ``road11'' for scenario 11 along with route numbers or street names, as
 well as a physical location where the link was cut.
 
-\begin{table}
-
-\caption{\label{tab:linktable}Link Table}
-\centering
-\begin{tabular}[t]{lll}
-\toprule
-LINK\_ID & ROUTE & LOCATION\\
-\midrule
-road10 & SR-95 & near Hite\\
-road11 & US-6 & near King Top\\
-road12 & I-15 & in Bountiful\\
-road13 & I-70 & at Dragon Point (W of Green River)\\
-road14 & I-15 & in Orem between Univ. Ave \& Center St\\
-\addlinespace
-road15 & SR-199 & near Rush Valley\\
-road16 & SR-153 & between Beaver \& Junction\\
-road17 & SR-18 & just North of St. George\\
-road18 & I-15 & near Rocky Ridge (between Payson \& Nephi)\\
-road19 & I-15 & near I-70 \& Filmore\\
-\addlinespace
-road20 & I-15 & near New Harmony\\
-road21 & US-40 & East of Strawberry Reservoir\\
-road22 & US-6 & in Carbon County North of Helper\\
-road23 & Legacy Parkway & near West Bountiful\\
-road24 & UT-35 & outside of Francis\\
-\addlinespace
-road25 & Timp Highway & at the base of AF Canyon\\
-road26 & SR-14 & in Cedar Canyon\\
-road27 & I-84 & between Ogden and Morgan\\
-road28 & SR-65 & on the border of Salt Lake County \& Morgan County\\
-road29 & SR-101 & East of Hyrum\\
-\addlinespace
-road30 & US-91 & between Brigham City \& Mantua\\
-road31 & SR-62 & East of Kingston\\
-road32 & US-89 & between Logan and Bear Lake\\
-road33 & SR-24 & in Capitol Reef National Park\\
-road34 & Bangerter & near Bluffdale\\
-\addlinespace
-road35 & SR-191 & between Helper \& Duchesne\\
-road36 & SR-24 & near Steamboat Point\\
-road37 & I-80 & in Parley's Canyon\\
-road38 & I-15 & at the Point of the Mountain\\
-road39 & I-80 & in SLC near Sugar House and 1300 E\\
-\addlinespace
-road40 & I-15 & in SLC between 2100 S \& 1300 S\\
-road41 & I-215 & near Taylorsville\\
-road42 & Bangerter & near West Valley City\\
-road43 & I-215 & near Cottonwood Heights\\
-road44 & MVC (UT-85) & West of West Jordan\\
-\addlinespace
-road45 & US-89 & near the Border of Arizona by Lake Powell\\
-road46 & SR-189 & up Provo Canyon near Vivian Park\\
-road47 & US-6 & up Spanish Fork Canyon near Diamond Fork Rd\\
-road48 & I-70 & near Green River (NW of Moab)\\
-road49 & I-70 & near Richfield \& Filmore\\
-\addlinespace
-road50 & I-80 & between SLC and Tooele\\
-\bottomrule
-\end{tabular}
-\end{table}
-
 The logsum method results are as follows in Table 14. The results are ranked
 from the road with the largest cost to the road with the smallest cost. We can
 see that road 50, which corresponds to I-80 between SLC and Tooele, experiences
@@ -768,66 +729,66 @@ change to HBW, HBO, or NHB traffic. This is likely due to the remote location of
 the highway link that was cut. A ranking is provided for all of the roads in
 Table \ref{fig:logsumrank}.
 
-\begin{table}
-
-\caption{\label{tab:logsumrank}Total cost in dollars}
-\centering
-\begin{tabular}[t]{rlrlll}
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1111}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1667}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.5556}}@{}}
 \toprule
-Rank & Scenario & Delta & Cost Value & ROUTE & LOCATION\\
+\begin{minipage}[b]{\linewidth}\centering
+Scenario
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Cost (per Day)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Route
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Location
+\end{minipage} \\
 \midrule
-1 & ROAD50 & -27839.300 & 173995.82 & I-80 & between SLC and Tooele\\
-2 & ROAD38 & -20277.800 & 126736.38 & I-15 & at the Point of the Mountain\\
-3 & ROAD27 & -19625.700 & 122660.89 & I-84 & Weber Canyon\\
-4 & ROAD37 & -13163.500 & 82272.039999999994 & I-80 & in Parley's Canyon\\
-5 & ROAD14 & -7682.830 & 48017.71 & I-15 & in Orem between Univ. Ave \& Center St\\
-\addlinespace
-6 & ROAD30 & -7079.660 & 44247.87 & US-91 & between Brigham City \& Mantua\\
-7 & ROAD46 & -6009.630 & 37560.19 & SR-189 & up Provo Canyon near Vivian Park\\
-8 & ROAD41 & -5154.680 & 32216.74 & I-215 & near Taylorsville\\
-9 & ROAD17 & -4339.910 & 27124.45 & SR-18 & just North of St. George\\
-10 & ROAD18 & -3717.130 & 23232.06 & I-15 & near Rocky Ridge (between Payson \& Nephi)\\
-\addlinespace
-11 & ROAD42 & -3665.700 & 22910.63 & Bangerter & near West Valley City\\
-12 & ROAD12 & -1588.610 & 9928.7900000000009 & I-15 & in Bountiful\\
-13 & ROAD25 & -1092.820 & 6830.11 & Timp Highway & at the base of AF Canyon\\
-14 & ROAD20 & -476.542 & 2978.39 & I-15 & near New Harmony\\
-15 & ROAD24 & -257.283 & 1608.02 & UT-35 & outside of Francis\\
-\addlinespace
-16 & ROAD47 & -220.368 & 1377.3 & US-6 & up Spanish Fork Canyon at Diamond Fork Rd\\
-17 & ROAD23 & -159.863 & 999.14 & Legacy Parkway & near West Bountiful\\
-18 & ROAD26 & -119.912 & 749.45 & SR-14 & in Cedar Canyon\\
-19 & ROAD15 & -80.225 & 501.41 & SR-199 & near Rush Valley\\
-20 & ROAD32 & -66.768 & 417.3 & US-89 & between Logan and Bear Lake\\
-\addlinespace
-21 & ROAD31 & -39.820 & 248.88 & SR-62 & East of Kingston\\
-22 & ROAD49 & -27.569 & 172.31 & I-70 & near Richfield \& Fillmore\\
-23 & ROAD21 & -26.323 & 164.52 & US-40 & East of Strawberry Reservoir\\
-24 & ROAD29 & -25.200 & 157.5 & SR-101 & East of Hyrum\\
-25 & ROAD19 & -22.071 & 137.94 & I-15 & near I-70 \& Filmore\\
-\addlinespace
-26 & ROAD22 & -21.230 & 132.69 & US-6 & in Carbon County North of Helper\\
-27 & ROAD45 & -10.441 & 65.260000000000005 & US-89 & near the Border of Arizona by Lake Powell\\
-28 & ROAD16 & -7.775 & 48.59 & SR-153 & between Beaver \& Junction\\
-29 & ROAD48 & -5.883 & 36.770000000000003 & I-70 & near Green River (NW of Moab)\\
-30 & ROAD35 & -5.713 & 35.71 & SR-191 & between Helper \& Dechesne\\
-\addlinespace
-31 & ROAD36 & -5.126 & 32.04 & SR-24 & near Steamboat Point\\
-32 & ROAD28 & -5.049 & 31.56 & SR-65 & border of Salt Lake \& Morgan Counties\\
-33 & ROAD33 & -0.201 & 1.26 & SR-24 & in Capitol Reef National Park\\
-34 & ROAD13 & -0.012 & 7.0000000000000007E-2 & I-70 & at Dragon Point (W of Green River)\\
-35 & ROAD10 & 0.000 & \$                          - & SR-95 & near Hite\\
-\addlinespace
-36 & ROAD11 & 0.000 & \$                          - & US-6 & near King Top\\
-37 & ROAD40 & 29.891 & -186.82 & I-15 & in SLC between 2100 S \& 1300 S\\
-38 & ROAD44 & 1191.213 & -7445.08 & MVC (UT-85) & West of West Jordan\\
-39 & ROAD43 & 1812.615 & -11328.84 & I-215 & near Cottonwood Heights\\
-40 & ROAD39 & 2541.037 & -15881.48 & I-80 & in SLC near Sugar House and 1300 E\\
-\addlinespace
-41 & ROAD34 & 6822.414 & -42640.09 & Bangerter & near Bluffdale\\
+\endhead
+50 & \$2,170,329.71 & I-80 & between SLC and Tooele \\
+38 & \$1,532,363.09 & I-15 & at the Point of the Mountain \\
+37 & \$802,782.76 & I-80 & in Parley's Canyon \\
+14 & \$574,474.74 & I-15 & in Orem between Univ. Ave \& Center St \\
+18 & \$411,179.06 & I-15 & near Rocky Ridge (between Payson \& Nephi) \\
+30 & \$370,133.75 & US-91 & between Brigham City \& Mantua \\
+27 & \$290,687.26 & I-84 & between Ogden and Morgan \\
+12 & \$290,145.58 & I-15 & in Bountiful \\
+46 & \$258,290.87 & SR-189 & up Provo Canyon near Vivian Park \\
+40 & \$249,871.57 & I-15 & in SLC between 2100 S \& 1300 S \\
+20 & \$222,338.26 & I-15 & near New Harmony \\
+39 & \$124,986.85 & I-80 & in SLC near Sugar House and 1300 E \\
+41 & \$111,332.05 & I-215 & near Taylorsville \\
+47 & \$105,106.54 & US-6 & up Spanish Fork Canyon near Diamond Fork Rd \\
+43 & \$57,120.08 & I-215 & near Cottonwood Heights \\
+34 & \$51,586.44 & Bangerter & near Bluffdale \\
+22 & \$32,372.99 & US-6 & in Carbon County North of Helper \\
+17 & \$23,874.06 & SR-18 & just North of St.~George \\
+32 & \$21,432.72 & US-89 & between Logan and Bear Lake \\
+42 & \$17,189.57 & Bangerter & near West Valley City \\
+44 & \$16,385.16 & MVC (UT-85) & West of West Jordan \\
+49 & \$10,756.48 & I-70 & near Richfield \& Filmore \\
+21 & \$9,246.15 & US-40 & East of Strawberry Reservoir \\
+19 & \$8,071.17 & I-15 & near I-70 \& Filmore \\
+35 & \$7,562.58 & SR-191 & between Helper \& Duchesne \\
+15 & \$6,909.64 & SR-199 & near Rush Valley \\
+24 & \$6,253.94 & UT-35 & outside of Francis \\
+26 & \$5,239.14 & SR-14 & in Cedar Canyon \\
+25 & \$4,286.78 & Timp Highway & at the base of AF Canyon \\
+48 & \$2,916.96 & I-70 & near Green River (NW of Moab) \\
+45 & \$1,108.63 & US-89 & near the Border of Arizona by Lake Powell \\
+23 & \$1,060.47 & Legacy Parkway & near West Bountiful \\
+31 & \$872.20 & SR-62 & East of Kingston \\
+16 & \$362.54 & SR-153 & between Beaver \& Junction \\
+13 & \$357.00 & I-70 & at Dragon Point (W of Green River) \\
+33 & \$275.22 & SR-24 & in Capitol Reef National Park \\
+29 & \$226.44 & SR-101 & East of Hyrum \\
+36 & \$223.53 & SR-24 & near Steamboat Point \\
+11 & \$19.41 & US-6 & near King Top \\
+28 & \$0.52 & SR-65 & on the border of Salt Lake County \& Morgan County \\
+10 & \$0.00 & SR-95 & near Hite \\
 \bottomrule
-\end{tabular}
-\end{table}
+\end{longtable}
 
 Table \ref{fig:traveltimerank} contains the ranking results from the travel
 time method. Here, we see that the first five roads differ from the results of
@@ -842,66 +803,75 @@ time analysis was how much freight and external traffic it experienced.
 Including the freight, even with the logsum results, changes the rankings
 drastically.
 
-\begin{table}
-
-\caption{\label{tab:traveltimerank}Total cost in dollars}
-\centering
-\begin{tabular}[t]{rlrrrrrr}
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.0699}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.0979}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1678}}
+  >{\centering\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1049}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.0979}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1049}}
+  >{\centering\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.3566}}@{}}
 \toprule
-Rank & Scenario & HBO & HBW & NHB & Freight & XXP & TOTAL\\
+\begin{minipage}[b]{\linewidth}\centering
+Scenario
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+HBW, HBO, NHB
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Freight, External, etc.
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Total
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+HBW, HBO, NHB
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Route
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Location
+\end{minipage} \\
 \midrule
-1 & ROAD48 & 2.31 & 18.06 & 16.40 & 85537717.30 & 417991.55 & 85955745.62\\
-2 & ROAD13 & 0.00 & 0.00 & 0.07 & 25214668.62 & 95273.29 & 25309941.98\\
-3 & ROAD20 & 873.21 & 1008.53 & 1096.65 & 19285468.81 & 234813.54 & 19523260.75\\
-4 & ROAD50 & 27301.63 & 106106.36 & 40587.84 & 10883835.01 & 55870.17 & 11113701.00\\
-5 & ROAD49 & 15.89 & 28.48 & 127.94 & 8118515.31 & 29826.77 & 8148514.39\\
-\addlinespace
-6 & ROAD18 & 5278.85 & 8534.44 & 9418.77 & 5784337.92 & 143890.39 & 5951460.37\\
-7 & ROAD27 & 56096.79 & 39697.31 & 26866.79 & 4545561.25 & 9608.65 & 4677830.80\\
-8 & ROAD19 & 24.73 & 17.79 & 95.43 & 3377211.54 & 94820.44 & 3472169.92\\
-9 & ROAD37 & 22074.06 & 34804.83 & 25393.16 & 2060291.60 & 5668.64 & 2148232.29\\
-10 & ROAD47 & 89.03 & 868.43 & 419.84 & 2028078.38 & 14011.56 & 2043467.24\\
-\addlinespace
-11 & ROAD38 & 21901.51 & 50046.84 & 54788.03 & 1732758.70 & 17292.88 & 1876787.96\\
-12 & ROAD14 & -259.88 & 25793.30 & 22484.29 & 950455.53 & 10899.55 & 1009372.79\\
-13 & ROAD30 & 17333.42 & 13857.91 & 13056.54 & 911254.89 & 3690.26 & 959193.02\\
-14 & ROAD39 & -19335.84 & 5106.11 & -1651.75 & 830874.97 & 2821.03 & 817814.52\\
-15 & ROAD22 & 44.08 & 11.04 & 77.57 & 682605.02 & 4843.35 & 687581.05\\
-\addlinespace
-16 & ROAD45 & 14.58 & 24.91 & 25.77 & 551950.51 & 40330.43 & 592346.20\\
-17 & ROAD21 & 34.71 & 16.42 & 113.39 & 537843.44 & 3397.73 & 541405.69\\
-18 & ROAD12 & 453.26 & 3435.59 & 6039.94 & 377513.25 & 3445.92 & 390887.95\\
-19 & ROAD40 & -5542.43 & 6773.59 & -1417.99 & 370214.60 & 3233.35 & 373261.13\\
-20 & ROAD35 & 24.84 & 0.00 & 10.87 & 181286.62 & 2691.10 & 184013.42\\
-\addlinespace
-21 & ROAD46 & 10491.62 & 12149.38 & 14919.20 & 81734.81 & 171.87 & 119466.87\\
-22 & ROAD32 & 55.04 & 206.03 & 156.24 & 48524.89 & 0.00 & 48942.19\\
-23 & ROAD41 & 4930.44 & 11871.22 & 15415.08 & 15154.31 & 0.00 & 47371.04\\
-24 & ROAD16 & 13.22 & 26.42 & 8.96 & 30533.27 & 0.00 & 30581.87\\
-25 & ROAD17 & 15003.63 & 4553.69 & 7567.12 & 2085.51 & 0.00 & 29209.96\\
-\addlinespace
-26 & ROAD42 & 4150.58 & 11518.83 & 7241.23 & 4320.63 & 0.00 & 27231.26\\
-27 & ROAD11 & 0.00 & 0.00 & 0.00 & 7576.95 & 0.00 & 7576.95\\
-28 & ROAD25 & 5099.17 & 1177.88 & 553.06 & 56.27 & 0.00 & 6886.38\\
-29 & ROAD33 & 0.00 & 1.15 & 0.11 & 4089.04 & 0.00 & 4090.30\\
-30 & ROAD24 & 824.28 & 498.41 & 285.33 & 1884.43 & 0.00 & 3492.45\\
-\addlinespace
-31 & ROAD36 & 9.06 & 4.02 & 18.96 & 1920.11 & 0.00 & 1952.15\\
-32 & ROAD26 & 227.74 & 302.12 & 219.59 & 733.26 & 0.00 & 1482.71\\
-33 & ROAD23 & 574.39 & 154.86 & 269.89 & 168.23 & 0.00 & 1167.37\\
-34 & ROAD15 & 47.73 & 208.09 & 245.59 & 209.74 & 0.00 & 711.15\\
-35 & ROAD31 & 32.86 & 95.94 & 120.08 & 259.51 & 0.00 & 508.38\\
-\addlinespace
-36 & ROAD10 & 0.00 & 0.00 & 0.00 & 345.94 & 0.00 & 345.94\\
-37 & ROAD29 & 37.13 & 119.70 & 0.67 & 1.93 & 0.00 & 159.43\\
-38 & ROAD28 & 0.00 & 0.21 & 31.34 & 5.78 & 0.00 & 37.34\\
-39 & ROAD44 & -8946.88 & 2539.77 & -1037.98 & 3495.97 & 0.00 & -3949.11\\
-40 & ROAD43 & -11917.37 & 2436.49 & -1847.96 & 4930.45 & 0.00 & -6398.40\\
-\addlinespace
-41 & ROAD34 & -21929.15 & -4681.46 & -16029.48 & 19511.32 & 0.00 & -23128.77\\
+\endhead
+48 & \$515.53 & \$1,603,380.58 & \$1,603,896.11 & \$2,916.96 & I-70 & near Green River (NW of Moab) \\
+38 & \$827,013.58 & \$387,138.27 & \$1,214,151.85 & \$1,532,363.09 & I-15 & at the Point of the Mountain \\
+50 & \$432,454.24 & \$419,624.71 & \$852,078.96 & \$2,170,329.71 & I-80 & between SLC and Tooele \\
+20 & \$14,792.65 & \$646,271.16 & \$661,063.81 & \$222,338.26 & I-15 & near New Harmony \\
+18 & \$49,815.00 & \$578,166.77 & \$627,981.77 & \$411,179.06 & I-15 & near Rocky Ridge (between Payson \& Nephi) \\
+19 & \$1,377.69 & \$393,559.50 & \$394,937.19 & \$8,071.17 & I-15 & near I-70 \& Filmore \\
+13 & -\$165.92 & \$320,400.54 & \$320,234.62 & \$357.00 & I-70 & at Dragon Point (W of Green River) \\
+14 & \$137,033.68 & \$105,174.41 & \$242,208.10 & \$574,474.74 & I-15 & in Orem between Univ. Ave \& Center St \\
+37 & \$77,320.38 & \$164,493.06 & \$241,813.44 & \$802,782.76 & I-80 & in Parley's Canyon \\
+27 & \$100,414.61 & \$87,561.49 & \$187,976.10 & \$290,687.26 & I-84 & between Ogden and Morgan \\
+47 & \$2,212.81 & \$178,115.45 & \$180,328.26 & \$105,106.54 & US-6 & up Spanish Fork Canyon near Diamond Fork Rd \\
+30 & \$55,514.96 & \$106,704.29 & \$162,219.25 & \$370,133.75 & US-91 & between Brigham City \& Mantua \\
+40 & \$98,707.14 & \$43,222.04 & \$141,929.18 & \$249,871.57 & I-15 & in SLC between 2100 S \& 1300 S \\
+49 & -\$13.32 & \$118,387.09 & \$118,373.77 & \$10,756.48 & I-70 & near Richfield \& Filmore \\
+12 & \$56,805.73 & \$53,575.26 & \$110,380.98 & \$290,145.58 & I-15 & in Bountiful \\
+45 & \$314.60 & \$98,483.75 & \$98,798.34 & \$1,108.63 & US-89 & near the Border of Arizona by Lake Powell \\
+39 & \$50,470.71 & \$41,831.37 & \$92,302.08 & \$124,986.85 & I-80 & in SLC near Sugar House and 1300 E \\
+41 & \$79,619.29 & \$2,750.50 & \$82,369.79 & \$111,332.05 & I-215 & near Taylorsville \\
+22 & -\$152.05 & \$62,555.97 & \$62,403.92 & \$32,372.99 & US-6 & in Carbon County North of Helper \\
+46 & \$43,094.87 & \$13,098.33 & \$56,193.20 & \$258,290.87 & SR-189 & up Provo Canyon near Vivian Park \\
+21 & -\$197.17 & \$56,200.18 & \$56,003.01 & \$9,246.15 & US-40 & East of Strawberry Reservoir \\
+34 & \$42,503.10 & \$1,025.52 & \$43,528.62 & \$51,586.44 & Bangerter & near Bluffdale \\
+43 & \$34,850.96 & \$1,916.65 & \$36,767.61 & \$57,120.08 & I-215 & near Cottonwood Heights \\
+42 & \$27,008.69 & \$503.00 & \$27,511.69 & \$17,189.57 & Bangerter & near West Valley City \\
+35 & \$31.23 & \$17,093.20 & \$17,124.43 & \$7,562.58 & SR-191 & between Helper \& Duchesne \\
+17 & \$12,131.00 & \$199.24 & \$12,330.24 & \$23,874.06 & SR-18 & just North of St.~George \\
+44 & \$10,854.46 & \$329.45 & \$11,183.92 & \$16,385.16 & MVC (UT-85) & West of West Jordan \\
+32 & \$1,244.65 & \$5,381.71 & \$6,626.37 & \$21,432.72 & US-89 & between Logan and Bear Lake \\
+24 & \$2,845.57 & \$218.84 & \$3,064.40 & \$6,253.94 & UT-35 & outside of Francis \\
+25 & \$2,566.09 & \$70.81 & \$2,636.90 & \$4,286.78 & Timp Highway & at the base of AF Canyon \\
+16 & -\$119.97 & \$2,665.35 & \$2,545.38 & \$362.54 & SR-153 & between Beaver \& Junction \\
+31 & \$778.55 & \$71.56 & \$850.11 & \$872.20 & SR-62 & East of Kingston \\
+10 & -\$186.51 & \$858.65 & \$672.14 & \$0.00 & SR-95 & near Hite \\
+26 & \$478.70 & \$136.01 & \$614.71 & \$5,239.14 & SR-14 & in Cedar Canyon \\
+15 & \$335.46 & \$77.42 & \$412.88 & \$6,909.64 & SR-199 & near Rush Valley \\
+23 & \$241.88 & \$42.07 & \$283.95 & \$1,060.47 & Legacy Parkway & near West Bountiful \\
+11 & -\$183.72 & \$423.05 & \$239.33 & \$19.41 & US-6 & near King Top \\
+33 & -\$178.94 & \$328.21 & \$149.26 & \$275.22 & SR-24 & in Capitol Reef National Park \\
+36 & -\$127.30 & \$227.21 & \$99.91 & \$223.53 & SR-24 & near Steamboat Point \\
+29 & -\$2.72 & \$67.37 & \$64.65 & \$226.44 & SR-101 & East of Hyrum \\
+28 & -\$186.37 & \$82.18 & -\$104.19 & \$0.52 & SR-65 & on the border of Salt Lake County \& Morgan County \\
 \bottomrule
-\end{tabular}
-\end{table}
+\end{longtable}
 
 Some other interesting findings are that in the top 10 of each analysis methods,
 three scenarios appear in both rankings. Road 50, which corresponds to I-80
@@ -910,6 +880,9 @@ road 37 which corresponds to I-80 in Parley's Canyon are included in the top 10
 scenarios for both methods of analysis. This is likely due to the number of
 passenger trips along these routes and the number of freight trips that occur
 along these routes.
+
+\hypertarget{result-comparison-logsum-vs-travel-time}{%
+\subsection{Result Comparison: Logsum vs Travel Time}\label{result-comparison-logsum-vs-travel-time}}
 
 \hypertarget{positive-benefit-scenarios}{%
 \subsection{Positive Benefit Scenarios}\label{positive-benefit-scenarios}}

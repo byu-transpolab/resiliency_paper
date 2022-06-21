@@ -1,8 +1,4 @@
----
-output: html_document
-editor_options: 
-  chunk_output_type: console
----
+
 # Results {#results}
 In this chapter, we summarize the methodology used to identify
 vulnerable links on Utah’s highway network. We also apply the model to scenarios
@@ -91,7 +87,7 @@ kbl(
   add_header_above(c(" " = 1, "Utility Logsum" = 3, "Travel Time" = 3))
 ```
 
-```{r tooelemap, fig.cap=", dev = "tikz"}
+```{r tooelemap, fig.cap="", cache = FALSE}
 tar_load(zonal_mapdata)
 
 naf0 <- function(x){ifelse(x == 0, NA, x)}
@@ -158,7 +154,7 @@ classify various types of threats toward specific infrastructure types. This
 method, while valid, was difficult to implement statewide. Some facilities have
 obvious natural threats such as earthquake, flood, or landslide.
 
-```{r links-map, fig.cap="Total cost of link closure.", fig.show='hold', dev = "tikz"}
+```{r links-map, fig.cap="Total cost of link closure.", fig.show='hold'}
 tar_load(mapdata)
 
 
@@ -278,16 +274,6 @@ along these routes.
 
 
 ## Result Comparison: Logsum vs Travel Time
-```{r}
-left_join(logsumcosts, timecost_table) %>%
-  arrange(scenario) %>%
-  select(-c("total_delta")) %>%
-  kbl(
-  col.names = c("Scenario", "HBW, HBO, NHB, Logsum Method", "HBW, HBO, NHB, Travel Time Method", "Freight, External Passenger, REC, Travel Time Method"),
-  align = "crrr", booktabs = TRUE,  
-) %>%
-  kable_styling()
-```
 
 
 ## Positive Benefit Scenarios

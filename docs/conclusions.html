@@ -4,34 +4,33 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title> 5 Conclusions | Examining the Utility-based Resiliency of Utah’s Highway Network</title>
+  <title> 6 Conclusions | Examining the Utility-based Resiliency of Utah’s Highway Network</title>
   <meta name="description" content="A short description" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26.3 and GitBook 2.6.7" />
 
-  <meta property="og:title" content=" 5 Conclusions | Examining the Utility-based Resiliency of Utah’s Highway Network" />
+  <meta property="og:title" content=" 6 Conclusions | Examining the Utility-based Resiliency of Utah’s Highway Network" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="A short description" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content=" 5 Conclusions | Examining the Utility-based Resiliency of Utah’s Highway Network" />
+  <meta name="twitter:title" content=" 6 Conclusions | Examining the Utility-based Resiliency of Utah’s Highway Network" />
   
   <meta name="twitter:description" content="A short description" />
   
 
 
 
-<meta name="date" content="2021-07-29" />
+<meta name="date" content="2022-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="results.html"/>
-<link rel="next" href="references.html"/>
+<link rel="prev" href="limitations-and-discussion.html"/>
+<link rel="next" href="acknowledgments.html"/>
 <style type="text/css">
 p.abstract{
   text-align: center;
@@ -42,8 +41,8 @@ div.abstract{
   width: 90%;
 }
 </style>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -59,21 +58,24 @@ div.abstract{
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -186,33 +188,31 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="litreview.html"><a href="litreview.html#network-connectivity"><i class="fa fa-check"></i><b>2.1</b> Network Connectivity</a></li>
 <li class="chapter" data-level="2.2" data-path="litreview.html"><a href="litreview.html#changes-in-travel-time"><i class="fa fa-check"></i><b>2.2</b> Changes in Travel Time</a></li>
 <li class="chapter" data-level="2.3" data-path="litreview.html"><a href="litreview.html#changes-in-accessibility"><i class="fa fa-check"></i><b>2.3</b> Changes in Accessibility</a></li>
-<li class="chapter" data-level="2.4" data-path="litreview.html"><a href="litreview.html#summary"><i class="fa fa-check"></i><b>2.4</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="methodology.html"><a href="methodology.html"><i class="fa fa-check"></i><b>3</b> Methodology</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="methodology.html"><a href="methodology.html#utah-statewide-travel-model"><i class="fa fa-check"></i><b>3.1</b> Utah Statewide Travel Model</a>
+<li class="chapter" data-level="3.1" data-path="methodology.html"><a href="methodology.html#model-design"><i class="fa fa-check"></i><b>3.1</b> Model Design</a></li>
+<li class="chapter" data-level="3.2" data-path="methodology.html"><a href="methodology.html#model-implementation-in-utah"><i class="fa fa-check"></i><b>3.2</b> Model Implementation in Utah</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="methodology.html"><a href="methodology.html#model-framework"><i class="fa fa-check"></i><b>3.1.1</b> Model Framework</a></li>
+<li class="chapter" data-level="3.2.1" data-path="methodology.html"><a href="methodology.html#vulnerable-link-identification"><i class="fa fa-check"></i><b>3.2.1</b> Vulnerable Link Identification</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="methodology.html"><a href="methodology.html#highway-and-transit-skims"><i class="fa fa-check"></i><b>3.2</b> Highway and Transit Skims</a></li>
-<li class="chapter" data-level="3.3" data-path="methodology.html"><a href="methodology.html#trip-attractions-and-socioeconomic-data"><i class="fa fa-check"></i><b>3.3</b> Trip Attractions and Socioeconomic Data</a></li>
-<li class="chapter" data-level="3.4" data-path="methodology.html"><a href="methodology.html#mode-choice-model"><i class="fa fa-check"></i><b>3.4</b> Mode Choice Model</a></li>
-<li class="chapter" data-level="3.5" data-path="methodology.html"><a href="methodology.html#destination-choice-model"><i class="fa fa-check"></i><b>3.5</b> Destination Choice Model</a></li>
-<li class="chapter" data-level="3.6" data-path="methodology.html"><a href="methodology.html#maybe-include-table-with-beginning-and-ending-calibration-values"><i class="fa fa-check"></i><b>3.6</b> MAYBE INCLUDE TABLE WITH BEGINNING AND ENDING CALIBRATION VALUES?</a></li>
-<li class="chapter" data-level="3.7" data-path="methodology.html"><a href="methodology.html#summary-1"><i class="fa fa-check"></i><b>3.7</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#vulnerable-link-identification"><i class="fa fa-check"></i><b>4.1</b> Vulnerable Link Identification</a></li>
+<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#vulnerable-link-identification-1"><i class="fa fa-check"></i><b>4.1</b> Vulnerable Link Identification</a></li>
 <li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#single-scenario-analysis"><i class="fa fa-check"></i><b>4.2</b> Single Scenario Analysis</a></li>
 <li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#comparative-scenario-results"><i class="fa fa-check"></i><b>4.3</b> Comparative Scenario Results</a></li>
-<li class="chapter" data-level="4.4" data-path="results.html"><a href="results.html#positive-benefit-scenarios"><i class="fa fa-check"></i><b>4.4</b> Positive Benefit Scenarios</a></li>
-<li class="chapter" data-level="4.5" data-path="results.html"><a href="results.html#summary-2"><i class="fa fa-check"></i><b>4.5</b> Summary</a></li>
+<li class="chapter" data-level="4.4" data-path="results.html"><a href="results.html#result-comparison-logsum-vs-travel-time"><i class="fa fa-check"></i><b>4.4</b> Result Comparison: Logsum vs Travel Time</a></li>
+<li class="chapter" data-level="4.5" data-path="results.html"><a href="results.html#positive-benefit-scenarios"><i class="fa fa-check"></i><b>4.5</b> Positive Benefit Scenarios</a></li>
+<li class="chapter" data-level="4.6" data-path="results.html"><a href="results.html#summary"><i class="fa fa-check"></i><b>4.6</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="conclusions.html"><a href="conclusions.html"><i class="fa fa-check"></i><b>5</b> Conclusions</a>
+<li class="chapter" data-level="5" data-path="limitations-and-discussion.html"><a href="limitations-and-discussion.html"><i class="fa fa-check"></i><b>5</b> Limitations and Discussion</a></li>
+<li class="chapter" data-level="6" data-path="conclusions.html"><a href="conclusions.html"><i class="fa fa-check"></i><b>6</b> Conclusions</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="conclusions.html"><a href="conclusions.html#summary-3"><i class="fa fa-check"></i><b>5.1</b> Summary</a></li>
+<li class="chapter" data-level="6.1" data-path="conclusions.html"><a href="conclusions.html#summary-1"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="author-contribution-statement.html"><a href="author-contribution-statement.html"><i class="fa fa-check"></i>Author Contribution Statement</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -234,8 +234,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="conclusions" class="section level1" number="5">
-<h1><span class="header-section-number"> 5</span> Conclusions</h1>
+<div id="conclusions" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number"> 6</span> Conclusions<a href="conclusions.html#conclusions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>The USTM model is a gravity-based travel demand model, while the resiliency
 model is logit-based. The logit-based nature of the resiliency model allows for
 greater sensitivity in user mode and destination choice, which causes the
@@ -249,8 +249,8 @@ highly important outcome because more accurate estimation allows UDOT to better
 understand the monetary importance of highway links throughout Utah.
 Additionally, the model’s design allows for further analysis of additional link
 closures, or even multi-link closure.</p>
-<div id="summary-3" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Summary</h2>
+<div id="summary-1" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Summary<a href="conclusions.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The development of a logit-based travel demand model can improve the ability of
 UDOT to accurately estimate the costs per day of link loss that Utahn’s would
 experience. The resiliency model provides sensitive estimates that more
@@ -272,12 +272,11 @@ methods for determining costs.</p>
           </div>
         </div>
       </div>
-<a href="results.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="limitations-and-discussion.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="acknowledgments.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -317,6 +316,10 @@ gitbook.start({
 "text": null
 },
 "download": ["ustm_resiliency.pdf", "ustm_resiliency.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }

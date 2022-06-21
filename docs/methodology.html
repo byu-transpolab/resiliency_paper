@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title> 3 Methodology | Examining the Utility-based Resiliency of Utah’s Highway Network</title>
   <meta name="description" content="A short description" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.26.3 and GitBook 2.6.7" />
 
   <meta property="og:title" content=" 3 Methodology | Examining the Utility-based Resiliency of Utah’s Highway Network" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="A short description" />
   
@@ -23,7 +22,7 @@
 
 
 
-<meta name="date" content="2021-07-29" />
+<meta name="date" content="2022-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -42,8 +41,8 @@ div.abstract{
   width: 90%;
 }
 </style>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -59,21 +58,24 @@ div.abstract{
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/viz-1.8.2/viz.js"></script>
+<link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding-1.0.9/grViz.js"></script>
 <link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
 <script src="libs/leaflet-1.3.1/leaflet.js"></script>
 <link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
 <script src="libs/proj4-2.6.2/proj4.min.js"></script>
 <script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
 <link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+<script src="libs/leaflet-binding-2.1.1/leaflet.js"></script>
 <script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
-<script src="libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+<script src="libs/leaflet-providers-plugin-2.1.1/leaflet-providers-plugin.js"></script>
 
 
 <style type="text/css">
@@ -186,33 +188,31 @@ div.csl-indent {
 <li class="chapter" data-level="2.1" data-path="litreview.html"><a href="litreview.html#network-connectivity"><i class="fa fa-check"></i><b>2.1</b> Network Connectivity</a></li>
 <li class="chapter" data-level="2.2" data-path="litreview.html"><a href="litreview.html#changes-in-travel-time"><i class="fa fa-check"></i><b>2.2</b> Changes in Travel Time</a></li>
 <li class="chapter" data-level="2.3" data-path="litreview.html"><a href="litreview.html#changes-in-accessibility"><i class="fa fa-check"></i><b>2.3</b> Changes in Accessibility</a></li>
-<li class="chapter" data-level="2.4" data-path="litreview.html"><a href="litreview.html#summary"><i class="fa fa-check"></i><b>2.4</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="methodology.html"><a href="methodology.html"><i class="fa fa-check"></i><b>3</b> Methodology</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="methodology.html"><a href="methodology.html#utah-statewide-travel-model"><i class="fa fa-check"></i><b>3.1</b> Utah Statewide Travel Model</a>
+<li class="chapter" data-level="3.1" data-path="methodology.html"><a href="methodology.html#model-design"><i class="fa fa-check"></i><b>3.1</b> Model Design</a></li>
+<li class="chapter" data-level="3.2" data-path="methodology.html"><a href="methodology.html#model-implementation-in-utah"><i class="fa fa-check"></i><b>3.2</b> Model Implementation in Utah</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="methodology.html"><a href="methodology.html#model-framework"><i class="fa fa-check"></i><b>3.1.1</b> Model Framework</a></li>
+<li class="chapter" data-level="3.2.1" data-path="methodology.html"><a href="methodology.html#vulnerable-link-identification"><i class="fa fa-check"></i><b>3.2.1</b> Vulnerable Link Identification</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="methodology.html"><a href="methodology.html#highway-and-transit-skims"><i class="fa fa-check"></i><b>3.2</b> Highway and Transit Skims</a></li>
-<li class="chapter" data-level="3.3" data-path="methodology.html"><a href="methodology.html#trip-attractions-and-socioeconomic-data"><i class="fa fa-check"></i><b>3.3</b> Trip Attractions and Socioeconomic Data</a></li>
-<li class="chapter" data-level="3.4" data-path="methodology.html"><a href="methodology.html#mode-choice-model"><i class="fa fa-check"></i><b>3.4</b> Mode Choice Model</a></li>
-<li class="chapter" data-level="3.5" data-path="methodology.html"><a href="methodology.html#destination-choice-model"><i class="fa fa-check"></i><b>3.5</b> Destination Choice Model</a></li>
-<li class="chapter" data-level="3.6" data-path="methodology.html"><a href="methodology.html#maybe-include-table-with-beginning-and-ending-calibration-values"><i class="fa fa-check"></i><b>3.6</b> MAYBE INCLUDE TABLE WITH BEGINNING AND ENDING CALIBRATION VALUES?</a></li>
-<li class="chapter" data-level="3.7" data-path="methodology.html"><a href="methodology.html#summary-1"><i class="fa fa-check"></i><b>3.7</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>4</b> Results</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#vulnerable-link-identification"><i class="fa fa-check"></i><b>4.1</b> Vulnerable Link Identification</a></li>
+<li class="chapter" data-level="4.1" data-path="results.html"><a href="results.html#vulnerable-link-identification-1"><i class="fa fa-check"></i><b>4.1</b> Vulnerable Link Identification</a></li>
 <li class="chapter" data-level="4.2" data-path="results.html"><a href="results.html#single-scenario-analysis"><i class="fa fa-check"></i><b>4.2</b> Single Scenario Analysis</a></li>
 <li class="chapter" data-level="4.3" data-path="results.html"><a href="results.html#comparative-scenario-results"><i class="fa fa-check"></i><b>4.3</b> Comparative Scenario Results</a></li>
-<li class="chapter" data-level="4.4" data-path="results.html"><a href="results.html#positive-benefit-scenarios"><i class="fa fa-check"></i><b>4.4</b> Positive Benefit Scenarios</a></li>
-<li class="chapter" data-level="4.5" data-path="results.html"><a href="results.html#summary-2"><i class="fa fa-check"></i><b>4.5</b> Summary</a></li>
+<li class="chapter" data-level="4.4" data-path="results.html"><a href="results.html#result-comparison-logsum-vs-travel-time"><i class="fa fa-check"></i><b>4.4</b> Result Comparison: Logsum vs Travel Time</a></li>
+<li class="chapter" data-level="4.5" data-path="results.html"><a href="results.html#positive-benefit-scenarios"><i class="fa fa-check"></i><b>4.5</b> Positive Benefit Scenarios</a></li>
+<li class="chapter" data-level="4.6" data-path="results.html"><a href="results.html#summary"><i class="fa fa-check"></i><b>4.6</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="conclusions.html"><a href="conclusions.html"><i class="fa fa-check"></i><b>5</b> Conclusions</a>
+<li class="chapter" data-level="5" data-path="limitations-and-discussion.html"><a href="limitations-and-discussion.html"><i class="fa fa-check"></i><b>5</b> Limitations and Discussion</a></li>
+<li class="chapter" data-level="6" data-path="conclusions.html"><a href="conclusions.html"><i class="fa fa-check"></i><b>6</b> Conclusions</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="conclusions.html"><a href="conclusions.html#summary-3"><i class="fa fa-check"></i><b>5.1</b> Summary</a></li>
+<li class="chapter" data-level="6.1" data-path="conclusions.html"><a href="conclusions.html#summary-1"><i class="fa fa-check"></i><b>6.1</b> Summary</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="author-contribution-statement.html"><a href="author-contribution-statement.html"><i class="fa fa-check"></i>Author Contribution Statement</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -234,225 +234,155 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="methodology" class="section level1" number="3">
-<h1><span class="header-section-number"> 3</span> Methodology</h1>
-<p>This chapter presents the design and implementation of a model system designed
-to measure accessibility changes on a transportation network after the
-elimination or loss of highway links. The chapter begins with a discussion of
-the Utah Statewide Travel Model (USTM) and why it is not entirely suitable for
-this study. We then present a proposed model design and implementation within
-the CUBE travel demand modeling software. The chapter ends with a discussion of
-model calibration and validation.</p>
-<div id="utah-statewide-travel-model" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Utah Statewide Travel Model</h2>
-<p>The Utah Statewide Travel Demand Model (USTM) is developed and maintained by the
-Travel Demand Modeling group at UDOT. Within Utah, there are five travel demand
-models developed for urban centers under the purview of a Metropolitan Planning
-Organization (MPO). USTM covers the rural and other areas lying outside of the
-MPO model regions, where UDOT is responsible for transportation planning.
-Consequently, USTM covers the entire state, and incorporates MPO models
-developed by the Wasatch Front Regional Council (WFRC), Mountainland Association
-of Governments (MAG), Cache Metropolitan Planning Organization (CMPO), and the
-Dixie Metropolitan Planning Organization (DMPO). Additionally, the
-Summit/Wasatch Travel Demand Model is incorporated into USTM <span class="citation">(<a href="#ref-udot2021" role="doc-biblioref">Utah Department of Transportation 2021</a>)</span></p>
-<p>The local travel demand models and USTM use a gravity-based trip distribution
-model. The gravity model assumes that trips between origin-destination (OD)
-pairs are proportional to total productions <span class="math inline">\(P\)</span> and attractions <span class="math inline">\(A\)</span>. That is, all
-productions will be attracted to a location based on the size of a location (a
-locations attractiveness) and the friction factor between the OD pair. A
-mathematical representation of the gravity model is given by:</p>
-<p><span class="math display" id="eq:1">\[\begin{equation}
-T_ij= P_i*(A_j F_{ij}/\sum A_j F_{ij})
-\tag{3.1}
-\end{equation}\]</span></p>
-<p>Where:</p>
-<ul>
-<li><span class="math inline">\(T_{ij}\)</span> represents trips made between an origin i and a destination <span class="math inline">\(j\)</span></li>
-<li><span class="math inline">\(P_i\)</span> represents productions at origin <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(A_j\)</span> represents attractions at destination <span class="math inline">\(j\)</span></li>
-<li><span class="math inline">\(F_{ij}\)</span> is the friction factor between an OD pair</li>
-</ul>
-<p>The friction factor (also known as the impedance, or resistance) between two
-zones can be represented in a number of ways, such as with a negative
-exponential function:</p>
-<p><span class="math display" id="eq:2">\[\begin{equation}
-F_{ij}= αexp⁡(-β d_{ij)}
-\tag{3.2}
-\end{equation}\]</span></p>
-<p>Where <span class="math inline">\(d_{ij}\)</span> is the distance or cost between zones <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> and <span class="math inline">\(α,β\)</span> are
-calibrated parameters. In the gravity model, as the distance between an OD pair
-increases, users become less likely to make trips between that OD pair.
-Destinations are fixed, and trips calculated using the gravity model must have a
-proportional number of users assigned to each destination based on its size or
-level of attraction.</p>
-<p>A primary weakness of gravity-based distribution models is their inability to
-consider multi-modal impedances or other attributes of a destination rather than
-their size (as represented by <span class="math inline">\(A_j\)</span> in Equation <a href="methodology.html#eq:1">(3.1)</a>). The friction
-factor in Equation <a href="methodology.html#eq:2">(3.2)</a> asks an implicit question with its distance or
-cost variable <span class="math inline">\(d\)</span>: which mode is used for the trip? In almost all cases,
-automobile distances are asserted as the only option, but if a destination
-happens to be close by rail and far by highway, the destination choice model
-will not incorporate this.</p>
-<p>Alternatively to four-step models, logit-based destination choice models improve
-model accuracy when compared with gravity and four-step models, and are
-advantageous because of an increased ability to introduce additional variables
-and reflect other statistical assumptions <span class="citation">(<a href="#ref-tfr2021" role="doc-biblioref">Travel Forecasting Resource 2021</a>)</span>. The ability to incorporate
-improved methods for determining trip distribution, mode choice, and destination
-choice all allow logit-based models to more accurately estimate trips between OD
-pairs on a road network. Consequently, logit-based travel demand model can
-estimate the choice-based effects of major changes to a road network given
-adverse natural or man-made events. More accuracy in a model’s estimation
-process provides a more precise estimate than could otherwise be made using
-another type of model.</p>
-<p>Destination choice models, on the other hand, explicitly consider multimodal
-accessibility. The ability to consider multimodal accessibility allows a user to
-choose the location of their destination based on a variety of factors including
-mode accessibility and other socioeconomic data, which are made available
-through the Utah Household Travel Survey (UHTS) conducted in 2017 <span class="citation">(<a href="#ref-uhts2017" role="doc-biblioref"><strong>uhts2017?</strong></a>)</span>.
-The socioeconomic data primarily comprises the size term of the destination
-choice. The DC size term is a measure of the appeal or attractiveness of a
-destination when compared to another destination. The DC size term is discussed
-in further detail later on in this paper.</p>
-<p>A critical feature of logit-based choice models – described previously – is that
-they are more versatile than traditional modeling methods, with the ability to
-allow different types of data to be used for analysis which is highly important
-for a model that is constrained. Additionally, logit-based choice models are
-better able to measure the changes in accessibility of a destination due to
-network changes or disruption than other models. As such, logit-based models are
-typically used in new or more advanced travel models.</p>
-<p>Such logit-based destination choice models are becoming common in four-step and
-more advanced travel models. However, logit-based destination choice models have
-not been implemented within the MPO models in Utah or within USTM except for some
-home-based work trips in the WFRC/MAG model. As a result, USTM and other travel
-models within Utah are not useful for the accessibility analysis
-proposed for this research, and a new model must be developed.</p>
-<div id="model-framework" class="section level3" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Model Framework</h3>
-<p>An initial model framework developed in <a href="methodology.html#fig:framework">3.1</a> was created to show
-how a resiliency model would appear in order to create a logit-based model. The
-main inputs of the model are all extracted from USTM. The three main inputs to
-the framework are:</p>
-<ol style="list-style-type: decimal">
-<li><em>Highway Network</em>: The USTM model network, which was obtained from UDOT and
-forms the basis of the model.</li>
-<li><em>Productions</em>: Zonal trip productions from the USTM model, classified as
-household productions.</li>
-<li><em>Attractions</em>: Zonal trip attractions from the USTM model, classified as
-socioeconomic data.</li>
-</ol>
-<p>The model framework consists of the following steps (also visually represented
-in <a href="methodology.html#fig:framework">3.1</a>):</p>
-<ol style="list-style-type: decimal">
-<li><p>Skim Network - In this step, the model determines the shortest path by
-travel time on the USTM network between each origin and destination. The model
-also determines the corresponding distance.</p></li>
-<li><p>Mode Choice Logsum</p></li>
-</ol>
-<ul>
-<li>The mode choice logsum is a function of the travel impedances estimated in the
-highway and peak transit skims and serves as an accessibility term in the
-destination choice model.</li>
-<li>The mode choice logsum uses utility functions to determine the probability and
-logsum associated with travel between each original and destination.</li>
-<li>The mode choice model uses constants and coefficients to calibrate and adjust
-the utility equations and determine the mode choice probabilities.</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Destination Choice (DC) Logsum</li>
-</ol>
-<ul>
-<li>The destination choice logsum is a function of the travel impedances
-(represented by the mode choice logsum) and the attraction size term of each
-destination zone. This is the key evaluation metric of the model.</li>
-<li>The attraction size term is determined using socioeconomic data for each
-destination zone.</li>
-</ul>
-<ol start="4" style="list-style-type: decimal">
-<li>Destination Choice</li>
-</ol>
-<ul>
-<li>Allocates trip productions to destination zones based on information from the
-destination choice logsum.</li>
-</ul>
-<ol start="5" style="list-style-type: decimal">
-<li>Mode Choice</li>
-</ol>
-<ul>
-<li>Allocates trip productions attracted to each zone to specific modes based on
-the mode choice logsum.</li>
-</ul>
-<ol start="6" style="list-style-type: decimal">
-<li>Travel Time by Flow</li>
-</ol>
-<ul>
-<li>A new measure of travel time on the network after disruption used similarly to
-traditional network loading to measure effects of network disruption.</li>
-</ul>
-<div class="figure"><span id="fig:framework"></span>
-<img src="images/OGFramework.png" alt="Model framework." width="75%" />
+<div id="methodology" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number"> 3</span> Methodology<a href="methodology.html#methodology" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The objective of this study is to evaluate the relative systemic criticality of
+highway links on a statewide network using a model sensitive to changes in route
+path, destination choice, and mode choice. We first describe the model, and then
+its implementation.</p>
+<div id="model-design" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Model Design<a href="methodology.html#model-design" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The overall model framework is presented in Figure <a href="methodology.html#fig:framework">3.1</a>, and is
+designed to capture the utility-based accessibility for a particular origin
+zones <span class="math inline">\(i\)</span> and trip purpose <span class="math inline">\(m\)</span>. The model begins with a travel time skim
+procedure, to determine the congested travel time from zone <span class="math inline">\(i\)</span> to zone <span class="math inline">\(j\)</span> by
+auto as well as the shortest network distance for non motorized modes. The
+transit travel time skim is fixed, assuming that transit infrastructure would
+not be affected by changes to the highway network. Throughout this section,
+lower-cased index variables <span class="math inline">\(k\)</span> belong to a set of all indices described by the
+corresponding capital letter <span class="math inline">\(K\)</span></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="methodology.html#cb1-1" aria-hidden="true" tabindex="-1"></a>DiagrammeR<span class="sc">::</span><span class="fu">grViz</span>(<span class="st">&quot;</span></span>
+<span id="cb1-2"><a href="methodology.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="st">  digraph boxes_and_circles {</span></span>
+<span id="cb1-3"><a href="methodology.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="st">  # a &#39;graph&#39; statement</span></span>
+<span id="cb1-4"><a href="methodology.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="st">  graph [overlap = true, fontsize = 10]</span></span>
+<span id="cb1-5"><a href="methodology.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb1-6"><a href="methodology.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">    # several &#39;node&#39; statements</span></span>
+<span id="cb1-7"><a href="methodology.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="st">  node [shape = box,</span></span>
+<span id="cb1-8"><a href="methodology.html#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">        fontname = Helvetica]</span></span>
+<span id="cb1-9"><a href="methodology.html#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st"> &#39;Time and Distance Skim&#39;; </span></span>
+<span id="cb1-10"><a href="methodology.html#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">  &#39;Mode Choice Logsums&#39;; &#39;Destination Choice Logsums&#39;;</span></span>
+<span id="cb1-11"><a href="methodology.html#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="st">  &#39;Logsum Costs&#39; [color=blue]</span></span>
+<span id="cb1-12"><a href="methodology.html#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="st"> </span></span>
+<span id="cb1-13"><a href="methodology.html#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="st"> </span></span>
+<span id="cb1-14"><a href="methodology.html#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="st">  node [shape = oval,</span></span>
+<span id="cb1-15"><a href="methodology.html#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="st">        width = 0.9,</span></span>
+<span id="cb1-16"><a href="methodology.html#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="st">        color = black] // sets as circles</span></span>
+<span id="cb1-17"><a href="methodology.html#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="st">  &#39;USTM Network&#39;; &#39;Trip Productions&#39;; &#39;Parameters&#39;; &#39;Transit and Non-Motorized Skims&#39;;</span></span>
+<span id="cb1-18"><a href="methodology.html#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="methodology.html#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="st">  # several &#39;edge&#39; statements</span></span>
+<span id="cb1-20"><a href="methodology.html#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="st">  &#39;USTM Network&#39; -&gt; &#39;Time and Distance Skim&#39; [label =&#39;Broken link?&#39;, fontname = Helvetica]</span></span>
+<span id="cb1-21"><a href="methodology.html#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="st">  &#39;Time and Distance Skim&#39; -&gt; &#39;Mode Choice Logsums&#39;</span></span>
+<span id="cb1-22"><a href="methodology.html#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="st">  &#39;Transit and Non-Motorized Skims&#39; -&gt; &#39;Mode Choice Logsums&#39;</span></span>
+<span id="cb1-23"><a href="methodology.html#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="st">  &#39;Parameters&#39; -&gt; &#39;Mode Choice Logsums&#39;</span></span>
+<span id="cb1-24"><a href="methodology.html#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="st">  &#39;Mode Choice Logsums&#39; -&gt; &#39;Destination Choice Logsums&#39;</span></span>
+<span id="cb1-25"><a href="methodology.html#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="st">  &#39;Parameters&#39; -&gt; &#39;Destination Choice Logsums&#39;</span></span>
+<span id="cb1-26"><a href="methodology.html#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="st">  &#39;Destination Choice Logsums&#39; -&gt; &#39;Logsum Costs&#39; [color = blue]</span></span>
+<span id="cb1-27"><a href="methodology.html#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="st">  &#39;Trip Productions&#39; -&gt; &#39;Logsum Costs&#39; [color = blue]</span></span>
+<span id="cb1-28"><a href="methodology.html#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb1-29"><a href="methodology.html#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:framework"></span>
+<div id="htmlwidget-5992abbe568f47047313" style="width:75%;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5992abbe568f47047313">{"x":{"diagram":"\n  digraph boxes_and_circles {\n  # a \"graph\" statement\n  graph [overlap = true, fontsize = 10]\n  \n    # several \"node\" statements\n  node [shape = box,\n        fontname = Helvetica]\n \"Time and Distance Skim\"; \n  \"Mode Choice Logsums\"; \"Destination Choice Logsums\"; \"Trips\"; \"Congested Network\"\n  \n  node [shape = box,\n        fontname = Helvetica, color = red]\n  \"Time and Distance Costs\"; \"Logsum Costs\" [color=blue]\n \n \n  node [shape = oval,\n        width = 0.9,\n        color = black] // sets as circles\n  \"USTM Network\"; \"Trip Productions\"; \"Parameters\"; \"Transit and Non-Motorized Skims\";\n\n  # several \"edge\" statements\n  \"USTM Network\" -> \"Time and Distance Skim\" [label =\"Broken link?\", fontname = Helvetica]\n  \"Time and Distance Skim\" -> \"Mode Choice Logsums\"\n  \"Transit and Non-Motorized Skims\" -> \"Mode Choice Logsums\"\n  \"Trip Productions\" -> Trips\n  \"Parameters\" -> \"Mode Choice Logsums\"\n  \"Mode Choice Logsums\" -> \"Destination Choice Logsums\"\n  \"Parameters\" -> \"Destination Choice Logsums\"\n  \"Mode Choice Logsums\" -> \"Trips\"\n  \"Destination Choice Logsums\" -> Trips \n  Trips -> \"Congested Network\"\n  \"Congested Network\" -> \"Time and Distance Skim\" [color = red, label = \"Feedback\",fontname = Helvetica, fontcolor=red]\n  Trips -> \"Time and Distance Costs\" [color = red]\n  \"Time and Distance Skim\" -> \"Time and Distance Costs\" [color = red]\n  \"Destination Choice Logsums\" -> \"Logsum Costs\" [color = blue]\n  \"Trip Productions\" -> \"Logsum Costs\" [color = blue]\n  }\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 3.1: Model framework.
 </p>
 </div>
+<p>With the travel time <span class="math inline">\(t_{ijk}\)</span> for all modes <span class="math inline">\(k \in K\)</span>, the model computes
+mode choice utility values. The multinomial logit mode choice model describes
+the probability of a person at origin <span class="math inline">\(i\)</span> choosing mode <span class="math inline">\(k\)</span> for a trip to
+destination <span class="math inline">\(j\)</span>:
+<span class="math display" id="eq:mcp">\[\begin{equation}
+\mathcal{P}_{ijm}(k) = \frac{\exp(f(\beta_{m}, t_{ijk}))}{\sum_{K}\exp(f(\beta_{m}, t_{ijk}))}
+  \tag{3.1}
+\end{equation}\]</span>
+The log of the denominator of the this equation is called the
+mode choice logsum, <span class="math inline">\(MCLS_{ijm}\)</span> and is a measure of the travel cost by all
+modes, weighted by utility parameters <span class="math inline">\(\beta_m\)</span> that may vary by trip purpose.</p>
+<p>The <span class="math inline">\(MCLS\)</span> is then used as a travel impedance term in the multinomial logit
+destination choice model, where the probability of a person at origin <span class="math inline">\(i\)</span>
+choosing destination <span class="math inline">\(j \in J\)</span> is
+<span class="math display" id="eq:dcp">\[\begin{equation}
+\mathcal{P}_{im}(j) = \frac{\exp(f(\gamma_{m}, MCLS_{ijm}, A_j))}{\sum_{J}\exp(f(\gamma_{m}, MCLS_{ijm}, A_j))}
+  \tag{3.2}
+\end{equation}\]</span>
+where <span class="math inline">\(A_j\)</span> is the attractiveness — represented in terms of socioeconomic activity
+— of zone <span class="math inline">\(j\)</span>. As with mode choice, the log of the denominator of this model is the destination
+choice logsum, <span class="math inline">\(DCLS_{im}\)</span>. This quantity represents the value access to all destinations
+by all modes of travel, and varies by trip purpose.</p>
+<p>The <span class="math inline">\(DCLS_{im}\)</span> measure is relative, but can be compared across scenarios. The
+difference between the measures of two scenarios
+<span class="math display" id="eq:deltas">\[\begin{equation}
+\Delta_{im} = DCLS_{im}^{\mathrm{Base}} - DCLS_{im}^{\mathrm{Scenario}}
+  \tag{3.3}
+\end{equation}\]</span>
+however, provides an estimate of the accessibility lost when <span class="math inline">\(t_{ij\mathrm{drive}}\)</span>
+changes due to a damaged highway link. This accessibility change is <em>per trip</em>,
+meaning that the total lost accessibility is <span class="math inline">\(P_{im} * \Delta_{im}\)</span> where <span class="math inline">\(P\)</span> is
+the number of trip productions at zone <span class="math inline">\(i\)</span> for purpose <span class="math inline">\(m\)</span>. This measure is
+given in units of dimensionless utility, but the mode choice cost coefficient
+<span class="math inline">\(\beta\)</span> provides a conversion factor between utility and cost. The total financial
+cost of a damaged link for the entire region for all trip purposes is
+<span class="math display" id="eq:totalcost">\[\begin{equation}
+\mathrm{Cost} = \sum_{I}\sum_{M} -1 / \beta_{\mathrm{cost},m} * P_{im} \Delta_{im}
+  \tag{3.4}
+\end{equation}\]</span></p>
+<p>For comparison to a simpler resiliency method that only includes the increased
+travel time between origins and destinations, we compute the change in travel
+time between <span class="math inline">\(\delta t_{ij}\)</span> and multiply the number of trips by this change
+and a value of time coefficient derived from the cost and vehicle time coefficients
+of the mode choice model,
+<span class="math display" id="eq:ttmethod">\[\begin{equation}
+\mathrm{Cost}&#39; =  \sum_I \sum_J \sum_M \frac{\beta_{\mathrm{time}, m} }{\beta_{\mathrm{cost}, m}} T_{ijm} t_{ijm}
+  \tag{3.5}
+\end{equation}\]</span></p>
 </div>
-</div>
-<div id="highway-and-transit-skims" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Highway and Transit Skims</h2>
-<p>The model requires an understanding of the distance between zones by multiple
-modes, and how these distances change when a link in the network is damaged or
-destroyed. To measure the automobile, transit, and non-motorized trip times,
-initial data was needed for each trip mode considered in the model.</p>
-<p>The USTM highway network was extracted and applied to the resiliency model. The
-highway network is made up of both the urban and rural highway networks for the
-whole state of Utah. The highway network contains many link- and node-attribute
-data including street name, link distance, number of lanes, functional
-classification, transportation analysis zone ID (TAZ ID), county name, as well
-as speed limits and travel time data for five different times of day. Of
-particular interest from the available information was the <span class="math inline">\(AM_TIME\)</span> which
-contains the travel time in minutes for the AM time period along a link and the
-<span class="math inline">\(DISTANCE\)</span>, which contained the distance between nodes along a link. The
-<span class="math inline">\(AM_TIME\)</span> is used to determine the travel time between an origin and
-destination. The <span class="math inline">\(DISTANCE\)</span> is used to measure the distance between the OD pair
-with the shortest AM travel time.</p>
-<p>The highway skim module creates an output matrix of travel times and distances
-between origin-destination (OD) pairs and must be created before automobile and
-non-motorized (NMOT) trips can be incorporated into the model. We used the
-<span class="math inline">\(AM_TIME\)</span> and <span class="math inline">\(DISTANCE\)</span> variables available in the highway network file to
-create a matrix of distances and shortest travel times between all OD pairs in
-the USTM network. The output matrix, or highway skim, forms the basis for
-further analysis by providing needed automobile and non-motorized (NMOT)
-information for the other modules in the model.</p>
-<p>USTM incorporates traffic models maintained by other MPOs in Utah into the model
-structure. Only the WFRC / MAG model contains a substantive transit forecasting
-component. To account for transit trips in the resiliency model, an offline
-process adapted the WFRC transit skims into the USTM model zone structure. The
-end result of this process is that the TAZ matrices from each model were
-adjusted such that the WFRC / MAG model was the same size as the USTM model, and
-each TAZ number corresponded between the models as well.</p>
-<p>Transit network resiliency is outside the scope of this project. Accordingly,
-the resiliency model assumes that transit services are fixed, meaning that
-changes to the network cannot influence transit availability on the network.</p>
-</div>
-<div id="trip-attractions-and-socioeconomic-data" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Trip Attractions and Socioeconomic Data</h2>
-<p>The resiliency model uses socioeconomic data extracted from USTM to estimate the
-productions at each zone. The socioeconomic data from the Utah Household Travel
-Survey (UHTS) conducted in 2015 contains TAZ related information such as county
-name, total households, household population, total employment, and a breakdown
-of employment by job category <span class="citation">(<a href="#ref-uhts2017" role="doc-biblioref"><strong>uhts2017?</strong></a>)</span>. This information is useful when
-determining the DC size term.</p>
-<p>Trip attractions are calculated using the size term, which denotes the
-significance of a TAZ in attracting trips. The size term is built using various
-DC parameters and the socioeconomic data to determine the size or attractiveness
-of a zone. The size term equation was adapted from the Oregon Statewide
-Integration Model (SWIM), which is one of the most comprehensive destination
-choice models today.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="methodology.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_load</span>(coefficient_table)</span>
-<span id="cb1-2"><a href="methodology.html#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="methodology.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kbl</span>(coefficient_table, <span class="at">caption =</span> <span class="st">&quot;Choice Model Coefficients&quot;</span>, <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-4"><a href="methodology.html#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Model&quot;</span>, <span class="st">&quot;Variable&quot;</span>, <span class="st">&quot;HBW&quot;</span>, <span class="st">&quot;HBO&quot;</span>, <span class="st">&quot;NHB&quot;</span>), <span class="at">digits =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-5"><a href="methodology.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb1-6"><a href="methodology.html#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collapse_rows</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">row_group_label_position =</span> <span class="st">&#39;stack&#39;</span>, <span class="at">latex_hline =</span> <span class="st">&quot;major&quot;</span>)</span></code></pre></div>
+<div id="model-implementation-in-utah" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Model Implementation in Utah<a href="methodology.html#model-implementation-in-utah" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Utah Department of Transportation (UDOT) manages an extensive highway
+network consisting of interstate freeways (I-15, I-80, I-70, and I-84),
+intraurban expressways along the Wasatch Front, and rural highways throughout
+the state. The rugged mountain and canyon topography throughout the state places
+severe constraints on possible redundant paths in the highway network. A
+landslide or rock fall in any single canyon may isolate a community or force a
+redirection of traffic that could be several hours longer than the preferred
+route; understanding which of these many possible choke points is most critical is a key
+and ongoing objective of the agency.</p>
+<p>Several data elements for the model described above were obtained from the Utah
+Statewide Travel Model (USTM). USTM is a trip-based statewide model that is
+focused exclusively on long-distance and rural trips: intraurban trips within
+existing Metrpolitan Planning Organization (MPO) model regions are pre-loaded
+onto the USTM highway network. This means that USTM as currently constituted can
+be used for infrastructure planning purposes, but would be inadequate to
+evaluate the systemic resiliency of the highway network given the disparate
+methodologies of the MPO models. USTM can, however, provide the following
+data elements</p>
+<ol style="list-style-type: decimal">
+<li><em>Highway Network</em>: including free flow and congested travel speeds,
+link length, link capacity estimates, etc.</li>
+<li><em>Zonal Productions</em> <span class="math inline">\(P_{im}\)</span>: available for all zones by purpose,
+including those in the MPO region areas.</li>
+<li><em>Zonal Socioeconomic Data</em>: the destination choice model described in
+Equation <a href="methodology.html#eq:dcp">(3.2)</a> calculates attractions <span class="math inline">\(A_{jm}\)</span> from the USTM zonal
+socioeconomic data based on the utility coefficients in <a href="methodology.html#tab:coeffs">3.1</a>.</li>
+<li><em>Calibration Targets</em>: USTM base scenario estimates of mode split and
+trip length were used to calibrate the utility coefficients as described
+below.</li>
+</ol>
+<p>Among MPO models in Utah, only the model jointly operated by the
+Wasatch Front Regional Council (WFRC, Salt Lake area MPO) and the<br />
+Mountainland Association of Governments (MAG, Provo area MPO) model include a
+substantive transit forecasting component. The transit travel time skim from the
+WFRC / MAG model was used for the mode choice model in Equation <a href="methodology.html#eq:mcp">(3.1)</a>;
+the zonal travel time between the smaller WFRC / MAG model zones was averaged
+to the larger USTM zones, and the minimum time among the several modes available
+(commuter rail, light rail, bus rapid transit, local bus) was taken as the travel
+time for a single transit mode in this implementation.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="methodology.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_load</span>(coefficient_table)</span>
+<span id="cb2-2"><a href="methodology.html#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="methodology.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kbl</span>(coefficient_table, <span class="at">caption =</span> <span class="st">&quot;Choice Model Coefficients&quot;</span>, <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-4"><a href="methodology.html#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Model&quot;</span>, <span class="st">&quot;Variable&quot;</span>, <span class="st">&quot;HBW&quot;</span>, <span class="st">&quot;HBO&quot;</span>, <span class="st">&quot;NHB&quot;</span>), <span class="at">digits =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-5"><a href="methodology.html#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="methodology.html#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collapse_rows</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">row_group_label_position =</span> <span class="st">&#39;stack&#39;</span>, <span class="at">latex_hline =</span> <span class="st">&quot;major&quot;</span>)</span></code></pre></div>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:coeffs">Table 3.1: </span>Choice Model Coefficients
@@ -717,182 +647,35 @@ Walk Distance (1 mile or more) [miles]
 </tr>
 </tbody>
 </table>
-</div>
-<div id="mode-choice-model" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Mode Choice Model</h2>
-<p>The mode choice (MC) module calculates the mode choice logsum (MCLS) between
-each OD pair in the network for each trip purpose. The trip purposes considered
-in the model are home-based work (HBW), home-based other (HBO) and
-non-home-based (NHB). The MC module includes the highway skim, the transit skim,
-and the MC coefficients and MC constants as inputs.</p>
-<p>The MC constants and coefficients used in the resiliency model were extracted
-from USTM where applicable or adapted from SWIM. The IVTT, COST, WALK1, and
-WALK2 coefficients for the HBW, HBO, and NHB purposes were extracted directly
-from the USTM mode choice model. The values for each of the coefficients are in
-Table <a href="#tab:mccoefs"><strong>??</strong></a>:</p>
-<p>Utility equations, which were initially adapted from the RVTPO model, account
-for multiple variables which typically have different units. Each of the
-variables included in the utility equation must have the same unit, so the
-coefficients in Table <a href="#tab:mccoefs"><strong>??</strong></a> are made up of both generic and
-alternative-specific numbers. A generic coefficient is applied to a variable
-that changes by mode. In Table <a href="#tab:mccoefs"><strong>??</strong></a>, the only generic coefficient is the
-COST coefficient. The other MC coefficients in the resiliency model are
-alternative specific. These coefficients are the IVTT, WALK1, and WALK2
-coefficients. The value that each of these coefficients are multiplied by
-changes for each of the available modes. The alternative specific coefficients
-included in the MC model allow the model to measure user bias.</p>
-<p>Another aspect to utility equations are mode constants. We initially extracted
-the MC constants from USTM, however these values were adjusted during the
-calibration process. Constants are typically values that represent the effects
-of all factors on the choice, but are not limited to those values included in
-the utility equations <span class="citation">(<a href="#ref-koppelman2006" role="doc-biblioref">Koppelman and Bhat 2006</a>)</span>.</p>
-<p>The utility equations from the Roanoke Valley Transportation Organization model
-<span class="citation">(<a href="#ref-rvtpo" role="doc-biblioref"><strong>rvtpo?</strong></a>)</span> were extracted and then pared down to match the available data from
-USTM and the purposes included in the resiliency model. The constant values,
-which are represented using a “K” change during the calibration process while
-the coefficients do not change during the calibration process.</p>
-<p><span class="math display" id="eq:3">\[\begin{equation}
-U_{Auto}=C_{IVTT} * Travel Time + C_{Cost} * Autocost * Distance
-\tag{3.3}
-\end{equation}\]</span></p>
-<p><span class="math display" id="eq:4">\[\begin{equation}
-U_{Transit}=K_{TRN} + C_{IVTT} * Transit Time
-\tag{3.4}
-\end{equation}\]</span></p>
-<p><span class="math display" id="eq:5">\[\begin{equation}
-U_{NMO}T=K_{NMOT} + 20 * C_{WALK1} * Dist_{&lt;1 Mile} + C_{WALK2} * Dist_{&gt;1Mile}
-\tag{3.5}
-\end{equation}\]</span></p>
-<p>From the equations above, several commonalities between the three MC utility
-equations are apparent. First, the transit and NMOT utility equations both have
-a constant, denoted by a <span class="math inline">\(K\)</span>, included. The auto equation does not have a
-constant because auto serves as the reference variable in the resiliency model.
-Second, both the auto and NMOT equations account for distance, and last, each of
-the three utility equations account for travel time, either in the form of an
-in-vehicle travel time coefficient, or another modified factor. The NMOT utility
-equation is not calculated using a specific coefficient for time. Instead, the
-NMOT distances are multiplied by an assumed walking speed of 20 minutes per
-mile. This is common practice in other choice models for NMOT trips.</p>
-<p>Additionally, in the utility equations for NMOT trips, the maximum travel
-distance was limited to a trip of 50 miles or less. 50 miles was assumed as a
-maximum distance for a NMOT trip between an OD pair. We determined that the
-longest allowable distance a biker may choose to travel would be about 50 miles
-one-way. An attempt was made to limit the distance cap further; however, it was
-discovered that the NMOT distance becomes more sensitive at shorter distances.
-Limiting the NMOT trips will be explored further in Phase 2 of model
-development.</p>
-<p>After the MC utilities were calculated, it was necessary to calculate the
-probability associated with each mode of travel for an OD pair. The equation
-used to accomplish this can be seen in the equation below:</p>
-<p><span class="math display" id="eq:6">\[\begin{equation}
-Probability_{i} = \frac{exp_{i}}{\sum exp(U)}
-\tag{3.6}
-\end{equation}\]</span></p>
-<p>Due to the way that the transit utility was calculated, the probability that a
-user would choose transit in an area with no available transit was often 100%.
-The cause of this was that the transit time matrix only shows a time value if
-there is transit available between an OD pair. The zero values that corresponded
-to areas with no transit availability caused the transit utility to be very
-small, or less negative in most cases compared to all the other modes
-considered. As a result, users had a greater probability of choosing transit as
-a mode even if it was not an available option between an OD pair. To
-troubleshoot this, we filtered the sum of the exponentiated utilities and
-reassigned values equal to zero to be equal to 1, so that the total sum of the
-exponentiated utilities for an OD pair would be 1. After implementing this
-change, the calculated probabilities added up correctly between modes, and areas
-with no transit service available returned a transit probability of zero.</p>
-</div>
-<div id="destination-choice-model" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Destination Choice Model</h2>
-<p>The destination choice (DC) module calculates the destination choice logsum
-(DCLS) between each OD pair in the network for each trip purpose. The trip
-purposes considered in the model are home-based work (HBW), home-based other
-(HBO) and non-home-based (NHB). Two other trip purposes are considered in USTM,
-though these purposes do not have significant effect on the logsum or are not
-flexible in nature (users cannot choose a different destination or origin). The
-DC module includes the highway skim, MCLS output from the previous module, the
-socioeconomic data extracted from USTM, and DC parameters as inputs.</p>
-<p>The DC parameters were adapted where applicable from SWIM, the Oregon Statewide
-Integrated Model. SWIM has many more purposes and modes incorporated into its
-model structure than does the resiliency model. One limitation to using SWIM as
-a basis for the DC parameters, however, is that SWIM does not account for work
-trips. Oregon uses a separate travel demand model to estimate work trips, which
-was problematic because the DC parameters for work purposes could not be
-located. Thus, the work trip parameters were taken from the RVTPO model instead.
-The DC parameters can be seen in Table <a href="#tab:dcparams"><strong>??</strong></a></p>
-<p>The DC utility equation was initially adapted from the RVTPO model, and then
-pared down to match the available data inputs from USTM and purposes of the
-resiliency model. The DC utility equation differs from the MC utility equations.
-The DC equation, seen in Equation <a href="methodology.html#eq:7">(3.7)</a>, is made up of the MCLS calculated
-in the previous module, the size term, and several distance and cubic polynomial
-coefficients and their corresponding values.</p>
-<p><span class="math display" id="eq:7">\[\begin{equation}
-U=C_{LSUM} * MCLS + log(sizeterm) + C_{Dist} * Dist +C_{Distsquared} * DistSquared + C_{DistCubed} * DistCubed + C_{LogDist} * log⁡(Dist)
-\tag{3.7}
-\end{equation}\]</span></p>
-<p>The MCLS value is applied to the DC model utility equation as the impedance
-term, or a measure of a user’s resistance to using the specified path or mode.
-This is like the friction factor in the gravity model discussed in the beginning
-of <a href="methodology.html#methodology">methodology</a>. Feeding the MCLS value into the DC module is
-what allows users to choose a destination rather than having fixed destination
-choices. The size term, which will be discussed in greater detail later in this
-chapter helps to determine the attractiveness of a destination zone compared to
-another destination. The cubic polynomial terms serve as a method to calibrate
-the DC module outputs and will also be discussed in greater detail later in this
-chapter. These are the main terms that make up the DC utility equation.</p>
-<p>The socioeconomic data is used in the DC model to compute the size term, or the
-attractiveness of a destination choice in the model. The size term is made up of
-statistical data about a zone. This data was published in 2015 as part of the
-UHTS and made available via UDOT. The size term equation can be seen below:</p>
-<p><span class="math display" id="eq:8">\[\begin{equation}
-SizeTerm= C_{HH} * TotHH + C_{OFFI} * OFFI + C_{RETEMP} * RETEMP + C_{OTHEMP} * (ALLEMP-OFFI-RETEMP)
-\tag{3.8}
-\end{equation}\]</span></p>
-<p>Other employment was not included in the socioeconomic data, which was
-problematic. A way to determine a value for other employment was found by
-subtracting the other employment purposes considered from the ALLEMP value.
-Doing this left only the employment data that had not already been accounted for
-in each TAZ behind to be multiplied by the proper coefficient as seen in Table <a href="#tab:dcparams"><strong>??</strong></a>.</p>
-<p>The DC logsums are calculated by summing each row in the DC utility matrix, and
-then exponentiating that value. This process used to accomplish this can be seen
-below:</p>
-<p><span class="math display" id="eq:9">\[\begin{equation}
-DCLS=exp⁡(ROWSUM(U_{DC}))
-\tag{3.9}
-\end{equation}\]</span></p>
-<p>The purpose of taking the log of the entire row is to measure the logsum between
-a zone and all the other zones at the same time. By doing this, we can determine
-the overall change in logsum between scenarios by TAZ, which is the measurement
-of interest. The logsum tells us the value of a zone based on a user’s ability
-to choose a mode and destination.</p>
-<p>The destination choice parameters and mode choice coefficients were calibrated
-according to standard procedure such that the trip length frequency distribution
-(TLFD) between USTM and the resiliency models were similar.</p>
-</div>
-<div id="maybe-include-table-with-beginning-and-ending-calibration-values" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> MAYBE INCLUDE TABLE WITH BEGINNING AND ENDING CALIBRATION VALUES?</h2>
-</div>
-<div id="summary-1" class="section level2" number="3.7">
-<h2><span class="header-section-number">3.7</span> Summary</h2>
-<p>We now have a logit-based model that is sensitive to user mode and destination
-choice. The model also accounts for modes that are not as flexible in the case
-of link closure as well. Using the model, we can input scenarios with broken
-links to evaluate the effects that link loss may have on user mode and
-destination choice, as well as estimate the overall disbenefit experienced by
-road users per day.</p>
+<p>The utility coefficients for the destination and mode choice models are
+presented in Table <a href="methodology.html#tab:coeffs">3.1</a>. The mode choice coefficients were adapted
+from USTM and supplemented with coefficients from the Roanoke (Virginia)
+Valley Transportation Planning Organization (RVTPO) travel model. This model was
+selected for its simplicity and analogous data elements to the proposed model.
+The alternative-specific constants were calibrated to regional mode choice
+targets developed from the 2015 Utah Household Travel Survey (UHTS) using
+methods described by <span class="citation">Koppelman and Bhat (<a href="#ref-koppelman2006" role="doc-biblioref">2006</a>)</span>.
+The destination choice utility equation consists of three parts: a size term,
+a travel impedance term, and a calibration polynomial. Coefficients for the
+size term and travel impedance terms were adapted from the Oregon
+Statewide Integrated Model (SWIM) for all purposes except HBW. Instead, these coefficients were
+adapted from the RVTPO model. The distance polynomial coefficients were
+calibrated to targets developed from UHTS.</p>
+<div id="vulnerable-link-identification" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Vulnerable Link Identification<a href="methodology.html#vulnerable-link-identification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To develop evaluation scenarios on which to apply the model, we used information
+contained in the UDOT Risk Priority Analysis online map [CITATION]. This map
+considers the probability of various events that could impact road performance
+including rock falls, avalanches, landslides, and other similar occurrences.
+The map indicated 41 non-redundant highway facilities on which to apply the model.</p>
 
 </div>
 </div>
-<h3>References</h3>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-koppelman2006" class="csl-entry">
 Koppelman, F., and C. Bhat. 2006. <span>“A Self Instructing Course in Mode Choice Modeling: Multinomial and Nested Logit Models.”</span> In.
-</div>
-<div id="ref-tfr2021" class="csl-entry">
-Travel Forecasting Resource. 2021. <span>“<span>Destination Choice Models</span>.”</span> <a href="https://tfresource.org/topics/Destination_Choice_Models.html">https://tfresource.org/topics/Destination_Choice_Models.html</a>.
-</div>
-<div id="ref-udot2021" class="csl-entry">
-Utah Department of Transportation. 2021. <span>“<span>Planning</span>.”</span> <a href="https://www.udot.utah.gov/connect/business/public-entities/planning/">https://www.udot.utah.gov/connect/business/public-entities/planning/</a>.
 </div>
 </div>
             </section>
@@ -905,7 +688,6 @@ Utah Department of Transportation. 2021. <span>“<span>Planning</span>.”</spa
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -945,6 +727,10 @@ gitbook.start({
 "text": null
 },
 "download": ["ustm_resiliency.pdf", "ustm_resiliency.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
