@@ -239,12 +239,27 @@ drastically.
 
 ```{r traveltimerank, echo = FALSE}
 tar_load(timecost_table)
-timecost_table %>%
-  kbl(
-  col.names = c("Scenario", "HBW, HBO, NHB, Travel Time Method", "Freight, External Passenger, REC, Travel Time Method"),
-  align = "crr", booktabs = TRUE, 
+
+scalf <- function(x){
+  scales::dollar(x, largest_with_cents = 10000000)
+}
+
+timecosts <- timecost_table |> 
+  arrange(-TOTAL) |> 
+  mutate(
+    across(-scenario, scalf )
+  ) |> 
+  left_join(logsumcosts) 
+
+timecosts |> 
+  left_join(linktable) |> 
+kbl(
+  col.names = c("Scenario", "HBW, HBO, NHB", 
+                "Freight, External, etc.", "Total",  "HBW, HBO, NHB", "Route", "Location"),
+  align = "crr", booktabs = TRUE, format = "markdown"
 ) %>%
-  kable_styling()
+  kable_styling() |> 
+  add_header_above(c(" " = 1, "Travel Time" = 3, "Logsum" = 1, " " = 2))
 ```
 
 Some other interesting findings are that in the top 10 of each analysis methods,
@@ -263,7 +278,7 @@ left_join(logsumcosts, timecost_table) %>%
   select(-c("total_delta")) %>%
   kbl(
   col.names = c("Scenario", "HBW, HBO, NHB, Logsum Method", "HBW, HBO, NHB, Travel Time Method", "Freight, External Passenger, REC, Travel Time Method"),
-  align = "crrr", booktabs = TRUE, 
+  align = "crrr", booktabs = TRUE,  
 ) %>%
   kable_styling()
 ```

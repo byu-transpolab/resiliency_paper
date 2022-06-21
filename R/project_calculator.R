@@ -45,9 +45,11 @@ reduce_timecosts <- function(timecosts_file){
     pivot_wider(names_from = Purpose, values_from = Cost) %>%
     mutate(
       # Costs are given in cents; need to convert to dollars
-      HBWHBONHB = scales::dollar((HBO + HBW + NHB)/100, largest_with_cents = 1e6), 
-      FXPREC = scales::dollar((IIF + IXF + REC + XXF + XXP)/100, largest_with_cents = 1e6)) %>%
-    select(scenario, HBWHBONHB, FXPREC) 
+      HBWHBONHB = (HBO + HBW + NHB)/100,
+      FXPREC = (IIF + IXF + REC + XXF + XXP)/100,
+      TOTAL = HBWHBONHB + FXPREC
+    ) %>%
+    select(scenario, HBWHBONHB, FXPREC, TOTAL) 
 }
 
 # Single-Scenario Analysis Tables =====================================================
