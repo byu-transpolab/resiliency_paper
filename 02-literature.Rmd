@@ -41,39 +41,26 @@ the number of paths between node pairs. It may even leave nodes or groups of nod
 completely isolated. In studies based on connectivity, researchers typically apply
 methods and concepts from graph theory.
 
-@abdel2007 developed a multi-layered graph to examine the resiliency of the traffic
-signal control system in Boise, Idaho. The researchers determined which 
-traffic signals would be isolated by a failure to a particular power substation,
-and consequentially the percent of travel paths that would experience diminished 
-levels of service. The research highlights the degree to which interrelated
-infrastructure systems --- power, telecommunications, and transportation ---
-depend on each other, though the researchers did not attempt to look at the
-connective resiliency of the transportation network directly.
+@abdel2007 developed a multi-layered graph approach to examine the resilience of the traffic signal control system in Boise, Idaho. The researchers determined which traffic signals would be isolated by a failure to a particular power substation, and consequentially the percent of travel paths that would experience diminished levels of service. The research highlighted the degree to which interrelated infrastructure systems—power, telecommunications, and transportation—depend on each other, though the researchers did not attempt to look at the connective resilience of the transportation network directly. 
 
-@agarwal2011 present a method to represent a transportation network as a 
-hierarchical graph that can be analyzed more directly for vulnerabilities. The
-authors acknowledge, however, that a maximal failure consideration where a node
-is entirely isolated from the network is unlikely in a real-world network with 
-multiple paths of connectivity.
+@agarwal2011 presented a method to represent a transportation network as a hierarchical, or cluster graph, that can be analyzed more directly for vulnerabilities. Clusters are formed as groups of links and nodes become isolated from each other. These clusters of links and nodes are then grouped together more tightly by including nearby clusters, which creates a “zoomed out” or less complex model where small clusters begin to act as nodes connected by links. In the study, links in the system are damaged, and the resulting connectedness of the network is evaluated. One scenario of importance noted by the authors, however, is that a maximal failure consideration where a node is entirely isolated from the network is unlikely in a real-world network with multiple paths of connectivity. The authors discussed the importance of having damaged networks with high levels of functionality. 
 
-@ip2011 address this shortcoming through the concept of *friability*, or
-the reduction of capacity caused by removing a link or node, in order to
-determine criticality of individual links. The methodology relies on the ability
-to determine the weighted sum of the resilience of all nodes based on the
-weighted average of connectedness with other city nodes in the network. The
-authors determine that the recovery of transportability between two cities
-largely depends on redundant links between nodes. The authors also comment that
-most traffic managers are more concerned with the friability of single links
-rather than the friability of multiple links or an entire system.
+@vodak2019 on the other hand, developed an approach to identify critical links in ´ a network by searching for the shortest independent loops in the network. An independent loop is essentially a way to travel between an origin and a destination over any number of alternative routes. The algorithm progressively damaged one or more links between iterations to determine if nodes become isolated, or cut off from the network. If a node becomes easily isolated or has a higher likelihood of becoming isolated, then there is a higher degree of vulnerability present in the network. This method can both identify critical links in individual networks and provide a means to quantitatively compare networks. 
 
-@vodak2019 develop an approach to identify
-critical links in a network by searching for the shortest independent
-loops in the network. The algorithm progressively damages one or more links
-between iterations to determine if nodes become isolated, or cut off from the
-network. If a node becomes easily isolated or has a higher likelihood of
-becoming isolated, then there is a higher degree of vulnerability present in the
-network. This method can both identify critical links in individual networks, as
-well as provide a means to quantitatively compare networks.
+@ip2011 addressed the concept of friability, or the reduction of capacity caused by removing a link or node, in order to determine criticality of individual links. The methodology relied on the ability to determine the weighted sum of the resilience of all nodes based on the weighted average of connectedness with other city nodes in the network. The authors determined that the recovery of transportability between two cities largely depends on redundant links between nodes. The authors also commented that most traffic managers are more concerned with the friability of single links rather than the friability of multiple links or an entire system. This suggests that planners and managers may not consider the importance of understanding the impacts of widespread, all-inclusive disaster scenarios. 
+
+@guze2014 conducted a review of the known uses of graph theory before reviewing several other multi-criteria optimization methods. Guze’s methodology involved an analysis of the knapsack problem which focused on flow theory in transportation systems and identifying a method to find the best graph solution. Guze’s greatest contribution to transportation research at the time was a simplified method for determining shortest path route options on simple networks. 
+
+@osei2014 adopted a network analysis methodology that is able to analyze resilience of transportation networks. In this article, the authors evaluated resilience by comparing the biological network of a common mold with a rail network. The network for both the mold and the railway are complexly connected. The “giant component”, a construct of a graph representing its connectivity, is given by:
+
+\begin{equation}
+\phi = \frac{E'}{E}
+  (\#eq:giantcomp)
+\end{equation}
+
+where $\phi$ represents the giant component, $E$ represents the level of connectivity before the network is damaged, and $E’$ represents the level of network connectivity after the network is damaged. After the giant component is found, network efficiency is determined using the shortest path available. By combining both the ratio of link connections and network efficiency, the authors draw comparisons between two complex networks. Ultimately, the authors concluded that a denser, more highly interconnected network would perform better when a link is cut due to a larger giant component value. 
+
+@zhang2015 investigated the role of network topology, or the physical layout of the network in a geographic location. The authors provided several examples of network topology types including hub and spoke, grid, and ring networks. After computing resilience indexes, or general resilience levels of each type of network topology, the authors determined that metrics such as throughput, connectivity and average reciprocal distance increased with greater lineage, however these same measures decreased as networks became more widespread. This is likely because larger networks typically have fewer, less dense node connections, and therefore are less redundant. 
 
 All of these graph theoretical approaches tend to break down to some degree on
 large, real-world networks where the number of nodes and links numbers in the tens
@@ -110,16 +97,26 @@ ignore the other possible ways a population might adapt its travel to a damaged
 network. Some people may choose other modes or destinations, and it is possible
 that some previously occurring trips might be canceled entirely.
 
+## Changes in Travel Time
+
+Highway system network failures—in most imaginable cases—degrade the shortest or least cost path, but typically do not eliminate all paths. The degree to which travel time increases when a particular link is damaged could provide an estimate of the criticality of that link or node. If a link or node becomes completely isolated, the travel time to that node or link would increase indefinitely. 
+
+@berdica2007 attempted to examine what the effects of road degradation on Stockholm’s transportation network would be if one or more chokepoints were to become damaged or all-together inundated. The authors sought to determine how interruptions affect the system, and how overall system performance was affected by the damaged or lost facility. Users in this method were only given the choice of an alternate route, and the authors acknowledge that this is not entirely reasonable in a real-world situation because users would likely change departure or arrival time, mode, or even destination. This method purely attempted to quantify delay experienced by users compared to the original equilibrium state, but does make an attempt to determine a monetary value associated with closure or degradation. 
+
+@peeta2010 constructed a model to efficiently allocate highway maintenance and emergency response resources at locations throughout a network. Each link in the sample network was assigned a specific failure probability based on resource allocation; the model evaluated the increase in travel time resulting from a broken link. The authors applied a Monte Carlo simulation of multiple scenarios, which revealed resource allocation plans with the least network degradation, and thus which links were most critical to the network’s operations. 
+
+@ibrahim2011 provided an approach for determining vulnerability of infrastructure by estimating the cost of single link failure based on the increase in shortest path travel time due to increased congestion levels. The authors proposed a hybrid heuristic approach that calculates the traditional user-equilibrium assignment for finding the first set of costs, and then fixes those costs for all following iterations to determine the effects of failure on overall travel time of the system. 
+
+@omer2013 proposed a methodology for assessing the resilience of physical infrastructure during disruptions. To do this, the authors used a network model to build an origindestination matrix which allows initial network loading and analysis. Omer’s model used several metrics, but the main metric used to determine resilience is the difference in travel time between a disturbed and undisturbed network. Omer’s framework is applied to an actual network between New York City and Boston for analysis. Changes in demand, travel time, mode choice and route choice are tracked for analysis. Omer’s framework supports operability of transportation networks due to the way it analyzes networks experiencing suboptimal circumstances. Omer’s work identified key parameters that should be measured to assess resilience during disruptive events including mode and route choice. 
+
+@jaller2015 sought to identify critical infrastructure based on increased travel time or reduced capacity due to disaster. The proposed methodology utilized user-equilibrium to determine proper initial network loading. Then the shortest path between one origin and one destination could be identified. To implement damage to the network, a link was cut, and then the next shortest path was found. This process is followed for all links in the system in order to determine a sense of the criticality of each link to network resilience. The analysis is carried out for each OD pair, and the nodes which experience the greatest change in travel time are determined to be the most critical. Jaller’s methodology allowed traffic managers to identify critical paths for mitigation purposes before the occurrence of disaster through careful analysis. 
+
+@ganin2017 attempted to investigate resilience through a disruption of 5% of the roadways in 40 urban networks within the United States. The employed methodology determined that Salt Lake City had the most resilient transportation network while Washington D.C. had the least resilient. This determination is based on a comparison of simple gravity models of the identified networks after links are damaged versus before. The authors worked three factors into each model, which account for differences in car- truck ratios, average speed, and average vehicle length. Using a gravity model to determine commuting patterns, the authors were able to estimate the average annual delay per commuter. They used this to determine network efficiency. Ganin et al. noted that traffic delay times (or the travel time caused by a closure) increased significantly as road segments were broken. 
+
+A primary limitation with increased travel time methodologies is that they ignore other possible ways a population might adapt its travel to a damaged network. Some people may choose other modes or destinations, and it is possible that some previously occurring trips might be canceled entirely. It may also be prudent to consider how access changes, and evaluate changes in user choice based purely upon accessibility.
+
 ## Changes in Accessibility
-In a travel modeling context, *accessibility* refers to the ease with which
-individuals can reach the destinations that matter to them; this is an abstract
-idea but one that has been quantified in numerous ways. @dong2006 provide a
-helpful framework for understanding various quantitative definitions of
-accessibility that we will simplify here. The most elementary definition of
-accessibility is whether a destination is within an *isochrone*, or certain
-distance. This measure is often represented as a count, e.g., the number of jobs
-reachable from a particular location within thirty minutes travel time by a
-particular mode. Mathematically,
+In a travel modeling context, accessibility refers to the ease with which individuals can reach the destinations that matter to them; this is an abstract idea but one that has been quantified in numerous ways. @dong2006 provide a helpful framework for understanding various quantitative definitions of accessibility that we will simplify here. The most elementary definition of accessibility is whether a destination is within a specific travel time, or a count of the destinations accessible within that specific travel time; e.g., the number of jobs reachable from a particular location within 30 minutes travel time by a particular mode. Mathematically, this form of accessibility is defined as:
 
 \begin{equation}
 A_i = \sum_{j} X_j I_{ij};  I_{ij} = \begin{cases}  1 \text{ if } d_{ij} \leq D\\ 
@@ -132,16 +129,14 @@ destinations $X$ at other points $j$. $I_{ij}$ is an indicator function equal to
 zero if the distance between the points $d{_ij}$ is less than some asserted
 threshold (e.g., thirty minutes of travel time). By relaxing the assumption of a
 binary isochrone and instead using the distance directly, we can derive the
-so-called gravity model,
+so-called gravity model as:
 
 \begin{equation}
 A_i = \sum_{j} X_j f(d_{ij})
   (\#eq:gravity)
 \end{equation}
 
-where the function $f(d_{ij})$ is often a negative exponential with a calibrated
-impedance coefficient. An extension of the gravity model is to use the logsum
-term of a multinomial logit destination choice model,
+where the function $f(d_{ij})$ is an impedance function, often a negative exponential with a calibrated impedance coefficient. This gravity accessibility term is included in the gravity trip distribution model (i.e., the gravity model). An extension of the gravity model is to use the logsum term of a multinomial logit destination choice model: 
 
 \begin{equation}
 A_i = ln\sum_{j} \beta_d(d_{ij}) + X_j\beta
@@ -154,13 +149,43 @@ and @geurs2004; namely, the measure is based in actual choice theory, and
 can include multiple destination types and travel times by multiple different
 modes.  
 
-@taylor2008 applied logsum-derived accessibility analysis to evaluate the
-  consequences of a tunnel failure in Adelaide, Australia.
-  
- 1. LOOK LITERATURE THAT TAYLOR CITES
- 2. LOOK AT LITERATURE THAT HAS CITED TAYLOR
- 3. TELL THE STORY OF WHY WHAT WE DID IS WORTHWHILE
- 
-BECAUSE THERE IS A GAP! STATEWIDE
+@geurs2004 provide a review of accessibility measures such as those above, up to 2004 in a literature review done at the time. Of the papers they reviewed, Vickerman (1974), Ben-Akiva and Lerman (1979), Geurs and Ritsema van Eck (2001), used isochrone type methods. Stewart (1947), Hansen (1959), Ingram (1971), Vickerman (1974), Anas (1983), used gravity style models, and Neuburger (1971), Leonardi (1978), Williams (1978), Koenig (1980), Anas (1983), Ben-Akiva et al. (1985), Sweet (1997), Niemeier (1997), Handy and Niemeier (1997), Levine (1998), Miller (1999) used or suggested logsums. These researchers highlight the importance of using person-based measures such as logsums in evaluating network vulnerability and resilience.
 
-  
+@taylor2008 applied logsum-derived accessibility analysis to evaluate the consequences of a tunnel failure in Adelaide, Australia. An accessibility framework capable of evaluating the change in accessibility for a multimodal urban network was designed. The designed framework is capable of determining the ability of an individual to access an activity. Taylor’s framework captured five types of choice, namely: activity, time period, trip-base, location, and mode choice, with key features being activity choice and trip-base (e.g., the origin point of a trip). Each of these choice models use typical multinomial logit models (MNL), with the exception of the mode choice model, which uses a nested MNL model. The main choice considered in the framework is activity choice followed by trip choice. Taylor’s proposed framework has been applied to an existing activity-based choice model for the Adelaide region, however, the framework operates independently from the parent model. 
+
+Using the developed framework, @taylor2008 calculated an “inclusive value” (IV) or logsum, and “consumer surplus” (CS) or utility value. Both the IV and CS values are vital to determining the benefit or dis-benefit associated with the change experienced by users in the individual model scenarios considered. Taylor’s accessibility framework, applied as a separate or connected module to the Adelaide model, estimates the IV and CS values using a logsum. These values allowed Taylor to show that more disruption occurs near the failed link than occurs farther away. Additionally, Taylor showed that a greater cost (nearly 40 times greater) is experienced by those who live in a TAZ near the link than by those who live in a TAZ located farther away from the failed link. Taylor’s framework primarily investigated accessibility on a network for a large city, but could easily be applied on a larger scale. 
+
+In the Adelaide model, @taylor2008 breaks one link and then calculates the difference in IV:
+
+\begin{equation}
+I_n = \text{log} \sum_{r \in R}{\text{exp}(V_{rn})}
+  (\#eq:ivlogsum)
+\end{equation}
+
+which represents the IV or logsum value, and estimates the CS value using:
+
+\begin{equation}
+CS = \frac{1}{\alpha}(\text{log} \sum_{n = 1}^{N}{\text{exp}(I_{n})+C})
+  (\#eq:cs)
+\end{equation}
+
+where $\alpha$ represents the negative of the coefficient of time or cost from the utility function, and $C$ is an unknown constant that represents the difference between the actual value of CS and the estimated value. The $I_j$ term represents the observable attributes of the possible utility. Taylor’s research highlighted the possibility for a comprehensive model capable of succinctly measuring the dis-benefit caused by a degraded network. Taylor continued by stating that traffic network simulation models could be considered for future research. Four key needs for future research specifically highlighted at the conclusion of Taylor’s article include: 
+
+-	Development of an efficient algorithm
+- Development of improved vulnerability metrics 
+- Improved techniques for identifying network weaknesses 
+- Use of network vulnerability indicators in studies of critical infrastructure and the implications of network degradation 
+
+Several other authors have employed various types of logit models in their research, or attempted to develop a methodology specifically for use in analyzing disrupted networks. @geurs2010 compared the benefits attributed to various climate change-mitigation land use and transport policies under two different evaluation metrics. The authors directly compared a “rule of half” calculation where the travel time reduction is distributed between existing and new travelers on a route with a mode choice logsum derived from utility theory. The authors argued that because the logsum is more comprehensive and inclusive of the full changes to travel demand (capturing the total value of the choice set), the additional benefits attributed to proposed projects are both more realistic and more economically favorable to climate change mitigation policies. They showed this by evaluating the accessibility and travel time changes resulting from land use densification strategies in the national travel demand model for the Netherlands. 
+
+@serulle2011 clarified variables related to resilience of transportation networks including average delay and transport cost, adjusting interactions, and increasing metric transparency. The authors employed a methodology capable of quantifying resilience using a fuzzy interference approach—an approach meant to analyze imprecise or vague data—that relates both physical and performance characteristics. The employed approach is able to determine a resilience index that supports comparative and sensitivity analyses. Accessibility data, including available road capacity, road density, alternate route proximity, average delay, transport cost, and average speed reduction, are analyzed for importance to the integrity of the network. 
+
+@masiero2012 used logit-based calculations to determine the value of the indirect costs associated with the closure of a road in terms of economic consequences, including punctuality for freight transport. In order to properly determine the cost of route closure, the authors also used a method discussed in @koppelman2006 which used model derived coefficients and values to determine the cost of an alternative. The authors implemented their model on a network consisting of a single travel corridor that has experienced long (1 week to 2 months or more) closures in the past in Southern Europe. @xu2015 developed network-based measures and computational methods to evaluate transportation network redundancy. This methodology used two dimensions in the analysis: travel alternative diversity and network spare capacity, meaning the number of effective connections available for each OD pair and the congestion effect or choice behavior of travelers. To create the analysis, the authors first constructed a sub-network which only looks at efficient routes. Next, the method counted the number of efficient routes from the origin to all nodes, and then estimates the multi-modal network spare capacity. Each dimension helps evaluate the capacity of the network based on different scenarios. Xu et al.’s method supports operability by evaluating the capacity of transportation networks using altered or damaged networks. 
+
+@nassir2016 applied a nested logit model to examine a transit network in Australia. The main contribution in @nassir2016 is an improved methodology for calculating accessibility measures related to transit, accomplished by developing a method to account for diversity information. The authors did note, however, that this measure is best applied to models with complex transit systems that serve large portions of the community. One important observation, however, is that users did not always choose the fastest route, nor did they always choose the route with the highest utility. @he2012modeling took another look at the aftereffects of the I-35W bridge collapse previously discussed. A key finding of this research is that people often initially base route choice on what they assume will be best based on past experience. So, over time, users adjusted their route choice to an altered network. The true implication here is that user did not automatically choose the best new route given an altered network, rather, it takes users time to learn how the new network functions. 
+
+@winkler2016 proposed a travel demand model that is valid for all networks, especially those with more than one constraint, where a constraint is a limiting factor present in the model, such as the maximum number of trips produced at an origin, or the maximum number of receivable trips at a destination. A logsum approach fails when two or more sets of constraints exist. The proposed method uses CS, a measure of benefit, to derive a method capable of analyzing a doubly constrained network. Traditionally, constraints are used for trip distribution, and the best-known model is the doubly constrained gravity model. Winkler’s methodology utilized a model that uses production, distribution, and mode choice as inputs. The methodology shows that models can be used to help determine outputs for multi-constraint MNLs. Winkler uses the change in CS as the logsum difference, which would allow utility to be estimated across the transportation network being modeled.
+
+## Summary
+
+The lessons learned from the events in Minneapolis and Atlanta demonstrate that when transportation networks are damaged or degraded by link failure, multiple changes result. Traffic diverts to other facilities and other modes, and some people make fundamental changes to their daily activity patterns, choosing new destinations or eliminating trips entirely. Numerous other researchers have identified methodologies to capture the effects, or at least have made quality attempts to capture the costs of these potential changes to accessibility in modeled crisis events. From this extensive review of existing literature, we are able to see that no one has attempted evaluate the relative systemic criticality of highway links on a statewide network using a logitbased model sensitive to changes in route path, destination choice, and mode choice. Doing so would provide a method for determining network vulnerabilities using estimates of dis-benefit that consider the entire available choice set, and estimates which account for user choice.
