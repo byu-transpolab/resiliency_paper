@@ -167,23 +167,27 @@ if(!knitr::is_latex_output()){
     addCircleMarkers(color = ~pal(value))
     
 } else {
-  pbox <- st_bbox(mapdata)
-  
-  
   ggplot(mapdata) +
     annotation_map_tile("cartolight", zoom = 8) + 
     coord_sf(crs = st_crs(4326),  expand = FALSE) + 
-    geom_sf(data = mapdata, inherit.aes = FALSE, size = 5, stroke = 1, shape = 21,
-            aes(fill = value), alpha = 0.5)  + 
+    geom_sf(data = mapdata, inherit.aes = FALSE, size = 5, stroke = 1,
+            aes(fill = value/1e8, shape = factor(sign(value), labels = c("Benefits", "Costs"))), 
+                alpha = 0.5)  + 
+    scale_shape_manual("Direction", values = c(21, 22), ) +
     theme(axis.line = element_line(color = NA))  + 
-    scale_fill_viridis("Cost of closure (\\$)", option = "magma", direction = -1) + 
-    xlab("") + ylab("") 
+    scale_fill_viridis("Cost of closure ($M)", option = "magma", direction = -1) + 
+     theme(axis.line = element_line(color = NA),
+          axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+          axis.ticks.x=element_blank(),
+          axis.title.y=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks.y=element_blank())
+}
   
   
   # SLC map
   
-  
-}
 ```
 
 
@@ -221,7 +225,7 @@ logsumcosts <- costs %>%
 left_join(logsumcosts, linktable) %>%
   kbl(
   col.names = c("Scenario",  "Cost (per Day)", "Route", "Location"),
-  align = "crrll", booktabs = TRUE, format = "markdown"
+  align = "crrll", booktabs = TRUE#, format = "markdown"
 ) %>%
   kable_styling()
 ```
@@ -258,7 +262,7 @@ timecosts |>
 kbl(
   col.names = c("Scenario", "HBW, HBO, NHB", 
                 "Freight, External, etc.", "Total",  "HBW, HBO, NHB", "Route", "Location"),
-  align = "crr", booktabs = TRUE, format = "markdown"
+  align = "crr", booktabs = TRUE#, format = "markdown"
 ) %>%
   kable_styling() |> 
   add_header_above(c(" " = 1, "Travel Time" = 3, "Logsum" = 1, " " = 2))
