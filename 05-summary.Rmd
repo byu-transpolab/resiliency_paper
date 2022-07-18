@@ -1,20 +1,16 @@
 # Limitations and Discussion
 
-Fixed transit travel time?
+The issue of systemic resilience to natural and other hazards is an important question for UDOT, given the precarious situation of many of its transportation assets. Flash floods, rockfalls, avalanches, earthquakes, and other incidents pose threats to the network of independent transportation facilities. This research did not consider risk assessment directly at any level, but rather took as a given that 41 facilities were at some level of risk and played a potentially large systemic role. UDOT’s approach to systemic resilience should involve all three elements of resilience: hardening assets from failure through high-quality engineering and construction; locating maintenance resources in areas where they can most quickly resolve issues and return facilities optimal conditions; and understanding how the system could work effectively in a damaged or degraded state for medium to long periods of time if necessary.
 
-Shortest path: should be fixed?
+This research focused on the systemic criticality of 41 facilities that were assumed to fail independently. Some of the disaster scenarios most likely to affect Utah highway facilities – especially a major earthquake – are likely to damage multiple highway assets simultaneously. This research might be extended to consider what would happen if a set of highway facilities failed; is there a facility that is not critical were it to fail by itself, but ends up being a critical component of several combinations of failures? Taking the question further, UDOT might consider scenarios where emergency services or evacuations must operate on a degraded network. Of course, it is also an open question as to whether destination and mode choices will follow the same behavioral patterns in such a scenario. 
 
-Vary by purpose but not market segment
+This research developed a trip-based statewide transportation planning model using model design practices – including a destination choice trip distribution model and a complete if rudimentary logit-based mode choice model. The model presented in this research should not be used for infrastructure policy or forecasting analyses, but is instead an illustrative tool. USTM, on the other hand, is a trip-based statewide transportation planning model with a basic gravity-type trip distribution model and no mode choice component. Using logit-based choice frameworks for trip distribution and mode choice allows the model to incorporate greater sensitivity to influencing variables and other benefits. It is recommended that USTM include a logit-based mode and destination choice model in the future. This is standard practice in other states, and enables more realistic modeling of human behavior. The urban modeling areas in Utah would also benefit from a similar improvement.
 
+The flexibility and sensitivity afforded by choice models can introduce some additional challenges, however. The results of the logsum-based choice analysis highlight one such risk, in that using different cost functions for network skimming and destination choice can lead to inconsistent model behavior. In this research and in the USTM highway assignment, vehicle trips between origins and destinations are loaded onto the shortest time path, but their destinations are chosen by a combination of travel time and path distance. USTM and other travel models UDOT holds a stake in should be sure to address this issue. Along the same lines, this research included only a single feedback iteration; understanding how many iterations are necessary for a travel model to successfully converge – where the destinations chosen are no longer changing based on changes to travel times between origins and destinations – is an important model design decision that was not explored here.
 
-Travel time feedback
-diminished capacity
+A potential limitation in the model developed for this research is that all HBW trips are flexible in destination choice. This implies that a user could choose to work in a different place when the path to their previously-chosen work location is disrupted. This might not be entirely logical for short-term or even medium-term highway closures, considering that most people will not switch jobs so quickly. With the recent uptick in telecommuting instigated by the COVID-19 pandemic, workplace location is likely even more flexible now than it has been in the past, and certainly more so than during the Atlanta and Minneapolis disasters discussed in Chapter 2. This increased flexibility has already called into question how HBW trips are handled in travel behavior modeling (Capasso da Silva et al., 2021). A more nuanced method for estimating HBW trips that accounts for both flexibility and inflexibility of workplace location might be developed. 
 
-freight, external travel
-
-how to do this with ABM?
-
-sensitivity to utility parameters?
+Policies that result in a clear and certain outcome rare, though travel demand models are sometimes mis-interpreted, mis-used, or even mis-designed to imply a single policy prediction. Along the same lines, UDOT should take a proactive role in helping travel modelers and transportation planners incorporate uncertainty in their analysis and convey this uncertainty responsibly in communications with transportation decision-makers and the general public.
 
 # Conclusions
 The USTM model is a gravity-based travel demand model, while the resiliency
@@ -46,5 +42,3 @@ resiliency model should be used to prioritize link importance to the
 functionality of Utah’s highway network. The resiliency model more accurately
 estimates costs experienced by Utahn’s due to link loss than do traditional
 methods for determining costs.
-
-
