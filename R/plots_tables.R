@@ -78,7 +78,56 @@ make_coefficient_table <- function(mc_constants, mc_coefficients, dc_coefficient
   
 }
 
-
+make_sensitivity_plot <- function(sensitivity, prod){
+  ls_sa <- read_rds(sensitivity)
+  
+  ls_sa |> 
+    separate(scenario, c("iteration", "scenario"), sep = )
+    
+  
+  
+    logsums_sa <- ls_sa %>%
+      left_join(prod, by = c("purpose", "TAZ")) |> 
+      mutate(total = productions * logsum) %>%
+      group_by(purpose, scenario) %>%
+    summarise(total = sum(total, na.rm = TRUE)) %>%
+    mutate(link = case_when(str_length(scenario) < 10 ~ "BASE",
+                            str_length(scenario) == 10 ~ substr(scenario, 5, 10),
+                            str_length(scenario) == 11 ~ substr(scenario, 6, 11)))%>%
+    mutate(iter = substr(scenario, 1, 4)) %>%
+    group_by(link, iter) %>%
+    summarize(total = sum(total)) %>%
+    #select(-c("scenario")) %>%
+    pivot_wider(names_from = link, values_from = total)%>%
+    mutate(dROAD27 = ROAD27 - BASE, 
+           dROAD38 = ROAD38 - BASE, 
+           dROAD50 = ROAD50 - BASE) %>%
+    mutate(CostROAD27 = dROAD27/-0.16, 
+           CostROAD38 = dROAD38/-0.16, 
+           CostROAD50 = dROAD50/-0.16)
+  
+  sa_graph_data <-  logsums_sa |> 
+    select(c("iter","CostROAD27", "CostROAD38", "CostROAD50")) |> 
+    # arrange iterations by decreasing value of scenario 50
+    arrange(-CostROAD50) |> 
+    # which iteration it is doesn't mater
+    mutate(iter = row_number()) |> 
+    pivot_longer(cols = c("CostROAD27", "CostROAD38", "CostROAD50"), 
+                 names_to = "Link", values_to = "Cost") |> 
+    mutate(Scenario = gsub("CostROAD", "", Link)) %>%
+      group_by(Scenario) %>%
+      arrange(-Cost, .by_group = TRUE)
+  
+  
+  ggplot(sa_graph_data) +
+    aes(x = iter, y = Cost, colour = Scenario) +
+    geom_line() +
+    scale_color_hue(direction = 1) +
+    theme_bw() + xlab("Draw") + ylab("Total Cost [$]")
+  
+  
+  
+}
 
 #' Make a plot of the trip length frequency distribution
 #' 

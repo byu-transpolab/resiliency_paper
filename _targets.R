@@ -88,6 +88,11 @@ list(
   # calibration
   tar_target(tlfd_model, "data/tlfd.csv", format = "file"),
   tar_target(tlfd_ustm,  "data/ustm_tlfd.csv", format = "file"),
-  tar_target(tlfd_plot, make_tlfd_plot(tlfd_model, tlfd_ustm))
+  tar_target(tlfd_plot, make_tlfd_plot(tlfd_model, tlfd_ustm)),
+  
+  
+  # sensitivity
+  tar_target(sensitivity, "data/logsums_sensitivity25.rds", format = "file"),
+  tar_target(sensitivity_plot, make_sensitivity_plot(sensitivity, prod))
   
 )
