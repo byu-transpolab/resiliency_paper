@@ -173,10 +173,7 @@ if(!knitr::is_latex_output()){
 ```
 
 
-This section will present the results of the 41 scenarios analyzed. First, Table
-\@ref(tab:linktable) shows each of the scenarios, labeled “road10” for scenario
-10, and “road11” for scenario 11 along with route numbers or street names, as
-well as a physical location where the link was cut. The logsum method results 
+This section will present the results of the 41 scenarios analyzed. The logsum method results 
 are as follows in Table \@ref(tab:logsumrank). The results are ranked from the road with the 
 largest cost to the road with the smallest cost. We can
 see that road 50, which corresponds to I-80 between SLC and Tooele, experiences
