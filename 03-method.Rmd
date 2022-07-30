@@ -1,6 +1,6 @@
 # Methodology {#methodology}
 
-The objective of this study is to evaluate the relative systemic criticality of highway links on a statewide network using a logit-based model sensitive to changes in route path, destination choice, and mode choice. In this chapter, some of USTM’s properties are described, and additional detail is given as to why USTM is not entirely suitable for this study as presently constituted. A new model framework designed to evaluate resilience using a logit-based choice model on USTM’s network is then presented. Implementation of this new model within the CUBE travel demand modeling software is also described.
+The objective of this study is to evaluate the relative systemic criticality of highway links on a statewide network using a logit-based model sensitive to changes in route path, destination choice, and mode choice. A new model framework designed to evaluate resilience using a logit-based choice model on Utah's statewide network is presented. Implementation of this new model within the CUBE travel demand modeling software is also described.
 
 ## Model Design
 The overall model framework is presented in Figure \@ref(fig:framework), and is
@@ -117,7 +117,7 @@ difference between the measures of two scenarios
 \Delta_{im} = DCLS_{im}^{\mathrm{Base}} - DCLS_{im}^{\mathrm{Scenario}}
   (\#eq:deltas)
 \end{equation}
-however, provides an estimate of the accessibility lost when $t_{ij\mathrm{drive}}$
+provides an estimate of the accessibility lost when $t_{ij\mathrm{drive}}$
 changes due to a damaged highway link. This accessibility change is *per trip*, 
 meaning that the total lost accessibility is $P_{im} * \Delta_{im}$ where $P$ is
 the number of trip productions at zone $i$ for purpose $m$. This measure is
@@ -130,7 +130,7 @@ cost of a damaged link for the entire region for all trip purposes is
 \end{equation}
 
 For comparison to a simpler resiliency method that only includes the increased
-travel time between origins and destinations, we compute the change in travel
+travel time between origins and destinations, we compute the change in congested travel
 time between $\delta t_{ij}$ and multiply the number of trips by this change 
 and a value of time coefficient derived from the cost and vehicle time coefficients
 of the mode choice model,
@@ -172,15 +172,7 @@ data elements
    trip length were used to calibrate the utility coefficients as described 
    below.
 
-Among MPO models in Utah, only the model jointly operated by the 
-Wasatch Front Regional Council (WFRC, Salt Lake area MPO) and the  
-Mountainland Association of Governments (MAG, Provo area MPO) model include a 
-substantive transit forecasting component. The transit travel time skim from the 
-WFRC / MAG model was used for the mode choice model in Equation \@ref(eq:mcp); 
-the zonal travel time between the smaller WFRC / MAG model zones was averaged 
-to the larger USTM zones, and the minimum time among the several modes available
-(commuter rail, light rail, bus rapid transit, local bus) was taken as the travel
-time for a single transit mode in this implementation.
+Among MPO models in Utah, only the model jointly operated by the Wasatch Front Regional Council (WFRC, Salt Lake area MPO) and the Mountainland Association of Governments (MAG, Provo area MPO) model include a substantive transit forecasting component. The transit travel time skim from the WFRC / MAG model was used for the mode choice model in Equation \@ref(eq:mcp); the zonal travel time between the smaller WFRC / MAG model zones was averaged to the larger USTM zones, and the minimum time among the several modes available (commuter rail, light rail, bus rapid transit, local bus) was taken as the travel time for a single transit mode in this implementation.
 
 ```{r coeffs}
 tar_load(coefficient_table)
