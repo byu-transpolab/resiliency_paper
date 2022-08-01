@@ -12,5 +12,5 @@ warranty of any kind, and assumes no liability therefore.
 The authors confirm contribution to the paper as follows: study conception and
 design: G.S. Macfarlane; data collection: M. Barnes and N. Gray; analysis and
 interpretation of results: G.S. Macfarlane, M. Barnes, and N. Gray; draft
-manuscript preparation: G.S. Macfarlane, and M. Barnes. All authors reviewed the
-results and approved the final version of the manuscript.
+manuscript preparation: G.S. Macfarlane, M. Barnes, and N. Gray. All authors 
+reviewed the results and approved the final version of the manuscript.

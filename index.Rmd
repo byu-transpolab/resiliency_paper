@@ -13,7 +13,7 @@ author:
 date: "`r Sys.Date()`"
 address:
 - code: Brigham Young University
-  address: Brigham Young University, Civil and Environmental Engineering Department,
+  address: Brigham Young University, Civil and Construction Engineering Department,
     430 Engineering Building, Provo, Utah 84602
 footnote:
 - code: 1
@@ -32,6 +32,8 @@ keywords:
 - Accessibility
 - Passive Data
 - Location Choice
+- Resiliency
+- Choice Analysis
 ---
 
 ```{r setup, include = FALSE}
@@ -99,16 +101,16 @@ links or facilities are most critical to the smooth operation of the network.
 
 Identifying which links in a transportation network are most critical, however, 
 is not trivial. State of the practice techniques typically rely on traffic volumes
-represented in terms of vehicles, trips, or freight value [@aem2017]. But these 
+represented in terms of vehicles, trips, or freight value [e.g. @aem2017]. But these 
 methods ignore the fact that some networks have alternate routes readily available,
 have multiple well developed modes of transportation, or have redundant
 destination locations. When a network link does break, routes, mode choice, and
-destination choice often change too. These responses have been observed in
+destination choice often change as well. These responses have been observed in
 real-world crisis events like the I-35 W bridge collapse in Minneapolis and the
 I-85 bridge fire and collapse in Atlanta
 [@zhu2010; @levinson2010; @xie2011; @hamedi2018].
 
-In this research, we apply destination choice accessibility model to identify
+In this research, we apply a destination choice accessibility model to identify
 critical highway links in a statewide highway context. This model is designed to
 capture the utility lost to individuals operating on a degraded network who may
 choose a longer route, a different travel mode, or a different destination. We
