@@ -9,9 +9,8 @@ bookdown::gitbook:
     download: ["pdf", "epub"]
 
 bookdown::pdf_book:
-  base_format: rticles::elsevier_article
+  base_format: rticles::trb_article
   includes:
     in_header: preamble.tex
   latex_engine: xelatex
-  citation_package: natbib
   keep_tex: yes

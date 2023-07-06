@@ -52,6 +52,7 @@ bind_rows(scenario_comparison, subtotal, total) %>%
     mutate(
       purpose = gsub("F", " Freight", purpose),
       purpose = gsub("P", " Passenger", purpose),
+      purpose = gsub("REC", " Recreation", purpose),
       purpose = gsub("II", "Internal", purpose),
       purpose = gsub("IX", "Inbound / Outbound", purpose),
       purpose = gsub("XX", "Through", purpose),
@@ -63,12 +64,14 @@ bind_rows(scenario_comparison, subtotal, total) %>%
                          as.character(formattable::currency(., digits = 0)))),
          ) %>%
 kbl(
+  caption = "Detailed Analysis of Tooele Scenario",
   col.names = c("Purpose", 
                 rep(c("Other Counties", "Inside Tooele", "Total"), 2)),
-  align = "lrrrrrr", booktabs = TRUE, format = "markdown"
+  align = "lrrrrrr", booktabs = TRUE
 ) %>%
   kable_styling() %>%
-  add_header_above(c(" " = 1, "Utility Logsum" = 3, "Travel Time" = 3))
+  add_header_above(c(" " = 1, "Utility Logsum" = 3, "Travel Time" = 3)) %>%
+  pack_rows( index = c("Passenger" = 3, "External / Freight" = 5), hline_after = F )
 ```
 
 ```{r tooelemap, fig.cap="Tooele county HBW utility loss.", cache = FALSE}
