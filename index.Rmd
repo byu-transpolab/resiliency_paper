@@ -1,13 +1,17 @@
 ---
 title: "Examining the Utility-based Resiliency of Utah's Highway Network"
 author:
-- name: Gregory Macfarlane
+- name: Gregory S. Macfarlane
+  note: Corresponding Author
+  position: Assistant Professor
   email: gregmacfarlane@byu.edu
   affiliation: Brigham Young University
 - name: Max Barnes
+  position: Graduate Student
   email: barnesmaxmax@gmail.com
   affiliation: Brigham Young University
 - name: Natalie Gray
+  position: Graduate Student
   email: nat.gray2000@gmail.com
   affiliation: Brigham Young University
 date: "`r Sys.Date()`"
@@ -20,20 +24,24 @@ footnote:
   text: Corresponding Author
 site: bookdown::bookdown_site
 documentclass: article
-journal: Submitted to Journal
 bibliography: book.bib
 biblio-style: apalike
 link-citations: yes
 abstract: |
-  This is where the abstract should go.
+  The resilience of transportation networks is an important consideration in 
+  management and planning, but practical techniques to identify systemically critical links
+  are limited. Further, current practical techniques ignore that when transportation
+  networks are damaged or degraded, people change destinations and modes as well
+  as travel routes. In this research, we develop a model to examine network 
+  highway resilience based on changes to mode and destination choice logsums,
+  and apply this model to 41 scenarios representing the loss of links on the 
+  statewide highway network in Utah. The results of the analysis suggest a 
+  fundamentally different prioritization scheme than would be identified solely
+  through a methodology based on increased travel times.
 description: A short description
-layout: 3p, authoryear
-keywords:
-- Accessibility
-- Passive Data
-- Location Choice
-- Resiliency
-- Choice Analysis
+classoption:
+    - numbered
+keywords: ["Accessibility", "Location Choice", "Resiliency", "Choice Analysis"]
 ---
 
 ```{r setup, include = FALSE}
