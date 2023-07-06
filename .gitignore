@@ -13,3 +13,5 @@ rosm.cache
 
 data/traveltimecosts*
 /.quarto/
+/_book/
+*_cache/
