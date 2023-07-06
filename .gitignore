@@ -12,3 +12,4 @@ rosm.cache
 *.dbf
 
 data/traveltimecosts*
+/.quarto/

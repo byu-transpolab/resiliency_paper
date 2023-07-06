@@ -1,0 +1,63 @@
+project:
+  type: book
+
+# This defines the .qmd files that are in your document
+book:
+  title: "Evaluating the Impacts of Parameter Uncertainty in Transportation Demand Models"
+  author:
+    - name: Gregory S. Macfarlane
+      orcid: 0000-0003-3999-7584 
+      email: gregmacfarlane@byu.edu 
+      affiliations:
+      - name: Brigham Young University 
+        department: Civil and Construction Engineering 
+        address: 430 EB
+        city: Provo 
+        state: UT 
+        postal-code: 84602
+  # to add additional authors, simply add another -name: tag 
+    - name: Natalie Mae Gray
+      email: nmgray@byu.edu
+      affiliations:
+      - name: Brigham Young University
+        address: 430 EB
+        city: Provo
+        state: UT
+        postal-code: 84602 
+        date: "8/1/2023"
+  chapters:
+    - index.qmd
+    - 02-literature.qmd
+    - 03-methods.qmd
+    - 04-results.qmd
+    - 05-conclusions.qmd
+    - 98-acknowledgments.qmd
+    - 99-references.qmd
+  abstract: | 
+    The resilience of transportation networks is an important consideration in 
+    management and planning, but practical techniques to identify systemically critical links
+    are limited. Further, current practical techniques ignore that when transportation
+    networks are damaged or degraded, people change destinations and modes as well
+    as travel routes. In this research, we develop a model to examine network 
+    highway resilience based on changes to mode and destination choice logsums,
+    and apply this model to 41 scenarios representing the loss of links on the 
+    statewide highway network in Utah. The results of the analysis suggest a 
+    fundamentally different prioritization scheme than would be identified solely
+    through a methodology based on increased travel times.
+  keyword: "Accessibility, Location Choice, Resiliency, Choice Analysis"
+
+bibliography: book.bib  
+format: 
+  html: 
+    theme: cosmo
+  trb-pdf:
+    wordcount: 0
+    tablecount: 0
+    include-in-header:
+      - file: packages.tex
+    keep-tex: true
+    top-level-division: section
+    toc: false
+
+execute: 
+  cache: true
