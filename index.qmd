@@ -1,54 +1,4 @@
 
-```{r setup, include = FALSE}
-# load R libraries here; the `include` flag in the chunk options above tells
-# whether to print the results or not. Usually you don't want to print the
-# library statements, or any code on the pdf.
-
-# Main Packages ========
-# I use these in every doc
-library(tidyverse)
-library(knitr)
-library(kableExtra)
-library(modelsummary)
-library(targets)
-library(janitor)
-
-options(dplyr.summarise.inform = FALSE)
-
-# Other packages ------
-# These sometimes get used, and sometimes don't.
-library(readxl)
-library(leaflet)
-library(sf)
-library(viridis)
-library(DiagrammeR)
-library(ggspatial)
-
-# Instructions and options =========
-# prints missing data in tables as blank space
-options(knitr.kable.NA = '') 
-# tells kableExtra to not load latex table packages in the chunk output
-options(kableExtra.latex.load_packages = FALSE) 
-
-# round and format numbers that get printed in the text of the article.
-inline_hook <- function(x) {
-  if (is.numeric(x)) {
-    format(x, digits = 3, big.mark = ",")
-  } else x
-}
-knitr::knit_hooks$set(inline = inline_hook)
-
-knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
-
-# options for latex-only output
-if(knitr::is_latex_output()) {
-  knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
-} 
-
-
-theme_set(theme_bw())
-```
-
 # Introduction {#intro}
 
 Systemic resiliency is an important consideration for transportation agencies,
@@ -62,16 +12,16 @@ definition used, assessing the resiliency of a transportation network --- and
 addressing any potential shortfalls --- requires a method to identify which
 links or facilities are most critical to the smooth operation of the network.
 
-Identifying which links in a transportation network are most critical, however, 
-is not trivial. State of the practice techniques typically rely on traffic volumes
-represented in terms of vehicles, trips, or freight value [e.g. @aem2017]. But these 
-methods ignore the fact that some networks have alternate routes readily available,
-have multiple well developed modes of transportation, or have redundant
-destination locations. When a network link does break, routes, mode choice, and
-destination choice often change as well. These responses have been observed in
-real-world crisis events like the I-35 W bridge collapse in Minneapolis and the
-I-85 bridge fire and collapse in Atlanta
-[@zhu2010; @levinson2010; @xie2011; @hamedi2018].
+Identifying which links in a transportation network are most critical, however,
+is not trivial. State of the practice techniques typically rely on traffic
+volumes represented in terms of vehicles, trips, or freight value [e.g.
+@aem2017]. But these methods ignore the fact that some networks have alternate
+routes readily available, have multiple well developed modes of transportation,
+or have redundant destination locations. When a network link does break, routes,
+mode choice, and destination choice often change as well. These responses have
+been observed in real-world crisis events like the I-35 W bridge collapse in
+Minneapolis and the I-85 bridge fire and collapse in Atlanta [@zhu2010;
+@levinson2010; @xie2011; @hamedi2018].
 
 In this research, we apply a destination choice accessibility model to identify
 critical highway links in a statewide highway context. This model is designed to
@@ -81,13 +31,14 @@ then apply the model to a highway network representing the state of Utah. The
 model structure permits a more nuanced evaluation of link criticality than using
 traffic volume alone or in conjunction with an increased travel time measure.
 
-The paper proceeds as follows. First, a [literature review](#litreview) discusses
-previous attempts to analyze the resiliency of transportation networks. A
-[methodology](#methodology) section presents the model developed for this
-research and describes the implementation process in Utah. A [results](#results) section
-describes the model output in detail for one scenario and then compares and ranks
-the model outputs for an array of several dozen independent scenarios. The paper
-[concludes](#conclusion) with a discussion of limitations and associated avenues 
+The paper proceeds as follows. First, a [literature review](#litreview)
+discusses previous attempts to analyze the resiliency of transportation
+networks. A [methodology](#methodology) section presents the model developed for
+this research and describes the implementation process in Utah. A
+[results](#results) section describes the model output in detail for one
+scenario and then compares and ranks the model outputs for an array of several
+dozen independent scenarios. The paper [concludes](#conclusion) with a
+discussion of limitations and associated avenues
 for future research.
 
 
