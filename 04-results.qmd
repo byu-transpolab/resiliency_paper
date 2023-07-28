@@ -198,6 +198,8 @@ ggplot(mapdata) +
 ```
 
 ```{r traveltimerank, echo = FALSE}
+#| label: tbl-traveltimerank
+#| tbl-cap: Scenario Results of Both Methodologies
 linktable <- readxl::read_excel("images/linktable.xlsx") %>%
   mutate(scenario = substr(LINK_ID, 5,6)) %>%
   select(-c(LINK_ID))
@@ -226,7 +228,7 @@ kbl(
                 "Freight, External, etc.", "Total"),
   align = "crr", booktabs = TRUE#, format = "markdown"
 ) %>%
-  kable_styling() |> 
+  kable_styling(latex_options = "scale_down") |> 
   add_header_above(c(" " = 2, "Logsum" = 1, "Travel Time" = 3))
 ```
 
