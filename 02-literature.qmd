@@ -1,0 +1,99 @@
+# Literature {#litreview}
+
+```{r setup, file = "R/chapter_start.R", include = FALSE, cache = FALSE}
+# a number of commands need to run at the beginning of each chapter. This
+# includes loading libraries that I always use, as well as options for 
+# displaying numbers and text.
+library(readxl)
+```
+
+In a groundbreaking theoretical article, Berdica [@berdica2002] attempted to
+identify, define and conceptualize network "vulnerability" --- the complement of
+resiliency --- by envisioning analyses conducted with several vulnerability
+performance measures including travel time, delay, congestion, serviceability,
+and accessibility. She then defined reliability as the level of reduced
+accessibility due to unfavorable operating conditions on the network. In
+particular, the author identifies a need for further research toward developing
+a framework capable of investigating reliability of transportation networks.
+
+In this section we examine several attempts by numerous researchers to do
+precisely this using various measures of network performance. It is helpful to
+categorize the existing literature into three groups (summarized in
+@tbl-authortable) based on the overall technique applied in the study. These
+groups include:
+
+-   *Network connectivity*: How does damage to a network diminish the
+    connectivity between network nodes?
+
+-   *Travel time analysis*: How much do shortest path travel times between
+    origins and destinations increase on a damaged network?
+
+-   *Accessibility analysis* How easily can the population using the damaged
+    network complete their daily activities?
+
+```{r authortable, echo = FALSE}
+#| label: tbl-authortable
+#| tbl-cap: Attempts to Evaluate Systemic Resiliency
+readxl::read_xlsx("images/author_summary.xlsx") %>%
+  kbl(booktabs = TRUE) %>%
+  kable_styling()
+```
+
+The purpose of transportation networks is to connect locations to each other;
+presumably damage to a network would diminish the network's *connectivity*, or
+the number of paths between node pairs. It may even leave nodes or groups of
+nodes completely isolated. In studies using connectivity as the primary
+performance measure, researchers typically apply methods and concepts from graph
+theory. These measures may include elementary measures such as the isolation of
+nodes in a network [@abdel2007]. More advanced measures have included
+heirarchical clustering of node paths [@agarwal2011; @zhang2015], a count of
+independent paths [@vodak2019], the reduction of total network capacity
+[@ip2011], and special applications of the knapsack and traveling salesman
+problems [@guze2014; @osei2014]. Though useful from a theoretical perspective,
+many of these authors reported that their approaches tend to break down to some
+degree on large, real-world networks where the number of nodes and links numbers
+in the tens of thousands, and the degree of connectivity between any arbitrary
+node pair is high. They also do not typically account for how network users may
+react to the new topology or capacity constraints of the degraded network.
+
+Highway system network failures --- in most imaginable cases --- degrade the
+shortest or least cost path, but typically do not eliminate all paths. The
+degree to which travel time increases when a particular link is damaged,
+however, could provide an estimate of the criticality of that link or node. This
+general method has been used to evaluate potential choke points in various
+networks [@berdica2007; @jaller2015; @ganin2017] as well as the allocation of
+emergency resources [@peeta2010]. Though many applications only consider the
+increase in travel time, some authors consider how the users of the network will
+respond to the decreased capacity [@ibrahim2011; @serulle2011; @xu2015], and
+others attempt to model a shift in departure time or mode [@omer2013].
+
+A primary limitation with increased travel time methodologies is that they
+ignore other possible ways a population might adapt its travel to a damaged
+network. Aside from shifting routes and modes, people may choose other
+destinations and it is possible that some previously planned trips might be
+canceled entirely. Travel time-based methods do not account for the costs of
+these changes in plans. But accessibility methods --- in particular the
+accessibility calculations embedded within many existing regional transport
+models ---- provide a framework for evaluating these costs [@ben-akiva1985;
+@geurs2004].
+
+Accessibility is an abstract concept with multiple methods of quantification
+[@handy1997]. Perhaps the most popular method is the cumulative opportunities
+measure: e.g., the number of jobs within a specified travel time threshold. This
+is the method employed by Xie and Levinson [@xie2011] in an analysis of the
+impact of the I-35 W bridge collapse in Minneapolis. But cumulative
+opportunities measures require the analyst to assert a travel time threshold, a
+mode, and an opportunity of interest. Some of these assumptions can be relaxed
+with a gravity-style access model, but the logsum of a destination choice model
+has several benefits as an accessibility term including its grounding in choice
+framework, ability to weigh multiple attributes of an alternative, and include
+travel impedances by all modes [@dong2006]. These measures can even be weighted
+by a cost coefficient to translate the lost utility in monetary terms
+[@geurs2004; @geurs2010].
+
+Logsum-derived accessibility meaures have been used before to evaluate network
+resiliency [@taylor2008;@masiero2012; @winkler2016]. Where these previous
+efforts have been somewhat limited is in their theoretical nature. Though
+previous researchers have shown that logsum-derived accessibility measures are
+feasible and informative, their use in actual resilience analysis efforts by
+state departments of transportation and other relevant agencies appears limited.

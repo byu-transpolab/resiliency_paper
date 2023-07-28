@@ -3,7 +3,7 @@ project:
 
 # This defines the .qmd files that are in your document
 book:
-  title: "Evaluating the Impacts of Parameter Uncertainty in Transportation Demand Models"
+  title: "A utility-based approach to modeling systemic resilience of highway networks with an application in Utah "
   author:
     - name: Gregory S. Macfarlane
       orcid: 0000-0003-3999-7584 
@@ -16,6 +16,10 @@ book:
         state: UT 
         postal-code: 84602
   # to add additional authors, simply add another -name: tag 
+    - name: Max Barnes
+      email: maxbarnes@kha.com
+      affiliations:
+      - name: Kimley-Horn
     - name: Natalie Mae Gray
       email: nmgray@byu.edu
       affiliations:
@@ -23,8 +27,7 @@ book:
         address: 430 EB
         city: Provo
         state: UT
-        postal-code: 84602 
-        date: "8/1/2023"
+        postal-code: 84602
   chapters:
     - index.qmd
     - 02-literature.qmd
@@ -33,11 +36,12 @@ book:
     - 05-conclusions.qmd
     - 98-acknowledgments.qmd
     - 99-references.qmd
+  date: "8/1/2023"
   abstract: | 
     The resilience of transportation networks is an important consideration in 
     management and planning, but practical techniques to identify systemically critical links
     are limited. Further, current practical techniques ignore that when transportation
-    networks are damaged or degraded, people change destinations and modes as well
+    networks are damaged or degraded, people potentially change destinations and modes as well
     as travel routes. In this research, we develop a model to examine network 
     highway resilience based on changes to mode and destination choice logsums,
     and apply this model to 41 scenarios representing the loss of links on the 
@@ -51,10 +55,8 @@ format:
   html: 
     theme: cosmo
   trb-pdf:
-    wordcount: 0
-    tablecount: 0
-    include-in-header:
-      - file: packages.tex
+    wordcount: 6194
+    tablecount: 4
     keep-tex: true
     top-level-division: section
     toc: false

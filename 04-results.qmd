@@ -1,51 +1,79 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
 
-# Results {#results}
-In this, we summarize the results used to identify vulnerable links on Utah’s 
-highway network. We also apply the model to scenarios where critical highway 
-links are removed from the model network. This includes first a detailed 
-analysis of a single scenario, where I-80 between Salt Lake and Tooele Counties 
-is severed. We compare the model output to an alternative method that measures 
-only the change in travel time and does not allow for mode or destination 
-choice. The model was then applied to 41 individual link closure scenarios 
-throughout the state.
+# Results {#sec-results}
 
-## Single Scenario Analysis
-Scenario 50, located along I-80 between Tooele and Salt Lake Counties, was
-examined to ensure the resiliency model was capturing trips in the vicinity of a
-broken link. Analyzing the model outputs at a localized level was necessary to
-ensure that the model was appropriately estimating trips and capturing them in
-the areas that were expected. In scenario 50, if many effected trips had not
-been captured in Tooele and Salt Lake counties, that would have signaled that a
-problem was present with the model. This analysis shows that a broken link
-mainly effects the area surrounding that link, and the key takeaway here is that
-the model functions as intended. Another method to estimate trip costs is the
-travel time method, which serves to capture trips that have more fixed OD pairs,
-such as freight trips. This analysis also looks at this method in addition to
-the logsum estimates.
+```{r setup, file = "R/chapter_start.R", include = FALSE, cache = FALSE}
+# a number of commands need to run at the beginning of each chapter. This
+# includes loading libraries that I always use, as well as options for 
+# displaying numbers and text.
+library(janitor)
+library(sf)
+library(leaflet)
+library(ggspatial)
+library(wesanderson)
+```
 
-Table \@ref(tab:tooeletable) compares the overall costs between the logsum and
-travel time methods, the specific cost for trips originating in Tooele and
-ending in Salt Lake and includes a trip comparison as well. From Table
-\@ref(tab:tooeletable), we can see that the logsum method captures about
-\$173,996 in experienced expense due to the closure of the link. Specifically,
-between Tooele and SLC, the logsum based resiliency model captures \$167,424 of
-expense, which is approximately 99% of the total expense as seen in Table
-\@ref(tab:tooeletable). This shows that the resiliency model is effectively
-capturing trips in the correct areas based on the percent comparison capture
-rate in Table \@ref(tab:tooeletable). When we look at the travel time method of
-analysis, we can see that the costs at both the local and statewide levels are
-much greater with \$437,401 and \$406,899 respectively estimated as the costs
-due to just the increase in travel time, not using the logit-based model.
+In this section we apply the model to scenarios where critical highway
+links are removed from the model network. This includes first a detailed
+analysis of a single scenario, where I-80 between Salt Lake and Tooele
+Counties is severed. We compare the model output to an alternative
+method that measures only the change in travel time and does not allow
+for mode or destination choice. The model was then applied to 40
+additional link closure scenarios throughout the state.
 
-```{r tooeletable, echo = FALSE, fig.cap = "Tooele County comparison of logsum and travel time methods."}
+## Detailed Scenario Analysis
+
+To illustrate how the logsum-based model framework captures the costs of
+losing a link, we conducted a scenario where I-80 between Tooele and
+Salt Lake Counties west of the Salt Lake City International Airport
+becomes unavailable. Tooele is a largely rural county with increasing
+numbers of residents who commute to jobs in the Salt Lake Valley. I-80
+is the only realistic path between the two counties, as alternate routes
+involve mountain canyons and many additional miles of travel.
+
+The costs obtained by the logsum and travel time based methods for this
+scenario are shown in @tbl-tooeletable. In both analyses, we separate
+the costs spatially, though the definitions of the two are slightly
+different. In the logsum-based method, "Inside Toole" are costs
+associated with decreased accessibility for trips produced in Tooele
+County. The increased costs in this case capture the loss in utility by
+measuring increased multi-model travel impedances to destinations with
+high attractiveness. In the travel-time method, by contrast, the "Inside
+Tooele" costs are those for trips with an origin in Tooele County and a
+destination in Salt Lake County, and are the increase in travel time
+multiplied by a value of time and the number of vehicles making the
+trip. The difference in definition is required by the difference in
+framework construction.
+
+In general, the logsum-based method arrives at cost estimates that are
+less than half of the comparable estimates of the travel time-based
+method. This is not unexpected, as the travel time-based method assumes
+that all the preexisting trips would still occur, but on a longer path.
+The logsum-based method on the other hand attempts to capture the fact
+that when a path changes, people may shift their destination or their
+mode of travel. To be clear, the framework we have developed for this
+exercise does not explicitly model the selection of a new alternative
+destination; rather, we calculate instead the value of a destination
+choice set before and after the link is removed. But the implication is
+that the availability of alternative destinations still provide some
+benefit to the choice maker, a proposition that the travel time method
+ignores.
+
+```{r tooeletable, echo = FALSE}
+#| label: tbl-tooeletable
+#| tbl-cap: Comparison of Logsum-based and Time-based costs for I-80 at Tooele
 tar_load(scenario_comparison)
 options(knitr.kable.NA = '')
 subtotal <- scenario_comparison %>% 
   filter(purpose %in% c("HBO", "HBW", "NHB")) %>%
-  adorn_totals(name = "Comparable Total") %>% .[nrow(.),]
+  janitor::adorn_totals(name = "Comparable Total") %>% .[nrow(.),]
 
 total <- scenario_comparison %>%
-  adorn_totals() %>% .[nrow(.),]
+  janitor::adorn_totals() %>% .[nrow(.),]
   
 
 bind_rows(scenario_comparison, subtotal, total) %>%
@@ -61,47 +89,42 @@ bind_rows(scenario_comparison, subtotal, total) %>%
     across(where(is.numeric),  ~ ifelse(. == 0, NA, .)),
     across(where(is.numeric), 
                 ~ ifelse(is.na(.), NA, 
-                         as.character(formattable::currency(., digits = 0)))),
+                         as.character(scales::dollar(., largest_with_cents = 100)))),
          ) %>%
 kbl(
-  caption = "Detailed Analysis of Tooele Scenario",
   col.names = c("Purpose", 
                 rep(c("Other Counties", "Inside Tooele", "Total"), 2)),
   align = "lrrrrrr", booktabs = TRUE
 ) %>%
-  kable_styling() %>%
+  kable_styling(latex_options = "scale_down") %>%
   add_header_above(c(" " = 1, "Utility Logsum" = 3, "Travel Time" = 3)) %>%
-  pack_rows( index = c("Passenger" = 3, "External / Freight" = 5), hline_after = F )
+  pack_rows( index = c("Passenger" = 3, "External / Freight" = 5), 
+             hline_after = F )
+  
 ```
 
-```{r tooelemap, fig.cap="Tooele county HBW utility loss.", cache = FALSE}
+```{r tooelemap, echo = FALSE, cache = FALSE, eval = FALSE}
+#| label: fig-tooelemap
+#| fig-cap: "Tooele county HBW utility loss"
 tar_load(zonal_mapdata)
 
 naf0 <- function(x){ifelse(x == 0, NA, x)}
 
 zonal_mapdata <- zonal_mapdata %>%
-  st_transform(4326) %>% 
+  sf::st_transform(4326) %>% 
   mutate(across(c(HBW, HBO, NHB), naf0)) %>%
   filter(!is.na(HBW)) 
 
-if (!knitr::is_latex_output()){
-  tazpal <- colorNumeric("Reds", c(zonal_mapdata$HBO, zonal_mapdata$HBW, zonal_mapdata$NHB))
-  
-  leaflet( zonal_mapdata %>% st_transform(4326)) %>%
-    addProviderTiles(providers$Esri.WorldGrayCanvas) %>%
-    addPolygons(color = ~tazpal(HBW), stroke = 0)
-} else {
-  
   # overall map
   ggplot(zonal_mapdata, aes(fill = HBW)) + 
-    annotation_map_tile("cartolight", zoom = 10) + 
-    coord_sf(crs = st_crs(4326),  expand = FALSE) + 
+    ggspatial::annotation_map_tile("cartolight", zoom = 10) + 
+    coord_sf(crs = sf::st_crs(4326),  expand = FALSE) + 
     geom_sf(data = zonal_mapdata , inherit.aes = FALSE, aes(fill = HBW), 
             alpha = 0.7, lwd = 0)  + 
     scale_x_continuous(limits = c(-112.7, -111.5)) +
     scale_y_continuous(limits = c(40.2, 41)) +
     theme(axis.line = element_line(color = NA))  + 
-    scale_fill_viridis("Total HBW Utility Loss", option = "magma", direction = 1) + 
+    viridis::scale_fill_viridis("Total HBW Utility Loss", option = "magma", direction = 1) + 
      theme(axis.line = element_line(color = NA),
           axis.title.x=element_blank(),
           axis.text.x=element_blank(),
@@ -109,202 +132,158 @@ if (!knitr::is_latex_output()){
           axis.title.y=element_blank(),
           axis.text.y=element_blank(),
           axis.ticks.y=element_blank())
-}
 
 ```
 
+Another key element of @tbl-tooeletable is that the largest single
+element of costs in the scenario is associated with through freight, as
+well as contributions from other purposes for which the logsum model
+developed in this study did not include a corresponding methodology.
+This was due to data limitations and the modeling approach of the
+existing USTM, but it is obvious that a choice-based framework for
+examining the costs of through and inbound / outbound traffic is an
+important limitation in this scenario and potentially many others.
 
-The logsum and travel time methods for determining the overall cost associated
-with can be broken down into overall costs, and comparable costs. The comparable
-costs are made up of those purposes which are included in the resiliency model.
-HBW, HBO, and NHB trips are included in both models, thus the results from both
-the logsum model and the travel time method can be compared to each other.
+## Prioritization Scenario Results
 
-The travel time method measures the difference in travel time between the base
-scenario and any other scenario, and then multiplies that difference by the VOT
-for each trip purpose and the number of trips estimated for each trip purpose.
-For external trips, freight trips, and recreation trips, these were all extracted
-directly from USTM. The HBW, HBO, and NHB purposes are estimated using the
-logsum model. Calculating the costs associated with the difference in travel
-time allows a better estimation of the true cost experienced by road users who
-are not included in the logsum based resiliency model. So, while the logit-based
-model is more sensitive to changes in the network, it is not able to truly
-estimate the costs associated with closure for those purposes that are not
-included in the analysis.
+We now apply the model to compare 40 additional scenarios where
+individual highway facilities are removed from the model highway
+network. @tbl-traveltimerank presents the logsum and travel time results
+for all 41 scenarios, ordered by decreasing logsum costs. In other
+words, I-15 at the boundary between Utah and Salt Lake Counties is the
+most "vulnerable" or "critical" link analyzed in this exercise. Were
+this link to be cut, the people of Utah would have the highest costs per
+day in lost destination and travel access of any other link. Each of the
+highest-ranking roads in this analysis is an interstate facility in
+northern Utah, which is more heavily populated than the remote areas in
+the south.
 
-Figure \@ref(fig:tooelemap) shows....
-
-## Comparative Scenario Results
-We now apply the model to compare 40 additional scenarios where individual
-highway facilities are removed from the model highway network. These scenario
-locations are shown in Figure \@ref(fig:links-map), and were identified in a report
-by AEM (2017). AEM approached the idea of systemic resiliency by attempting to
-classify various types of threats toward specific infrastructure types. This
-method, while valid, was difficult to implement statewide. Some facilities have
-obvious natural threats such as earthquake, flood, or landslide.
+Perhaps strangely, many scenarios in the analysis show a *benefit* from
+loss of the link. Investigating these scenarios showed that for many
+paths, the shortest automobile travel time in the complete network is
+*not* the shortest path by distance. When the shortest time path is
+disrupted, the new shortest time path may be only a few minutes longer
+by time but dozens of miles shorter (on a slower road). Because the
+automobile operating costs are calculated per mile and not per minute,
+this means that the new path actually produces a benefit. This challenge
+is exacerbated by the apparent agency practice of placing artificial
+time penalties on the network links in some canyons during calibration.
+This exercise reveals why such a practice should be discouraged, and
+also highlights the importance of using consistent functions for
+impedance calculation at all stages of the model.
 
 ```{r links-map, fig.cap="Total cost of link closure.", fig.show='hold'}
+#| label: fig-linksmap
+#| fig-cap: Total cost of link closure for each scenario.
 tar_load(mapdata)
 
 
-if(!knitr::is_latex_output()){
-  
-  pal <- colorNumeric("Reds", mapdata$value[!is.na(mapdata$value)]) 
-  
-  leaflet(mapdata %>% st_transform(4326)) %>%
-    addProviderTiles(providers$Esri.WorldGrayCanvas) %>%
-    addCircleMarkers(color = ~pal(value))
-    
-} else {
-  ggplot(mapdata) +
-    annotation_map_tile("cartolight", zoom = 8) + 
-    coord_sf(crs = st_crs(4326),  expand = FALSE) + 
-    geom_sf(data = mapdata, inherit.aes = FALSE, size = 5, stroke = 1,
-            aes(fill = value/1e8, shape = factor(sign(value), labels = c("Benefits", "Costs"))), 
-                alpha = 0.5)  + 
-    scale_shape_manual("Direction", values = c(21, 22), ) +
-    theme(axis.line = element_line(color = NA))  + 
-    scale_fill_viridis("Cost of closure ($M)", option = "magma", direction = -1) + 
-     theme(axis.line = element_line(color = NA),
-          axis.title.x=element_blank(),
-          axis.text.x=element_blank(),
-          axis.ticks.x=element_blank(),
-          axis.title.y=element_blank(),
-          axis.text.y=element_blank(),
-          axis.ticks.y=element_blank())
-}
-  
-  
-  # SLC map
+ggplot(mapdata) +
+  ggspatial::annotation_map_tile("cartolight", zoom = 8) + 
+  coord_sf(crs = sf::st_crs(4326),  expand = FALSE) + 
+  geom_sf(data = mapdata, inherit.aes = FALSE, size = 5, stroke = 1,
+          aes(fill = value/1e8, shape = factor(sign(value), labels = c("Benefits", "Costs"))), 
+              alpha = 0.5)  + 
+  scale_shape_manual("Direction", values = c(21, 22), ) +
+  theme(axis.line = element_line(color = NA))  + 
+  viridis::scale_fill_viridis("Cost of closure ($M)", option = "magma", direction = -1) + 
+   theme(axis.line = element_line(color = NA),
+        axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
   
 ```
 
-
-This section will present the results of the 41 scenarios analyzed. The logsum method results 
-are as follows in Table \@ref(tab:logsumrank). The results are ranked from the road with the 
-largest cost to the road with the smallest cost. We can
-see that road 50, which corresponds to I-80 between SLC and Tooele, experiences
-the largest cost per day according to the resiliency model. Following road 50,
-roads 38, 27, 37, and 14 make up the five most important road according to the
-cost estimation provided by the resiliency model. Each of these roads is an
-Interstate facility in Northern Utah, which is heavily populated. Some roads,
-such as road 10, which is along SR-95 near Hite, experiences no measurable
-change to HBW, HBO, or NHB traffic. This is likely due to the remote location of
-the highway link that was cut. A ranking is provided for all of the roads in
-Table \@ref(tab:logsumrank).
-
-```{r logsumrank, echo = FALSE}
-linktable <- read_excel("images/linktable.xlsx") %>%
+```{r traveltimerank, echo = FALSE}
+linktable <- readxl::read_excel("images/linktable.xlsx") %>%
   mutate(scenario = substr(LINK_ID, 5,6)) %>%
   select(-c(LINK_ID))
 
 tar_load(costs)
-
-logsumcosts <- costs %>%
-  arrange(-value) %>%
-  select(-total_delta) |> 
-  mutate(value = scales::dollar(value/100, largest_with_cents = 10000000)) %>%
-  mutate(scenario = substr(scenario, 5,6))
-
-left_join(logsumcosts, linktable) %>%
-  kbl(
-  col.names = c("Scenario",  "Cost (per Day)", "Route", "Location"),
-  align = "crrll", booktabs = TRUE#, format = "markdown"
-) %>%
-  kable_styling()
-```
-
-Table \@ref(fig:traveltimerank) contains the ranking results from the travel
-time method. Here, we see that the first five roads differ from the results of
-the logsum model. Instead, road 48 becomes the most important road due to costs
-experienced. Road 48 is a part of I-70 near Green River, Utah. The other four
-roads that make up the top five most important roads in the travel time method
-analysis are road 13, road 20, road 50, and road 49. Some of these roads appear
-in both the logsum and travel time methods. Here again, several of the roads
-that are most important are located in Northern Utah. It is important to note
-that the main driving factor as to why a road was important or not in the travel
-time analysis was how much freight and external traffic it experienced.
-Including the freight, even with the logsum results, changes the rankings
-drastically.
-
-```{r traveltimerank, echo = FALSE}
 tar_load(timecost_table)
 
 scalf <- function(x){
-  scales::dollar(x, largest_with_cents = 10000000)
+  scales::dollar(x, largest_with_cents = 100)
 }
 
-timecosts <- timecost_table |> 
-  arrange(-TOTAL) |> 
-  mutate(
-    across(-scenario, scalf )
+costs |> 
+  arrange(-value) |> 
+  transmute(
+    scenario = gsub("ROAD", "", scenario),
+    value = scales::dollar(value/100, largest_with_cents = 100)
   ) |> 
-  left_join(logsumcosts) 
-
-timecosts |> 
-  left_join(linktable) |> 
+  left_join(timecost_table, by = "scenario") |>  
+  mutate(
+    across(-c(scenario, value), scalf )
+  ) |> 
+  left_join(linktable, by = "scenario") |> 
+  select(ROUTE, LOCATION, value, HBWHBONHB, FXPREC, TOTAL) |> 
 kbl(
-  col.names = c("Scenario", "HBW, HBO, NHB", 
-                "Freight, External, etc.", "Total",  "HBW, HBO, NHB", "Route", "Location"),
+  col.names = c("Route", "Location", rep("HBW, HBO, NHB", 2),
+                "Freight, External, etc.", "Total"),
   align = "crr", booktabs = TRUE#, format = "markdown"
 ) %>%
   kable_styling() |> 
-  add_header_above(c(" " = 1, "Travel Time" = 3, "Logsum" = 1, " " = 2))
+  add_header_above(c(" " = 2, "Logsum" = 1, "Travel Time" = 3))
 ```
 
-Some other interesting findings are that in the top 10 of each analysis methods,
-three scenarios appear in both rankings. Road 50, which corresponds to I-80
-between Tooele and SLC, road 27 which corresponds to I-84 in Weber Canyon, and
-road 37 which corresponds to I-80 in Parley’s Canyon are included in the top 10
-scenarios for both methods of analysis. This is likely due to the number of
-passenger trips along these routes and the number of freight trips that occur
-along these routes.
+The remaining columns of @tbl-traveltimerank present the costs
+associated with link closure based on the travel time method. Many of
+the most costly scenarios in the logsum model also appear to be costly
+in the comparable elements of the travel time method. That is, the
+scenario breaking the interstate link between Salt Lake and Utah
+counties is the most costly scenario in both methods, and underscores
+the significance of this link to Utah's economy and people. But while
+many of the largest and most impactful scenarios have similar rankings
+and scales, there are also drastic differences between the two methods
+down the line. To put it simply, the choice of analysis method would
+change the priority that UDOT places on its roads in terms of preparing
+for incidents and hardening assets.
 
-## Positive Benefit Scenarios
-Five of the scenarios indicated a benefit resulting from highway link closure.
-These scenarios were examined more closely to determine what causes these
-atypical results. The affected links are all located in Salt Lake Valley at the
-following locations: Bangerter Highway near Bluffdale, I-80 near 1300 E, I-15
-between 2100 S and 1300 S, I-215 near Cottonwood Heights, and Mountain View
-Corridor near West Jordan.
+## Sensitivity Analysis
 
-It was determined that a likely cause which explains these atypical results is
-that the shortest path by time is not the shortest path by distance. The
-automobile accessibility is determined by the AM congested travel time in the
-Utah Statewide Travel Model (USTM). The travel distance – used to determine the
-accessibility of destinations by walking – is the distance of that path, and not
-the actual shortest distance path as might be more preferable.
+A primary limitation of the model framework presented to this point is
+is that the input parameters used for the mode and destination choice
+utilities were gathered from several different sources including a
+statewide trip-based model, a statewide activity-based model, and an
+urban model for a small region. How much would the findings presented to
+this point change if the parameters in @tbl-coeffs were to change
+modestly?
 
-When a highway link is broken, the new shortest path by time is longer than in
-the base scenario with this link available. But the new path may actually be
-shorter by distance. This causes an increase in the utility of accessing
-destinations by non-motorized modes, potentially overwhelming the decrease in
-automobile utility.
+To examine this possibility, we construct 25 independent draws of the
+parameter coefficients using Latin Hypercube Sampling [@helton2003]. The
+coefficient of variation for each parameter was assumed to be 0.1;
+originally, a value of 0.3 was selected [@zhao2002], but this resulted
+in an unreasonable range of implied values of time. Using each of the 25
+draws, we ran the base scenario and three large-impact scenarios and
+calculated the logsum-based costs.
 
-This is only observed in heavily urbanized regions for two reasons:  
+@fig-saplot presents the estimated monetary costs for each of these
+three scenarios under each of the 25 parameter draws. The results are
+ordered in the figure by the estimated cost for the highest-impact
+scenario. Two observations can be made from this figure. First,
+different parameter values do not affect the scenarios uniformly. The
+second observation is that despite the within-scenario variation, the
+overall scale of the three scenarios is maintained regardless of the
+drawn parameter values. Indeed, the three scenarios remain in their
+priority ranking across all 25 draws of the choice model parameters. We
+therefore do not expect that the selection of parameters is a major
+element in the relative ranking of scenarios.
 
--	The presence of high-speed expressways and parallel local roads means that
-alternate paths with shorter distances but longer vehicle times are more likely.
-
--	The increased availability of destinations within the non-motorized distance
-threshold (50 miles) means that alternative destinations exist.
-
-Overall, the results of the analysis indicate that the likely cause of a
-positive cost being estimated for these five scenarios is that there are easily
-accessible alternate routes in the area, along with competing TAZ of similar
-size in the DC size term equation.
-
-## Summary
-The overall results show that the resiliency model is more sensitive to network
-changes than the travel time comparison. The ability for a user to choose both a
-mode and destination (or alternate destination) cause the logsum results to
-often estimate a smaller cost than the travel time results would. However, when
-the travel time results are factored in, the overall rankings of the 41
-scenarios considered change dramatically. This is due to the large expenses
-experienced by freight traffic, which has a much higher VOT than other passenger
-trips do. In summary, Table \@ref(fig:logsumrank) and Table
-\@ref(fig:traveltimerank) show the rankings for both the logsum and travel time
-analysis respectively. The logsum suggests that I-80 between Tooele and SLC is
-the most important road, while the travel time method, or total priority,
-indicates that I-70 near Green River is the most important road due to cost
-associated with closure.
+```{r saplot}
+#| label: fig-saplot
+#| fig-cap: Estimated logsum-based scenario costs in 25 different draws of the choice model parameters, 
+library(wesanderson)
+tar_load(sensitivity_plot)
+sensitivity_plot |> 
+  left_join(linktable, by = c("Scenario" = "scenario")) |> 
+  transmute(scenario = str_c(ROUTE, LOCATION, sep = " "), Cost, iter) |> 
+  ggplot(aes(x = iter, y = Cost, color = scenario)) + 
+  geom_line() + 
+  xlab("Draw") + ylab("Total Cost [$]") +
+  scale_color_manual("Scenario", values = wes_palette("Darjeeling1", 3)) +
+  theme_bw()
+```

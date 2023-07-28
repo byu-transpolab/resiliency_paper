@@ -1,44 +1,89 @@
 # Limitations and Discussion
 
-The issue of systemic resilience to natural and other hazards is an important question for UDOT, given the precarious situation of many of its transportation assets. Flash floods, rockfalls, avalanches, earthquakes, and other incidents pose threats to the network of independent transportation facilities. This research did not consider risk assessment directly at any level, but rather took as a given that 41 facilities were at some level of risk and played a potentially large systemic role. UDOT’s approach to systemic resilience should involve all three elements of resilience: hardening assets from failure through high-quality engineering and construction; locating maintenance resources in areas where they can most quickly resolve issues and return facilities optimal conditions; and understanding how the system could work effectively in a damaged or degraded state for medium to long periods of time if necessary.
+The issue of systemic resilience to natural and other hazards is an important
+question for UDOT and many other agencies in the United States and around the
+world, given the precarious situation of many of its transportation assets.
+Flash floods, rockfalls, avalanches, earthquakes, and other incidents pose
+threats to the network of independent transportation facilities. This research
+did not consider risk assessment directly at any level, but rather took as a
+given that 41 facilities were at some level of risk and played a potentially
+large systemic role. A well-conceived approach to systemic resilience should
+involve all three elements of resilience: hardening assets from failure through
+high-quality engineering and construction; locating maintenance resources in
+areas where they can most quickly resolve issues and return facilities optimal
+conditions; and understanding how the system could work effectively in a damaged
+or degraded state for medium to long periods of time if necessary.
 
-This research focused on the systemic criticality of 41 facilities that were assumed to fail independently. Some of the disaster scenarios most likely to affect Utah highway facilities – especially a major earthquake – are likely to damage multiple highway assets simultaneously. This research might be extended to consider what would happen if a set of highway facilities failed; is there a facility that is not critical were it to fail by itself, but ends up being a critical component of several combinations of failures? Taking the question further, UDOT might consider scenarios where emergency services or evacuations must operate on a degraded network. Of course, it is also an open question as to whether destination and mode choices will follow the same behavioral patterns in such a scenario. 
+This research focused on the systemic criticality of 41 facilities that were
+assumed to fail independently. Some of the disaster scenarios most likely to
+affect highway facilities -- especially a major earthquake -- are likely to
+damage multiple highway assets simultaneously. This research might be extended
+to consider what would happen if a set of highway facilities failed; is there a
+facility that is not critical were it to fail by itself, but ends up being a
+critical component of several combinations of failures? Taking the question
+further, agencies might consider scenarios where emergency services or
+evacuations must operate on a degraded network, an element of the emerging
+research area of functional recovery [@zhan2022]. Of course, it is also an open
+question as to whether destination and mode choices will follow the same
+behavioral patterns in such a scenario.
 
-This research developed a trip-based statewide transportation planning model using model design practices – including a destination choice trip distribution model and a complete if rudimentary logit-based mode choice model. The model presented in this research should not be used for infrastructure policy or forecasting analyses, but is instead an illustrative tool. USTM, on the other hand, is a trip-based statewide transportation planning model with a basic gravity-type trip distribution model and no mode choice component. Using logit-based choice frameworks for trip distribution and mode choice allows the model to incorporate greater sensitivity to influencing variables and other benefits. It is recommended that USTM include a logit-based mode and destination choice model in the future. This is standard practice in other states, and enables more realistic modeling of human behavior. The urban modeling areas in Utah would also benefit from a similar improvement.
+This research developed a trip-based statewide transportation planning model
+using model design practices -- including a destination choice trip distribution
+model and a complete if rudimentary logit-based mode choice model. The model
+presented in this research should not be used for infrastructure policy or
+forecasting analyses, but is instead an illustrative tool. Many statewide
+models, on the other hand, is a trip-based statewide transportation planning
+model with a basic gravity-type trip distribution model and no mode choice
+component. Using logit-based choice frameworks for trip distribution and mode
+choice allows the model to incorporate greater sensitivity to influencing
+variables and other benefits. It is recommended that agencies include a
+logit-based mode and destination choice model as a bare minimum, if not a full
+activity-based model as is becoming the standard practice.
 
-The flexibility and sensitivity afforded by choice models can introduce some additional challenges, however. The results of the logsum-based choice analysis highlight one such risk, in that using different cost functions for network skimming and destination choice can lead to inconsistent model behavior. In this research and in the USTM highway assignment, vehicle trips between origins and destinations are loaded onto the shortest time path, but their destinations are chosen by a combination of travel time and path distance. USTM and other travel models UDOT holds a stake in should be sure to address this issue. Along the same lines, this research included only a single feedback iteration; understanding how many iterations are necessary for a travel model to successfully converge – where the destinations chosen are no longer changing based on changes to travel times between origins and destinations – is an important model design decision that was not explored here.
+The flexibility and sensitivity afforded by choice models can introduce some
+additional challenges, however. The results of the logsum-based choice analysis
+highlight one such risk, in that using different cost functions for network
+skimming and destination choice can lead to inconsistent model behavior. In this
+research and in the USTM highway assignment, vehicle trips between origins and
+destinations are loaded onto the shortest time path, but their destinations are
+chosen by a combination of travel time and path distance. Though this issue does
+not always arise during calibration and typical volume forecasting efforts, it
+represents a serious inconsistency in the travel model framework. Along the same
+lines, this research included only a single feedback iteration; understanding
+how many iterations are necessary for a travel model to successfully converge --
+where the destinations chosen are no longer changing based on changes to travel
+times between origins and destinations -- is an important model design decision
+that was not explored here.
 
-A potential limitation in the model developed for this research is that all HBW trips are flexible in destination choice. This implies that a user could choose to work in a different place when the path to their previously-chosen work location is disrupted. This might not be entirely logical for short-term or even medium-term highway closures, considering that most people will not switch jobs so quickly. With the recent uptick in telecommuting instigated by the COVID-19 pandemic, workplace location is likely even more flexible now than it has been in the past, and certainly more so than during the Atlanta and Minneapolis disasters discussed in Chapter 2. This increased flexibility has already called into question how HBW trips are handled in travel behavior modeling (Capasso da Silva et al., 2021). A more nuanced method for estimating HBW trips that accounts for both flexibility and inflexibility of workplace location might be developed. 
+A potential limitation in the model developed for this research is that all HBW
+trips are flexible in destination choice. This implies that a user could choose
+to work in a different place when the path to their previously-chosen work
+location is disrupted. This might not be entirely logical for short-term or even
+medium-term highway closures, considering that most people will not switch jobs
+so quickly. With the recent uptick in telecommuting instigated by the COVID-19
+pandemic, workplace location is likely even more flexible now than it has been
+in the past. This increased flexibility has already called into question how HBW
+trips are handled in travel behavior modeling @salon2021. A more nuanced method
+for estimating HBW trips that accounts for both flexibility and inflexibility of
+workplace location might be developed.
 
-Policies that result in a clear and certain outcome rare, though travel demand models are sometimes mis-interpreted, mis-used, or even mis-designed to imply a single policy prediction. Along the same lines, UDOT should take a proactive role in helping travel modelers and transportation planners incorporate uncertainty in their analysis and convey this uncertainty responsibly in communications with transportation decision-makers and the general public.
+Policies that result in a clear and certain outcome rare, though travel demand
+models are sometimes mis-interpreted, mis-used, or even mis-designed to imply a
+single policy prediction. Along the same lines, UDOT should take a proactive
+role in helping travel modelers and transportation planners incorporate
+uncertainty in their analysis and convey this uncertainty responsibly in
+communications with transportation decision-makers and the general public.
 
 # Conclusions
-The USTM model is a gravity-based travel demand model, while the resiliency
-model is logit-based. The logit-based nature of the resiliency model allows for
-greater sensitivity in user mode and destination choice, which causes the
-estimated costs associated with link closure to be lower than for previous
-estimations. The resiliency models incorporation of both the logsum for HBW,
-HBW, and NHB purposes, as well as the travel time calculation for the other
-purposes included in USTM. The recommendations resulting from the adaptation of
-a logit-based model on the USTM network are that logit-based modeling returns
-more sensitive estimations of the value of a link in the network.  This is a
-highly important outcome because more accurate estimation allows UDOT to better
-understand the monetary importance of highway links throughout Utah.
-Additionally, the model’s design allows for further analysis of additional link
-closures, or even multi-link closure.
 
-
-## Summary
-The development of a logit-based travel demand model can improve the ability of
-UDOT to accurately estimate the costs per day of link loss that Utahn’s would
-experience. The resiliency model provides sensitive estimates that more
-accurately represent the costs associated with link closure than a travel time
-increase methodology by itself would be able to capture.  Using the logsum,
-estimations sensitive to user choice were found, which can help professionals to
-better evaluate risk to Utah’s infrastructure. User choice is highly important
-in modern modeling practices because user choice allows a model to estimate
-information more precisely and accurately. The information provided by the
-resiliency model should be used to prioritize link importance to the
-functionality of Utah’s highway network. The resiliency model more accurately
-estimates costs experienced by Utahn’s due to link loss than do traditional
-methods for determining costs.
+The question of systemic resilience of highway assets is an increasing concern
+to agencies that must maintain critical infrastructure as it ages in the face of
+a changing climate and economy. The basic tools of travel forecasting --- based
+on coherent representations of human behavior --- provide compelling tools for
+evaluating the criticality of individual highway assets. These tools may require
+different expertise than more traditional agency engineers are usually equipped
+with, but simplified or simplistic methods can lead to fundamentally different
+evaluations of what may happen when the network changes. Demand modelers must
+first equip their models with the tools to be useful outside of simple volume
+forecasting, and then communicate with their stakeholders and peers the purpose
+of the model and its powerful potential for helpful analysis.

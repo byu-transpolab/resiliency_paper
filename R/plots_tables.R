@@ -81,10 +81,6 @@ make_coefficient_table <- function(mc_constants, mc_coefficients, dc_coefficient
 make_sensitivity_plot <- function(sensitivity, prod){
   ls_sa <- read_rds(sensitivity)
   
-  ls_sa |> 
-    separate(scenario, c("iteration", "scenario"), sep = )
-    
-  
   
     logsums_sa <- ls_sa %>%
       left_join(prod, by = c("purpose", "TAZ")) |> 
@@ -119,13 +115,7 @@ make_sensitivity_plot <- function(sensitivity, prod){
       arrange(-Cost, .by_group = TRUE)
   
   
-  ggplot(sa_graph_data) +
-    aes(x = iter, y = Cost, colour = Scenario) +
-    geom_line() +
-    scale_color_hue(direction = 1) +
-    theme_bw() + xlab("Draw") + ylab("Total Cost [$]")
-  
-  
+  sa_graph_data
   
 }
 
