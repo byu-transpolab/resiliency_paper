@@ -92,7 +92,7 @@ by a cost coefficient to translate the lost utility in monetary terms
 [@geurs2004; @geurs2010].
 
 Logsum-derived accessibility meaures have been used before to evaluate network
-resiliency [@taylor2008;@masiero2012; @winkler2016]. Where these previous
+resiliency [@taylor2008; @masiero2012; @winkler2016]. Where these previous
 efforts have been somewhat limited is in their theoretical nature. Though
 previous researchers have shown that logsum-derived accessibility measures are
 feasible and informative, their use in actual resilience analysis efforts by

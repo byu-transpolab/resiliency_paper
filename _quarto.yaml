@@ -55,7 +55,7 @@ format:
   html: 
     theme: cosmo
   trb-pdf:
-    wordcount: 5662
+    wordcount: 5706
     tablecount: 4
     keep-tex: true
     top-level-division: section

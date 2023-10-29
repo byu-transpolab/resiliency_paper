@@ -156,7 +156,30 @@ this link to be cut, the people of Utah would have the highest costs per
 day in lost destination and travel access of any other link. Each of the
 highest-ranking roads in this analysis is an interstate facility in
 northern Utah, which is more heavily populated than the remote areas in
-the south.
+the south. A map showing the locations of these scenarios is given in
+@fig-linksmap. The concentration the highest cost links in the Salt Lake
+City metropolitan area is obvious, though the links with the highest
+cost are not *in* Salt Lake City where multiple
+
+```{r links-map, fig.cap="Total cost of link closure.", fig.show='hold'}
+#| label: fig-linksmap
+#| fig-cap: Total cost of link closure for each scenario by the logsum method.
+tar_load(mapdata)
+
+
+ggplot(data = mapdata, mapping = aes(color = value/1e8)) +
+  ggspatial::annotation_map_tile("stamenbw", zoom = 8, alpha = 0.5) + 
+  viridis::scale_color_viridis("Cost (M$)") +
+  geom_sf(size = 3, stroke = 1, alpha = 0.9)  + 
+   theme(axis.line = element_line(color = NA),
+        axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank())
+  
+```
 
 Perhaps strangely, many scenarios in the analysis show a *benefit* from
 loss of the link. Investigating these scenarios showed that for many
@@ -168,34 +191,9 @@ automobile operating costs are calculated per mile and not per minute,
 this means that the new path actually produces a benefit. This challenge
 is exacerbated by the apparent agency practice of placing artificial
 time penalties on the network links in some canyons during calibration.
-This exercise reveals why such a practice should be discouraged, and
-also highlights the importance of using consistent functions for
-impedance calculation at all stages of the model.
-
-```{r links-map, fig.cap="Total cost of link closure.", fig.show='hold'}
-#| label: fig-linksmap
-#| fig-cap: Total cost of link closure for each scenario.
-tar_load(mapdata)
-
-
-ggplot(mapdata) +
-  ggspatial::annotation_map_tile("cartolight", zoom = 8) + 
-  coord_sf(crs = sf::st_crs(4326),  expand = FALSE) + 
-  geom_sf(data = mapdata, inherit.aes = FALSE, size = 5, stroke = 1,
-          aes(fill = value/1e8, shape = factor(sign(value), labels = c("Benefits", "Costs"))), 
-              alpha = 0.5)  + 
-  scale_shape_manual("Direction", values = c(21, 22), ) +
-  theme(axis.line = element_line(color = NA))  + 
-  viridis::scale_fill_viridis("Cost of closure ($M)", option = "magma", direction = -1) + 
-   theme(axis.line = element_line(color = NA),
-        axis.title.x=element_blank(),
-        axis.text.x=element_blank(),
-        axis.ticks.x=element_blank(),
-        axis.title.y=element_blank(),
-        axis.text.y=element_blank(),
-        axis.ticks.y=element_blank())
-  
-```
+This exercise reveals one reason why such a practice should be
+discouraged, and also highlights the importance of using consistent
+functions for impedance calculation at all stages of the model.
 
 ```{r traveltimerank, echo = FALSE}
 #| label: tbl-traveltimerank
