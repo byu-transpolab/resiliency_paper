@@ -17,3 +17,4 @@ data/traveltimecosts*
 *_cache/
 *_files/
 *-tikzDictionary
+data/logsums*.rds
