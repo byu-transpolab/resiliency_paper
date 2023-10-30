@@ -51,13 +51,17 @@ book:
   keyword: "Accessibility, Location Choice, Resiliency, Choice Analysis"
 
 bibliography: book.bib  
+csl: apa.csl
+
 format: 
   html: 
     theme: cosmo
-  trb-pdf:
-    wordcount: 5706
-    tablecount: 4
+  elsevier-pdf:
+    journal:
+      name: Transportation Research Part A
+    cite-method: citeproc
     keep-tex: true
+    natbib: false
     top-level-division: section
     toc: false
 
