@@ -16,3 +16,4 @@ data/traveltimecosts*
 /_book/
 *_cache/
 *_files/
+*-tikzDictionary
