@@ -166,11 +166,18 @@ cost are not *in* Salt Lake City where multiple
 #| fig-cap: Total cost of link closure for each scenario by the logsum method.
 tar_load(mapdata)
 
+my_breaks = c(-Inf, 0, 5e6, 1e7, 5e7, Inf)
 
-ggplot(data = mapdata, mapping = aes(color = value/1e8)) +
+ggplot(data = mapdata, mapping = aes(
+  fill = cut(value, breaks = my_breaks,
+              labels = c("<0", "0-500k", "500k to 1M", 
+                         "1M to 5M", ">5M")))) +
   ggspatial::annotation_map_tile("stamenbw", zoom = 8, alpha = 0.5) + 
-  viridis::scale_color_viridis("Cost (M$)") +
-  geom_sf(size = 3, stroke = 1, alpha = 0.9)  + 
+  viridis::scale_fill_viridis("Cost ($)",
+                               discrete = TRUE, option  = "rocket", 
+                               direction = -1) +
+  # scale_color_manual("Cost (M$)", palette = ) + 
+  geom_sf(size = 3, stroke = 1, alpha = 0.9, pch = 21)  + 
    theme(axis.line = element_line(color = NA),
         axis.title.x=element_blank(),
         axis.text.x=element_blank(),
