@@ -38,7 +38,7 @@ involve mountain canyons and many additional miles of travel.
 The costs obtained by the logsum and travel time based methods for this
 scenario are shown in @tbl-tooeletable. In both analyses, we separate
 the costs spatially, though the definitions of the two are slightly
-different. In the logsum-based method, "Inside Toole" are costs
+different. In the logsum-based method, "Inside Tooele" are costs
 associated with decreased accessibility for trips produced in Tooele
 County. The increased costs in this case capture the loss in utility by
 measuring increased multi-model travel impedances to destinations with
