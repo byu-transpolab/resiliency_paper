@@ -40,8 +40,8 @@ DiagrammeR::grViz("
   'Mode Choice Logsums'; 'Destination Choice Logsums'; 'Trips'; 'Congested Network'
   
   node [shape = box,
-        fontname = Helvetica, color = red]
-  'Time and Distance Costs'; 'Logsum Costs' [color=blue]
+        fontname = Helvetica, color =  '#D14124']
+  'Time and Distance Costs'; 'Logsum Costs' [color='#0072CE']
  
  
   node [shape = oval,
@@ -60,11 +60,11 @@ DiagrammeR::grViz("
   'Mode Choice Logsums' -> 'Trips'
   'Destination Choice Logsums' -> Trips 
   Trips -> 'Congested Network'
-  'Congested Network' -> 'Time and Distance Skim' [color = red, label = 'Feedback',fontname = Helvetica, fontcolor=red]
-  Trips -> 'Time and Distance Costs' [color = red]
-  'Time and Distance Skim' -> 'Time and Distance Costs' [color = red]
-  'Destination Choice Logsums' -> 'Logsum Costs' [color = blue]
-  'Trip Productions' -> 'Logsum Costs' [color = blue]
+  'Congested Network' -> 'Time and Distance Skim' [color = '#D14124', label = 'Feedback',fontname = Helvetica, fontcolor='#D14124']
+  Trips -> 'Time and Distance Costs' [color = '#D14124']
+  'Time and Distance Skim' -> 'Time and Distance Costs' [color = '#D14124']
+  'Destination Choice Logsums' -> 'Logsum Costs' [color = '#0072CE']
+  'Trip Productions' -> 'Logsum Costs' [color = '#0072CE']
   }
 ")
 ```
