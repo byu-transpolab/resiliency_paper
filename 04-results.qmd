@@ -282,7 +282,7 @@ element in the relative ranking of scenarios.
 
 ```{r saplot}
 #| label: fig-saplot
-#| fig-cap: Estimated logsum-based scenario costs in 25 different draws of the choice model parameters, 
+#| fig-cap: Estimated logsum-based scenario costs in 25 different draws of the choice model parameters. 
 library(wesanderson)
 tar_load(sensitivity_plot)
 sensitivity_plot |> 

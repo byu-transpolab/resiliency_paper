@@ -1,18 +1,18 @@
 # Limitations and Discussion
 
 The issue of systemic resilience to natural and other hazards is an important
-question for UDOT and many other agencies in the United States and around the
-world, given the precarious situation of many of its transportation assets.
-Flash floods, rockfalls, avalanches, earthquakes, and other incidents pose
-threats to the network of independent transportation facilities. This research
-did not consider risk assessment directly at any level, but rather took as a
-given that 41 facilities were at some level of risk and played a potentially
-large systemic role. A well-conceived approach to systemic resilience should
-involve all three elements of resilience: hardening assets from failure through
-high-quality engineering and construction; locating maintenance resources in
-areas where they can most quickly resolve issues and return facilities optimal
-conditions; and understanding how the system could work effectively in a damaged
-or degraded state for medium to long periods of time if necessary.
+question for transportation agencies in the United States and around the world,
+given the precarious situation of many of its transportation assets. Flash
+floods, rockfalls, avalanches, earthquakes, and other incidents pose threats to
+the network of independent transportation facilities. This research did not
+consider risk assessment directly at any level, but rather took as a given that
+41 facilities were at some level of risk and played a potentially large systemic
+role. A well-conceived approach to systemic resilience should involve all three
+elements of resilience: hardening assets from failure through high-quality
+engineering and construction; locating maintenance resources in areas where they
+can most quickly resolve issues and return facilities to optimal conditions; and
+understanding how the system could work effectively in a damaged or degraded
+state for medium to long periods of time if necessary.
 
 This research focused on the systemic criticality of 41 facilities that were
 assumed to fail independently. Some of the disaster scenarios most likely to
@@ -28,51 +28,67 @@ question as to whether destination and mode choices will follow the same
 behavioral patterns in such a scenario.
 
 This research developed a trip-based statewide transportation planning model
-using model design practices -- including a destination choice trip distribution
-model and a complete if rudimentary logit-based mode choice model. The model
-presented in this research should not be used for infrastructure policy or
-forecasting analyses, but is instead an illustrative tool. Many statewide
-models, on the other hand, is a trip-based statewide transportation planning
-model with a basic gravity-type trip distribution model and no mode choice
-component. Using logit-based choice frameworks for trip distribution and mode
-choice allows the model to incorporate greater sensitivity to influencing
-variables and other benefits. It is recommended that agencies include a
-logit-based mode and destination choice model as a bare minimum, if not a full
-activity-based model as is becoming the standard practice.
+using common model design practices including a destination choice trip
+distribution model and a complete if rudimentary logit-based mode choice model.
+The model presented in this particular research should not be used for
+infrastructure policy or forecasting analyses, but is instead an illustrative
+tool. Many statewide models, on the other hand, use a trip-based statewide
+transportation planning model with a basic gravity-type trip distribution model
+and no mode choice component. Using logit-based choice frameworks for trip
+distribution and mode choice allows the model to incorporate greater sensitivity
+to influencing variables and other benefits, in addition to providing data to
+support this type of resiliency analysis.
 
 The flexibility and sensitivity afforded by choice models can introduce some
 additional challenges, however. The results of the logsum-based choice analysis
 highlight one such risk, in that using different cost functions for network
 skimming and destination choice can lead to inconsistent model behavior. In this
-research and in the USTM highway assignment, vehicle trips between origins and
-destinations are loaded onto the shortest time path, but their destinations are
-chosen by a combination of travel time and path distance. Though this issue does
-not always arise during calibration and typical volume forecasting efforts, it
-represents a serious inconsistency in the travel model framework. Along the same
-lines, this research included only a single feedback iteration; understanding
-how many iterations are necessary for a travel model to successfully converge --
-where the destinations chosen are no longer changing based on changes to travel
-times between origins and destinations -- is an important model design decision
-that was not explored here.
+research and in the USTM highway assignment — and common to many agency modeling
+practices — vehicle trips between origins and destinations are loaded onto the
+shortest time path, but their destinations are chosen by a combination of travel
+time and path distance. Though this issue does not always arise during
+calibration and typical volume forecasting efforts, it represents a serious
+inconsistency in the travel model framework. Along the same lines, this research
+included only a single feedback iteration; understanding how many iterations are
+necessary for a travel model to successfully converge -- where the destinations
+chosen are no longer changing based on changes to travel times between origins
+and destinations -- is an important model design decision that was not explored
+here.
 
 A potential limitation in the model developed for this research is that all HBW
 trips are flexible in destination choice. This implies that a user could choose
 to work in a different place when the path to their previously-chosen work
 location is disrupted. This might not be entirely logical for short-term or even
 medium-term highway closures, considering that most people will not switch jobs
-so quickly. With the recent uptick in telecommuting instigated by the COVID-19
+so quickly. With the recent increase in telecommuting instigated by the COVID-19
 pandemic, workplace location is likely even more flexible now than it has been
 in the past. This increased flexibility has already called into question how HBW
-trips are handled in travel behavior modeling @salon2021. A more nuanced method
-for estimating HBW trips that accounts for both flexibility and inflexibility of
-workplace location might be developed.
+trips are handled in travel behavior modeling [@salon2021]. A more nuanced
+method for estimating HBW trips that accounts for both flexibility and
+inflexibility of workplace location might be developed, or the use of
+activity-based models that consider journeys to work or telecommuting as a
+function of trip distance could be employed.
 
-Policies that result in a clear and certain outcome rare, though travel demand
-models are sometimes mis-interpreted, mis-used, or even mis-designed to imply a
-single policy prediction. Along the same lines, UDOT should take a proactive
-role in helping travel modelers and transportation planners incorporate
-uncertainty in their analysis and convey this uncertainty responsibly in
-communications with transportation decision-makers and the general public.
+Another limitation in this research the daily trip assignment procedure, which
+introduces two related issues. The first is that the analysis does not consider
+incidents which close a facility for a time shorter than 24 hours. Though the
+target of this research was an understanding of incidents of longer duration
+(allowing for a shift in destination choice), the impacts of shorter incidents
+on user costs is an important topic. A departure time choice model might allow
+users to shift trips to periods with a less compromised network. Addressing this
+issue, however, would introduce challenges related to long-distance trips that
+would stretch across time periods. A dynamic traffic assignment or mesoscopic
+network simulation may be a better strategy to address this issue [e.g.,
+@kaddoura2018].
+
+Policies that result in a clear and certain outcome are rare, though travel
+demand models are sometimes misinterpreted, misused, or even mis-designed to
+imply a single policy prediction. Along the same lines, agencies should take a
+proactive role in helping travel modelers and transportation planners
+incorporate uncertainty in their analysis and convey this uncertainty
+responsibly in communications with transportation decision-makers and the
+general public. The sensitivity test supplied in this research is a modest step
+in this direction.
 
 # Conclusions
 
