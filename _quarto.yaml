@@ -3,7 +3,7 @@ project:
 
 # This defines the .qmd files that are in your document
 book:
-  title: "A utility-based approach to modeling systemic resilience of highway networks with an application in Utah "
+  title: "A utility-based approach to modeling systemic resilience of highway networks with an application in Utah"
   author:
     - name: Gregory S. Macfarlane
       orcid: 0000-0003-3999-7584 
@@ -36,7 +36,7 @@ book:
     - 05-conclusions.qmd
     - 98-acknowledgments.qmd
     - 99-references.qmd
-  date: "8/1/2023"
+  date: "1/10/2024"
   abstract: | 
     The resilience of transportation networks is an important consideration in 
     management and planning, but practical techniques to identify systemically critical links
@@ -58,7 +58,9 @@ format:
     theme: cosmo
   elsevier-pdf:
     journal:
-      name: Transportation Research Part A
+      name: Case Studies in Transport Policy
+      formatting: "review"
+      model: "3p"
     cite-method: citeproc
     keep-tex: true
     natbib: false
