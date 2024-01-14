@@ -7,27 +7,25 @@ book:
   author:
     - name: Gregory S. Macfarlane
       orcid: 0000-0003-3999-7584 
+      corresponding: true
       email: gregmacfarlane@byu.edu 
       affiliations:
-      - name: Brigham Young University 
-        department: Civil and Construction Engineering 
+      - ref: byu
+        id: byu
+        name: Brigham Young University, Civil and Construction Engineering Department
         address: 430 EB
-        city: Provo 
-        state: UT 
+        city: Provo
+        state: UT
         postal-code: 84602
   # to add additional authors, simply add another -name: tag 
     - name: Max Barnes
       email: maxbarnes@kha.com
       affiliations:
-      - name: Kimley-Horn
+        - ref: byu
     - name: Natalie Mae Gray
-      email: nmgray@byu.edu
-      affiliations:
-      - name: Brigham Young University
-        address: 430 EB
-        city: Provo
-        state: UT
-        postal-code: 84602
+      email: nat.gray2000@gmail.com
+      affiliations: 
+        - ref: byu
   chapters:
     - index.qmd
     - 02-literature.qmd
@@ -39,7 +37,7 @@ book:
   date: "1/10/2024"
   abstract: | 
     The resilience of transportation networks is an important consideration in 
-    management and planning, but practical techniques to identify systemically critical links
+    policy, management and planning, but practical techniques to identify systemically critical links
     are limited. Further, current practical techniques ignore that when transportation
     networks are damaged or degraded, people potentially change destinations and modes as well
     as travel routes. In this research, we develop a model to examine network 
@@ -47,7 +45,9 @@ book:
     and apply this model to 41 scenarios representing the loss of links on the 
     statewide highway network in Utah. The results of the analysis suggest a 
     fundamentally different prioritization scheme than would be identified solely
-    through a methodology based on increased travel times.
+    through a methodology based on increased travel times. Beyond this, the
+    comparable user costs of the logsum method are generally lower than those
+    considering only the value of increased travel times. 
   keyword: "Accessibility, Location Choice, Resiliency, Choice Analysis"
 
 bibliography: book.bib  

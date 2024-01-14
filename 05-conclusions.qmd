@@ -29,8 +29,8 @@ behavioral patterns in such a scenario.
 
 This research developed a trip-based statewide transportation planning model
 using common model design practices including a destination choice trip
-distribution model and a complete if rudimentary logit-based mode choice model.
-The model presented in this particular research should not be used for
+distribution model and a complete –-- if rudimentary --– logit-based mode choice
+model. The model presented in this particular research should not be used for
 infrastructure policy or forecasting analyses, but is instead an illustrative
 tool. Many statewide models, on the other hand, use a trip-based statewide
 transportation planning model with a basic gravity-type trip distribution model
@@ -69,7 +69,7 @@ inflexibility of workplace location might be developed, or the use of
 activity-based models that consider journeys to work or telecommuting as a
 function of trip distance could be employed.
 
-Another limitation in this research the daily trip assignment procedure, which
+Another limitation in this research surrounds the daily trip assignment procedure, which
 introduces two related issues. The first is that the analysis does not consider
 incidents which close a facility for a time shorter than 24 hours. Though the
 target of this research was an understanding of incidents of longer duration
