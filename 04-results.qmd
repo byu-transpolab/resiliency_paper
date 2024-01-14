@@ -283,7 +283,7 @@ for incidents and hardening assets.
 ## Sensitivity Analysis
 
 A primary limitation of the model framework presented to this point is
-is that the input parameters used for the mode and destination choice
+that the input parameters used for the mode and destination choice
 utilities were gathered from several different sources including a
 statewide trip-based model, a statewide activity-based model, and an
 urban model for a small region. How much would the findings presented to

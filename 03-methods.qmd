@@ -16,10 +16,10 @@ exercise on the Utah Statewide Travel Model (USTM).
 ## Model Design
 
 The overall model framework is presented in @fig-framework, and is designed to
-capture the utility-based accessibility for a particular origin zones $i$ and
+capture the utility-based accessibility for a particular origin zone $i$ and
 trip purpose $m$. The model begins with a travel time skim procedure, to
 determine the congested travel time from zone $i$ to zone $j$ by auto as well as
-the shortest network distance for non motorized modes. The transit travel time
+the shortest network distance for non-motorized modes. The transit travel time
 skim is fixed, assuming that transit infrastructure would not be affected by
 changes to the highway network. Throughout this section, lower-cased index
 variables $k$ belong to a set of all indices described by the corresponding
@@ -137,7 +137,7 @@ elements
 2.  *Zonal Productions* $P_{im}$: available for all zones by purpose, including
     those in the MPO region areas.
 3.  *Zonal Socioeconomic Data*: the destination choice model described in
-    Equation \@ref(eq:dcp) calculates attractions $A_{jm}$ from the USTM zonal
+    @eq-dcp calculates attractions $A_{jm}$ from the USTM zonal
     socioeconomic data based on the utility coefficients in @tbl-coeffs.
 4.  *Calibration Targets*: USTM base scenario estimates of mode split and trip
     length were used to calibrate the utility coefficients as described below.
