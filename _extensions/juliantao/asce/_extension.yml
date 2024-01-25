@@ -1,0 +1,34 @@
+title: American Society of Civil Engineers
+author: Julian Tao 
+version: 0.1.0
+contributes:
+  format:
+    common:
+      csl: "assets/asce.csl"
+      execute:
+        echo: false
+        warning: false
+      crossref:
+        fig-prefix: Fig.
+        fig-title: "**Fig.**"
+        tbl-prefix: Table
+        tbl-title: "**Table**"
+        eq-prefix: Eq.
+        sec-prefix: Section
+        title-delim: "." 
+    pdf:
+      pdf-engine: pdflatex
+      header-includes: |
+        \usepackage[figurename=Fig.,labelfont=bf,labelsep=period]{caption}
+        \usepackage{newtxtext,newtxmath}
+      template-partials:
+        - "partials/doc-class.tex"
+        - "partials/title.tex"
+        - "partials/before-body.tex"
+      format-resources:
+        - "assets/ascelike-new.cls"
+        - "assets/ascelike-new.bst"
+      link-citations: true
+
+    html:
+      toc: true

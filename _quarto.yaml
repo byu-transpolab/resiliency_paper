@@ -22,7 +22,7 @@ book:
       email: maxbarnes@kha.com
       affiliations:
         - ref: byu
-    - name: Natalie Mae Gray
+    - name: Natalie M. Gray
       email: nat.gray2000@gmail.com
       affiliations: 
         - ref: byu
@@ -36,35 +36,24 @@ book:
     - 99-references.qmd
   date: "1/10/2024"
   abstract: | 
-    The resilience of transportation networks is an important consideration in 
-    policy, management and planning, but practical techniques to identify systemically critical links
-    are limited. Further, current practical techniques ignore that when transportation
-    networks are damaged or degraded, people potentially change destinations and modes as well
-    as travel routes. In this research, we develop a model to examine network 
-    highway resilience based on changes to mode and destination choice logsums,
-    and apply this model to 41 scenarios representing the loss of links on the 
-    statewide highway network in Utah. The results of the analysis suggest a 
-    fundamentally different prioritization scheme than would be identified solely
-    through a methodology based on increased travel times. Beyond this, the
-    comparable user costs of the logsum method are generally lower than those
-    considering only the value of increased travel times. 
-  keyword: "Accessibility, Location Choice, Resiliency, Choice Analysis"
+    The resilience of transportation networks is an important consideration in  policy, management and planning, but practical techniques to identify systemically critical links are limited. Further, current practical techniques ignore that when transportation networks are damaged or degraded, people potentially change destinations and modes as well as travel routes. In this research, we develop a model to examine network  highway resilience based on changes to mode and destination choice logsums, and apply this model to 41 scenarios representing the loss of links on the  statewide highway network in Utah. The results of the analysis suggest a  fundamentally different prioritization scheme than would be identified solely through a methodology based on increased travel times. Beyond this, the comparable user costs of the logsum method are generally lower than those considering only the value of increased travel times. 
+# comma separated list
+keywords: 
+  - Accessibility, 
+  - Location Choice,
+  - Resiliency
 
 bibliography: book.bib  
-csl: apa.csl
+csl: asce.csl
 
 format: 
   html: 
     theme: cosmo
-  elsevier-pdf:
-    journal:
-      name: Case Studies in Transport Policy
-      formatting: "review"
-      model: "3p"
-    cite-method: citeproc
+  asce-pdf:
     keep-tex: true
     natbib: false
     top-level-division: section
+    footer-lastname: Macfarlane
     toc: false
 
 execute: 
