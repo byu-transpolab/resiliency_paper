@@ -21,11 +21,15 @@ book:
     - name: Max Barnes
       email: maxbarnes@kha.com
       affiliations:
-        - ref: byu
+        - ref: kha
+          id: kha
+          name: Kimley-Horn
     - name: Natalie M. Gray
       email: nat.gray2000@gmail.com
       affiliations: 
-        - ref: byu
+        - ref: wsp
+          id: wsp
+          name: WSP
   chapters:
     - index.qmd
     - 02-literature.qmd
