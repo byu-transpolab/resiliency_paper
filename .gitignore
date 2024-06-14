@@ -17,6 +17,7 @@ _targets/
 rosm.cache
 *.DBF
 *.dbf
+site_libs/
 
 data/traveltimecosts*
 /.quarto/
@@ -25,3 +26,5 @@ data/traveltimecosts*
 *_files/
 *-tikzDictionary
 data/logsums*.rds
+A-utility-based-approach-to-modeling-systemic-resilience-of-highway-networks-with-an-application-in-Utah.tex
+diff.tex
