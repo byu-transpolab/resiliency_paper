@@ -5,6 +5,13 @@
 *.aux
 *.log
 *.spl
+*.bbl
+*.blg
+*.fff
+*.lof
+*.lot
+*.synctex.gz
+*.ttt
 _bookdown_files/
 _targets/
 rosm.cache
