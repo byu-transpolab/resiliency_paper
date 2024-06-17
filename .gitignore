@@ -28,3 +28,7 @@ data/traveltimecosts*
 data/logsums*.rds
 A-utility-based-approach-to-modeling-systemic-resilience-of-highway-networks-with-an-application-in-Utah.tex
 diff.tex
+
+*.fls
+
+*.fdb_latexmk

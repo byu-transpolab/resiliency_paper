@@ -9,4 +9,4 @@ diff.tex: A-utility-based-approach-to-modeling-systemic-resilience-of-highway-ne
 	latexdiff resilience_submitted.tex $< > $@
 
 A-utility-based-approach-to-modeling-systemic-resilience-of-highway-networks-with-an-application-in-Utah.tex: $(SRCS)
-	quarto render --to asce.pdf
+	quarto render --to asce-pdf

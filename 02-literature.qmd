@@ -31,7 +31,8 @@ groups include:
 -   *Accessibility analysis* How easily can the population using the damaged
     network complete their daily activities?
 
-```{r authortable, echo = FALSE}
+
+```{r authortable, echo = FALSE, cache = FALSE}
 #| label: tbl-authortable
 #| tbl-cap: Attempts to Evaluate Systemic Resiliency
 readxl::read_xlsx("images/author_summary.xlsx") %>%
