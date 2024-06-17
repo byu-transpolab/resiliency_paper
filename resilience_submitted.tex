@@ -74,48 +74,42 @@
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
 \newlength{\csllabelwidth}
 \setlength{\csllabelwidth}{3em}
-\newlength{\cslentryspacingunit} % times entry-spacing
-\setlength{\cslentryspacingunit}{\parskip}
-\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
- {% don't indent paragraphs
-  \setlength{\parindent}{0pt}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
   % turn on hanging indent if param 1 is 1
   \ifodd #1
-  \let\oldpar\par
-  \def\par{\hangindent=\cslhangindent\oldpar}
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
   \fi
   % set entry spacing
-  \setlength{\parskip}{#2\cslentryspacingunit}
- }%
- {}
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
 \usepackage{calc}
-\newcommand{\CSLBlock}[1]{#1\hfill\break}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
-\usepackage{booktabs}
-\usepackage{longtable}
-\usepackage{array}
-\usepackage{multirow}
-\usepackage{wrapfig}
-\usepackage{float}
-\usepackage{colortbl}
-\usepackage{pdflscape}
-\usepackage{tabu}
-\usepackage{threeparttable}
-\usepackage{threeparttablex}
-\usepackage[normalem]{ulem}
-\usepackage{makecell}
-\usepackage{xcolor}
 \usepackage[figurename=Fig.,labelfont=bf,labelsep=period]{caption}
 \usepackage{newtxtext,newtxmath}
-\makeatletter
-\makeatother
 \makeatletter
 \@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
 \makeatother
@@ -138,14 +132,14 @@
   \newcommand\listtablename{List of Tables}
 \fi
 \ifdefined\figurename
-  \renewcommand*\figurename{Fig.}
+  \renewcommand*\figurename{\textbf{Fig.}}
 \else
-  \newcommand\figurename{Fig.}
+  \newcommand\figurename{\textbf{Fig.}}
 \fi
 \ifdefined\tablename
-  \renewcommand*\tablename{Table}
+  \renewcommand*\tablename{\textbf{Table}}
 \else
-  \newcommand\tablename{Table}
+  \newcommand\tablename{\textbf{Table}}
 \fi
 }
 \@ifpackageloaded{float}{}{\usepackage{float}}
@@ -155,23 +149,16 @@
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \makeatother
 \makeatletter
+\makeatother
+\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
-\makeatother
-\makeatletter
-\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
-\makeatother
-\makeatletter
-\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
-\makeatother
-\makeatletter
-\makeatother
-\makeatletter
 \makeatother
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
+
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
@@ -228,43 +215,40 @@ increased travel times.
 \KeyWords{Accessibility,Location Choice,Resiliency}
 \par
 \vspace{1em}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, enhanced, boxrule=0pt, frame hidden, interior hidden, sharp corners, breakable]}{\end{tcolorbox}}\fi
 
 \bookmarksetup{startatroot}
 
-\hypertarget{intro}{%
-\section{Introduction}\label{intro}}
+\section{Introduction}\label{intro}
 
 Systemic resiliency is an important consideration for transportation
 agencies, though specific definitions of ``resiliency'' might vary under
 different contexts. Some agencies and researchers see resiliency as
 facility-level design and engineering that hardens the system against
-failure (\protect\hyperlink{ref-bradley2007}{Bradley 2007};
-\protect\hyperlink{ref-peeta2010}{Peeta et al. 2010}); others as an
-ability for maintenance staff to rapidly restore service following
-catastrophe (\protect\hyperlink{ref-zhang2016}{Zhang and Wang 2016});
-and others as an ability for a system to continue operating in degraded
-state (\protect\hyperlink{ref-berdica2002}{Berdica 2002};
-\protect\hyperlink{ref-ip2011}{Ip and Wang 2011}). Regardless of the
-definition used, assessing the resiliency of a transportation network
---- and addressing any potential shortfalls --- requires a method to
-identify which links or facilities are most critical to the smooth
-operation of the network.
+failure (\citeproc{ref-bradley2007}{Bradley 2007};
+\citeproc{ref-peeta2010}{Peeta et al. 2010}); others as an ability for
+maintenance staff to rapidly restore service following catastrophe
+(\citeproc{ref-zhang2016}{Zhang and Wang 2016}); and others as an
+ability for a system to continue operating in degraded state
+(\citeproc{ref-berdica2002}{Berdica 2002}; \citeproc{ref-ip2011}{Ip and
+Wang 2011}). Regardless of the definition used, assessing the resiliency
+of a transportation network --- and addressing any potential shortfalls
+--- requires a method to identify which links or facilities are most
+critical to the smooth operation of the network.
 
 Identifying which links in a transportation network are most critical,
 however, is not trivial. State of the practice techniques typically rely
 on traffic volumes represented in terms of vehicles, trips, or freight
-value (e.g. \protect\hyperlink{ref-aem2017}{AEM 2017}). But these
-methods ignore the fact that some networks have alternate routes readily
-available, have multiple well developed modes of transportation, or have
-redundant destination locations. When a network link does break, routes,
-mode choice, and destination choice often change as well. These
-responses have been observed in real-world crisis events like the I-35 W
-bridge collapse in Minneapolis and the I-85 bridge fire and collapse in
-Atlanta (\protect\hyperlink{ref-hamedi2018}{Hamedi et al. 2018};
-\protect\hyperlink{ref-xie2011}{Xie and Levinson 2011};
-\protect\hyperlink{ref-zhu2010}{Zhu et al. 2010a};
-\protect\hyperlink{ref-levinson2010}{b}).
+value (e.g. \citeproc{ref-aem2017}{AEM 2017}). But these methods ignore
+the fact that some networks have alternate routes readily available,
+have multiple well developed modes of transportation, or have redundant
+destination locations. When a network link does break, routes, mode
+choice, and destination choice often change as well. These responses
+have been observed in real-world crisis events like the I-35 W bridge
+collapse in Minneapolis and the I-85 bridge fire and collapse in Atlanta
+(\citeproc{ref-hamedi2018}{Hamedi et al. 2018};
+\citeproc{ref-xie2011}{Xie and Levinson 2011};
+\citeproc{ref-zhu2010}{Zhu et al. 2010a};
+\citeproc{ref-levinson2010}{b}).
 
 In this research, we apply a destination choice accessibility model to
 identify critical highway links in a statewide highway context. This
@@ -275,27 +259,25 @@ network representing the state of Utah. The model structure permits a
 more nuanced evaluation of link criticality than using traffic volume
 alone or in conjunction with an increased travel time measure.
 
-The paper proceeds as follows. First, a
-\protect\hyperlink{litreview}{literature review} discusses previous
-attempts to analyze the resiliency of transportation networks. A
-\protect\hyperlink{methodology}{methodology} section presents the model
-developed for this research and describes the implementation process in
-Utah. A \protect\hyperlink{results}{results} section describes the model
-output in detail for one scenario and then compares and ranks the model
-outputs for an array of several dozen independent scenarios. The paper
-\protect\hyperlink{conclusion}{concludes} with a discussion of
-limitations and associated avenues for future research.
+The paper proceeds as follows. First, a \hyperref[litreview]{literature
+review} discusses previous attempts to analyze the resiliency of
+transportation networks. A \hyperref[methodology]{methodology} section
+presents the model developed for this research and describes the
+implementation process in Utah. A \hyperref[results]{results} section
+describes the model output in detail for one scenario and then compares
+and ranks the model outputs for an array of several dozen independent
+scenarios. The paper \hyperref[conclusion]{concludes} with a discussion
+of limitations and associated avenues for future research.
 
 \bookmarksetup{startatroot}
 
-\hypertarget{litreview}{%
-\section{Literature}\label{litreview}}
+\section{Literature}\label{litreview}
 
 In a groundbreaking theoretical article, Berdica
-(\protect\hyperlink{ref-berdica2002}{Berdica 2002}) attempted to
-identify, define and conceptualize network ``vulnerability'' --- the
-complement of resiliency --- by envisioning analyses conducted with
-several vulnerability performance measures including travel time, delay,
+(\citeproc{ref-berdica2002}{Berdica 2002}) attempted to identify, define
+and conceptualize network ``vulnerability'' --- the complement of
+resiliency --- by envisioning analyses conducted with several
+vulnerability performance measures including travel time, delay,
 congestion, serviceability, and accessibility. She then defined
 reliability as the level of reduced accessibility due to unfavorable
 operating conditions on the network. In particular, the author
@@ -320,9 +302,12 @@ technique applied in the study. These groups include:
   damaged network complete their daily activities?
 \end{itemize}
 
-\hypertarget{tbl-authortable}{}
 \begin{table}
-\caption{\label{tbl-authortable}Attempts to Evaluate Systemic Resiliency }\tabularnewline
+
+\caption{\label{tbl-authortable}Attempts to Evaluate Systemic
+Resiliency}
+
+\centering{
 
 \centering
 \begin{tabular}[t]{rll}
@@ -357,7 +342,10 @@ Year & Author & Performance Metric\\
 2019 & Hackl and Adey & Network connectivity\\
 \bottomrule
 \end{tabular}
-\end{table}
+
+}
+
+\end{table}%
 
 The purpose of transportation networks is to connect locations to each
 other; presumably damage to a network would diminish the network's
@@ -366,23 +354,22 @@ even leave nodes or groups of nodes completely isolated. In studies
 using connectivity as the primary performance measure, researchers
 typically apply methods and concepts from graph theory. These measures
 may include elementary measures such as the isolation of nodes in a
-network (\protect\hyperlink{ref-abdel2007}{Abdel-Rahim et al. 2007}).
-More advanced measures have included heirarchical clustering of node
-paths (\protect\hyperlink{ref-agarwal2011}{Agarwal et al. 2011};
-\protect\hyperlink{ref-zhang2015}{Zhang et al. 2015}), a count of
-independent paths (\protect\hyperlink{ref-vodak2019}{Vodák et al.
-2019}), the reduction of total network capacity
-(\protect\hyperlink{ref-ip2011}{Ip and Wang 2011}), and special
-applications of the knapsack and traveling salesman problems
-(\protect\hyperlink{ref-guze2014}{Guze 2014};
-\protect\hyperlink{ref-osei2014}{Osei-Asamoah and Lownes 2014}). Though
-useful from a theoretical perspective, many of these authors reported
-that their approaches tend to break down to some degree on large,
-real-world networks where the number of nodes and links numbers in the
-tens of thousands, and the degree of connectivity between any arbitrary
-node pair is high. They also do not typically account for how network
-users may react to the new topology or capacity constraints of the
-degraded network.
+network (\citeproc{ref-abdel2007}{Abdel-Rahim et al. 2007}). More
+advanced measures have included heirarchical clustering of node paths
+(\citeproc{ref-agarwal2011}{Agarwal et al. 2011};
+\citeproc{ref-zhang2015}{Zhang et al. 2015}), a count of independent
+paths (\citeproc{ref-vodak2019}{Vodák et al. 2019}), the reduction of
+total network capacity (\citeproc{ref-ip2011}{Ip and Wang 2011}), and
+special applications of the knapsack and traveling salesman problems
+(\citeproc{ref-guze2014}{Guze 2014};
+\citeproc{ref-osei2014}{Osei-Asamoah and Lownes 2014}). Though useful
+from a theoretical perspective, many of these authors reported that
+their approaches tend to break down to some degree on large, real-world
+networks where the number of nodes and links numbers in the tens of
+thousands, and the degree of connectivity between any arbitrary node
+pair is high. They also do not typically account for how network users
+may react to the new topology or capacity constraints of the degraded
+network.
 
 Highway system network failures --- in most imaginable cases --- degrade
 the shortest or least cost path, but typically do not eliminate all
@@ -390,18 +377,17 @@ paths. The degree to which travel time increases when a particular link
 is damaged, however, could provide an estimate of the criticality of
 that link or node. This general method has been used to evaluate
 potential choke points in various networks
-(\protect\hyperlink{ref-berdica2007}{Berdica and Mattsson 2007};
-\protect\hyperlink{ref-ganin2017}{Ganin et al. 2017};
-\protect\hyperlink{ref-jaller2015}{Jaller et al. 2015}) as well as the
-allocation of emergency resources
-(\protect\hyperlink{ref-peeta2010}{Peeta et al. 2010}). Though many
-applications only consider the increase in travel time, some authors
-consider how the users of the network will respond to the decreased
-capacity (\protect\hyperlink{ref-ibrahim2011}{Ibrahim et al. 2011};
-\protect\hyperlink{ref-serulle2011}{Serulle et al. 2011};
-\protect\hyperlink{ref-xu2015}{Xu et al. 2015}), and others attempt to
-model a shift in departure time or mode
-(\protect\hyperlink{ref-omer2013}{Omer et al. 2013}).
+(\citeproc{ref-berdica2007}{Berdica and Mattsson 2007};
+\citeproc{ref-ganin2017}{Ganin et al. 2017};
+\citeproc{ref-jaller2015}{Jaller et al. 2015}) as well as the allocation
+of emergency resources (\citeproc{ref-peeta2010}{Peeta et al. 2010}).
+Though many applications only consider the increase in travel time, some
+authors consider how the users of the network will respond to the
+decreased capacity (\citeproc{ref-ibrahim2011}{Ibrahim et al. 2011};
+\citeproc{ref-serulle2011}{Serulle et al. 2011};
+\citeproc{ref-xu2015}{Xu et al. 2015}), and others attempt to model a
+shift in departure time or mode (\citeproc{ref-omer2013}{Omer et al.
+2013}).
 
 A primary limitation with increased travel time methodologies is that
 they ignore other possible ways a population might adapt its travel to a
@@ -411,42 +397,40 @@ might be canceled entirely. Travel time-based methods do not account for
 the costs of these changes in plans. But accessibility methods --- in
 particular the accessibility calculations embedded within many existing
 regional transport models ---- provide a framework for evaluating these
-costs (\protect\hyperlink{ref-ben-akiva1985}{Ben-Akiva and Lerman 1985};
-\protect\hyperlink{ref-geurs2004}{Geurs and van Wee 2004}).
+costs (\citeproc{ref-ben-akiva1985}{Ben-Akiva and Lerman 1985};
+\citeproc{ref-geurs2004}{Geurs and van Wee 2004}).
 
 Accessibility is an abstract concept with multiple methods of
-quantification (\protect\hyperlink{ref-handy1997}{Handy and Niemeier
-1997}). Perhaps the most popular method is the cumulative opportunities
-measure: e.g., the number of jobs within a specified travel time
-threshold. This is the method employed by Xie and Levinson
-(\protect\hyperlink{ref-xie2011}{Xie and Levinson 2011}) in an analysis
-of the impact of the I-35 W bridge collapse in Minneapolis. But
-cumulative opportunities measures require the analyst to assert a travel
-time threshold, a mode, and an opportunity of interest. Some of these
-assumptions can be relaxed with a gravity-style access model, but the
-logsum of a destination choice model has several benefits as an
-accessibility term including its grounding in choice framework, ability
-to weigh multiple attributes of an alternative, and include travel
-impedances by all modes (\protect\hyperlink{ref-dong2006}{Dong et al.
-2006}). These measures can even be weighted by a cost coefficient to
-translate the lost utility in monetary terms
-(\protect\hyperlink{ref-geurs2010}{Geurs et al. 2010};
-\protect\hyperlink{ref-geurs2004}{Geurs and van Wee 2004}).
+quantification (\citeproc{ref-handy1997}{Handy and Niemeier 1997}).
+Perhaps the most popular method is the cumulative opportunities measure:
+e.g., the number of jobs within a specified travel time threshold. This
+is the method employed by Xie and Levinson (\citeproc{ref-xie2011}{Xie
+and Levinson 2011}) in an analysis of the impact of the I-35 W bridge
+collapse in Minneapolis. But cumulative opportunities measures require
+the analyst to assert a travel time threshold, a mode, and an
+opportunity of interest. Some of these assumptions can be relaxed with a
+gravity-style access model, but the logsum of a destination choice model
+has several benefits as an accessibility term including its grounding in
+choice framework, ability to weigh multiple attributes of an
+alternative, and include travel impedances by all modes
+(\citeproc{ref-dong2006}{Dong et al. 2006}). These measures can even be
+weighted by a cost coefficient to translate the lost utility in monetary
+terms (\citeproc{ref-geurs2010}{Geurs et al. 2010};
+\citeproc{ref-geurs2004}{Geurs and van Wee 2004}).
 
 Logsum-derived accessibility meaures have been used before to evaluate
-network resiliency (\protect\hyperlink{ref-masiero2012}{Masiero and
-Maggi 2012}; \protect\hyperlink{ref-taylor2008}{Taylor 2008};
-\protect\hyperlink{ref-winkler2016}{Winkler 2016}). Where these previous
-efforts have been somewhat limited is in their theoretical nature.
-Though previous researchers have shown that logsum-derived accessibility
+network resiliency (\citeproc{ref-masiero2012}{Masiero and Maggi 2012};
+\citeproc{ref-taylor2008}{Taylor 2008};
+\citeproc{ref-winkler2016}{Winkler 2016}). Where these previous efforts
+have been somewhat limited is in their theoretical nature. Though
+previous researchers have shown that logsum-derived accessibility
 measures are feasible and informative, their use in actual resilience
 analysis efforts by state departments of transportation and other
 relevant agencies appears limited.
 
 \bookmarksetup{startatroot}
 
-\hypertarget{methodology}{%
-\section{Methodology}\label{methodology}}
+\section{Methodology}\label{methodology}
 
 In this section we describe a model framework designed to evaluate
 resilience using a logit-based choice metric. This framework is heavily
@@ -455,8 +439,7 @@ few necessary extensions. We then describe the implementation of this
 model framework to a prioritization exercise on the Utah Statewide
 Travel Model (USTM).
 
-\hypertarget{model-design}{%
-\subsection{Model Design}\label{model-design}}
+\subsection{Model Design}\label{model-design}
 
 The overall model framework is presented in Fig.~\ref{fig-framework},
 and is designed to capture the utility-based accessibility for a
@@ -471,67 +454,67 @@ corresponding capital letter \(K\).
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\textwidth,height=\textheight]{03-methods_files/figure-pdf/fig-framework-1.png}
+\centering{
+
+\includegraphics[width=1\textwidth,height=\textheight]{03-methods_files/figure-pdf/fig-framework-1.png}
 
 }
 
 \caption{\label{fig-framework}Model framework with feedback cycle. Blue
 boxes are calculated after the second feedback loop.}
 
-\end{figure}
+\end{figure}%
 
 With the travel time \(t_{ijk}\) for all modes \(k \in K\), the model
 computes mode choice utility values. The multinomial logit mode choice
 model describes the probability of a person at origin \(i\) choosing
 mode \(k\) for a trip to destination \(j\):
-\begin{equation}\protect\hypertarget{eq-mcp}{}{
+\begin{equation}\phantomsection\label{eq-mcp}{
 \mathcal{P}_{ijm}(k) = \frac{\exp(f(\beta_{m}, t_{ijk}))}{\sum_{K}\exp(f(\beta_{m}, t_{ijk}))}
-}\label{eq-mcp}\end{equation} The log of the denominator of the this
-equation is called the mode choice logsum, \(MCLS_{ijm}\) and is a
-measure of the travel cost by all modes, weighted by utility parameters
-\(\beta_m\) that may vary by trip purpose.
+}\end{equation} The log of the denominator of the this equation is
+called the mode choice logsum, \(MCLS_{ijm}\) and is a measure of the
+travel cost by all modes, weighted by utility parameters \(\beta_m\)
+that may vary by trip purpose.
 
 The \(MCLS\) is then used as a travel impedance term in the multinomial
 logit destination choice model, where the probability of a person at
 origin \(i\) choosing destination \(j \in J\) is
-\begin{equation}\protect\hypertarget{eq-dcp}{}{
+\begin{equation}\phantomsection\label{eq-dcp}{
 \mathcal{P}_{im}(j) = \frac{\exp(f(\gamma_{m}, MCLS_{ijm}, A_j))}{\sum_{J}\exp(f(\gamma_{m}, MCLS_{ijm}, A_j))}
-}\label{eq-dcp}\end{equation} where \(A_j\) is the attractiveness ---
-represented in terms of socioeconomic activity --- of zone \(j\). As
-with mode choice, the log of the denominator of this model is the
-destination choice logsum, \(DCLS_{im}\). This quantity represents the
-value access to all destinations by all modes of travel, and varies by
-trip purpose.
+}\end{equation} where \(A_j\) is the attractiveness --- represented in
+terms of socioeconomic activity --- of zone \(j\). As with mode choice,
+the log of the denominator of this model is the destination choice
+logsum, \(DCLS_{im}\). This quantity represents the value access to all
+destinations by all modes of travel, and varies by trip purpose.
 
 The \(DCLS_{im}\) measure is relative, but can be compared across
 scenarios. The difference between the measures of two scenarios
-\begin{equation}\protect\hypertarget{eq-deltas}{}{
+\begin{equation}\phantomsection\label{eq-deltas}{
 \Delta_{im} = DCLS_{im}^{\mathrm{Base}} - DCLS_{im}^{\mathrm{Scenario}}
-}\label{eq-deltas}\end{equation} provides an estimate of the
-accessibility lost when \(t_{ij\mathrm{drive}}\) changes due to a
-damaged highway link. This accessibility change is \emph{per trip},
-meaning that the total lost accessibility is \(P_{im} * \Delta_{im}\)
-where \(P\) is the number of trip productions at zone \(i\) for purpose
-\(m\). This measure is given in units of dimensionless utility, but the
-mode choice cost coefficient \(\beta_{\mathrm{cost}}\) provides a
-conversion factor between utility and cost. The total financial cost of
-a damaged link for the entire region for all trip purposes is
-\begin{equation}\protect\hypertarget{eq-totalcost}{}{
+}\end{equation} provides an estimate of the accessibility lost when
+\(t_{ij\mathrm{drive}}\) changes due to a damaged highway link. This
+accessibility change is \emph{per trip}, meaning that the total lost
+accessibility is \(P_{im} * \Delta_{im}\) where \(P\) is the number of
+trip productions at zone \(i\) for purpose \(m\). This measure is given
+in units of dimensionless utility, but the mode choice cost coefficient
+\(\beta_{\mathrm{cost}}\) provides a conversion factor between utility
+and cost. The total financial cost of a damaged link for the entire
+region for all trip purposes is
+\begin{equation}\phantomsection\label{eq-totalcost}{
 \mathrm{Cost} = \sum_{I}\sum_{M} -1 / \beta_{\mathrm{cost},m} * P_{im} \Delta_{im}
-}\label{eq-totalcost}\end{equation}
+}\end{equation}
 
 For comparison to a simpler resiliency method that only includes the
 increased travel time between origins and destinations, we compute the
 change in congested travel time between \(\delta t_{ij}\) and multiply
 the number of trips by this change and a value of time coefficient
 derived from the cost and vehicle time coefficients of the mode choice
-model, \begin{equation}\protect\hypertarget{eq-ttmethod}{}{
+model, \begin{equation}\phantomsection\label{eq-ttmethod}{
 \mathrm{Cost}' =  \sum_I \sum_J \sum_M \frac{\beta_{\mathrm{time}, m} }{\beta_{\mathrm{cost}, m}} T_{ijm} \delta t_{ijm}
-}\label{eq-ttmethod}\end{equation}
+}\end{equation}
 
-\hypertarget{model-implementation-in-utah}{%
 \subsection{Model Implementation in
-Utah}\label{model-implementation-in-utah}}
+Utah}\label{model-implementation-in-utah}
 
 The Utah Department of Transportation (UDOT) manages an extensive
 highway network consisting of interstate freeways (I-15, I-80, I-70, and
@@ -585,9 +568,11 @@ among the several modes available (commuter rail, light rail, bus rapid
 transit, local bus) was taken as the travel time for a single transit
 mode in this implementation.
 
-\hypertarget{tbl-coeffs}{}
 \begin{table}
-\caption{\label{tbl-coeffs}Choice Model Coefficients }\tabularnewline
+
+\caption{\label{tbl-coeffs}Choice Model Coefficients}
+
+\centering{
 
 \centering
 \begin{tabular}[t]{llrrr}
@@ -627,7 +612,10 @@ mode in this implementation.
 \hspace{1em} & Walk Distance (1 mile or more) [miles] & -0.1350 & -0.1050 & -0.1200\\
 \bottomrule
 \end{tabular}
-\end{table}
+
+}
+
+\end{table}%
 
 The utility coefficients for the destination and mode choice models are
 presented in Table~\ref{tbl-coeffs}. The mode choice coefficients were
@@ -637,7 +625,7 @@ model. This model was selected for its simplicity and analogous data
 elements to the proposed model. The alternative-specific constants were
 calibrated to regional mode choice targets developed from the 2015 Utah
 Household Travel Survey (UHTS) using methods described by Koppelman and
-Bhat (\protect\hyperlink{ref-koppelman2006}{2006}).
+Bhat (\citeproc{ref-koppelman2006}{2006}).
 
 The destination choice utility equation consists of three parts: a size
 term, a travel impedance term, and a calibration polynomial.
@@ -647,17 +635,16 @@ Instead, these coefficients were adapted from the RVTPO model. The
 distance polynomial coefficients were calibrated to targets developed
 from the 2012 Utah household travel survey.
 
-\hypertarget{vulnerable-link-identification}{%
 \subsubsection{Vulnerable Link
-Identification}\label{vulnerable-link-identification}}
+Identification}\label{vulnerable-link-identification}
 
 To develop evaluation scenarios on which to apply the model, we used
 information contained in the UDOT Risk Priority Analysis online map
-Transportation (\protect\hyperlink{ref-UDOT2020}{2020}). This map
-considers the probability of various events that could impact road
-performance including rock falls, avalanches, landslides, and other
-similar occurrences. Using this tool, combined with information gathered
-from the research team and UDOT officials, 41 locations of interest were
+Transportation (\citeproc{ref-UDOT2020}{2020}). This map considers the
+probability of various events that could impact road performance
+including rock falls, avalanches, landslides, and other similar
+occurrences. Using this tool, combined with information gathered from
+the research team and UDOT officials, 41 locations of interest were
 identified for analysis. Each link was identified due to its location in
 relation to population centers, remote geographic location, and
 proximity to other highway facilities, or because the link was known to
@@ -666,8 +653,7 @@ suspected choke point in the network.
 
 \bookmarksetup{startatroot}
 
-\hypertarget{sec-results}{%
-\section{Results}\label{sec-results}}
+\section{Results}\label{sec-results}
 
 In this section we apply the model to scenarios where critical highway
 links are removed from the model network. This includes first a detailed
@@ -677,9 +663,8 @@ method that measures only the change in travel time and does not allow
 for mode or destination choice. The model was then applied to 40
 additional link closure scenarios throughout the state.
 
-\hypertarget{detailed-scenario-analysis}{%
 \subsection{Detailed Scenario
-Analysis}\label{detailed-scenario-analysis}}
+Analysis}\label{detailed-scenario-analysis}
 
 To illustrate how the logsum-based model framework captures the costs of
 losing a link, we conducted a scenario where I-80 between Tooele and
@@ -717,9 +702,12 @@ that the availability of alternative destinations still provide some
 benefit to the choice maker, a proposition that the travel time method
 ignores.
 
-\hypertarget{tbl-tooeletable}{}
 \begin{table}
-\caption{\label{tbl-tooeletable}Comparison of Logsum-based and Time-based costs for I-80 at Tooele }\tabularnewline
+
+\caption{\label{tbl-tooeletable}Comparison of Logsum-based and
+Time-based costs for I-80 at Tooele}
+
+\centering{
 
 \centering
 \resizebox{\linewidth}{!}{
@@ -745,7 +733,10 @@ Comparable Total & \$8,817 & \$186,860 & \$195,677 & \$22,338 & \$410,116 & \$43
 Total & \$8,817 & \$186,860 & \$195,677 & \$414,499 & \$437,580 & \$852,079\\
 \bottomrule
 \end{tabular}}
-\end{table}
+
+}
+
+\end{table}%
 
 Another key element of Table~\ref{tbl-tooeletable} is that the largest
 single element of costs in the scenario is associated with through
@@ -756,9 +747,8 @@ of the existing USTM, but it is obvious that a choice-based framework
 for examining the costs of through and inbound / outbound traffic is an
 important limitation in this scenario and potentially many others.
 
-\hypertarget{prioritization-scenario-results}{%
 \subsection{Prioritization Scenario
-Results}\label{prioritization-scenario-results}}
+Results}\label{prioritization-scenario-results}
 
 We now apply the model to compare 40 additional scenarios where
 individual highway facilities are removed from the model highway
@@ -779,40 +769,34 @@ canyons surrounding the main urban area.
 
 \begin{figure}
 
-\begin{minipage}[t]{0.50\linewidth}
+\begin{minipage}{0.50\linewidth}
 
-{\centering 
-
-\raisebox{-\height}{
+\centering{
 
 \includegraphics[width=4in,height=\textheight]{04-results_files/figure-pdf/fig-linksmap-1.pdf}
 
 }
 
-}
-
 \subcaption{\label{fig-linksmap-1}Statewide}
+
 \end{minipage}%
 %
-\begin{minipage}[t]{0.50\linewidth}
+\begin{minipage}{0.50\linewidth}
 
-{\centering 
-
-\raisebox{-\height}{
+\centering{
 
 \includegraphics[width=4in,height=\textheight]{04-results_files/figure-pdf/fig-linksmap-2.pdf}
 
 }
 
-}
-
 \subcaption{\label{fig-linksmap-2}Wasatch Front}
+
 \end{minipage}%
 
 \caption{\label{fig-linksmap}Total cost of link closure for each
 scenario by the logsum method.}
 
-\end{figure}
+\end{figure}%
 
 Perhaps strangely, many scenarios in the analysis show a \emph{benefit}
 from loss of the link. Investigating these scenarios showed that for
@@ -828,9 +812,12 @@ calibration. This exercise reveals one reason why such a practice should
 be discouraged, and also highlights the importance of using consistent
 functions for impedance calculation at all stages of the model.
 
-\hypertarget{tbl-traveltimerank}{}
 \begin{table}
-\caption{\label{tbl-traveltimerank}Scenario Results of Both Methodologies }\tabularnewline
+
+\caption{\label{tbl-traveltimerank}Scenario Results of Both
+Methodologies}
+
+\centering{
 
 \centering
 \resizebox{\linewidth}{!}{
@@ -891,7 +878,10 @@ Bangerter & near Bluffdale & -\$27,720 & \$42,503 & \$1,026 & \$43,529\\
 I-80 & SLC 1300 E & -\$42,433 & \$50,471 & \$41,831 & \$92,302\\
 \bottomrule
 \end{tabular}}
-\end{table}
+
+}
+
+\end{table}%
 
 The remaining columns of Table~\ref{tbl-traveltimerank} present the
 costs associated with link closure based on the travel time method. Many
@@ -906,8 +896,7 @@ down the line. To put it simply, the choice of analysis method would
 change the priority that UDOT places on its roads in terms of preparing
 for incidents and hardening assets.
 
-\hypertarget{sensitivity-analysis}{%
-\subsection{Sensitivity Analysis}\label{sensitivity-analysis}}
+\subsection{Sensitivity Analysis}\label{sensitivity-analysis}
 
 A primary limitation of the model framework presented to this point is
 that the input parameters used for the mode and destination choice
@@ -919,13 +908,12 @@ change modestly?
 
 To examine this possibility, we construct 25 independent draws of the
 parameter coefficients using Latin Hypercube Sampling
-(\protect\hyperlink{ref-helton2003}{Helton and Davis 2003}). The
-coefficient of variation for each parameter was assumed to be 0.1;
-originally, a value of 0.3 was selected
-(\protect\hyperlink{ref-zhao2002}{Zhao and Kockelman 2002}), but this
-resulted in an unreasonable range of implied values of time. Using each
-of the 25 draws, we ran the base scenario and three large-impact
-scenarios and calculated the logsum-based costs.
+(\citeproc{ref-helton2003}{Helton and Davis 2003}). The coefficient of
+variation for each parameter was assumed to be 0.1; originally, a value
+of 0.3 was selected (\citeproc{ref-zhao2002}{Zhao and Kockelman 2002}),
+but this resulted in an unreasonable range of implied values of time.
+Using each of the 25 draws, we ran the base scenario and three
+large-impact scenarios and calculated the logsum-based costs.
 
 Fig.~\ref{fig-saplot} presents the estimated monetary costs for each of
 these three scenarios under each of the 25 parameter draws. The results
@@ -941,19 +929,20 @@ element in the relative ranking of scenarios.
 
 \begin{figure}
 
-{\centering \includegraphics{04-results_files/figure-pdf/fig-saplot-1.pdf}
+\centering{
+
+\includegraphics{04-results_files/figure-pdf/fig-saplot-1.pdf}
 
 }
 
 \caption{\label{fig-saplot}Estimated logsum-based scenario costs in 25
 different draws of the choice model parameters.}
 
-\end{figure}
+\end{figure}%
 
 \bookmarksetup{startatroot}
 
-\hypertarget{limitations-and-discussion}{%
-\section{Limitations and Discussion}\label{limitations-and-discussion}}
+\section{Limitations and Discussion}\label{limitations-and-discussion}
 
 The issue of systemic resilience to natural and other hazards is an
 important question for transportation agencies in the United States and
@@ -981,10 +970,9 @@ it to fail by itself, but ends up being a critical component of several
 combinations of failures? Taking the question further, agencies might
 consider scenarios where emergency services or evacuations must operate
 on a degraded network, an element of the emerging research area of
-functional recovery (\protect\hyperlink{ref-zhan2022}{Zhan et al.
-2022}). Of course, it is also an open question as to whether destination
-and mode choices will follow the same behavioral patterns in such a
-scenario.
+functional recovery (\citeproc{ref-zhan2022}{Zhan et al. 2022}). Of
+course, it is also an open question as to whether destination and mode
+choices will follow the same behavioral patterns in such a scenario.
 
 This research developed a trip-based statewide transportation planning
 model using common model design practices including a destination choice
@@ -1027,8 +1015,8 @@ increase in telecommuting instigated by the COVID-19 pandemic, workplace
 location is likely even more flexible now than it has been in the past.
 This increased flexibility has already called into question how HBW
 trips are handled in travel behavior modeling
-(\protect\hyperlink{ref-salon2021}{Salon et al. 2021}). A more nuanced
-method for estimating HBW trips that accounts for both flexibility and
+(\citeproc{ref-salon2021}{Salon et al. 2021}). A more nuanced method for
+estimating HBW trips that accounts for both flexibility and
 inflexibility of workplace location might be developed, or the use of
 activity-based models that consider journeys to work or telecommuting as
 a function of trip distance could be employed.
@@ -1044,8 +1032,8 @@ shift trips to periods with a less compromised network. Addressing this
 issue, however, would introduce challenges related to long-distance
 trips that would stretch across time periods. A dynamic traffic
 assignment or mesoscopic network simulation may be a better strategy to
-address this issue (e.g., \protect\hyperlink{ref-kaddoura2018}{Kaddoura
-and Nagel 2018}).
+address this issue (e.g., \citeproc{ref-kaddoura2018}{Kaddoura and Nagel
+2018}).
 
 Policies that result in a clear and certain outcome are rare, though
 travel demand models are sometimes misinterpreted, misused, or even
@@ -1058,8 +1046,7 @@ test supplied in this research is a modest step in this direction.
 
 \bookmarksetup{startatroot}
 
-\hypertarget{conclusions}{%
-\section{Conclusions}\label{conclusions}}
+\section{Conclusions}\label{conclusions}
 
 The question of systemic resilience of highway assets is an increasing
 concern to agencies that must maintain critical infrastructure as it
@@ -1077,8 +1064,7 @@ helpful analysis.
 
 \bookmarksetup{startatroot}
 
-\hypertarget{acknowledgments}{%
-\section*{Acknowledgments}\label{acknowledgments}}
+\section*{Acknowledgments}\label{acknowledgments}
 \addcontentsline{toc}{section}{Acknowledgments}
 
 \markboth{Acknowledgments}{Acknowledgments}
@@ -1094,9 +1080,8 @@ kind, and assumes no liability therefore.
 
 \bookmarksetup{startatroot}
 
-\hypertarget{author-contribution-statement}{%
 \section*{Author Contribution
-Statement}\label{author-contribution-statement}}
+Statement}\label{author-contribution-statement}
 \addcontentsline{toc}{section}{Author Contribution Statement}
 
 \markboth{Author Contribution Statement}{Author Contribution Statement}
@@ -1109,120 +1094,119 @@ Data curation, Writing - original draft, Visualization
 
 \bookmarksetup{startatroot}
 
-\hypertarget{references}{%
-\section*{References}\label{references}}
+\section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
 
 \markboth{References}{References}
 
-\hypertarget{refs}{}
+\phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-abdel2007}{}}%
+\bibitem[\citeproctext]{ref-abdel2007}
 Abdel-Rahim, A., P. Oman, B. K. Johnson, and R. A. Sadiq. 2007.
 {``\href{https://doi.org/10.1109/ITSC.2007.4357801}{Assessing surface
 transportation network component criticality: A multi-layer graph-based
 approach}.''} \emph{2007 IEEE intelligent transportation systems
 conference}, 1000--1003.
 
-\leavevmode\vadjust pre{\hypertarget{ref-aem2017}{}}%
+\bibitem[\citeproctext]{ref-aem2017}
 AEM. 2017. {``I-15 corridor risk and resilience pilot final report.''}
 
-\leavevmode\vadjust pre{\hypertarget{ref-agarwal2011}{}}%
+\bibitem[\citeproctext]{ref-agarwal2011}
 Agarwal, J., M. Liu, and D. Blockley. 2011.
 {``\href{https://doi.org/10.1061/41170(400)28}{A systems approach to
 vulnerability assessment}.''} \emph{Vulnerability, uncertainty, and
 risk}, 230--237.
 
-\leavevmode\vadjust pre{\hypertarget{ref-ben-akiva1985}{}}%
+\bibitem[\citeproctext]{ref-ben-akiva1985}
 Ben-Akiva, M., and S. R. Lerman. 1985. \emph{Discrete choice analysis:
 Theory and applications to travel demand}. MIT Press.
 
-\leavevmode\vadjust pre{\hypertarget{ref-berdica2002}{}}%
+\bibitem[\citeproctext]{ref-berdica2002}
 Berdica, K. 2002. {``An introduction to road vulnerability: What has
 been done, is done and should be done.''} \emph{Transport Policy}, 9
 (2): 117--127. \url{https://doi.org/10.1016/S0967-070X(02)00011-2}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-berdica2007}{}}%
+\bibitem[\citeproctext]{ref-berdica2007}
 Berdica, K., and L.-G. Mattsson. 2007. {``Vulnerability: A model-based
 case study of the road network in stockholm.''} \emph{Critical
 infrastructure}, 81--106. Springer.
 
-\leavevmode\vadjust pre{\hypertarget{ref-bradley2007}{}}%
+\bibitem[\citeproctext]{ref-bradley2007}
 Bradley, J. 2007. {``Time period and risk measures in the general risk
 equation.''} \emph{Journal of Risk Research}, 10 (3): 355--369.
 Routledge. \url{https://doi.org/10.1080/13669870701252232}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-dong2006}{}}%
+\bibitem[\citeproctext]{ref-dong2006}
 Dong, X., M. E. Ben-Akiva, J. L. Bowman, and J. L. Walker. 2006.
 {``Moving from trip-based to activity-based measures of
 accessibility.''} \emph{Transportation Research Part A: Policy and
 Practice}, 40 (2): 163--180.
 \url{https://doi.org/10.1016/j.tra.2005.05.002}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-ganin2017}{}}%
+\bibitem[\citeproctext]{ref-ganin2017}
 Ganin, A. A., M. Kitsak, D. Marchese, J. M. Keisler, T. Seager, and I.
 Linkov. 2017. {``Resilience and efficiency in transportation
 networks.''} \emph{Science advances}, 3 (12): e1701079. American
 Association for the Advancement of Science.
 
-\leavevmode\vadjust pre{\hypertarget{ref-geurs2004}{}}%
+\bibitem[\citeproctext]{ref-geurs2004}
 Geurs, K. T., and B. van Wee. 2004. {``Accessibility evaluation of
 land-use and transport strategies: Review and research directions.''}
 \emph{Journal of Transport Geography}, 12 (2): 127--140.
 \url{https://doi.org/10.1016/j.jtrangeo.2003.10.005}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-geurs2010}{}}%
+\bibitem[\citeproctext]{ref-geurs2010}
 Geurs, K., B. Zondag, G. de Jong, and M. de Bok. 2010. {``Accessibility
 appraisal of land-use/transport policy strategies: More than just adding
 up travel-time savings.''} \emph{Transportation Research Part D:
 Transport and Environment}, 15 (7): 382--393.
 \url{https://doi.org/10.1016/j.trd.2010.04.006}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-guze2014}{}}%
+\bibitem[\citeproctext]{ref-guze2014}
 Guze, S. 2014. {``Graph theory approach to transportation systems design
 and optimization.''} \emph{TransNav, the International Journal on Marine
 Navigation and Safety of Sea Transportation}, 8 (4): 571--578. Gdynia
 Maritime University, Faculty of Navigation.
 \url{https://doi.org/10.12716/1001.08.04.12}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-hamedi2018}{}}%
+\bibitem[\citeproctext]{ref-hamedi2018}
 Hamedi, M., S. Eshragh, M. Franz, and P. M. Sekula. 2018.
 \emph{Analyzing impact of i-85 bridge collapse on regional travel in
 atlanta}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-handy1997}{}}%
+\bibitem[\citeproctext]{ref-handy1997}
 Handy, S. L., and D. A. Niemeier. 1997. {``Measuring accessibility: An
 exploration of issues and alternatives.''} \emph{Environment and
 Planning A: Economy and Space}, 29 (7): 1175--1194.
 \url{https://doi.org/10.1068/a291175}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-helton2003}{}}%
+\bibitem[\citeproctext]{ref-helton2003}
 Helton, J. C., and F. J. Davis. 2003. {``Latin hypercube sampling and
 the propagation of uncertainty in analyses of complex systems.''}
 \emph{Reliability Engineering \& System Safety}, 81 (1): 23--69.
 \url{https://doi.org/10.1016/S0951-8320(03)00058-9}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-ibrahim2011}{}}%
+\bibitem[\citeproctext]{ref-ibrahim2011}
 Ibrahim, S., R. Ammar, S. Rajasekaran, N. Lownes, Q. Wang, and D.
 Sharma. 2011. {``\href{https://doi.org/10.1109/ISCC.2011.5983988}{An
 efficient heuristic for estimating transportation network
 vulnerability}.''} \emph{2011 IEEE symposium on computers and
 communications (ISCC)}, 1092--1098.
 
-\leavevmode\vadjust pre{\hypertarget{ref-ip2011}{}}%
+\bibitem[\citeproctext]{ref-ip2011}
 Ip, W. H., and D. Wang. 2011. {``Resilience and friability of
 transportation networks: Evaluation, analysis and optimization.''}
 \emph{IEEE Systems Journal}, 5 (2): 189--198.
 \url{https://doi.org/10.1109/JSYST.2010.2096670}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-jaller2015}{}}%
+\bibitem[\citeproctext]{ref-jaller2015}
 Jaller, M., C. A. G. Calderón, W. F. Yushimito, and I. D. S. Díaz. 2015.
 {``An investigation of the effects of critical infrastructure on urban
 mobility in the city of medellín.''} \emph{International Journal of
 Critical Infrastructures}, 11 (3): 213.
 \url{https://doi.org/10.1504/ijcis.2015.072158}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-kaddoura2018}{}}%
+\bibitem[\citeproctext]{ref-kaddoura2018}
 Kaddoura, I., and K. Nagel. 2018. {``Using real-world traffic incident
 data in transport modeling.''} \emph{Procedia Computer Science}, The 9th
 international conference on ambient systems, networks and technologies
@@ -1230,35 +1214,35 @@ international conference on ambient systems, networks and technologies
 information technology ({SEIT-2018}) / affiliated workshops, 130:
 880--885. \url{https://doi.org/10.1016/j.procs.2018.04.084}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-koppelman2006}{}}%
+\bibitem[\citeproctext]{ref-koppelman2006}
 Koppelman, F., and C. Bhat. 2006. {``A self instructing course in mode
 choice modeling: Multinomial and nested logit models.''}
 
-\leavevmode\vadjust pre{\hypertarget{ref-masiero2012}{}}%
+\bibitem[\citeproctext]{ref-masiero2012}
 Masiero, L., and R. Maggi. 2012. {``Estimation of indirect cost and
 evaluation of protective measures for infrastructure vulnerability: A
 case study on the transalpine transport corridor.''} \emph{Transport
 Policy}, 20: 13--21. Elsevier.
 
-\leavevmode\vadjust pre{\hypertarget{ref-omer2013}{}}%
+\bibitem[\citeproctext]{ref-omer2013}
 Omer, M., A. Mostashari, and R. Nilchiani. 2013. {``Assessing resilience
 in a regional road-based transportation network.''} \emph{International
 Journal of Industrial and Systems Engineering}, 13 (4): 389--408.
 \url{https://doi.org/10.1504/ijise.2013.052605}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-osei2014}{}}%
+\bibitem[\citeproctext]{ref-osei2014}
 Osei-Asamoah, A., and N. E. Lownes. 2014. {``Complex network method of
 evaluating resilience in surface transportation networks.''}
 \emph{Transportation Research Record}, 2467 (1): 120--128.
 \url{https://doi.org/10.3141/2467-13}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-peeta2010}{}}%
+\bibitem[\citeproctext]{ref-peeta2010}
 Peeta, S., F. Sibel Salman, D. Gunnec, and K. Viswanath. 2010.
 {``Pre-disaster investment decisions for strengthening a highway
 network.''} \emph{Computers \& Operations Research}, 37 (10):
 1708--1719. \url{https://doi.org/10.1016/j.cor.2009.12.006}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-salon2021}{}}%
+\bibitem[\citeproctext]{ref-salon2021}
 Salon, D., M. W. Conway, D. Capasso da Silva, R. S. Chauhan, S.
 Derrible, A. (Kouros). Mohammadian, S. Khoeini, N. Parker, L. Mirtich,
 A. Shamshiripour, E. Rahimi, and R. M. Pendyala. 2021. {``The potential
@@ -1266,74 +1250,74 @@ stickiness of pandemic-induced behavior changes in the united states.''}
 \emph{Proceedings of the National Academy of Sciences}, 118 (27):
 e2106499118. \url{https://doi.org/10.1073/pnas.2106499118}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-serulle2011}{}}%
+\bibitem[\citeproctext]{ref-serulle2011}
 Serulle, N. U., K. Heaslip, B. Brady, W. C. Louisell, and J. Collura.
 2011. {``Resiliency of transportation network of santo domingo,
 dominican republic: Case study.''} \emph{Transportation Research
 Record}, 2234 (1): 22--30. \url{https://doi.org/10.3141/2234-03}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-taylor2008}{}}%
+\bibitem[\citeproctext]{ref-taylor2008}
 Taylor, M. A. P. 2008. {``Critical transport infrastructure in urban
 areas: Impacts of traffic incidents assessed using accessibility-based
 network vulnerability analysis.''} \emph{Growth and Change}, 39 (4):
 593--616. \url{https://doi.org/10.1111/j.1468-2257.2008.00448.x}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-UDOT2020}{}}%
+\bibitem[\citeproctext]{ref-UDOT2020}
 Transportation, U. D. of. 2020. {``UDOT asset risk management
 process.''}
 
-\leavevmode\vadjust pre{\hypertarget{ref-vodak2019}{}}%
+\bibitem[\citeproctext]{ref-vodak2019}
 Vodák, R., M. Bíl, T. Svoboda, Z. Křivánková, J. Kubeček, T. Rebok, and
 P. Hliněný. 2019. {``A deterministic approach for rapid identification
 of the critical links in networks.''} \emph{Plos One}, 14 (7).
 \url{https://doi.org/10.1371/journal.pone.0219658}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-winkler2016}{}}%
+\bibitem[\citeproctext]{ref-winkler2016}
 Winkler, C. 2016. {``Evaluating transport user benefits: Adjustment of
 logsum difference for constrained travel demand models.''}
 \emph{Transportation Research Record}, 2564 (1): 118--126.
 \url{https://doi.org/10.3141/2564-13}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-xie2011}{}}%
+\bibitem[\citeproctext]{ref-xie2011}
 Xie, F., and D. Levinson. 2011. {``Evaluating the effects of the i-35W
 bridge collapse on road-users in the twin cities metropolitan region.''}
 \emph{Transportation Planning and Technology}, 34 (7): 691--703.
 Routledge. \url{https://doi.org/10.1080/03081060.2011.602850}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-xu2015}{}}%
+\bibitem[\citeproctext]{ref-xu2015}
 Xu, X., A. Chen, S. Jansuwan, K. Heaslip, and C. Yang. 2015. {``Modeling
 transportation network redundancy.''} \emph{Transportation research
 procedia}, 9: 283--302. Elsevier.
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhan2022}{}}%
+\bibitem[\citeproctext]{ref-zhan2022}
 Zhan, S., A. Chang-Richards, K. Elwood, and M. Boston. 2022.
 {``\href{https://repo.nzsee.org.nz/xmlui/handle/nzsee/2507}{Post-earthquake
 functional recovery: A critical review}.''}
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhang2016}{}}%
+\bibitem[\citeproctext]{ref-zhang2016}
 Zhang, W., and N. Wang. 2016. {``Resilience-based risk mitigation for
 road networks.''} \emph{Structural Safety}, 62: 57--65.
 \url{https://doi.org/10.1016/j.strusafe.2016.06.003}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhang2015}{}}%
+\bibitem[\citeproctext]{ref-zhang2015}
 Zhang, X., E. Miller-Hooks, and K. Denny. 2015. {``Assessing the role of
 network topology in transportation network resilience.''} \emph{Journal
 of Transport Geography}, 46: 35--45.
 \url{https://doi.org/10.1016/j.jtrangeo.2015.05.006}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhao2002}{}}%
+\bibitem[\citeproctext]{ref-zhao2002}
 Zhao, Y., and K. M. Kockelman. 2002. {``The propagation of uncertainty
 through travel demand models: An exploratory analysis.''} \emph{The
 Annals of Regional Science}, 36 (1): 145--163.
 \url{https://doi.org/10.1007/s001680200072}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-zhu2010}{}}%
+\bibitem[\citeproctext]{ref-zhu2010}
 Zhu, S., D. Levinson, H. X. Liu, and K. Harder. 2010a. {``The traffic
 and behavioral effects of the i-35W mississippi river bridge
 collapse.''} \emph{Transportation Research Part A: Policy and Practice},
 44 (10): 771--784. \url{https://doi.org/10.1016/j.tra.2010.07.001}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-levinson2010}{}}%
+\bibitem[\citeproctext]{ref-levinson2010}
 Zhu, S., D. Levinson, H. Liu, K. Harder, and A. Dancyzk. 2010b.
 {``Traffic flow and road user impacts of the collapse of the i-35W
 bridge over the mississippi river.''} Minnesota Department of
