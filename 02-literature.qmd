@@ -31,7 +31,6 @@ groups include:
 -   *Accessibility analysis* How easily can the population using the damaged
     network complete their daily activities?
 
-
 ```{r authortable, echo = FALSE, cache = FALSE}
 #| label: tbl-authortable
 #| tbl-cap: Attempts to Evaluate Systemic Resiliency
@@ -62,11 +61,12 @@ shortest or least cost path, but typically do not eliminate all paths. The
 degree to which travel time increases when a particular link is damaged,
 however, could provide an estimate of the criticality of that link or node. This
 general method has been used to evaluate potential choke points in various
-networks [@berdica2007; @jaller2015; @ganin2017] as well as the allocation of
-emergency resources [@peeta2010]. Though many applications only consider the
-increase in travel time, some authors consider how the users of the network will
-respond to the decreased capacity [@ibrahim2011; @serulle2011; @xu2015], and
-others attempt to model a shift in departure time or mode [@omer2013].
+networks [@berdica2007; @jenelius2012; @jaller2015; @ganin2017] as well as the
+allocation of emergency resources [@peeta2010]. Though many applications only
+consider the increase in travel time, some authors consider how the users of the
+network will respond to the decreased capacity [@scott2006; @ibrahim2011;
+@balijepalli2014; @serulle2011; @xu2015], and others attempt to model a shift in
+departure time or mode [@omer2013].
 
 A primary limitation with increased travel time methodologies is that they
 ignore other possible ways a population might adapt its travel to a damaged
@@ -81,20 +81,25 @@ models ---- provide a framework for evaluating these costs [@ben-akiva1985;
 Accessibility is an abstract concept with multiple methods of quantification
 [@handy1997]. Perhaps the most popular method is the cumulative opportunities
 measure: e.g., the number of jobs within a specified travel time threshold. This
-is the method employed by Xie and Levinson [@xie2011] in an analysis of the
-impact of the I-35 W bridge collapse in Minneapolis. But cumulative
-opportunities measures require the analyst to assert a travel time threshold, a
-mode, and an opportunity of interest. Some of these assumptions can be relaxed
-with a gravity-style access model, but the logsum of a destination choice model
-has several benefits as an accessibility term including its grounding in choice
-framework, ability to weigh multiple attributes of an alternative, and include
-travel impedances by all modes [@dong2006]. These measures can even be weighted
-by a cost coefficient to translate the lost utility in monetary terms
-[@geurs2004; @geurs2010].
+is the method employed by @xie2011 in an analysis of the impact of the I-35 W
+bridge collapse in Minneapolis, and in a theoretical context in Australia by
+@taylor2012. But cumulative opportunities measures require the analyst to assert
+a travel time threshold, a mode, and an opportunity of interest. Some of these
+assumptions can be relaxed with a gravity-style access model, but the logsum of
+a destination choice model has several benefits as an accessibility term
+including its grounding in choice framework, ability to weigh multiple
+attributes of an alternative, and include travel impedances by all modes
+[@dong2006]. These measures can even be weighted by a cost coefficient to
+translate the lost utility in monetary terms [@geurs2004; @geurs2010].
 
 Logsum-derived accessibility meaures have been used before to evaluate network
-resiliency [@taylor2008; @masiero2012; @winkler2016]. Where these previous
-efforts have been somewhat limited is in their theoretical nature. Though
-previous researchers have shown that logsum-derived accessibility measures are
-feasible and informative, their use in actual resilience analysis efforts by
-state departments of transportation and other relevant agencies appears limited.
+resiliency [@taylor2008; @masiero2012; @winkler2016]. @gecchele2019, for
+example, employ an activity-based model to evaluate the change travel demand
+related to a highway link — implicitly using the log sums of a trip and
+destination choice model — but only evaluate the change in observed choices
+rather than the implied costs of those choices at the utility level. But beyond
+this, these research efforts have not yet entered the mainstream in practical
+application. Though previous researchers have shown that logsum-derived
+accessibility measures are feasible and informative, their use in actual
+resilience analysis efforts by state departments of transportation and other
+relevant agencies appears limited.
