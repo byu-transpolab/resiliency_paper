@@ -313,56 +313,6 @@
 %
 % `NP' means `no parentheses'.
 %
-\let\@internalcite\cite
-%
-% Place commas in-between citations in the same \citeyear, \citeyearNP,
-%  or \citeN command.
-% Use something like \citeN{ref1,ref2,ref3} and \citeN{ref4} for a list.
-%
-\newcommand{\citedata}%
-{\@ifnextchar [{\@tempswatrue\@citedatax}%
-	{\@tempswafalse\@citedatax[]}}
-%
-\def\@citedatax[#1]#2{%
-	\if@filesw\immediate\write\@auxout{\string\citation{#2}}\fi%
-	\def\@citea{}\@cite{\@for\@citeb:=#2\do%
-		{\@citea\def\@citea{, }\@ifundefined% by Young
-			{b@\@citeb}{{\bf ?}%
-				\@warning{Citation `\@citeb' on page \thepage \space undefined}}%
-			{\csname b@\@citeb\endcsname}}}{#1}}%
-%
-\def\@citex[#1]#2{%
-	\if@filesw\immediate\write\@auxout{\string\citation{#2}}\fi%
-	\def\@citea{}\@cite{\@for\@citeb:=#2\do%
-		{\@citea\def\@citea{; }\@ifundefined% by Young
-			{b@\@citeb}{{\bf ?}%
-				\@warning{Citation `\@citeb' on page \thepage \space undefined}}%
-			{\csname b@\@citeb\endcsname}}}{#1}}%
-%
-\renewcommand{\cite}%
-{\def\@citeseppen{-1000}%
-	\def\@cite##1##2{(##1\if@tempswa , ##2\fi)}%
-	\def\citeauthoryear##1##2##3{##2 ##3}\@internalcite}
-\newcommand{\citeNP}%
-{\def\@citeseppen{-1000}%
-	\def\@cite##1##2{##1\if@tempswa , ##2\fi}%
-	\def\citeauthoryear##1##2##3{##2 ##3}\@internalcite}
-\newcommand{\citeN}%
-{\def\@citeseppen{-1000}%
-	\def\@cite##1##2{##1\if@tempswa , ##2)\else{)}\fi}%
-	\def\citeauthoryear##1##2##3{##2 (##3}\citedata}
-\newcommand{\citeA}%
-{\def\@citeseppen{-1000}%
-	\def\@cite##1##2{(##1\if@tempswa , ##2\fi)}%
-	\def\citeauthoryear##1##2##3{##2}\@internalcite}
-\newcommand{\citeyear}%
-{\def\@citeseppen{-1000}%
-	\def\@cite##1##2{(##1\if@tempswa , ##2\fi)}%
-	\def\citeauthoryear##1##2##3{##3}\citedata}
-\newcommand{\citeyearNP}%
-{\def\@citeseppen{-1000}%
-	\def\@cite##1##2{##1\if@tempswa , ##2\fi}%
-	\def\citeauthoryear##1##2##3{##3}\citedata}
 %
 %
 % An ASCE-like title on the first page
