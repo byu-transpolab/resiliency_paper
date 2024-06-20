@@ -182,11 +182,12 @@ calibrated to targets developed from the 2012 Utah household travel survey.
 ### Vulnerable Link Identification
 
 To develop evaluation scenarios on which to apply the model, we used information
-contained in the UDOT Risk Priority Analysis online map @UDOT2020. This map
+contained in the UDOT Risk Priority Analysis online map [@UDOT2020]. This map
 considers the probability of various events that could impact road performance
 including rock falls, avalanches, landslides, and other similar occurrences.
 Using this tool, combined with information gathered from the research team and
-UDOT officials, 41 locations of interest were identified for analysis. Each link
+UDOT officials, 41 locations of interest were identified for analysis, at
+the locations shown in @fig-linksmap. Each link
 was identified due to its location in relation to population centers, remote
 geographic location, and proximity to other highway facilities, or because the
 link was known to be at risk due to geologic or geographic features, or because

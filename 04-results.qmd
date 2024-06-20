@@ -103,9 +103,10 @@ kbl(
   
 ```
 
-```{r tooelemap, echo = FALSE, cache = FALSE, eval = FALSE}
+```{r tooelemap, echo = FALSE, cache = FALSE}
 #| label: fig-tooelemap
 #| fig-cap: "Tooele county HBW utility loss"
+#| fig-width: 7
 tar_load(zonal_mapdata)
 
 naf0 <- function(x){ifelse(x == 0, NA, x)}
@@ -164,9 +165,9 @@ Rather, they are in mountain canyons surrounding the main urban area.
 
 ```{r links-map}
 #| label: fig-linksmap
-#| layout-ncol: 2
+#| layout-nrow: 2
 #| fig-cap: Total cost of link closure for each scenario by the logsum method.
-#| out-width: 4in
+#| fig-height: 4
 #| fig-subcap: 
 #|   - Statewide
 #|   - Wasatch Front
@@ -183,7 +184,7 @@ ggplot(data = mapdata, mapping = aes(
                                discrete = TRUE, option  = "rocket", 
                                direction = -1) +
   # scale_color_manual("Cost (M$)", palette = ) + 
-  geom_sf(size = 4, stroke = 1, alpha = 0.9, pch = 21)  + 
+  geom_sf(size = 3, stroke = 1, alpha = 0.9, pch = 21)  + 
    theme(axis.line = element_line(color = NA),
         axis.title.x=element_blank(),
         axis.text.x=element_blank(),
@@ -207,7 +208,7 @@ ggplot(data = mapdata |> sf::st_filter(wfbb),
                                discrete = TRUE, option  = "rocket", 
                                direction = -1) +
   # scale_color_manual("Cost (M$)", palette = ) + 
-  geom_sf(size = 4, stroke = 1, alpha = 0.9, pch = 21)  + 
+  geom_sf(size = 3, stroke = 1, alpha = 0.9, pch = 21)  + 
   theme(axis.line = element_line(color = NA),
         axis.title.x=element_blank(),
         axis.text.x=element_blank(),
