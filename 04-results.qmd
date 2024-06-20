@@ -36,7 +36,15 @@ is the only realistic path between the two counties, as alternate routes
 involve mountain canyons and many additional miles of travel.
 
 The costs obtained by the logsum and travel time based methods for this
-scenario are shown in @tbl-tooeletable. In both analyses, we separate
+scenario are shown in @tbl-tooeletable. @fig-toolemap presents the 
+lost HBW utility in each TAZ associated with removing
+the interstate link between Tooele and Salt Lake Counties. 
+Multiplying these values by the population in each production TAZ, summing 
+based on whether the TAZ is inside or outside Tooele County, and then multiplying
+by the cost coefficient yields the HBW values for the Utility Logsum in 
+@tbl-tooeletable.
+
+In both the logsum and travel time analyses, we separate
 the costs spatially, though the definitions of the two are slightly
 different. In the logsum-based method, "Inside Tooele" are costs
 associated with decreased accessibility for trips produced in Tooele
@@ -149,10 +157,11 @@ important limitation in this scenario and potentially many others.
 
 We now apply the model to compare 40 additional scenarios where
 individual highway facilities are removed from the model highway
-network. @tbl-traveltimerank presents the logsum and travel time results
+network. @fig-traveltimerank presents the logsum and travel time results
 for all 41 scenarios, ordered by decreasing logsum costs. In other
 words, I-15 at the boundary between Utah and Salt Lake Counties is the
-most "vulnerable" or "critical" link analyzed in this exercise. Were
+most "critical" link analyzed in this exercise as determined by the logsum
+method. Were
 this link to be cut, the people of Utah would have the highest costs per
 day in lost destination and travel access of any other link. Each of the
 highest-ranking roads in this analysis is an interstate facility in
