@@ -233,8 +233,10 @@ discouraged, and also highlights the importance of using consistent
 functions for impedance calculation at all stages of the model.
 
 ```{r traveltimerank, echo = FALSE}
-#| label: tbl-traveltimerank
-#| tbl-cap: Scenario Results of Both Methodologies
+#| label: fig-traveltimerank
+#| fig-cap: Scenario results of travel time and logsum methods in comparison.
+#| fig-width: 7.5
+#| fig-height: 6
 linktable <- readxl::read_excel("images/linktable.xlsx") %>%
   mutate(scenario = substr(LINK_ID, 5,6)) %>%
   select(-c(LINK_ID))
@@ -246,29 +248,36 @@ scalf <- function(x){
   scales::dollar(x, largest_with_cents = 100)
 }
 
-costs |> 
+df <- costs |> 
   arrange(-value) |> 
   transmute(
+    rownumber = row_number(),
     scenario = gsub("ROAD", "", scenario),
-    value = scales::dollar(value/100, largest_with_cents = 100)
+    value = value/100
   ) |> 
   left_join(timecost_table, by = "scenario") |>  
-  mutate(
-    across(-c(scenario, value), scalf )
-  ) |> 
   left_join(linktable, by = "scenario") |> 
-  select(ROUTE, LOCATION, value, HBWHBONHB, FXPREC, TOTAL) |> 
-kbl(
-  col.names = c("Route", "Location", rep("HBW, HBO, NHB", 2),
-                "Freight, External, etc.", "Total"),
-  align = "crr", booktabs = TRUE#, format = "markdown"
-) %>%
-  kable_styling(latex_options = "scale_down") |> 
-  add_header_above(c(" " = 2, "Logsum" = 1, "Travel Time" = 3))
+  select(rownumber, ROUTE, LOCATION, value, HBWHBONHB, FXPREC)  |> 
+  set_names(c("rownumber", "Route", "Location", "Logsum", "HBW, HBO, NHB", 
+              "Freight, External")) |> 
+  pivot_longer(cols = Logsum:`Freight, External`, 
+               names_to = "Purpose", values_to = "Value") |> 
+  mutate(Method = ifelse(Purpose == "Logsum", "Logsum", "Travel Time"),
+         Purpose = ifelse(Method == "Logsum", "HBW, HBO, NHB", Purpose),
+         Scenario = str_c(Route, Location, sep = ":"))
+
+ggplot(df, aes(x = rownumber, y = Value/1e6, color = Purpose, lty = Method)) +
+  geom_line() + theme_bw() + 
+  scale_color_manual("Purposes", values = wes_palette("Darjeeling1", 3)) + 
+  scale_x_continuous(labels = unique(df$Scenario), breaks = 1:max(df$rownumber)) + 
+  theme(axis.text.x = element_text(angle = 70, hjust = 1)) + 
+  xlab("Scenario") + ylab("User impacts [$ million]") +
+   theme(panel.grid.minor.x = element_blank())
 ```
 
-The remaining columns of @tbl-traveltimerank present the costs
-associated with link closure based on the travel time method. Many of
+@fig-traveltimerank also present the costs
+associated with link closure based on the travel time method for comparable 
+purposes and also for freight. Many of
 the most costly scenarios in the logsum model also appear to be costly
 in the comparable elements of the travel time method. That is, the
 scenario breaking the interstate link between Salt Lake and Utah
