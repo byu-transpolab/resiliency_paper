@@ -7,14 +7,27 @@
 library(readxl)
 ```
 
-In a groundbreaking theoretical article, Berdica [@berdica2002] attempted to
-identify, define and conceptualize network "vulnerability" --- the complement of
-resiliency --- by envisioning analyses conducted with several vulnerability
+Systemic resilience is an important consideration for transportation agencies,
+though specific definitions of "resilience" might vary under different contexts.
+Some agencies and researchers see resiliency as facility-level design and
+engineering that hardens the system against failure [@bradley2007; @peeta2010];
+others as an ability for maintenance staff to rapidly restore service following
+catastrophe [@zhang2016]; and others as an ability for a system to continue
+operating in degraded state [@berdica2002; @ip2011]. Regardless of the
+definition used, assessing the resilience of a transportation network --- and
+addressing any potential shortfalls --- requires a method to identify which
+links or facilities are most critical to the smooth operation of the network.
+
+In a groundbreaking theoretical article, @berdica2002 attempted to identify,
+define and conceptualize network "vulnerability" --- the complement of
+resilience --- by envisioning analyses conducted with several vulnerability
 performance measures including travel time, delay, congestion, serviceability,
-and accessibility. She then defined reliability as the level of reduced
-accessibility due to unfavorable operating conditions on the network. In
-particular, the author identifies a need for further research toward developing
-a framework capable of investigating reliability of transportation networks.
+and accessibility. She then defined vulnerability as the level of reduced
+accessibility due to unfavorable operating conditions on the network. A network
+vulnerability is therefore a critical link whose loss would have the largest
+negative impacts on the people using the network. In particular, the author
+identified a need for further research toward developing a framework capable of
+investigating reliability and critical links in transportation networks.
 
 In this section we examine several attempts by numerous researchers to do
 precisely this using various measures of network performance. It is helpful to
@@ -73,7 +86,9 @@ ignore other possible ways a population might adapt its travel to a damaged
 network. Aside from shifting routes and modes, people may choose other
 destinations and it is possible that some previously planned trips might be
 canceled entirely. Travel time-based methods do not account for the costs of
-these changes in plans. But accessibility methods --- in particular the
+these changes in plans, when people select (presumably worse) activity locations
+and modes of travel in addition to seeing their travel costs increase because of
+the additional travel time. But accessibility methods --- in particular the
 accessibility calculations embedded within many existing regional transport
 models ---- provide a framework for evaluating these costs [@ben-akiva1985;
 @geurs2004].
@@ -93,13 +108,14 @@ attributes of an alternative, and include travel impedances by all modes
 translate the lost utility in monetary terms [@geurs2004; @geurs2010].
 
 Logsum-derived accessibility meaures have been used before to evaluate network
-resiliency [@taylor2008; @masiero2012; @winkler2016]. @gecchele2019, for
-example, employ an activity-based model to evaluate the change travel demand
-related to a highway link — implicitly using the log sums of a trip and
-destination choice model — but only evaluate the change in observed choices
-rather than the implied costs of those choices at the utility level. But beyond
-this, these research efforts have not yet entered the mainstream in practical
-application. Though previous researchers have shown that logsum-derived
-accessibility measures are feasible and informative, their use in actual
-resilience analysis efforts by state departments of transportation and other
-relevant agencies appears limited.
+resiliency [@taylor2008; @masiero2012; @winkler2016]. @miller2015 and
+@gecchele2019, for example, each employ an activity-based model to evaluate the
+change travel demand related to a highway link — implicitly using the log sums
+of a trip and destination choice model — but only evaluate the change in
+observed choices rather than the implied costs of those choices at the utility
+level. But beyond this, these research efforts have not yet entered the
+mainstream in practical application. Though previous researchers have shown that
+logsum-derived accessibility measures are feasible and informative, their use in
+actual resilience analysis efforts by state departments of transportation and
+other relevant agencies appears limited. This limited practical application is
+unfortunate, given the important theoretical steps described to this point.
