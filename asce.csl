@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-US">
+  <!-- This style was edited with the Visual CSL Editor (https://editor.citationstyles.org/visualEditor/) -->
   <info>
-    <title>American Society of Civil Engineers</title>
+    <title>American Society of Civil Engineers - note</title>
     <title-short>ASCE</title-short>
-    <id>http://www.zotero.org/styles/american-society-of-civil-engineers</id>
-    <link href="http://www.zotero.org/styles/american-society-of-civil-engineers" rel="self"/>
+    <id>http://www.zotero.org/styles/american-society-of-civil-engineers-note</id>
+    <link href="http://www.zotero.org/styles/american-society-of-civil-engineers-note" rel="self"/>
     <link href="https://ascelibrary.org/doi/book/10.1061/9780784479018" rel="documentation"/>
     <link href="https://ascelibrary.org/doi/pdf/10.1061/9780784479018" rel="documentation"/>
     <author>
@@ -14,10 +15,13 @@
     <contributor>
       <name>Patrick O'Brien</name>
     </contributor>
+    <contributor>
+      <name>Greg Macfarlane</name>
+    </contributor>
     <category citation-format="author-date"/>
     <category field="engineering"/>
     <summary>A style for American Society of Civil Engineers publications</summary>
-    <updated>2022-02-04T22:46:32+00:00</updated>
+    <updated>2024-06-28T21:52:28+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <macro name="container-contributors">
@@ -140,7 +144,7 @@
   </macro>
   <macro name="access">
     <choose>
-      <if type="webpage post post-weblog" match="any">
+      <if type="webpage post post-weblog report" match="any">
         <group delimiter=". ">
           <group delimiter=" ">
             <text term="accessed" text-case="capitalize-first"/>
@@ -153,6 +157,13 @@
         <text variable="DOI" prefix="https://doi.org/"/>
       </else-if>
     </choose>
+    <group>
+      <choose>
+        <if match="any" variable="note">
+          <text variable="note"/>
+        </if>
+      </choose>
+    </group>
   </macro>
   <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year-suffix">
     <sort>
