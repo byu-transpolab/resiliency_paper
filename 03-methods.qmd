@@ -102,8 +102,9 @@ the entire region for all trip purposes is $$
 \mathrm{Cost} = \sum_{I}\sum_{M} -1 / \beta_{\mathrm{cost},m} * P_{im} \Delta_{im}
 $$ {#eq-totalcost}
 
-For comparison to a simpler resiliency method that only includes the increased
-travel time between origins and destinations, we compute the change in congested
+For comparison to a common method that only includes the increased
+travel time between origins and destinations (and not the cost and opportunities
+of changing modes and destinations), we compute the change in congested
 travel time between $\delta t_{ij}$ and multiply the number of trips by this
 change and a value of time coefficient derived from the cost and vehicle time
 coefficients of the mode choice model, $$
@@ -137,8 +138,8 @@ elements
 2.  *Zonal Productions* $P_{im}$: available for all zones by purpose, including
     those in the MPO region areas.
 3.  *Zonal Socioeconomic Data*: the destination choice model described in
-    @eq-dcp calculates attractions $A_{jm}$ from the USTM zonal
-    socioeconomic data based on the utility coefficients in @tbl-coeffs.
+    @eq-dcp calculates attractions $A_{jm}$ from the USTM zonal socioeconomic
+    data based on the utility coefficients in @tbl-coeffs.
 4.  *Calibration Targets*: USTM base scenario estimates of mode split and trip
     length were used to calibrate the utility coefficients as described below.
 
@@ -166,18 +167,21 @@ kbl(coefficient_table,  booktabs = TRUE,
 The utility coefficients for the destination and mode choice models are
 presented in @tbl-coeffs. The mode choice coefficients were adapted from USTM
 and supplemented with coefficients from the Roanoke (Virginia) Valley
-Transportation Planning Organization (RVTPO) travel model. This model was
-selected for its simplicity and analogous data elements to the proposed model.
-The alternative-specific constants were calibrated to regional mode choice
-targets developed from the 2015 Utah Household Travel Survey (UHTS) using
-methods described by @koppelman2006.
+Transportation Planning Organization (RVTPO) travel model [@wang2016]. This
+model was selected for its simplicity and analogous data elements to the
+proposed model. The alternative-specific constants were calibrated to regional
+mode choice targets developed from the 2012 Utah Household Travel Survey (UHTS)
+using methods described by @koppelman2006.
 
 The destination choice utility equation consists of three parts: a size term, a
 travel impedance term, and a calibration polynomial. Coefficients for the size
 term and travel impedance terms were adapted from the Oregon Statewide
-Integrated Model for all purposes except HBW. Instead, these coefficients were
-adapted from the RVTPO model. The distance polynomial coefficients were
-calibrated to targets developed from the 2012 Utah household travel survey.
+Integrated Model (SWIM) [@donnelly2017] for all purposes except HBW, which coefficients
+were adapted from the RVTPO model as the SWIM uses a different methodology for 
+selecting work locations. The distance polynomial coefficients were
+calibrated to targets developed from the 2012 UHTS.
+
+
 
 ### Vulnerable Link Identification
 

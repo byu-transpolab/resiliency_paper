@@ -305,17 +305,19 @@ A primary limitation of the model framework presented to this point is
 that the input parameters used for the mode and destination choice
 utilities were gathered from several different sources including a
 statewide trip-based model, a statewide activity-based model, and an
-urban model for a small region. How much would the findings presented to
-this point change if the parameters in @tbl-coeffs were to change
-modestly?
+urban model for a small region. These models were transferred without a
+knowledge of the individual parameter estimation statistics or overall goodness
+of fit. How much would the findings presented to this point change if the
+parameters in @tbl-coeffs were to change modestly?
 
 To examine this possibility, we construct 25 independent draws of the
 parameter coefficients using Latin Hypercube Sampling [@helton2003]. The
 coefficient of variation for each parameter was assumed to be 0.1;
-originally, a value of 0.3 was selected [@zhao2002], but this resulted
-in an unreasonable range of implied values of time. Using each of the 25
-draws, we ran the base scenario and three large-impact scenarios and
-calculated the logsum-based costs.
+originally, a value of 0.3 was selected based on the uncertainty research of
+@zhao2002, but this resulted in an unreasonable range of implied values of time
+in many parameter draws.
+Using each of the 25 draws, we ran the base scenario and three large-impact
+scenarios and calculated the logsum-based costs.
 
 @fig-saplot presents the estimated monetary costs for each of these
 three scenarios under each of the 25 parameter draws. The results are

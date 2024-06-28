@@ -27,17 +27,38 @@ research area of functional recovery [@zhan2022]. Of course, it is also an open
 question as to whether destination and mode choices will follow the same
 behavioral patterns in such a scenario.
 
+It is also worth considering that the behavioral response when links in a
+highway network are degraded is directly analogous with the behavioral response
+when network links are *improved.* As travel model methodologies improve to meet
+the challenges posed by induced demand [@thill2005; @volker2020], it would seem
+strange to use one methodology for positive network improvements while inventing
+wholly new methodologies for negative network improvements.
+
 This research developed a trip-based statewide transportation planning model
 using common model design practices including a destination choice trip
 distribution model and a complete –-- if rudimentary --– logit-based mode choice
-model. The model presented in this particular research should not be used for
-infrastructure policy or forecasting analyses, but is instead an illustrative
-tool. Many statewide models, on the other hand, use a trip-based statewide
-transportation planning model with a basic gravity-type trip distribution model
-and no mode choice component. Using logit-based choice frameworks for trip
-distribution and mode choice allows the model to incorporate greater sensitivity
-to influencing variables and other benefits, in addition to providing data to
-support this type of resiliency analysis.
+model. Many agencies use a trip-based statewide transportation planning model
+with a basic gravity-type trip distribution model and no mode choice component
+that cannot be used directly for this kind of analysis. Using logit-based choice
+frameworks for trip distribution and mode choice allows the model to incorporate
+greater sensitivity to influencing variables and other benefits, in addition to
+providing data to support this type of resiliency analysis. The model presented
+in this particular research should not be used for infrastructure policy or
+forecasting analyses as its parameters have been transferred from three
+different source models and not estimated from local data directly. Rather, the
+model developed for this research is an illustrative tool, with some degree of
+internal consistency and robustness as illustrated by the parameter sensitivity
+analysis. Agencies should consider the full range of policies that their models
+could evaluate when they make design decisions about how models are structured.
+
+On a related note, only one of the three source models was accompanied with open
+documentation describing the estimation of the models along with
+goodness of fit and significance statistics. Publishing model estimation reports
+--- perhaps even alongside anonymized datasets to allow re-estimation --- would
+strengthen the scientific basis of travel forecasting and help earn trust among
+the public. This practice would have allowed the sensitivity analysis presented
+in this report to be based on draws from the covariance matrix of the individual
+parameters rather than an asserted coefficient of variation.
 
 The flexibility and sensitivity afforded by choice models can introduce some
 additional challenges, however. The results of the logsum-based choice analysis
@@ -69,17 +90,26 @@ inflexibility of workplace location might be developed, or the use of
 activity-based models that consider journeys to work or telecommuting as a
 function of trip distance could be employed.
 
-Another limitation in this research surrounds the daily trip assignment procedure, which
-introduces two related issues. The first is that the analysis does not consider
-incidents which close a facility for a time shorter than 24 hours. Though the
-target of this research was an understanding of incidents of longer duration
-(allowing for a shift in destination choice), the impacts of shorter incidents
-on user costs is an important topic. A departure time choice model might allow
-users to shift trips to periods with a less compromised network. Addressing this
-issue, however, would introduce challenges related to long-distance trips that
-would stretch across time periods. A dynamic traffic assignment or mesoscopic
-network simulation may be a better strategy to address this issue [e.g.,
-@kaddoura2018].
+A similar limitation of this research is that we held the travel times and
+levels of service constant for non-highway modes. While some possible incidents
+would affect only highways --- such as losing one interstate bridge --- many
+would affect adjacent rail transit infrastructure, or would disrupt
+non-motorized paths or local transit services which use the highways. Ignoring the  
+potential disruption to these modes potentially leads our model to underestimate
+the user costs for some scenarios where alternative modes would not be available.
+
+Another limitation in this research surrounds the daily trip assignment
+procedure, which introduces two related issues. The first is that the analysis
+does not consider incidents which close a facility for a time shorter than 24
+hours. Though the target of this research was an understanding of incidents of
+longer duration (allowing for a shift in destination choice), the impacts of
+shorter incidents on user costs is an important topic. A departure time choice
+model might allow users to shift trips to periods with a less compromised
+network. Addressing this issue, however, would introduce challenges related to
+long-distance trips that would stretch across time periods. A dynamic traffic
+assignment or mesoscopic network simulation may be a better strategy to address
+this issue [e.g., @kaddoura2018].
+
 
 Policies that result in a clear and certain outcome are rare, though travel
 demand models are sometimes misinterpreted, misused, or even mis-designed to
@@ -99,7 +129,11 @@ on coherent representations of human behavior --- provide compelling tools for
 evaluating the criticality of individual highway assets. These tools may require
 different expertise than more traditional agency engineers are usually equipped
 with, but simplified or simplistic methods can lead to fundamentally different
-evaluations of what may happen when the network changes. Demand modelers must
-first equip their models with the tools to be useful outside of simple volume
-forecasting, and then communicate with their stakeholders and peers the purpose
-of the model and its powerful potential for helpful analysis.
+evaluations of what may happen when the network changes. Specifically, the
+results of this analysis suggest travel time based methods may overstate the
+excess user costs associated with degraded highway networks, as they do not
+consider that travelers might choose different destinations or modes to
+accomplish their travel. Demand modelers must first equip their models with the
+tools to be useful outside of simple volume forecasting, and then communicate
+with their stakeholders and peers the purpose of the model and its powerful
+potential for helpful analysis.
