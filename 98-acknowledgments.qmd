@@ -8,6 +8,10 @@ policies of the Utah Department of Transportation or the US Department of
 Transportation. The Utah Department of Transportation makes no representation or
 warranty of any kind, and assumes no liability therefore.
 
+# Data Availability Statement {.unnumbered}
+
+Some or all data, models, or code that support the findings of this study are available from the corresponding author upon reasonable request.
+
 # Author Contribution Statement {.unnumbered}
 ```{r contrib, results = 'asis', message=FALSE, echo=FALSE}
 library(CRediTas)
