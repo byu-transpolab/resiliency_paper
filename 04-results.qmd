@@ -36,7 +36,7 @@ is the only realistic path between the two counties, as alternate routes
 involve mountain canyons and many additional miles of travel.
 
 The costs obtained by the logsum and travel time based methods for this
-scenario are shown in @tbl-tooeletable. @fig-toolemap presents the 
+scenario are shown in @tbl-tooeletable. @fig-tooelemap presents the 
 lost HBW utility in each TAZ associated with removing
 the interstate link between Tooele and Salt Lake Counties. 
 Multiplying these values by the population in each production TAZ, summing 
@@ -285,7 +285,7 @@ ggplot(df, aes(x = rownumber, y = Value/1e6, color = Purpose, lty = Method)) +
    theme(panel.grid.minor.x = element_blank())
 ```
 
-@fig-traveltimerank also present the costs
+@fig-traveltimerank also presents the costs
 associated with link closure based on the travel time method for comparable 
 purposes and also for freight. Many of
 the most costly scenarios in the logsum model also appear to be costly

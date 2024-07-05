@@ -94,7 +94,7 @@ A similar limitation of this research is that we held the travel times and
 levels of service constant for non-highway modes. While some possible incidents
 would affect only highways --- such as losing one interstate bridge --- many
 would affect adjacent rail transit infrastructure, or would disrupt
-non-motorized paths or local transit services which use the highways. Ignoring the  
+non-motorized paths or local transit services which use the highways. Ignoring the
 potential disruption to these modes potentially leads our model to underestimate
 the user costs for some scenarios where alternative modes would not be available.
 
