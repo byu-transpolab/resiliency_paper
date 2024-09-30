@@ -4,6 +4,7 @@ project:
 # This defines the .qmd files that are in your document
 book:
   title: "A utility-based approach to modeling systemic resilience of highway networks with an application in Utah"
+  output-file: "resiliency"
   author:
     - name: Gregory S. Macfarlane
       orcid: 0000-0003-3999-7584 

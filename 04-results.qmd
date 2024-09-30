@@ -113,7 +113,7 @@ kbl(
 
 ```{r tooelemap, echo = FALSE, cache = FALSE}
 #| label: fig-tooelemap
-#| fig-cap: "Tooele county HBW utility loss"
+#| fig-cap: "Tooele county HBW utility loss. Basemap from OpenStreetMap via @ggspatial."
 #| fig-width: 7
 tar_load(zonal_mapdata)
 
@@ -175,7 +175,7 @@ Rather, they are in mountain canyons surrounding the main urban area.
 ```{r links-map}
 #| label: fig-linksmap
 #| layout-nrow: 2
-#| fig-cap: Total cost of link closure for each scenario by the logsum method.
+#| fig-cap: Total cost of link closure for each scenario by the logsum method.  Basemap from OpenStreetMap via @ggspatial.
 #| fig-height: 4
 #| fig-subcap: 
 #|   - Statewide
